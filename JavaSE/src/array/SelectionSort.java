@@ -1,4 +1,4 @@
-package com.array;
+package array;
 
 /**
  * @author kun

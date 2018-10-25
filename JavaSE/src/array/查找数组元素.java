@@ -1,4 +1,4 @@
-package com.array;
+package array;
 
 public class 查找数组元素 {
 
