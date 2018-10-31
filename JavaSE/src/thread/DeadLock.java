@@ -1,4 +1,4 @@
-package com.fengshiqing.thread;
+package thread;
 
 public class DeadLock {
 	

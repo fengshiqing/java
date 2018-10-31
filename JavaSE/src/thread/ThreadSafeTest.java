@@ -1,4 +1,4 @@
-package com.fengshiqing.thread;
+package thread;
 
 //线程加锁。
 public class ThreadSafeTest implements Runnable {
