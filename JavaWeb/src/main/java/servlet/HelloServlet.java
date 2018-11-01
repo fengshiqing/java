@@ -1,34 +1,26 @@
 /**
  * 
  */
-package com.kun;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @author kun
- *
- */
-public class TestServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/HttpServlet/FirstServlet" }, loadOnStartup = 1, initParams = {
+		@WebInitParam(name = "name", value = "hotusm") })
+public class HelloServlet extends HttpServlet {
 
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -56,5 +48,5 @@ public class TestServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		this.doGet(request, response);
 	}
-	
+
 }
