@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 继承 HttpServlet
+ */
 @WebServlet(urlPatterns = { "/HttpServlet/FirstServlet" }, loadOnStartup = 1, initParams = {
 		@WebInitParam(name = "name", value = "hotusm") })
 public class HelloServlet extends HttpServlet {
@@ -34,6 +37,7 @@ public class HelloServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<h3>Request Information Example</h3>");
 
+		// 获取客户机的信息
 		out.println("Method: " + request.getMethod() + "</br>"); // 获取请求方式：GET、POST
 		out.println("Request URI: " + request.getRequestURI() + "</br>");// 获取 URI 地址
 		out.println("Request URL: " + request.getRequestURL() + "</br>");// 获取 URL 地址
