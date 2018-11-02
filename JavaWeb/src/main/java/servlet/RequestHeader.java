@@ -45,6 +45,14 @@ public class RequestHeader extends HttpServlet {
 		out.println("Protocol: " + request.getProtocol() + "</br>"); // 返回请求request使用的协议 的名称和版本
 		out.println("PathInfo: " + request.getPathInfo() + "</br>");//
 		out.println("Remote Address: " + request.getRemoteAddr() + "</br>");
+		out.println("AuthType：" + request.getAuthType() + "</br>");
+		
+		Enumeration<?> e1 = request.getAttributeNames();// 获取客户机的请求中的属性信息，默认是没有属性的，为空
+		while (e1.hasMoreElements()) {
+			String name = (String) e1.nextElement();
+			String value = request.getHeader(name);
+			out.println(name + " = " + value + "<br>");
+		}
 	}
 
 	/*
