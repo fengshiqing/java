@@ -3,11 +3,10 @@ package string;
 public class StringDemo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		byte[] byteArr = new byte[2];
-		new String(byteArr, 0, 3);
-		
+		//String str = new String(byteArr, 0, 3);// java.lang.StringIndexOutOfBoundsException: String index out of range: 3
+		String str = new String(byteArr, 0, 2);
+		System.out.println(str);
 	}
 
 }
