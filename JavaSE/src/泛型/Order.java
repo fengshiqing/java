@@ -3,7 +3,7 @@ package 泛型;
 import java.util.ArrayList;
 import java.util.List;
 
-//�Զ��巺����
+//自定义泛型类
 public class Order<T> {
 	private String orderName;
 	private int orderId;
@@ -19,23 +19,23 @@ public class Order<T> {
 	public void setT(T t){
 		this.t = t;
 	}
-	//��������static������ʹ�÷��͵�����
+	//不可以在static方法中使用泛型的声明
 //	public static void show(){
 //		System.out.println(t);
 //	}
 	public void info(){
-		//��������try-catch��ʹ����ķ��͵�����
+		//不可以在try-catch中使用类的泛型的声明
 //		try{
 //			
 //		}catch(T e){
 //			
 //		}
 	}
-	//�������ͷ���
+	//声明泛型方法
 	public static <E> E getE(E e){
 		return e;
 	}
-	//ʵ�����鵽���ϵĸ���
+	//实现数组到集合的复制
 	public <E> List<E> fromArrayToList(E[] e,List<E> list){
 		for(E e1 : e){
 			list.add(e1);
@@ -61,7 +61,7 @@ public class Order<T> {
 				+ ", t=" + t + "]";
 	}
 }
-//�̳з�������ͽӿ�ʱ������ָ�����͵�����
+//继承泛型类或泛型接口时，可以指明泛型的类型
 class SubOrder extends Order<Integer>{
 	
 }
