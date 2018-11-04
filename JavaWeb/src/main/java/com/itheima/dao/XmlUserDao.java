@@ -11,6 +11,7 @@ import com.itheima.util.XmlDaoUtils;
 
 public class XmlUserDao implements UserDao {
 	
+	@SuppressWarnings("unchecked")
 	public User findUserByUserName(String username){
 		Document dom = XmlDaoUtils.getDom();
 		Element root = dom.getRootElement();
