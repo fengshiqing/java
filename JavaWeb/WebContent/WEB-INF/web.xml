@@ -17,10 +17,7 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<servlet-class>com.itheima.web.LogoutServlet</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.itheima.web.LoginServlet</servlet-class>
-	</servlet>
+	
 
 
 
@@ -37,6 +34,11 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/servlet/LogoutServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.itheima.web.LoginServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/servlet/LoginServlet</url-pattern>
