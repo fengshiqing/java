@@ -5,16 +5,16 @@
 <html>
 
 <head>
-	<title>JavaWeb项目</title>
+<title>JavaWeb项目</title>
 </head>
 
 <body>
 	<h1>我的网站</h1>
-	<hr/>
+	<hr />
 	<c:if test="${sessionScope.user==null}">
 		欢迎光临！游客！
-		<br/>
-		<br/>
+		<br />
+		<br />
 		<a href="${pageContext.request.contextPath }/regist.jsp">注册</a>
 		<a href="${pageContext.request.contextPath }/login.jsp">登录</a>
 	</c:if>
