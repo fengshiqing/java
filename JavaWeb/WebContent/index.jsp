@@ -19,7 +19,7 @@
 		<a href="${pageContext.request.contextPath }/login.jsp">登录</a>
 	</c:if>
 	<c:if test="${sessionScope.user!=null}">
-		欢迎回来!${sessionScope.user.username }!
+		欢迎回来！${sessionScope.user.username }！
 		<a href="${pageContext.request.contextPath }/servlet/LogoutServlet">注销</a>
 	</c:if>
 </body>
