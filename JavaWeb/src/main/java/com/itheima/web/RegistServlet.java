@@ -27,12 +27,11 @@ public class RegistServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
-			UserService service = new UserService();
 			// 1.检验验证码
 			String valistr = request.getParameter("valistr");
 			String valistr2 = (String) request.getSession().getAttribute("valistr");
 			if (valistr == null || valistr2 == null || !valistr.equals(valistr2)) {
-				request.setAttribute("msg", "验证码不正确!");
+				request.setAttribute("msg", "验证码不正确！");
 				request.getRequestDispatcher("/regist.jsp").forward(request, response);
 				return;
 			}
@@ -41,11 +40,12 @@ public class RegistServlet extends HttpServlet {
 			BeanUtils.populate(user, request.getParameterMap());
 			user.checkValue();
 			// 3.调用Service中的方法添加用户
+			UserService service = new UserService();
 			service.registUser(user);
 			// 4.登录用户
 			request.getSession().setAttribute("user", user);
 			// 5.提示注册成功3秒回到主页
-			response.getWriter().write("恭喜您注册成功!3秒回到主页....");
+			response.getWriter().write("恭喜您注册成功！3秒回到主页....");
 			response.setHeader("refresh", "3;url=" + request.getContextPath() + "/index.jsp");
 		} catch (MsgException e) {
 			request.setAttribute("msg", e.getMessage());
@@ -55,7 +55,6 @@ public class RegistServlet extends HttpServlet {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	@Override

@@ -9,16 +9,19 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = { "/servlet/ValiImg" })
 public class ValiImg extends HttpServlet {
 
 	/**
 	 * 序列化
 	 */
 	private static final long serialVersionUID = 1L;
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setDateHeader("Expires", -1);
@@ -68,6 +71,7 @@ public class ValiImg extends HttpServlet {
 		return rand.nextInt(end-begin)+begin;
 	}
 
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

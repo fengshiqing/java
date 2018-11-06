@@ -3,6 +3,7 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+
 <head>
 <title>注册</title>
 <script type="text/javascript">
@@ -11,12 +12,12 @@
 	}
 </script>
 </head>
+
 <body style="text-align: center;">
 	<h1>请注册</h1>
 	<hr>
 	<font color="red">${msg }</font>
-	<form action="${pageContext.request.contextPath}/servlet/RegistServlet"
-		method="POST">
+	<form action="${pageContext.request.contextPath}/servlet/RegistServlet" method="POST">
 		<table border="1">
 			<tr>
 				<td>用户名</td>
@@ -47,10 +48,10 @@
 			<tr>
 				<td><input type="submit" value="注册" /></td>
 				<td><img
-					src="${pageContext.request.contextPath }/servlet/ValiImg"
-					style="cursor: pointer" onclick="changeImg(this)" /></td>
+					src="${pageContext.request.contextPath }/servlet/ValiImg" style="cursor: pointer" onclick="changeImg(this)" /></td>
 			</tr>
 		</table>
 	</form>
 </body>
+
 </html>
