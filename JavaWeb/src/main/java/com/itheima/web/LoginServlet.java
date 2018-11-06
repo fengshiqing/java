@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.itheima.domain.User;
 import com.itheima.service.UserService;
 
+/**
+ * <点击“登陆“按钮后，执行此servlet>
+ * @author kun
+ *
+ */
 public class LoginServlet extends HttpServlet {
 
 	/**

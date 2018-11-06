@@ -14,6 +14,11 @@ import com.itheima.domain.User;
 import com.itheima.exception.MsgException;
 import com.itheima.service.UserService;
 
+/**
+ * <点击“注册“按钮后，执行此servlet>
+ * @author kun
+ *
+ */
 @WebServlet(urlPatterns = { "/servlet/RegistServlet" })
 public class RegistServlet extends HttpServlet {
 

@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * <点击“注销“按钮后，执行此servlet>
+ * @author kun
+ *
+ */
 @WebServlet(urlPatterns = { "/servlet/LogoutServlet" })
 public class LogoutServlet extends HttpServlet {
 
