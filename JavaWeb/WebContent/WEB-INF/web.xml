@@ -14,19 +14,15 @@
 	</servlet-mapping>
 
 
-	<servlet>
-		<servlet-name>LogoutServlet</servlet-name>
-		<servlet-class>com.itheima.web.LogoutServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LogoutServlet</servlet-name>
-		<url-pattern>/servlet/LogoutServlet</url-pattern>
-	</servlet-mapping>
-
-
+	<!-- 典型的 Servlet 配置 -->
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.itheima.web.LoginServlet</servlet-class>
+		<init-param>
+			<param-name></param-name>
+			<param-value></param-value>
+			<description></description>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
