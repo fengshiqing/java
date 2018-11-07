@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" errorPage="/errorPage.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -11,6 +11,11 @@
 <body>
 	<h1>我的网站</h1>
 	<hr />
+	
+	<%
+		int i = 1/0; 
+	%>
+	
 	<c:if test="${sessionScope.user==null}">
 		欢迎光临！游客！
 		<br />

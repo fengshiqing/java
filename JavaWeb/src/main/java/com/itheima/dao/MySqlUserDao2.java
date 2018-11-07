@@ -9,12 +9,13 @@ import com.itheima.util.JDBCUtils;
 
 public class MySqlUserDao2 implements UserDao {
 
+	@Override
 	public void addUser(User user) {
 		String sql = "insert into users values (null,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		try{
+		try {
 			conn = JDBCUtils.getConn();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
@@ -22,26 +23,27 @@ public class MySqlUserDao2 implements UserDao {
 			ps.setString(3, user.getNickname());
 			ps.setString(4, user.getEmail());
 			ps.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally{
+		} finally {
 			JDBCUtils.close(rs, ps, conn);
 		}
 	}
 
+	@Override
 	public User findUserByUNandPSW(String username, String password) {
 		String sql = "select * from users where username=? and password=?";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		try{
+		try {
 			conn = JDBCUtils.getConn();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, password);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				User user = new User();
 				user.setId(rs.getInt("id"));
 				user.setUsername(rs.getString("username"));
@@ -49,28 +51,29 @@ public class MySqlUserDao2 implements UserDao {
 				user.setNickname(rs.getString("nickname"));
 				user.setEmail(rs.getString("email"));
 				return user;
-			}else{
+			} else {
 				return null;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally{
+		} finally {
 			JDBCUtils.close(rs, ps, conn);
 		}
 	}
 
+	@Override
 	public User findUserByUserName(String username) {
 		String sql = "select * from users where username=?";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		try{
+		try {
 			conn = JDBCUtils.getConn();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				User user = new User();
 				user.setId(rs.getInt("id"));
 				user.setUsername(rs.getString("username"));
@@ -78,13 +81,13 @@ public class MySqlUserDao2 implements UserDao {
 				user.setNickname(rs.getString("nickname"));
 				user.setEmail(rs.getString("email"));
 				return user;
-			}else{
+			} else {
 				return null;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally{
+		} finally {
 			JDBCUtils.close(rs, ps, conn);
 		}
 	}

@@ -20,6 +20,19 @@
 	</servlet-mapping>
 
 
+	<!-- 当前整个应用内，所有的报错都会重定向到此处，如果Jsp页面内配置了errorPage，以errorPage为准。 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500.jsp</location>
+		<!--exception-type></exception-type 这个元素不能和 <error-code> 一起使用，否则就没有效果-->
+	</error-page>
+	<!-- 或者用这种方式：
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/error/500.jsp</location>
+	</error-page>
+	-->
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
