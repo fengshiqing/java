@@ -1,4 +1,4 @@
-package com.fengshiqing.test;
+package Test;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.fengshiqing.test;
+package Test;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;

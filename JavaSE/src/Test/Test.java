@@ -1,4 +1,4 @@
-package com.fengshiqing.test;
+package Test;
 
 public class Test {
 	/** 
