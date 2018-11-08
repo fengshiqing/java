@@ -13,7 +13,7 @@
 	<hr />
 	
 	<%
-		int i = 1/0; 
+		// int i = 1/0; 
 	%>
 	
 	<c:if test="${sessionScope.user==null}">

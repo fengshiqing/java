@@ -30,17 +30,18 @@ public class FirstServlet extends GenericServlet {
 	 */
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-		res.getWriter().write("hello Servlet!");// getWriter()返回一个字节输出流PrintWriter的对象
+		res.getWriter().write("This is my FirstServlet!");// getWriter()返回一个字节输出流PrintWriter的对象
 
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();// 字符输出
 		// response.getOutputStream();//流输出
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Hello World!</title>");
+		out.println("<title>FirstServlet</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>Hello World!</h1>");
+		out.println("<h1>This is my FirstServlet!</h1>");
+		out.println("<h1>继承 GenericServlet 抽象类</h1>");
 		out.println("</body>");
 		out.println("</html>");
 	}

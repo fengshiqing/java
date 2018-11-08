@@ -30,8 +30,11 @@ public class RequestHeader extends HttpServlet {
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");// 告诉浏览器以什么编码方式进行编码
+		response.setContentType("text/html;charset=utf-8");// 告诉浏览器以什么编码格式进行解码，有了这一句，上面那行代码可以不写。
+
 		PrintWriter out = response.getWriter();
+		out.println("<h3>获取客户机的请求头信息</h3>");
 		Enumeration<?> e = request.getHeaderNames();// 获取客户机的请求头信息
 		while (e.hasMoreElements()) {
 			String name = (String) e.nextElement();
@@ -39,6 +42,7 @@ public class RequestHeader extends HttpServlet {
 			out.println(name + " = " + value + "<br>");
 		}
 		// 获取客户机的信息
+		out.println("<h3>解决了乱码问题</h3>");
 		out.println("Method: " + request.getMethod() + "</br>"); // 获取请求方式：GET、POST
 		out.println("Request URI: " + request.getRequestURI() + "</br>");// 获取 URI 地址
 		out.println("Request URL: " + request.getRequestURL() + "</br>");// 获取 URL 地址
@@ -46,7 +50,7 @@ public class RequestHeader extends HttpServlet {
 		out.println("PathInfo: " + request.getPathInfo() + "</br>");//
 		out.println("Remote Address: " + request.getRemoteAddr() + "</br>");
 		out.println("AuthType：" + request.getAuthType() + "</br>");
-		
+
 		Enumeration<?> e1 = request.getAttributeNames();// 获取客户机的请求中的属性信息，默认是没有属性的，为空
 		while (e1.hasMoreElements()) {
 			String name = (String) e1.nextElement();
