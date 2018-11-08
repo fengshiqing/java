@@ -2,7 +2,6 @@ package readProp;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -17,6 +16,7 @@ public class ReadProperties {
         Properties prop = new Properties();
         prop.load(input);// 如果配置了中文，会产生乱码
         // prop.load(new InputStreamReader(input, "UTF-8"));// 这种方式可以读取中文，不会乱码
+        System.out.println(prop.size());
         System.out.println(prop.getProperty("name"));
         System.out.println(prop.getProperty("gender"));
         System.out.println(prop.getProperty("age"));
