@@ -3,7 +3,10 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.*;
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 
@@ -13,8 +16,8 @@ import javax.servlet.annotation.WebServlet;
 // Servlet3.0可以不需要web.xml了，新增了注解支持
 // name属性等同于 <servlet-name> 
 // urlPatterns：指定一组 Servlet 的 URL 匹配模式。等价于 <url-pattern> 标签。
-@WebServlet(urlPatterns = { "/GenericServlet/FirstServlet", "/hello" }, loadOnStartup = 1, initParams = {
-		@WebInitParam(name = "name", value = "hotusm") })
+@WebServlet(urlPatterns = { "/servlet/FirstServlet", "/hello" }, loadOnStartup = 1, initParams = {
+		@WebInitParam(name = "name", value = "fengshiqing") })
 public class FirstServlet extends GenericServlet {
 
 	/**

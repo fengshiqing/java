@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 继承 HttpServlet
  */
-@WebServlet(urlPatterns = { "/HttpServlet/FirstServlet" }, loadOnStartup = 1, initParams = {
-		@WebInitParam(name = "name", value = "hotusm") })
+@WebServlet(urlPatterns = { "/servlet/HelloServlet" })
 public class HelloServlet extends HttpServlet {
 
 	/**
@@ -25,6 +23,9 @@ public class HelloServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 继承HttpServlet需要重载doGet、doPost
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");

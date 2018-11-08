@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 获取客户机的请求头信息
  */
-@WebServlet(urlPatterns = { "/HttpServlet/RequestHeader" })
+@WebServlet(urlPatterns = { "/servlet/RequestHeader" })
 public class RequestHeader extends HttpServlet {
 
 	/**
