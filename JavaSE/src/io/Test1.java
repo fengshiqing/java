@@ -1,7 +1,10 @@
 package io;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+
+import org.junit.Test;
 
 /**
  * 注意以下两点：
@@ -52,6 +55,19 @@ public class Test1 {
 			System.out.println(i);
 		}
 		
+	}
+	
+	@Test
+	public void test_1() throws IOException {
+		// 1、读取本地硬盘上的文件，并输出到控制台
+		File file = new File("d:" + File.separator + "fengshiqing.txt");
+		FileInputStream fis = new FileInputStream(file);
+		// 3.实现文件的复制
+		byte[] b = new byte[1024];
+		while ((fis.read(b)) != -1) {
+			System.out.write(b);
+		}
+		fis.close();
 	}
 
 }
