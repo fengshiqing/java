@@ -7,7 +7,7 @@ import java.util.Properties;
 /**
  * <读取项目中的配置文件>
  * 看看这个：http://www.cnblogs.com/coder-wzr/p/8418236.html
- * https://www.cnblogs.com/shanheyongmu/p/5898764.html
+ * http://www.cnblogs.com/yejg1212/p/3270152.html
  */
 public class ReadPoperties {
 
