@@ -9,6 +9,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * response实现文件下载
  */
+@WebServlet(urlPatterns = { "/servlet/DownServlet" })
+// http://localhost:8080/JavaWeb/servlet/DownServlet
 public class DownServlet extends HttpServlet {
 	
 	/**
@@ -28,9 +31,13 @@ public class DownServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 设置消息头，用于下载
 		response.setHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode("美女.jpg", "utf-8"));
+		System.out.println(this.getServletContext().getRealPath(""));
+		System.out.println(this.getServletContext().getRealPath("/"));
+		System.out.println(this.getServletContext().getRealPath("1.jpg"));
+		System.out.println(this.getServletContext().getRealPath("/1.jpg"));
 		
-		InputStream in = new FileInputStream(this.getServletContext().getRealPath("1.jpg"));//
-		OutputStream out = response.getOutputStream();//
+		InputStream in = new FileInputStream(this.getServletContext().getRealPath("1.jpg"));
+		OutputStream out = response.getOutputStream();// 获取相应输出流
 		
 		byte[] bs = new byte[1024];
 		int i = 0;
