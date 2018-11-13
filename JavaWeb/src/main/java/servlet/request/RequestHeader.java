@@ -1,4 +1,4 @@
-package servlet;
+package servlet.request;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,8 +30,8 @@ public class RequestHeader extends HttpServlet {
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		response.setCharacterEncoding("utf-8");// 告诉浏览器以什么编码方式进行编码
-		response.setContentType("text/html;charset=utf-8");// 告诉浏览器以什么编码格式进行解码，有了这一句，上面那行代码可以不写。
+		response.setCharacterEncoding("utf-8");// 告诉服务器用什么码表方式进行编码，这一行可以省写
+		response.setContentType("text/html;charset=utf-8");// 告诉浏览器以什么码表进行解码，有了这一句，上面那行代码可以不写。
 
 		PrintWriter out = response.getWriter();
 		out.println("<h3>获取客户机的请求头信息</h3>");
