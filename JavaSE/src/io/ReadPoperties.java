@@ -30,7 +30,8 @@ public class ReadPoperties {
 
 		System.out.println();
 
-		// 来加载器加载文件时，是从类 class 文件的位置开始读取文件的，配置文件放的位置不同，读取时的地址也是不同的。要明白原理！！！
+		// Class.getResource(String path)
+		// 配置文件放的位置不同，读取时的地址也是不同的。要明白原理！！！
 		System.out.println(ReadPoperties.class.getResource(""));// path不以’/'开头时，默认是从此类所在的包下取资源
 		System.out.println(ReadPoperties.class.getResource("/"));// path  以’/'开头时，则是从ClassPath根下获取，在这里就是相当于bin目录(Eclipse环境下)
 		// 获取1234四个配置文件
@@ -47,12 +48,12 @@ public class ReadPoperties {
 		
 		// Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。
 		
-		System.out.println("---------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 		
 		// Class.getClassLoader().getResource(String path)
 		// path不能以’/'开头；path只能从ClassPath根下获取（就是bin目录下）；
-		String url_2 = ReadPoperties.class.getClassLoader().getResource("2.properties").getPath();// 用类加载器加载文件
-		// String url_2 = ReadPoperties.class.getClassLoader().getResource("io/3.properties").getPath();// 用类加载器加载文件
+		String url_2 = ReadPoperties.class.getClassLoader().getResource("2.properties").getPath();
+		// String url_2 = ReadPoperties.class.getClassLoader().getResource("io/3.properties").getPath();
 		System.out.println("url_2：" + url_2);
 		Properties prop222 = new Properties();
 		prop222.load(new FileReader(url_2));
