@@ -28,7 +28,7 @@ public class OutServlet extends HttpServlet {
 		// response.setHeader("Content-Type", "text/html;charset=utf-8");
 
 		response.setCharacterEncoding("utf-8");// 给服务器设置编码，这一行可以省写
-		response.setContentType("text/html;charset=utf-8");// 给浏览器设置编码
+		response.setContentType("text/html;charset=utf-8");// 告诉浏览器以什么码表进行解码，有了这一句，上面那行代码可以不写。
 		response.getWriter().write("中国");
 	}
 
