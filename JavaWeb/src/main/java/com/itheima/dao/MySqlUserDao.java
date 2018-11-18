@@ -9,7 +9,6 @@ import com.itheima.util.JDBCUtils;
 
 public class MySqlUserDao implements UserDao {
 
-	@Override
 	public void addUser(User user) {
 		String sql = "insert into users values (null,'" + user.getUsername() + "','" + user.getPassword() + "','"
 				+ user.getNickname() + "','" + user.getEmail() + "')";
@@ -28,7 +27,6 @@ public class MySqlUserDao implements UserDao {
 		}
 	}
 
-	@Override
 	public User findUserByUNandPSW(String username, String password) {
 		String sql = "select * from users where username='" + username + "' and password='" + password + "'";
 		Connection conn = null;
@@ -57,7 +55,6 @@ public class MySqlUserDao implements UserDao {
 		}
 	}
 
-	@Override
 	public User findUserByUserName(String username) {
 		String sql = "select * from users where username='" + username + "'";
 		Connection conn = null;
