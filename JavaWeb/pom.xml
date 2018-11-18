@@ -18,7 +18,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
-			<scope>provided</scope>
+			<scope>provided</scope><!-- provided表明该包只在编译和测试的时候用发布时不用 -->
 		</dependency>
 
 		<!-- Jsp -->
@@ -27,7 +27,7 @@
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
-			<scope>provided</scope>
+			<scope>provided</scope><!-- provided表明该包只在编译和测试的时候用发布时不用 -->
 		</dependency>
 
 		<!-- JSTL -->
@@ -39,35 +39,12 @@
 		</dependency>
 
 		<!-- 日志 -->
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-nop</artifactId> 
-			<version>1.7.25</version> </dependency> -->
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-<!-- 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.25</version>
-		</dependency> -->
-
+		</dependency>
 
 		<!-- 单元测试 Junit -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -107,7 +84,7 @@
 		<!-- <dependency> <groupId>org.apache.storm</groupId> <artifactId>storm-core</artifactId> 
 			<version>1.2.2</version> <scope>provided</scope> </dependency> -->
 
-		<!-- Excel -->
+		<!-- 导出Excel POI -->
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>

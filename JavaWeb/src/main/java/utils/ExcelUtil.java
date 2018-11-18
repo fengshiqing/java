@@ -141,19 +141,19 @@ public class ExcelUtil<T> {
 		CellStyle style2 = wb.createCellStyle();
 		style2.setFillForegroundColor(HSSFColor.WHITE.index);// 白色背景色
 		style2.setFillPattern(CellStyle.SOLID_FOREGROUND);
-		style2.setBorderBottom(CellStyle.BORDER_THIN);
-		style2.setBorderLeft(CellStyle.BORDER_THIN);
-		style2.setBorderRight(CellStyle.BORDER_THIN);
-		style2.setBorderTop(CellStyle.BORDER_THIN);
-		style2.setAlignment(CellStyle.ALIGN_CENTER);
-		style2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		style2.setBorderTop(CellStyle.BORDER_THIN);// 上边框的边框类型
+		style2.setBorderBottom(CellStyle.BORDER_THIN);// 下边框的边框类型
+		style2.setBorderLeft(CellStyle.BORDER_THIN);// 左边框的边框类型
+		style2.setBorderRight(CellStyle.BORDER_THIN);// 右边框的边框类型
+		style2.setAlignment(CellStyle.ALIGN_CENTER);// 设置单元格的水平对齐类型
+		style2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);// 设置单元格的垂直对齐类型
 
-		// 3、创建表格的表头（就是标题行），并生成具体的列数据
-		Row row = sheet.createRow(0);// 设置标题行的行高
-		row.setHeight((short) (row.getHeight() * 1.75));
-		for (short i = 0; i < thNameArr.length; i++) {
+		// 3、创建表格的表头（就是标题行），并生成具体的数据
+		Row row = sheet.createRow(0);// 创建表格的表头
+		row.setHeight((short) (row.getHeight() * 1.75));// 设置标题行的行高
+		for (short i = 0; i < thNameArr.length; i++) {// 生成具体的数据
 			Cell cell = row.createCell(i);
-			cell.setCellStyle(style1);// 应用样式一
+			cell.setCellStyle(style1);// 给表格加上样式一
 			// sheet.setColumnWidth(i, 15 * 256);// 已经设置了默认的列宽
 			RichTextString text = new HSSFRichTextString(thNameArr[i]);
 			cell.setCellValue(text);
@@ -218,7 +218,7 @@ public class ExcelUtil<T> {
 	}
 
 	// 本地测试方法，直接本地运行即可查看效果。注释掉测试代码 modify by 冯仕清 2017年11月6日 16:19:46
-	public static void main11(String[] args) {
+	public static void main(String[] args) {
 		ExcelUtil<Student> excelUtil1 = new ExcelUtil<Student>();// 测试学生
 		String[] thCodeArr = { "id", "name", "age", "sex", "birthday" };// 设置要导出的Excel的标题行的中文名字
 		String[] thNameArr = { "学号", "姓名", "年龄", "性别", "出生日期" };// 设置要导出的Excel的标题行的中文名字
