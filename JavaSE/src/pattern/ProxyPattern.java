@@ -5,12 +5,14 @@ package pattern;
  * 这种是静态代理，就是接口和实现是一一对应的，换个被代理的类，就要新建一个对应的接口。<br>
  * 后面学了反射就可以用动态代理。<br>
  * 
+ * SLF4J和Log框架的绑定就是通过静态代理实现的。<br>
+ * 
  * 静态代理思想：<br>
  * 1、一个公共接口，<br>
  * 2、两个实现类，其中一个代理类，另一个是被代理类，<br>
  * 3、代理类中创建被代理类的引用，并调用被代理类的方法。
  */
-public class Proxy {
+public class ProxyPattern {
 
 	public static void main(String[] args) {
 		IAction iAction = new ProxyObject();
@@ -32,6 +34,11 @@ class ProxyObject implements IAction {
 	public ProxyObject() {
 		System.out.println("代理类创建成功");
 		iActionObj = new ActionImpl();// 代理类中创建被代理类的引用
+	}
+
+	public ProxyObject(ActionImpl actionImpl) {
+		System.out.println("代理类创建成功");
+		iActionObj = actionImpl;// 代理类中创建被代理类的引用
 	}
 
 	@Override
