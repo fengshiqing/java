@@ -13,12 +13,10 @@ package pattern;
  * 3、代理类中创建被代理类的引用，并调用被代理类的方法。
  */
 public class ProxyPattern {
-
 	public static void main(String[] args) {
 		IAction iAction = new ProxyObject();
 		iAction.action();
 	}
-
 }
 
 // 一个公共接口
@@ -26,12 +24,21 @@ interface IAction {
 	void action();
 }
 
+//被代理类
+class ActionImpl implements IAction {
+	@Override
+	public void action() {
+		System.out.println("被代理类开始执行");
+		System.out.println("被代理类的具体逻辑。。。");
+		System.out.println("被代理类结束执行");
+	}
+}
+
 // 代理类
 class ProxyObject implements IAction {
+	IAction iActionObj;// 代理类中创建被代理类的引用，可以在声明变量时初始化，也可以新建个构造函数用于初始化。
 
-	IAction iActionObj;// 代理类中创建被代理类的引用
-
-	public ProxyObject() {
+	public ProxyObject() {// 之所以称为静态（编译期的叫静态），因为在此处必须和“被代理类”绑定在一起，强耦合。
 		System.out.println("代理类创建成功");
 		iActionObj = new ActionImpl();// 代理类中创建被代理类的引用
 	}
@@ -46,16 +53,5 @@ class ProxyObject implements IAction {
 		System.out.println("代理类开始执行");
 		iActionObj.action();// 调用被代理类的方法
 		System.out.println("代理类结束执行");
-	}
-}
-
-// 被代理类
-class ActionImpl implements IAction {
-
-	@Override
-	public void action() {
-		System.out.println("被代理类开始执行");
-		System.out.println("具体逻辑。。。");
-		System.out.println("被代理类结束执行");
 	}
 }

@@ -36,7 +36,7 @@ class RealSubject implements Subject {
 class MyInvocationHandler implements InvocationHandler {
 	Object obj;// 实现了接口的被代理类的对象
 
-	// 此方法两个作用：1给被代理的对象实例化，2返回一个代理类的对象。
+	// 此方法两个作用：1给被代理的对象实例化，2返回“代理类”的实例对象。
 	public Object blind(Object obj) {
 		this.obj = obj;
 		return Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj.getClass().getInterfaces(), this);
