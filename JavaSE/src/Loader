@@ -1,5 +1,8 @@
 
 /**
+https://www.cnblogs.com/ygj0930/p/6542811.html
+https://www.cnblogs.com/ygj0930/p/6542259.html
+
  * JVM 中静态变量的优先执行顺序可以归纳总结如下：
  * // 父类 static 块 -> 子类 static 块 -> 父类{}块 -> 父类构造函数 -> 子类{}块 -> 子类构造函数。
  * // static 修饰的变量和 static 块具有一样的优先级，故两者具有前后顺序。
