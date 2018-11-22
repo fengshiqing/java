@@ -8,6 +8,24 @@ import org.junit.Test;
 
 public class ListDemo {
 	
+	public static void main(String[] args) {
+		String[] strArr = { "a", "b", "c", "d", "e" };
+		ArrayList<String> arrayList_1 = new ArrayList<String>(Arrays.asList(strArr));// 直接用 ArrayList 类型接收
+		List<String> arrayList_2 = Arrays.asList(strArr);// 多态变量接收，两者一样
+		System.out.println(arrayList_1);// [a, b, c, d, e]
+		System.out.println(arrayList_2);// [a, b, c, d, e]
+		
+		System.out.println(arrayList_1.containsAll(arrayList_2));// true
+		System.out.println(arrayList_2.containsAll(arrayList_1));// true
+		
+		System.out.println(Arrays.toString(arrayList_1.toArray()));// 等价于 System.out.println(arrayList_1);
+		System.out.println(arrayList_1.toArray().toString());
+		System.out.println(arrayList_2.toArray());
+		System.out.println(arrayList_1);
+		System.out.println(new Object());
+		System.out.println(new ListDemo());
+	}
+	
 	//ArrayList：List的主要实现类
 	/*
 	 * List中相对于Collection，新增加的方法
