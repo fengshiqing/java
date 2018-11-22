@@ -167,7 +167,7 @@ public class FTPUtil {
 	 * @param ftpPort
 	 * @throws Exception
 	 */
-	public static void uploadFile_1(String fileDir, String tranDate, String fileName, InputStream input,
+	public static void uploadFile_2(String fileDir, String tranDate, String fileName, InputStream input,
 			String ftpHost, String ftpUser, String ftpPwd, String ftpPort) throws IOException {
 		FTPClient ftp = FTPUtil.getFTPClient(ftpHost, ftpUser, ftpPwd, ftpPort);
 		String workdir = fileDir + fileName.substring(0, 14) + "_" + tranDate;
