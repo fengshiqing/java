@@ -25,21 +25,21 @@ import org.slf4j.LoggerFactory;
 public class FTPUtil {
 
 	/**
-	 * 日志
+	 * <日志>
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FTPUtil.class);
 
 	/**
-	 * 私有化构造函数
+	 * <私有化构造函数>
 	 */
 	private FTPUtil() {
 	}
 
 	/**
-	 * 功能: 获取FTP服务器的客户端实例<br>
+	 * 功能：获取FTP服务器的客户端实例<br>
 	 *
 	 * @param hostname 主机IP
-	 * @param port 端口号
+	 * @param port     端口号
 	 * @param username 用户名
 	 * @param password 密码
 	 * @return
@@ -64,8 +64,7 @@ public class FTPUtil {
 		// }
 		return ftpClient;
 	}
-	
-	
+
 	public static void uploadCirFile(String fileDir, String fileName, InputStream input, String ftpHost, String ftpUser,
 			String ftpPwd, String ftpPort) {
 		FTPClient ftp = FTPUtil.getFTPClient(ftpHost, ftpPort, ftpUser, ftpPwd);
@@ -91,7 +90,7 @@ public class FTPUtil {
 	}
 
 	/**
-	 * 功能描述: 创建不存在的目录文件 <br>
+	 * 功能：创建不存在的目录文件 <br>
 	 */
 	public static void createDirs(FTPClient ftp, String path) {
 		if (null != ftp) {
@@ -167,8 +166,8 @@ public class FTPUtil {
 	 * @param ftpPort
 	 * @throws Exception
 	 */
-	public static void uploadFile_2(String fileDir, String tranDate, String fileName, InputStream input,
-			String ftpHost, String ftpUser, String ftpPwd, String ftpPort) throws IOException {
+	public static void uploadFile_2(String fileDir, String tranDate, String fileName, InputStream input, String ftpHost,
+			String ftpUser, String ftpPwd, String ftpPort) throws IOException {
 		FTPClient ftp = FTPUtil.getFTPClient(ftpHost, ftpUser, ftpPwd, ftpPort);
 		String workdir = fileDir + fileName.substring(0, 14) + "_" + tranDate;
 		createDirs(ftp, workdir);
@@ -202,7 +201,6 @@ public class FTPUtil {
 			}
 		}
 	}
-
 
 	/**
 	 * 
@@ -263,7 +261,6 @@ public class FTPUtil {
 		}
 	}
 
-
 	/**
 	 * 
 	 * 功能: 上传贷款信息报表至FTP服务器<br>
@@ -304,7 +301,7 @@ public class FTPUtil {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * 功能：下载文件。
@@ -355,7 +352,6 @@ public class FTPUtil {
 			LOGGER.info("【uploadToFTP】【结束执行】【执行成功】【响应参数：】【无】");
 		}
 	}
-
 
 	/**
 	 * 

@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 学习日志框架。<br>
- * 配置文件：log4j.properties
+ * <学习日志框架。><br>
+ * <配置文件：log4j.properties>
  * 
  * @author 冯仕清
  *
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class LoggerDemo {
 
 	/**
-	 * 日志
+	 * <日志>
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoggerDemo.class);
 

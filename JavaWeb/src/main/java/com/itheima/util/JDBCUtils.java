@@ -12,7 +12,8 @@ public class JDBCUtils {
 	
 	private static Properties prop = null;
 	
-	private JDBCUtils() {// 一般来说，工具类都不让直接new的，这是规范，方法都是static的，通过类名直接调用
+	// 私有构造函数。一般来说，工具类都不让直接new的，这是规范，方法都是static的，通过类名直接调用
+	private JDBCUtils() {
 	}
 	
 	static{// 这个配置文件被解析一次就够了。
@@ -33,10 +34,15 @@ public class JDBCUtils {
 	 */
 	public static Connection getConn() throws ClassNotFoundException, SQLException{
 		// 1.注册数据库驱动
-		Class.forName(prop.getProperty("driver"));
+		// Class.forName(prop.getProperty("driver"));
+		Class.forName("com.mysql.jdbc.Driver");
 		
 		// 2.获取连接
 		return DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
+	}
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		getConn();
 	}
 	
 	/**
