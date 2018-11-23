@@ -1,4 +1,4 @@
-package pattern;
+package DesignPatterns;
 
 /**
  * 代理模式。<br>

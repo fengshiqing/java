@@ -1,4 +1,4 @@
-package pattern;
+package DesignPatterns;
 
 /**
  * 对性能有点要求的，可以将 Singleton_1 改进成“延时加载”（懒汉式）。<br>
