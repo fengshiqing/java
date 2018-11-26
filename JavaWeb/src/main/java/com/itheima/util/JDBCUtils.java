@@ -41,10 +41,6 @@ public class JDBCUtils {
 		return DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		getConn();
-	}
-	
 	/**
 	 * 关闭连接
 	 */
