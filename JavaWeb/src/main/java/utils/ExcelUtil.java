@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Excel工具类
+ * <Excel工具类>
  *
  * @author 冯仕清
  * @see #http://blog.csdn.net/lenotang/article/details/2823230
@@ -66,7 +66,6 @@ public class ExcelUtil<T> {
 	}
 
 	/**
-	 * 
 	 * 4个参数的重载
 	 *
 	 * @param thNameArr
@@ -80,7 +79,6 @@ public class ExcelUtil<T> {
 	}
 
 	/**
-	 * 
 	 * 4个参数的重载
 	 *
 	 * @param sheetName
@@ -94,9 +92,8 @@ public class ExcelUtil<T> {
 	}
 
 	/**
-	 * 
-	 * 导出 Excel。用 List 集合中的数据生成一个 Excel。<br>
-	 * 注意：参数的顺序！！！示例：见本类中的 main() 方法
+	 * <导出 Excel。用 List 集合中的数据生成一个 Excel。><br>
+	 * <注意：参数的顺序！！！示例：见本类中的 main() 方法>
 	 *
 	 * @param sheetName  1、表格sheet的名字。
 	 * @param thNameArr  2、表格列名组成的数组。th：意思与HTML中的th标签一样，表示tablehander表头。
