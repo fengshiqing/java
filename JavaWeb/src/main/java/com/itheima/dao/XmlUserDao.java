@@ -11,6 +11,7 @@ import com.itheima.util.XmlDaoUtils;
 
 public class XmlUserDao implements UserDao {
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public User findUserByUserName(String username){
 		Document dom = XmlDaoUtils.getDom();
@@ -31,6 +32,8 @@ public class XmlUserDao implements UserDao {
 		}
 	}
 	
+	@Override
+	@SuppressWarnings("deprecation")
 	public void addUser(User user){
 		Document dom = XmlDaoUtils.getDom();
 		Element root = dom.getRootElement();
@@ -46,6 +49,8 @@ public class XmlUserDao implements UserDao {
 		XmlDaoUtils.refXml();
 	}
 	
+	@Override
+	@SuppressWarnings("unchecked")
 	public User findUserByUNandPSW(String username,String password){
 		Document dom = XmlDaoUtils.getDom();
 		Element root = dom.getRootElement();
