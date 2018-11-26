@@ -34,8 +34,7 @@ public class JDBCUtils {
 	 */
 	public static Connection getConn() throws ClassNotFoundException, SQLException{
 		// 1.注册数据库驱动
-		// Class.forName(prop.getProperty("driver"));
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName(prop.getProperty("driver"));
 		
 		// 2.获取连接
 		return DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
