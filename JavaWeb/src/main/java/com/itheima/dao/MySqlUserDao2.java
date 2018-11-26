@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.itheima.domain.User;
-import com.itheima.util.JDBCUtils;
+
+import utils.JDBCUtils;
 
 public class MySqlUserDao2 implements UserDao {
 
@@ -16,7 +17,7 @@ public class MySqlUserDao2 implements UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			conn = JDBCUtils.getConn();
+			conn = JDBCUtils.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getPassword());
@@ -38,7 +39,7 @@ public class MySqlUserDao2 implements UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			conn = JDBCUtils.getConn();
+			conn = JDBCUtils.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -69,7 +70,7 @@ public class MySqlUserDao2 implements UserDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			conn = JDBCUtils.getConn();
+			conn = JDBCUtils.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			rs = ps.executeQuery();

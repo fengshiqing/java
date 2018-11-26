@@ -5,7 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.itheima.domain.User;
-import com.itheima.util.JDBCUtils;
+
+import utils.JDBCUtils;
 
 public class MySqlUserDao implements UserDao {
 
@@ -17,7 +18,7 @@ public class MySqlUserDao implements UserDao {
 		Statement stat = null;
 		ResultSet rs = null;
 		try {
-			conn = JDBCUtils.getConn();
+			conn = JDBCUtils.getConnection();
 			stat = conn.createStatement();
 			stat.executeUpdate(sql);
 		} catch (Exception e) {
@@ -35,7 +36,7 @@ public class MySqlUserDao implements UserDao {
 		Statement stat = null;
 		ResultSet rs = null;
 		try {
-			conn = JDBCUtils.getConn();
+			conn = JDBCUtils.getConnection();
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			if (rs.next()) {
@@ -57,13 +58,14 @@ public class MySqlUserDao implements UserDao {
 		}
 	}
 
+	@Override
 	public User findUserByUserName(String username) {
 		String sql = "select * from users where username='" + username + "'";
 		Connection conn = null;
 		Statement stat = null;
 		ResultSet rs = null;
 		try {
-			conn = JDBCUtils.getConn();
+			conn = JDBCUtils.getConnection();
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			if (rs.next()) {
