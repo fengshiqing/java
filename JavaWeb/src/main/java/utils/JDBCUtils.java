@@ -13,7 +13,7 @@ public class JDBCUtils {
 	private static Properties prop = null;
 
 	/**
-	 * <只在加载类时执行一次。>
+	 * <只在加载类时执行一次>
 	 */
 	static {
 		try {
