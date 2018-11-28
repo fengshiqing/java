@@ -55,6 +55,7 @@ public class ReadPoperties {
 		String url_2 = ReadPoperties.class.getClassLoader().getResource("2.properties").getPath();
 		// String url_2 = ReadPoperties.class.getClassLoader().getResource("io/3.properties").getPath();
 		System.out.println("url_2：" + url_2);
+		System.out.println(ReadPoperties.class.getClassLoader().getResource(""));
 		Properties prop222 = new Properties();
 		prop222.load(new FileReader(url_2));
 		System.out.println(prop222.size());
