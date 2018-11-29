@@ -1,6 +1,6 @@
 package Test;
 
-public class Test11 {
+public class Test111 {
     static String sentence = "I don't know.";// 此处不论是静态变量还是非静态变量，都会被局部变量覆盖！
     
     public static void main(String args[]) {
