@@ -5,7 +5,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
+/**
+ * <包扫描时多个包内有相同名字的bean导致报错>
+ */
+@Controller(value = "HelloController111")
 @RequestMapping("/hello")
 public class HelloController {
 
