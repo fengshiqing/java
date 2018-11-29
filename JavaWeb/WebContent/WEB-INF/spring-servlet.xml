@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,7 +8,8 @@
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- com.tutorialspoint, -->
+	<!-- 扫描多个包时，可以写在一个属性值里，有逗号分开，也可以用多个标签：base-package="com.tutorialspoint, springMVC" -->
+	<context:component-scan base-package="com.tutorialspoint" />
 	<context:component-scan base-package="springMVC" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
