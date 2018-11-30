@@ -18,12 +18,16 @@ import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +37,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author 冯仕清
  * @see #http://blog.csdn.net/lenotang/article/details/2823230
+ * 
+ * @see https://blog.csdn.net/u011199063/article/details/74504550
  */
 public class ExcelUtil<T> {
 
@@ -115,35 +121,36 @@ public class ExcelUtil<T> {
 		// 2、生成并设置样式（表头、表体数据 各一个样式）
 		// 2.1、这个样式用来修饰表头字段
 		CellStyle style1 = wb.createCellStyle();
-		style1.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);// 单元格背景填充色：浅灰色
-		style1.setFillPattern(CellStyle.SOLID_FOREGROUND);// 填充的样式
-		style1.setAlignment(CellStyle.ALIGN_CENTER);// 单元格内容水平居中
-		style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER);// 单元格内容垂直居中
-		style1.setBorderTop(CellStyle.BORDER_THIN);// 边框的样式：实线
-		style1.setBorderBottom(CellStyle.BORDER_THIN);
-		style1.setBorderLeft(CellStyle.BORDER_THIN);
-		style1.setBorderRight(CellStyle.BORDER_THIN);
-		style1.setTopBorderColor(HSSFColor.GREY_50_PERCENT.index);// 边框颜色
-		style1.setBottomBorderColor(HSSFColor.GREY_50_PERCENT.index);
-		style1.setLeftBorderColor(HSSFColor.GREY_50_PERCENT.index);
-		style1.setRightBorderColor(HSSFColor.GREY_50_PERCENT.index);
+		style1.setFillForegroundColor(HSSFColor.HSSFColorPredefined.GREY_25_PERCENT.getIndex());// 单元格背景填充色：浅灰色
+		style1.setFillPattern(FillPatternType.SOLID_FOREGROUND);// 单元格背景色填充的样式：完全填充
+		style1.setAlignment(HorizontalAlignment.CENTER);// 单元格内容水平居中
+		style1.setVerticalAlignment(VerticalAlignment.CENTER);// 单元格内容垂直居中
+		style1.setBorderTop(BorderStyle.THIN);// 边框的样式：实线
+		style1.setBorderBottom(BorderStyle.THIN);
+		style1.setBorderLeft(BorderStyle.THIN);
+		style1.setBorderRight(BorderStyle.THIN);
+		style1.setTopBorderColor(HSSFColor.HSSFColorPredefined.GREY_50_PERCENT.getIndex());// 边框颜色
+		style1.setBottomBorderColor(HSSFColor.HSSFColorPredefined.GREY_50_PERCENT.getIndex());
+		style1.setLeftBorderColor(HSSFColor.HSSFColorPredefined.GREY_50_PERCENT.getIndex());
+		style1.setRightBorderColor(HSSFColor.HSSFColorPredefined.GREY_50_PERCENT.getIndex());
 
 		Font font = wb.createFont();// 生成一个字体对象
-		font.setColor(HSSFColor.BLACK.index);// 黑色
+		font.setColor(Font.COLOR_NORMAL);// 黑色
 		font.setFontHeightInPoints((short) 12);// 12号字体
-		font.setBoldweight(Font.BOLDWEIGHT_BOLD);// 字体加粗
+		// font.setBoldweight(Font.BOLDWEIGHT_BOLD);// 字体加粗，废弃API
+		font.setBold(true);// 字体加粗
 		style1.setFont(font);// 把字体应用到当前的样式
 
 		// 2.2、这个样式用来修饰具体的数据
 		CellStyle style2 = wb.createCellStyle();
-		style2.setFillForegroundColor(HSSFColor.WHITE.index);// 白色背景色
-		style2.setFillPattern(CellStyle.SOLID_FOREGROUND);
-		style2.setBorderTop(CellStyle.BORDER_THIN);// 上边框的边框类型
-		style2.setBorderBottom(CellStyle.BORDER_THIN);// 下边框的边框类型
-		style2.setBorderLeft(CellStyle.BORDER_THIN);// 左边框的边框类型
-		style2.setBorderRight(CellStyle.BORDER_THIN);// 右边框的边框类型
-		style2.setAlignment(CellStyle.ALIGN_CENTER);// 设置单元格的水平对齐类型
-		style2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);// 设置单元格的垂直对齐类型
+		style2.setFillForegroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());// 单元格背景填充色：白色
+		style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);// 单元格背景色填充的样式：完全填充
+		style2.setAlignment(HorizontalAlignment.CENTER);// 单元格内容水平居中
+		style2.setVerticalAlignment(VerticalAlignment.CENTER);// 单元格内容垂直居中
+		style2.setBorderTop(BorderStyle.THIN);// 上边框的边框类型
+		style2.setBorderBottom(BorderStyle.THIN);// 下边框的边框类型
+		style2.setBorderLeft(BorderStyle.THIN);// 左边框的边框类型
+		style2.setBorderRight(BorderStyle.THIN);// 右边框的边框类型
 
 		// 3、创建表格的表头（就是标题行），并生成具体的数据
 		Row row = sheet.createRow(0);// 创建表格的表头
