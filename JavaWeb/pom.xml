@@ -12,6 +12,14 @@
 
 
 
+	<!-- 定义属性，相当于java常量 -->
+	<properties>
+		<mysql-version>5.1.38</mysql-version>
+		<mybatis-version>3.4.6</mybatis-version>
+		<spring-version>4.3.20.RELEASE</spring-version>
+	</properties>
+
+
 	<dependencies>
 		<!-- Servlet -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -72,18 +80,27 @@
 			<version>1.9.3</version>
 		</dependency>
 
+
 		<!-- 数据库驱动 mysql -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.38</version>
+			<version>${mysql-version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis-version}</version>
+		</dependency>
+		
 
 		<!-- 大数据 storm -->
 		<!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
 		<!-- <dependency> <groupId>org.apache.storm</groupId> <artifactId>storm-core</artifactId> 
 			<version>1.2.2</version> <scope>provided</scope> </dependency> -->
+
 
 		<!-- Excel导入导出 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -99,6 +116,7 @@
 			<version>3.17</version>
 		</dependency>
 
+
 		<!-- ftp连接用到此包 -->
 		<!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
 		<dependency>
@@ -106,6 +124,7 @@
 			<artifactId>commons-net</artifactId>
 			<version>3.6</version>
 		</dependency>
+
 
 		<!-- Spring -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -115,22 +134,15 @@
 			<version>4.3.20.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-		<!-- <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>4.3.20.RELEASE</version>
-		</dependency>
-		https://mvnrepository.com/artifact/org.springframework/spring-core
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>4.3.20.RELEASE</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-beans</artifactId> 
+			<version>4.3.20.RELEASE</version> </dependency> https://mvnrepository.com/artifact/org.springframework/spring-core 
+			<dependency> <groupId>org.springframework</groupId> <artifactId>spring-core</artifactId> 
+			<version>4.3.20.RELEASE</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-webmvc</artifactId>
-		    <version>4.3.20.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.3.20.RELEASE</version>
 		</dependency>
 
 	</dependencies>
