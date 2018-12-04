@@ -9,7 +9,7 @@ import beans.HelloWorld;
  * 
  * @see
  */
-public class SpringIOC {
+public class SpringIoC {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
