@@ -11,9 +11,9 @@
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
-		<init-param><!-- 这个标签可以不写，因为默认值就是这个 -->
+		<init-param><!-- 这个标签可以不写，因为默认值就是这个“/WEB-INF/<servlet-name>-servlet.xml” -->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring-servlet.xml</param-value>
+			<param-value>/WEB-INF/spring-servlet.xml</param-value><!-- 可以换为classpath:aaa.xml -->
 		</init-param>
 	</servlet>
 	<servlet-mapping>
