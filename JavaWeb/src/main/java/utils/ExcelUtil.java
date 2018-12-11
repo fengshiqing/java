@@ -65,11 +65,8 @@ public class ExcelUtil<T> {
 	 */
 	private static final String DATE_FORMAT = "yyyy-MM-dd";
 
-	final SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");// 设置时间格式
-
 	/**
-	 * 
-	 * 功能描述: <br>
+	 * <导出Excel><br>
 	 * 3个参数的重载
 	 *
 	 * @param thNameArr
@@ -82,6 +79,7 @@ public class ExcelUtil<T> {
 	}
 
 	/**
+	 * <导出Excel><br>
 	 * 4个参数的重载
 	 *
 	 * @param thNameArr
@@ -95,6 +93,7 @@ public class ExcelUtil<T> {
 	}
 
 	/**
+	 * <导出Excel><br>
 	 * 4个参数的重载
 	 *
 	 * @param sheetName
@@ -108,7 +107,7 @@ public class ExcelUtil<T> {
 	}
 
 	/**
-	 * <导出 Excel。用 List 集合中的数据生成一个 Excel。><br>
+	 * <导出Excel><br>
 	 * <注意：参数的顺序！！！示例：见本类中的 main() 方法>
 	 *
 	 * @param sheetName  1、表格sheet的名字。
@@ -119,8 +118,7 @@ public class ExcelUtil<T> {
 	 */
 	public Workbook exportExcel(String sheetName, String[] thNameArr, String[] thCodeArr, List<T> dataList,
 			String dateFormat) {
-		LOGGER.info(
-				"【ExcelUtil.exportExcel】【开始执行】【请求参数：】【sheetName:{}, thNameArr:{}, thCodeArr:{}, dataList:{}, dateFormat:{}】",
+		LOGGER.info("【exportExcel】【开始执行】【请求参数：】【sheetName:{}, thNameArr:{}, thCodeArr:{}, dataList:{}, dateFormat:{}】",
 				new Object[] { sheetName, thNameArr, thCodeArr, dataList.size(), dateFormat });
 
 		// 步骤：1，2，3，4
