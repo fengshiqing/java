@@ -106,6 +106,14 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
+		<!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
+		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
 
 		<!-- 大数据 storm -->
 		<!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
@@ -206,13 +214,6 @@
 		<!-- 导入java ee jar 包 -->
 		<!-- <dependency> <groupId>javax</groupId> <artifactId>javaee-api</artifactId> 
 			<version>7.0</version> </dependency> -->
-
-		<!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.2.2</version>
-		</dependency>
 
 		<!-- 格式化对象，方便输出日志 -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
