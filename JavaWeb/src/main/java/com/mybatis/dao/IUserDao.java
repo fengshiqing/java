@@ -7,6 +7,6 @@ import com.mybatis.pojo.User;
  */
 public interface IUserDao {
     
-    public User selectByPrimaryKey(int userId);
+    public User selectByPrimaryKey(int username);
     
 }
