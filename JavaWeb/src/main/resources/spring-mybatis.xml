@@ -18,32 +18,31 @@
 	<!-- 自动扫描 -->
 	<context:component-scan base-package="com.mybatis" />
 	
-	<!-- 引入配置文件 -->
+	
+	<!-- 引入数据库配置文件 -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties" />
 	</bean>
 
 
+	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${driver}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${password}" />
-		<!-- 初始化连接大小 -->
-		<property name="initialSize" value="${initialSize}"></property>
-		<!-- 连接池最大数量 -->
-		<property name="maxActive" value="${maxActive}"></property>
-		<!-- 连接池最大空闲 -->
-		<property name="maxIdle" value="${maxIdle}"></property>
-		<!-- 连接池最小空闲 -->
-		<property name="minIdle" value="${minIdle}"></property>
-		<!-- 获取连接最大等待时间 -->
-		<property name="maxWait" value="${maxWait}"></property>
+		<!-- 从数据库配置文件中读取配置 -->
+		<property name="driverClassName" value="${driver}" /><!-- 驱动 -->
+		<property name="url" value="${url}" /><!-- url -->
+		<property name="username" value="${username}" /><!-- 用户名 -->
+		<property name="password" value="${password}" /><!-- 密码 -->
+		
+		<property name="initialSize" value="${initialSize}"></property><!-- 初始化连接大小 -->
+		<property name="maxActive" value="${maxActive}"></property><!-- 连接池最大数量 -->
+		<property name="maxIdle" value="${maxIdle}"></property><!-- 连接池最大空闲数 -->
+		<property name="minIdle" value="${minIdle}"></property><!-- 连接池最小空闲数 -->
+		<property name="maxWait" value="${maxWait}"></property><!-- 获取连接最大等待时间 -->
 	</bean>
 
 
-	<!-- Spring 整合 MyBatis，不需要mybatis的配置映射文件。
-	要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：
+	<!-- 事务 -->
+	<!-- Spring 整合 MyBatis后，不需要mybatis的配置映射文件。要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：
 		一个 SqlSessionFactory 和 至少一个数据映射器类。
 	在 MyBatis-Spring 中，SqlSessionFactoryBean 是用于创建 SqlSessionFactory 的。要配置这个工厂 bean，放置下面的代码在 Spring 的 XML 配置文件中： -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -59,9 +58,9 @@
 	</bean>
 
 
-	<!-- Dao层接口所在包名，Spring会自动查找其下的类 -->
+	<!-- Dao层接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mybatis.dao" />
+		<property name="basePackage" value="com.mybatis.dao" /><!-- 自动扫描包下的dao类 -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
