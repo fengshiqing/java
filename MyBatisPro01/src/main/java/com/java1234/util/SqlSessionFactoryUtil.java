@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.java1234.util;
 
 import java.io.IOException;
