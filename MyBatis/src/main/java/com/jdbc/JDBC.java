@@ -1,0 +1,42 @@
+package com.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.mysql.jdbc.Driver;
+
+/**
+ * <JDBC连接数据库>
+ */
+public class JDBC {
+
+	/**
+	 * <JDBC连接数据库>
+	 */
+	public static void main(String[] args) throws Exception {
+		// 1、注册数据库驱动
+		DriverManager.registerDriver(new Driver());
+		// 上面这行代码有两个问题，1、com.mysql.jdbc.Driver类中有静态代码块，加载时就会自动注册到驱动管理器中；2与mysql驱动类耦合性太强
+		Class.forName("com.mysql.jdbc.Driver");// 第一步的进阶版
+		// 2、获取数据库连接
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fengshiqing?user='root'&password=feng234800");
+		// ("jdbc:mysql://192.168.0.111:3306/myworld?user='feng'&password=feng234800");
+		// ("jdbc:oracle:thin:@10.70.16.201:15201:dbprodxl?user='xladmin'&password=xlprod08");
+		// 3、创建传输器对象
+		Statement stat = con.createStatement();
+		// 4、利用传输器对象传输sql语句到数据库中执行
+		ResultSet rs = stat.executeQuery("select * from users");
+		// 5、遍历结果集
+		while (rs.next()) {
+			String name = rs.getString("username");
+			System.out.println(name);
+		}
+		// 6、关闭资源
+		rs.close();
+		stat.close();
+		con.close();
+	}
+
+}
