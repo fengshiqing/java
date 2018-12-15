@@ -1,4 +1,4 @@
-package com.java1234.model;
+package com.mybatis.model;
 
 public class Address {
 	

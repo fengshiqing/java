@@ -1,6 +1,6 @@
-package com.java1234.mappers;
+package com.mybatis.mappers;
 
-import com.java1234.model.Student;
+import com.mybatis.model.Student;
 
 public interface StudentMapper {
 	

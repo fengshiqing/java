@@ -1,4 +1,4 @@
-package com.java1234.util;
+package com.mybatis.util;
 
 import java.io.IOException;
 import java.io.InputStream;

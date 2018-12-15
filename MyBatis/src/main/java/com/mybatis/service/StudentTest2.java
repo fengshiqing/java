@@ -1,4 +1,4 @@
-package com.java1234.service;
+package com.mybatis.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
@@ -6,9 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.java1234.mappers.StudentMapper;
-import com.java1234.model.Student;
-import com.java1234.util.SqlSessionFactoryUtil;
+import com.mybatis.mappers.StudentMapper;
+import com.mybatis.model.Student;
+import com.mybatis.util.SqlSessionFactoryUtil;
 
 public class StudentTest2 {
 
