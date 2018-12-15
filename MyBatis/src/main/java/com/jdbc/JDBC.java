@@ -21,15 +21,14 @@ public class JDBC {
 		Class.forName("com.mysql.jdbc.Driver");// 第一步的进阶版
 		// 2、获取数据库连接
 		Connection con = DriverManager.getConnection("jdbc:mysql://192.168.124.2:3306/JavaWeb?user='root'&password=feng234800");
-		// ("jdbc:oracle:thin:@10.70.16.201:15201:dbprodxl?user='xladmin'&password=xlprod08");
+		// ("jdbc:oracle:thin:@10.70.16.201:15201:JavaWeb?user='username'&password=feng234800");
 		// 3、创建传输器对象
 		Statement stat = con.createStatement();
 		// 4、利用传输器对象传输sql语句到数据库中执行
 		ResultSet rs = stat.executeQuery("select * from users");
 		// 5、遍历结果集
 		while (rs.next()) {
-			String name = rs.getString("username");
-			System.out.println(name);
+			System.out.println("username: " + rs.getString("username"));
 		}
 		// 6、关闭资源
 		rs.close();

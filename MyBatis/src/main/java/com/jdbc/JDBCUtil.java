@@ -29,23 +29,23 @@ public class JDBCUtil {
 	 * <获数据库连接>
 	 */
 	public static Connection getConnection() throws Exception {
-		String driverClass = prop.getProperty("jdbc.driverClassName");
-		String url = prop.getProperty("jdbc.url");
-		String user = prop.getProperty("jdbc.username");
-		String password = prop.getProperty("jdbc.password");
-		System.out.println("driverClass：" + driverClass);
+		String driverClassName = prop.getProperty("jdbc.driverClassName");// 驱动类全限定名
+		String url = prop.getProperty("jdbc.url");// URL
+		String user = prop.getProperty("jdbc.username");// 用户名
+		String password = prop.getProperty("jdbc.password");// 密码
+		System.out.println("drivdriverClassNameerClass：" + driverClassName);
 		System.out.println("url：" + url);
 		System.out.println("user：" + user);
 		System.out.println("password：" + password);
-		Class.forName(driverClass);
-		Connection conn = DriverManager.getConnection(url, user, password);
+		Class.forName(driverClassName);// 注册数据库驱动
+		Connection conn = DriverManager.getConnection(url, user, password);// 获取数据库连接
 		System.out.println(conn);
 		return conn;
 	}
 
 	// 测试
 	public static void main(String[] args) throws Exception {
-		getConnection();
+		JDBCUtil.getConnection();
 	}
 
 }
