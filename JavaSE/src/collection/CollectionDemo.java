@@ -9,14 +9,14 @@ import java.util.Iterator;
 import org.junit.Test;
 
 /*
- * 1.存储对象可以考虑：①数组 ②集合
+ * 1.存储对象可以考虑用：①数组 ②集合
  * 2.数组存储对象的特点：Student[] stu = new Student[20]; stu[0] = new Student();....
- *    >弊端：①一旦创建，其长度不可变。②真实的数组存放的对象的个数是不可知。
+ *    弊端：①一旦创建，其长度不可变。②真实的数组存放的对象的个数是不可知。
  * 3.集合
  *     Collection接口
- *     		|------List接口：存储有序的，可以重复的元素
+ *     		|----List接口：存储有序的，可以重复的元素
  *     				|------ArrayList（主要的实现类）、LinkedList（增、删操作快）、Vector（古老的实现类、线程安全的）
- *     		|------Set接口：存储无序的，不可重复的元素
+ *     		|----Set接口：存储无序的，不可重复的元素
  *     				|------HashSet、LinkedHashSet、TreeSet
  *     Map接口：存储“键-值”对的数据
  *     		|-----HashMap、LinkedHashMap、TreeMap、Hashtable(子类：Properties)
@@ -24,27 +24,28 @@ import org.junit.Test;
 public class CollectionDemo {
 
 	public static void main(String[] args) {
-		Collection<Integer> coll = Arrays.asList(1, 2, 3);
+		Collection<Integer> coll = Arrays.asList(1, 2, 3);// 将数组转集合
+		System.out.println(coll.getClass().getName());
 		System.out.println(coll);
 	}
 
 	@Test
 	public void testCollection3() {
-		Collection coll = new ArrayList();
+		Collection<Object> coll = new ArrayList<Object>();
 		coll.add(123);
 		coll.add(new String("AA"));
 		coll.add(new Date());
 		coll.add("BB");
 		coll.add(new Person("MM", 23));
 
-		Collection coll1 = new ArrayList();
+		Collection<Object> coll1 = new ArrayList<Object>();
 		coll1.add(123);
 		coll1.add(new String("AA"));
 		// 10.removeAll(Collection coll):从当前集合中删除包含在coll中的元素。
 		coll.removeAll(coll1);
 		System.out.println(coll);
 		// 11.equals(Object obj):判断集合中的所有元素是否完全相同
-		Collection coll2 = new ArrayList();
+		Collection<Object> coll2 = new ArrayList<Object>();
 		coll2.add(123);
 		coll2.add(new String("AA1"));
 		System.out.println(coll1.equals(coll2));
@@ -58,7 +59,7 @@ public class CollectionDemo {
 		}
 		System.out.println();
 		// 14.iterator():返回一个Iterator接口实现类的对象,进而实现集合的遍历！
-		Iterator iterator = coll.iterator();
+		Iterator<Object> iterator = coll.iterator();
 		// 方式一：不用
 		/*
 		 * System.out.println(iterator.next()); System.out.println(iterator.next());
@@ -76,7 +77,7 @@ public class CollectionDemo {
 
 	@Test
 	public void testCollection2() {
-		Collection coll = new ArrayList();
+		Collection<Object> coll = new ArrayList<Object>();
 		coll.add(123);
 		coll.add(new String("AA"));
 		coll.add(new Date());
@@ -93,7 +94,7 @@ public class CollectionDemo {
 		boolean b2 = coll.contains(new Person("MM", 23));
 		System.out.println(b2);
 		// 7.containsAll(Collection coll):判断当前集合中是否包含coll中所有的元素
-		Collection coll1 = new ArrayList();
+		Collection<Object> coll1 = new ArrayList<Object>();
 		coll1.add(123);
 		coll1.add(new String("AA"));
 
@@ -111,7 +112,7 @@ public class CollectionDemo {
 
 	@Test
 	public void testCollection1() {
-		Collection coll = new ArrayList();
+		Collection<Object> coll = new ArrayList<Object>();
 		// 1.size():返回集合中元素的个数
 		System.out.println(coll.size());
 		// 2.add(Object obj):向集合中添加一个元素
@@ -121,7 +122,7 @@ public class CollectionDemo {
 		coll.add("BB");
 		System.out.println(coll.size());
 		// 3.addAll(Collection coll):将形参coll中包含的所有元素添加到当前集合中
-		Collection coll1 = Arrays.asList(1, 2, 3);
+		Collection<Object> coll1 = Arrays.asList(1, 2, 3);
 		coll.addAll(coll1);
 		System.out.println(coll.size());
 		// 查看集合元素
