@@ -9,9 +9,12 @@ import java.util.Properties;
 
 public class JDBCUtil {
 
-	private static Properties prop = null;
-	
-	static {
+	/**
+	 * <存放jdbc的配置信息>
+	 */
+	private static final Properties prop;
+
+	static {// 静态代码块
 		prop = new Properties();
 		try {
 			prop.load(new FileReader("jdbc.properties"));// 这种路径的加载方式是"jdbc.properties"直接放在项目根路径下
@@ -21,8 +24,10 @@ public class JDBCUtil {
 			e.printStackTrace();
 		}
 	}
-	
-	// 获数据库连接
+
+	/**
+	 * <获数据库连接>
+	 */
 	public static Connection getConnection() throws Exception {
 		String driverClass = prop.getProperty("jdbc.driverClassName");
 		String url = prop.getProperty("jdbc.url");
@@ -42,5 +47,5 @@ public class JDBCUtil {
 	public static void main(String[] args) throws Exception {
 		getConnection();
 	}
-	
+
 }
