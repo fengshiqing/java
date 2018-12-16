@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 /**
  * <自定义监听器>
  */
-public class MySCListener implements ServletContextListener {
+public class MyServletContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {

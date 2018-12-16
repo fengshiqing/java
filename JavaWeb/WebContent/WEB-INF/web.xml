@@ -56,10 +56,13 @@
 
 	<!-- 典型的 Listener监听器 配置 -->
 	<listener>
-		<listener-class>servlet.listener.MySCListener</listener-class>
+		<listener-class>servlet.listener.MyServletContextListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>servlet.listener.MyHttpSessionListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>servlet.listener.MyServletRequestListener</listener-class>
 	</listener>
 
 	<!-- 典型的 Servlet 配置 -->
