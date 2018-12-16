@@ -21,8 +21,8 @@ public class StudentTest {
 	public static void main(String[] args) {
 		LOGGER.info("开始执行");
 		
-		SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
-		StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+		SqlSession sqlSession = SqlSessionFactoryUtil.openSession();// 获取sqlsession
+		StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);// 获取Mapper
 		Student student = new Student("zhangsan", 11);
 		int result = studentMapper.add(student);
 		sqlSession.commit();// 注释掉这句话，就没有提交，数据库中也就不会有变化
