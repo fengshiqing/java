@@ -131,4 +131,23 @@ public class TestFile {
 		boolean b1 = file4.renameTo(file3);
 		System.out.println(b1);
 	}
+	
+	
+	@Test
+	public void test() throws IOException{
+//	    File file = new File("d:/io/");// 创建成功，
+//	    boolean bool1 = file.mkdir();
+//	    System.out.println(bool1);
+	    
+	    File file = new File("d:/io/io2/");
+	    boolean bool1 = file.mkdir();// 只创建倒数第一层目录，然后倒数第二层目录不存在，就创建失败
+	    System.out.println(bool1);
+//        boolean bool2 = file.mkdirs();// 这个方法只会创建目录：D:\io\io2\helloworld.txt\
+//        System.out.println(bool2);
+//        
+//        boolean bool = file.createNewFile();// 这个方法创建文件时，必须确保路径存在，否则创建失败。
+//        System.out.println(bool);
+	}
+
+	
 }
