@@ -1,8 +1,10 @@
 
 /**
+ * <继承Thread接口>
+ * 
  * @see https://blog.csdn.net/c10wtiybq1ye3/article/details/78212045
  */
-public class Thread02 {
+public class Type02_Thread {
 
 	class MyThread extends Thread { // 继承Thread类，作为线程的实现类
 		private String name; // 表示线程的名称
@@ -21,8 +23,8 @@ public class Thread02 {
 	}
 
 	public static void main(String args[]) {
-		MyThread mt1 = new Thread02().new MyThread("线程A "); // 实例化对象
-		MyThread mt2 = new Thread02().new MyThread("线程B "); // 实例化对象
+		MyThread mt1 = new Type02_Thread().new MyThread("线程A "); // 实例化对象
+		MyThread mt2 = new Type02_Thread().new MyThread("线程B "); // 实例化对象
 		mt1.start(); // 调用线程主体
 		mt2.start(); // 调用线程主体
 	}

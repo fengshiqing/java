@@ -1,24 +1,4 @@
 
-class Zhangsan { // 定义张三类
-	public void say() {
-		System.out.println("张三对李四说：“你给我画，我就把书给你。”");
-	}
-
-	public void get() {
-		System.out.println("张三得到画了。");
-	}
-}
-
-class Lisi { // 定义李四类
-	public void say() {
-		System.out.println("李四对张三说：“你给我书，我就把画给你”");
-	}
-
-	public void get() {
-		System.out.println("李四得到书了。");
-	}
-}
-
 /**
  * <死锁>
  */
@@ -68,3 +48,22 @@ public class ThreadDeadLock implements Runnable {
 	}
 }
 
+class Zhangsan { // 定义张三类
+	public void say() {
+		System.out.println("张三对李四说：“你给我画，我就把书给你。”");
+	}
+
+	public void get() {
+		System.out.println("张三得到画了。");
+	}
+}
+
+class Lisi { // 定义李四类
+	public void say() {
+		System.out.println("李四对张三说：“你给我书，我就把画给你”");
+	}
+
+	public void get() {
+		System.out.println("李四得到书了。");
+	}
+}

@@ -1,6 +1,6 @@
 
 /**
- * 
+ * <守护线程>
  */
 public class ThreadDaemon {
 
