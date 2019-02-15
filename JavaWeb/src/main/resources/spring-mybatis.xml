@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	
+	<!-- 这个文件就是用来完成spring和mybatis的整合的。
+	这里面也没多少行配置，主要的就是 自动扫描，自动注入，配置数据库 。注释也很详细，大家看看就明白了。
+	具体详情请参阅官网文档：http://www.mybatis.org/spring/zh/index.html -->
+	
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="com.mybatis" />
+	
+	
+	<!-- 引入数据库配置文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean>
+
+
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<!-- 从数据库配置文件中读取配置 -->
+		<property name="driverClassName" value="${driver}" /><!-- 驱动 -->
+		<property name="url" value="${url}" /><!-- url -->
+		<property name="username" value="${username}" /><!-- 用户名 -->
+		<property name="password" value="${password}" /><!-- 密码 -->
+		
+		<property name="initialSize" value="${initialSize}"></property><!-- 初始化连接大小 -->
+		<property name="maxActive" value="${maxActive}"></property><!-- 连接池最大数量 -->
+		<property name="maxIdle" value="${maxIdle}"></property><!-- 连接池最大空闲数 -->
+		<property name="minIdle" value="${minIdle}"></property><!-- 连接池最小空闲数 -->
+		<property name="maxWait" value="${maxWait}"></property><!-- 获取连接最大等待时间 -->
+	</bean>
+
+
+	<!-- 事务 -->
+	<!-- Spring 整合 MyBatis后，不需要mybatis的配置映射文件。要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：
+		一个 SqlSessionFactory 和 至少一个数据映射器类。
+	在 MyBatis-Spring 中，SqlSessionFactoryBean 是用于创建 SqlSessionFactory 的。要配置这个工厂 bean，放置下面的代码在 Spring 的 XML 配置文件中： -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" /><!-- SqlSessionFactory 需要一个 DataSource(数据源)，可以是任意的 DataSource，配置它就和配置其它 Spring 数据库连接一样。 -->
+		<!--property name="configLocation" value="classpath:conf/mybatis.xml" /--><!-- 可以添加mybatis配置文件 -->
+		<property name="mapperLocations" value="classpath:com/mybatis/mapping/*.xml"></property><!-- 从类路径下加载 com.mybatis.mapping 包及其子包下所有的映射器 XML文件 -->
+		<!-- property name="mapperLocations">自动扫描多个目录下的映射XML文件可以这么写
+			<list>
+				<value>classpath*:conf/sqlMap/sqlMap_*.xml</value>
+				<value>classpath*:conf/sqlMap/fb/**/sqlMap_*.xml</value>
+			</list>
+		</property-->
+	</bean>
+
+
+	<!-- Dao层接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.mybatis.dao" /><!-- 自动扫描包下的dao类 -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+
+	<!-- 要开启Spring的事务处理,在Spring的XML配置文件中简单创建一个 DataSourceTransactionManager 对象即可。
+	注意，为事务管理器指定的 DataSource 必须和用来创建 SqlSessionFactoryBean 的是同一个数据源，否则事务管理器无法工作。 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!--支持事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

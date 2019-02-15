@@ -4,24 +4,66 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-
 	<display-name>Spring MVC Application</display-name>
 
+	<!-- Spring和mybatis的配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-mybatis.xml</param-value>
+	</context-param>
+	
+	<!-- 编码过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 防止Spring内存溢出监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+
+	<!-- 此Servlet用来整合SpringMVC框架 -->
 	<servlet>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
-		<init-param><!-- 这个标签可以不写，因为默认值就是这个“/WEB-INF/<servlet-name>-servlet.xml” -->
+		<init-param><!-- 这个初始换参数标签可以不写，因为默认值就是：“/WEB-INF/<servlet-name>-servlet.xml” -->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring-servlet.xml</param-value><!-- 可以换为classpath:aaa.xml -->
+			<!-- param-value>/WEB-INF/springmvc-servlet.xml</param-value --><!-- 可以换为classpath:aaa.xml -->
+			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 
+
+	<!-- 典型的 Listener监听器 配置 -->
+	<listener>
+		<listener-class>servlet.listener.MyServletContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>servlet.listener.MyHttpSessionListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>servlet.listener.MyServletRequestListener</listener-class>
+	</listener>
 
 	<!-- 典型的 Servlet 配置 -->
 	<servlet>
@@ -43,14 +85,10 @@
 	<error-page>
 		<error-code>500</error-code>
 		<location>/error/500.jsp</location>
-		<!--exception-type></exception-type 这个元素不能和 <error-code> 一起使用，否则就没有效果-->
+		<!--exception-type></exception-type 这个元素不能和 <error-code> 一起使用，否则就没有效果 -->
 	</error-page>
-	<!-- 或者用这种方式：
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/error/500.jsp</location>
-	</error-page>
-	-->
+	<!-- 或者用这种方式： <error-page> <exception-type>java.lang.Throwable</exception-type> 
+		<location>/error/500.jsp</location> </error-page> -->
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
