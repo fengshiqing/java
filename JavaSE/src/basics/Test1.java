@@ -6,10 +6,10 @@ public class Test1 {
 		System.out.println("m()");
 	}
 	
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Test1 t = null;
-		t.m();// m()方法是static的，应该用类名.方法名调用，这样调用也行。
+		t.m();// m()方法是static的，应该用  类名.方法名  调用，这样调用也行。
 	}
 
 }

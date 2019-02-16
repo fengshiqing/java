@@ -3,6 +3,7 @@ package basics;
 public class 测试 {
     public static void main(String[] args) {
         float f1 = 13.23f;
+        // float f2 = 13.23;// 编译错误，小数默认为double类型，赋值给float必须强转
         double d1 = 4562.12;
         double d2 = 45678.1564d;
         System.out.println("f1=" + f1);
