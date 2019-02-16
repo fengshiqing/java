@@ -7,7 +7,7 @@
 	<!-- 不使用上面这种方式（单独弄一个配置文件），就需要用如下方式，下面这种没有上面这种单独一个文件的配置那么的清晰 -->
 	<properties>
 		<property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbc.url" value="jdbc:mysql://192.168.124.2:3306/JavaWeb"/>
+		<property name="jdbc.url" value="jdbc:mysql://192.168.124.3:3306/JavaWeb"/>
 		<property name="jdbc.username" value="root"/>
 		<property name="jdbc.password" value="feng234800"/>
 	</properties>
