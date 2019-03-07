@@ -1,4 +1,4 @@
-package thread.exer;
+package 线程_练习;
 
 class PrintNumThread implements Runnable {
 

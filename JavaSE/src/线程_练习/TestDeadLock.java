@@ -1,4 +1,4 @@
-package thread.exer;
+package 线程_练习;
 
 //死锁的问题：处理线程同步时容易出现。
 //不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的同步资源，就形成了线程的死锁
@@ -9,6 +9,7 @@ public class TestDeadLock {
 
 	public static void main(String[] args) {
 		new Thread() {
+			@Override
 			public void run() {
 				synchronized (sb1) {
 					try {
@@ -28,6 +29,7 @@ public class TestDeadLock {
 		}.start();
 
 		new Thread() {
+			@Override
 			public void run() {
 				synchronized (sb2) {
 					try {

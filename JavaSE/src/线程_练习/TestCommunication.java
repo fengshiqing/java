@@ -1,4 +1,4 @@
-package thread.exer;
+package 线程_练习;
 
 //线程通信。如下的三个关键字使用的话，都得在同步代码块或同步方法中。
 //wait():一旦一个线程执行到wait()，就释放当前的锁。
@@ -8,6 +8,7 @@ package thread.exer;
 class PrintNum implements Runnable {
 	int num = 1;
 	Object obj = new Object();
+	@Override
 	public void run() {
 		while (true) {
 			synchronized (obj) {

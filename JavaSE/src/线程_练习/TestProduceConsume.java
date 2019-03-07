@@ -1,4 +1,4 @@
-package thread.exer;
+package 线程_练习;
 
 /*
  * 生产者/消费者问题
@@ -51,6 +51,7 @@ class Producer implements Runnable{//生产者
 	public Producer(Clerk clerk){
 		this.clerk = clerk;
 	}
+	@Override
 	public void run(){
 		System.out.println("生产者开始生产产品");
 		while(true){
@@ -70,6 +71,7 @@ class Consumer implements Runnable{//消费者
 	public Consumer(Clerk clerk){
 		this.clerk = clerk;
 	}
+	@Override
 	public void run(){
 		System.out.println("消费者消费产品");
 		while(true){

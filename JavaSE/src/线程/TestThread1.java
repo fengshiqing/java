@@ -1,4 +1,4 @@
-package thread;
+package 线程;
 
 /*
  * Thread的常用方法：

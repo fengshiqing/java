@@ -1,4 +1,4 @@
-package thread;
+package 线程;
 
 //线程加锁。
 public class ThreadSafeTest implements Runnable {

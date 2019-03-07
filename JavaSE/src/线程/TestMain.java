@@ -1,4 +1,4 @@
-package thread;
+package 线程;
 
 //单线程：主线程
 public class TestMain {

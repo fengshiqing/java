@@ -1,4 +1,4 @@
-package thread.exer;
+package 线程_练习;
 
 class A {
 	public synchronized void foo(B b) {//锁：A的对象a
@@ -39,6 +39,7 @@ public class DeadLock implements Runnable {
 		a.foo(b);
 	}
 
+	@Override
 	public void run() {
 		b.bar(a);
 	}

@@ -1,3 +1,4 @@
+package 线程_CSDN;
 
 /**
  * <继承Thread接口>
