@@ -20,6 +20,7 @@ package thread;
 
  */
 class SubThread1 extends Thread {
+	@Override
 	public void run() {
 		for (int i = 1; i <= 100; i++) {
 			// try {
@@ -27,8 +28,7 @@ class SubThread1 extends Thread {
 			// } catch (InterruptedException e) {
 			// e.printStackTrace();
 			// }
-			System.out.println(Thread.currentThread().getName() + ":"
-					+ Thread.currentThread().getPriority() + ":" + i);
+			System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getPriority() + ":" + i);
 		}
 	}
 }
@@ -42,10 +42,10 @@ public class TestThread1 {
 		st1.start();
 		Thread.currentThread().setName("========主线程");
 		for (int i = 1; i <= 100; i++) {
-			System.out.println(Thread.currentThread().getName() + ":"
-					+ Thread.currentThread().getPriority() + ":" + i);
+			System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getPriority() + ":" + i);
 //			 if(i % 10 == 0){
-//			 Thread.currentThread().yield();// 让出线程的cpu使用权，下一次cpu的使用权就看谁能抢得到了。
+			// 当前线程为主线程，yield便是主线程让出cpu使用权，下一次cpu的使用权就看谁能抢得到了，有可能是主线程，也有可能是子线程。
+//			 Thread.currentThread().yield();
 //			 }
 			// if(i == 20){
 			// try {
