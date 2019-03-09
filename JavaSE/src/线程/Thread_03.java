@@ -33,7 +33,7 @@ class SubThread1 extends Thread {
 	}
 }
 
-public class TestThread1 {
+public class Thread_03 {
 	public static void main(String[] args) {
 
 		SubThread1 st1 = new SubThread1();

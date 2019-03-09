@@ -1,4 +1,4 @@
-package 线程_CSDN;
+package 线程;
 
 /**
  * @see https://blog.csdn.net/c10wtiybq1ye3/article/details/78212045

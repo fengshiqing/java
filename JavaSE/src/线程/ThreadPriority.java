@@ -1,4 +1,4 @@
-package 线程_CSDN;
+package 线程;
 
 /**
  * <线程的优先级>
