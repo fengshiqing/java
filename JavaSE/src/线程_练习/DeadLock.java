@@ -1,6 +1,7 @@
 package 线程_练习;
 
 class A {
+	@SuppressWarnings("static-access")
 	public synchronized void foo(B b) {//锁：A的对象a
 		try {
 			Thread.currentThread().sleep(10);
@@ -16,11 +17,11 @@ class A {
 }
 
 class B {
+	@SuppressWarnings("static-access")
 	public synchronized void bar(A a) {//锁：B的对象 b
 		try {
 			Thread.currentThread().sleep(10);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		a.last();
