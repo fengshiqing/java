@@ -3,7 +3,7 @@ package 线程;
 /**
  * <死锁>
  */
-public class ThreadDeadLock implements Runnable {
+public class Thread_DeadLock implements Runnable {
 	private static Zhangsan zs = new Zhangsan(); // 实例化static型对象
 	private static Lisi ls = new Lisi(); // 实例化static型对象
 	private boolean flag = false; // 声明标志位，判断那个先说话
@@ -38,8 +38,8 @@ public class ThreadDeadLock implements Runnable {
 	}
 
 	public static void main(String args[]) {
-		ThreadDeadLock t1 = new ThreadDeadLock(); // 控制张三
-		ThreadDeadLock t2 = new ThreadDeadLock(); // 控制李四
+		Thread_DeadLock t1 = new Thread_DeadLock(); // 控制张三
+		Thread_DeadLock t2 = new Thread_DeadLock(); // 控制李四
 		t1.flag = true;
 		t2.flag = false;
 		Thread thA = new Thread(t1);

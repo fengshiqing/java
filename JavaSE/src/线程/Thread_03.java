@@ -1,8 +1,8 @@
 package 线程;
 
-/*
+/**
  * Thread的常用方法：
- * 1.start()：启动线程并执行相应的run()方法
+ * 1.start()：启动线程使线程进入“就绪”状态，等待获取CPU执行权执行run()方法
  * 2.run():子线程要执行的代码放入run()方法中
  * 3.currentThread()：静态的，调取当前的线程
  * 4.getName():获取此线程的名字
@@ -14,10 +14,9 @@ package 线程;
  * 9.sleep(long l):显式的让当前线程睡眠l毫秒
  * 10.线程通信：wait()   notify()   ()
  * 
- * 设置线程的优先级
  * getPriority() ：返回线程优先值 ，优先级设置为10最高的，不表示一定是此线程先执行完再执行其他的，优先级高只表示抢到cpu执行权的概率变大。
-   setPriority(int newPriority) ：改变线程的优先级
-
+ * setPriority(int newPriority) ：改变线程的优先级
+ *
  */
 class SubThread1 extends Thread {
 	@Override

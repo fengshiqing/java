@@ -3,7 +3,7 @@ package 线程;
 /**
  * <守护线程>
  */
-public class ThreadDaemon {
+public class Thread_Daemon {
 
 	class MyThread implements Runnable { // 实现Runnable接口
 		@Override
@@ -16,7 +16,7 @@ public class ThreadDaemon {
 	}
 
 	public static void main(String args[]) {
-		MyThread mt = new ThreadDaemon().new MyThread(); // 实例化Runnable子类对象
+		MyThread mt = new Thread_Daemon().new MyThread(); // 实例化Runnable子类对象
 		Thread t = new Thread(mt, "线程"); // 实例化Thread对象
 		t.setDaemon(true); // 此线程在后台运行
 		t.start(); // 启动线程
