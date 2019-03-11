@@ -18,7 +18,7 @@ package 线程;
  * 最终第一个上车的，也有可能是优先级最低的人。并且所谓的优先级执行，是在大量执行次数中才能体现出来的。
  *
  */
-public class ThreadYield {
+public class Thread_Yield {
 
 	class MyThread implements Runnable { // 实现Runnable接口
 		@Override
@@ -39,7 +39,7 @@ public class ThreadYield {
 	}
 
 	public static void main(String args[]) {
-		MyThread my = new ThreadYield().new MyThread(); // 实例化MyThread对象
+		MyThread my = new Thread_Yield().new MyThread(); // 实例化MyThread对象
 		Thread t1 = new Thread(my, "线程A");
 		Thread t2 = new Thread(my, "线程B");
 		t1.start();
