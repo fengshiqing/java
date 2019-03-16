@@ -1,7 +1,7 @@
 package 线程;
 
 /**
- * Java线程中的Thread.yield( )方法，译为线程让步。就是说当一个线程执行这个方法后，就会把自己的CPU执行权让出来，
+ * Java线程中的Thread.yield()方法，译为线程让步。就是说当一个线程执行这个方法后，就会把自己的CPU执行权让出来，
  * 
  * 让自己或者其它的线程去抢CPU执行权，注意是让自己或者其他线程运行，并不一定是让给其他线程。
  * 
@@ -20,6 +20,14 @@ package 线程;
  */
 public class Thread_Yield {
 
+	public static void main(String args[]) {
+		MyThread my = new Thread_Yield().new MyThread(); // 实例化MyThread对象
+		Thread t1 = new Thread(my, "线程A");
+		Thread t2 = new Thread(my, "线程B");
+		t1.start();
+		t2.start();
+	}
+
 	class MyThread implements Runnable { // 实现Runnable接口
 		@Override
 		public void run() { // 覆写run()方法
@@ -36,14 +44,6 @@ public class Thread_Yield {
 				System.out.println(Thread.currentThread().getName() + "运行，i = " + i); // 取得当前线程的名字
 			}
 		}
-	}
-
-	public static void main(String args[]) {
-		MyThread my = new Thread_Yield().new MyThread(); // 实例化MyThread对象
-		Thread t1 = new Thread(my, "线程A");
-		Thread t2 = new Thread(my, "线程B");
-		t1.start();
-		t2.start();
 	}
 
 }
