@@ -11,7 +11,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-mybatis.xml</param-value>
 	</context-param>
-	
+
+
 	<!-- 编码过滤器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -26,6 +27,8 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+
 	<!-- Spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -43,8 +46,8 @@
 		<load-on-startup>1</load-on-startup>
 		<init-param><!-- 这个初始换参数标签可以不写，因为默认值就是：“/WEB-INF/<servlet-name>-servlet.xml” -->
 			<param-name>contextConfigLocation</param-name>
-			<!-- param-value>/WEB-INF/springmvc-servlet.xml</param-value --><!-- 可以换为classpath:aaa.xml -->
-			<param-value>classpath:spring-mvc.xml</param-value>
+			<param-value>/WEB-INF/springmvc-servlet.xml</param-value><!-- 可以换为classpath:aaa.xml -->
+			<!-- <param-value>classpath:spring-mvc.xml</param-value> -->
 		</init-param>
 	</servlet>
 	<servlet-mapping>
@@ -64,6 +67,16 @@
 	<listener>
 		<listener-class>servlet.listener.MyServletRequestListener</listener-class>
 	</listener>
+
+	<!-- 配置过滤器 -->
+	<filter>
+		<filter-name>Filter_01</filter-name>
+		<filter-class>servlet.filter.Filter_01</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Filter_01</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!-- 典型的 Servlet 配置 -->
 	<servlet>
