@@ -9,8 +9,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 /**
+ * <获取SqlSession>
+ * 
  * @author kun
- *
  */
 public class SqlSessionFactoryUtil {
 	/**

@@ -1,10 +1,8 @@
 package com.mybatis.mappers;
 
-import com.mybatis.model.Student;
-
 public interface StudentMapper {
 	
-	public int add(Student student);
+//	public int add(Student student);
 	
 //	public int update(Student student);
 //	

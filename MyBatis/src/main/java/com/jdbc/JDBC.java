@@ -7,12 +7,11 @@ import java.sql.Statement;
 
 /**
  * <JDBC连接数据库>
+ * 
+ * @author 冯仕清
  */
 public class JDBC {
 
-	/**
-	 * <JDBC连接数据库>
-	 */
 	public static void main(String[] args) throws Exception {
 		// 1、注册数据库驱动
 		// DriverManager.registerDriver(new Driver());// 这行代码有两个问题：1、com.mysql.jdbc.Driver类中有静态代码块，加载时就会自动注册到驱动管理器中；2与mysql驱动类强耦合
