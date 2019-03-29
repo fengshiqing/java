@@ -3,21 +3,23 @@
 
 <configuration><!-- mybatis配置的根标签 -->
 
-	<!-- properties resource="jdbc.properties"/--><!-- 引入jdbc的配置文件 -->
-	<!-- 不使用上面这种方式（单独弄一个配置文件），就需要用如下方式，下面这种没有上面这种单独一个文件的配置那么的清晰 -->
-	<properties>
+	<!-- 步骤一：读取或配置数据连接 -->
+	<!-- properties resource="jdbc.properties"/--><!-- 方式一：引入单独的jdbc的配置文件 -->
+	<properties><!-- 方式二：直接配置，这种方式没上面这种单独一个文件的配置那么的清晰 -->
 		<property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbc.url" value="jdbc:mysql://192.168.124.3:3306/JavaWeb"/>
+		<property name="jdbc.url" value="jdbc:mysql://192.168.124.10:3306/JavaWeb"/>
 		<property name="jdbc.username" value="root"/>
 		<property name="jdbc.password" value="feng234800"/>
 	</properties>
-	
+
+	<!-- 可选步骤：给pojo对象设置别名 -->
 	<typeAliases><!-- 类的别名，给类的完成限定名取别名，方便使用，但是实际项目中不会用别名的。这个属性必须放在<environments>标签之前，
-			放在后面的话会报错：Caused by: org.xml.sax.SAXParseException; lineNumber: 40; columnNumber: 17; -->
+			放在后面的话会报错：Caused by: org.xml.sax.SAXParseException; -->
 		<!--typeAlias alias="Student" type="com.java1234.model.Student"/-->
 		<package name="com.java1234.model"/><!-- 这种方式好，一次搞定好多 -->
 	</typeAliases>
-	
+
+	<!--  -->
 	<environments default="development"><!-- MyBatis 支持多个环境，可以任意配置。包含多个环境<environment id="XXX"> -->
 		<environment id="development">
 			<!-- MyBatis 支持两种类型的事务管理器：JDBC 和 MANAGED(托管).JDBC：应用程序负责管理数据库连接的生命周期；
