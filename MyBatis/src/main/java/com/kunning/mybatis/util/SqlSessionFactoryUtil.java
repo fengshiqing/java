@@ -1,4 +1,4 @@
-package com.mybatis.util;
+package com.kunning.mybatis.util;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,11 +1,11 @@
-package com.mybatis;
+package com.kunning.mybatis;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mybatis.model.Student;
-import com.mybatis.util.SqlSessionFactoryUtil;
+import com.kunning.mybatis.model.Student;
+import com.kunning.mybatis.util.SqlSessionFactoryUtil;
 
 public class StudentTest {
 
@@ -28,7 +28,7 @@ public class StudentTest {
 
 		// 步骤三：执行sql语句
 		// 执行sql方式一：
-		int result = sqlSession.insert("com.mybatis.mappers.StudentMapper.add", student);// 这种方式可以不写dao层接口，直接调用。
+		int result = sqlSession.insert("com.kunning.mybatis.mappers.StudentMapper.add", student);// 这种方式可以不写dao层接口，直接调用。
 
 		// 执行sql方二：
 //		StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);// 这种方式需要dao层接口。sql语句甚至可以写在dao层接口的方法上。

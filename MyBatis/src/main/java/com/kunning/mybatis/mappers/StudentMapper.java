@@ -1,4 +1,4 @@
-package com.mybatis.mappers;
+package com.kunning.mybatis.mappers;
 
 public interface StudentMapper {
 	

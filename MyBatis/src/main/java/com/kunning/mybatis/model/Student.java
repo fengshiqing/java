@@ -1,4 +1,4 @@
-package com.mybatis.model;
+package com.kunning.mybatis.model;
 
 public class Student {
 
