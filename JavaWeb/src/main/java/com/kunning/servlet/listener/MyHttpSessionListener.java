@@ -1,4 +1,4 @@
-package servlet.listener;
+package com.kunning.servlet.listener;
 
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;

@@ -1,4 +1,4 @@
-package servlet.response;
+package com.kunning.servlet.response;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package servlet.request;
+package com.kunning.servlet.request;
 
 import java.io.IOException;
 import java.io.PrintWriter;
