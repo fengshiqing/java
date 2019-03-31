@@ -38,17 +38,20 @@ public class MapDemo {
 	@Test
 	public void test6() throws FileNotFoundException, IOException{
 		Properties pros = new Properties();
-		pros.load(new FileInputStream(new File("jdbc.properties")));
-		String user = pros.getProperty("user");
-		System.out.println(user);
-		String password = pros.getProperty("password");
-		System.out.println(password);
+		pros.load(new FileInputStream(new File("1.properties")));
+		
+		String name = pros.getProperty("name");
+		System.out.println(name);
+		
+		String gender = pros.getProperty("gender");
+		System.out.println(gender);
 	}
 	
 	// 定制排序
 	@Test
 	public void test5() {
 		Comparator com = new Comparator() {
+			@Override
 			public int compare(Object o1, Object o2) {
 				if (o1 instanceof Customer && o2 instanceof Customer) {
 					Customer c1 = (Customer) o1;

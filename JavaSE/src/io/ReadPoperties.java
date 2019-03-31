@@ -40,7 +40,7 @@ public class ReadPoperties {
 		System.out.println(ReadPoperties.class.getResource("/2.properties"));
 		// System.out.println(ReadPoperties.class.getResource("/././1.properties"));// 直接放在项目下的“1.properties”是获取不到的，用下面的方式能获取到
 		Properties prop_2 = new Properties();
-		prop_2.load(new FileReader("1.properties"));// 这种路径的加载方式是"jdbc.properties"直接放在项目根路径下
+		prop_2.load(new FileReader("1.properties"));// 这种路径的加载方式是"1.properties"直接放在项目根路径下
 		System.out.println("项目路径下的配置文件：" + prop_2.getProperty("name"));
 		System.out.println("项目路径下的配置文件：" + prop_2.getProperty("gender"));
 		System.out.println("项目路径下的配置文件：" + prop_2.getProperty("age"));
