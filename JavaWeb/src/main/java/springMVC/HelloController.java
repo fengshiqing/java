@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/SpringMVC")
 public class HelloController {
 
 	/**
@@ -17,7 +16,7 @@ public class HelloController {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 	
-	@RequestMapping(value = "hello", method = RequestMethod.GET)
+	@RequestMapping(value = "/SpringMVC/hello", method = RequestMethod.GET)
 	public String printHello(ModelMap model) {
 		LOGGER.info("【printHello】【开始执行】");
 		LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource(""));
