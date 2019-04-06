@@ -3,11 +3,12 @@ package springIoC;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import beans.HelloWorld;
+import com.kunning.beans.HelloWorld;
 
 /**
+ * 获取IoC容器中的对象
  * 
- * @see
+ * @author 冯仕清
  */
 public class SpringIoC {
 
@@ -16,10 +17,6 @@ public class SpringIoC {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
 		obj.getMessage();
-		
-		
-		
-		
 	}
 
 }

@@ -1,4 +1,4 @@
-package beans;
+package com.kunning.beans;
 
 public class HelloWorld {
 
