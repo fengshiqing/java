@@ -18,7 +18,7 @@ public class JDBCUtils {
 	static {
 		try {
 			prop = new Properties();
-			prop.load(new FileReader(JDBCUtils.class.getClassLoader().getResource("database.properties").getPath()));// 用类加载器加载配置文件
+			prop.load(new FileReader(JDBCUtils.class.getClassLoader().getResource("db.properties").getPath()));// 用类加载器加载配置文件
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);// 往上抛异常

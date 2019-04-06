@@ -44,7 +44,6 @@
 	</bean>
 
 
-	<!-- 事务 -->
 	<!-- Spring 整合 MyBatis后，不需要mybatis的配置映射文件。要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：
 		一个 SqlSessionFactory 和 至少一个数据映射器类。
 	在 MyBatis-Spring 中，SqlSessionFactoryBean 是用于创建 SqlSessionFactory 的。要配置这个工厂 bean，放置下面的代码在 Spring 的 XML 配置文件中： -->
