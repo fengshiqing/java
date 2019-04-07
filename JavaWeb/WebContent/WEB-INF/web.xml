@@ -9,9 +9,8 @@
 	<!-- Spring和mybatis的配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-mybatis.xml</param-value>
+		<param-value>classpath:spring-mvc.xml</param-value>
 	</context-param>
-
 
 	<!-- 过滤器执行的先后顺序是，在web.xml中配置的先后顺序 -->
 	<!-- 编码过滤器 -->
@@ -30,7 +29,7 @@
 	</filter-mapping>
 
 
-	<!-- Spring监听器 -->
+	<!-- Spring监听器，默认查找“/WEB-INF/applicationContext.xml”，可以通过配置全局属性contextConfigLocation来改变查找的路径 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -44,12 +43,13 @@
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-		<init-param><!-- 这个初始换参数标签可以不写，因为默认值就是：“/WEB-INF/<servlet-name>-servlet.xml” -->
+ 		<init-param>
+ 			<!-- 这个初始化标签可以不写，因为默认值就是“/WEB-INF/<servlet-name>-servlet.xml” -->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/springmvc-servlet.xml</param-value><!-- 可以换为classpath:aaa.xml -->
-			<!-- <param-value>classpath:spring-mvc.xml</param-value> -->
+			<!-- <param-value>classpath:spring-mvc.xml , /WEB-INF/springmvc-servlet.xml</param-value> -->
+			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
