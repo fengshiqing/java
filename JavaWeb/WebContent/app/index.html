@@ -9,10 +9,22 @@
 
 <body>
 
-	<input type="button" name="id" value="测试按钮" onclick="aaa()">
+	<input type="button" value="测试按钮" onclick="aaa()">
 
-	<input type="button" name="id" value="ajax按钮" onclick="ajax()">
+	<input type="button" value="ajax按钮" onclick="ajax()">
 	<input type="text" id="123" value="">
+
+	<form action="/JavaWeb/SpringMVC/saveUser" method="get">
+		用户名：<input type="text" id="username" name="username" value="">
+		<br>
+		密    码：<input type="text" id="password" name="password" value="">
+		<br>
+		昵    称：<input type="text" id="nickname" name="nickname" value="">
+		<br>
+		邮    箱：<input type="text" id="email" name="email" value="">
+		<br>
+		<input type="submit" value="保存">
+	</form>
 
 </body>
 </html>

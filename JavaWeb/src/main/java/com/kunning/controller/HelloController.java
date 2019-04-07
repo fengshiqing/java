@@ -1,13 +1,17 @@
-package springMVC;
+package com.kunning.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.kunning.dao.UserMapper;
+import com.kunning.pojo.User;
 
 @Controller
 public class HelloController {
@@ -16,6 +20,9 @@ public class HelloController {
 	 * <日志>
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
+	
+	@Autowired
+	private UserMapper userMapper;
 	
 	@RequestMapping(value = "/SpringMVC/hello", method = RequestMethod.GET)
 	public String printHello(ModelMap model) {
@@ -44,6 +51,16 @@ public class HelloController {
 	public String ajax() {
 		LOGGER.info("【ajax】【开始执行】");
 		return "testAJAX";
+	}
+	
+	
+	@RequestMapping(value = "/SpringMVC/saveUser")
+	@ResponseBody
+	public String saveUser(User user) {
+		LOGGER.info("【saveUser】【开始执行】【请求参数：user:{}】", user);
+		int num = userMapper.saveUser(user);
+		LOGGER.info("【saveUser】【结束执行】【执行结果】【执行成功】【num:{}】", num);		
+		return "save success";
 	}
 	
 }

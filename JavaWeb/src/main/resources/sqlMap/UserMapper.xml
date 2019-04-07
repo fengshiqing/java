@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kunning.dao.UserMapper">
+
+	<select id="selectByPrimaryKey" resultType="com.kunning.pojo.User">
+		SELECT	username
+		FROM 	users
+		WHERE	username = #{username}
+	</select>
+	
+	<insert id="saveUser" parameterType="com.kunning.pojo.User" >
+		INSERT INTO users
+		(
+			username, password, nickname, email
+		) VALUES(
+			#{username}, #{password}, #{nickname}, #{email}
+		)
+	</insert>
+
+</mapper>

@@ -16,8 +16,7 @@
 
 	<!-- 自动扫描该包，SpringMVC会将包下用了@controller注解的类加入到IoC容器中。 -->
 	<context:component-scan base-package="com.tutorialspoint" />
-	<context:component-scan base-package="com.mybatis" />
-	<context:component-scan base-package="springMVC" />
+	<context:component-scan base-package="com.kunning.controller" />
 
 	<!-- 允许直接访问静态资源 -->
 	<mvc:annotation-driven/>
@@ -37,7 +36,7 @@
 		<property name="location" value="classpath:jdbc.properties" /><!-- 引入jdbc.properties中的配置信息 -->
 	</bean>
 
-	<!-- 数据源 -->
+	<!-- 数据源：数据库连接信息 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<!-- 从数据库配置文件中读取配置 -->
 		<property name="driverClassName" value="${driver}" /><!-- 驱动 -->
@@ -52,13 +51,15 @@
 		<property name="maxWait" value="${maxWait}"></property><!-- 获取连接最大等待时间 -->
 	</bean>
 
-	<!-- Spring 整合 MyBatis后，不需要mybatis的配置映射文件。要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：
-		一个 SqlSessionFactory 和 至少一个数据映射器类。
-	在 MyBatis-Spring 中，SqlSessionFactoryBean 是用于创建 SqlSessionFactory 的。要配置这个工厂 bean，放置下面的代码在 Spring 的 XML 配置文件中： -->
+	<!-- Spring 整合 MyBatis时，就不再需要mybatis的配置映射文件了。
+			要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：
+			一个 SqlSessionFactory 和 至少一个数据映射器类。
+			在 MyBatis-Spring 中，SqlSessionFactoryBean 是用于创建 SqlSessionFactory 的。要配置这个工厂 bean，放置下面的代码在 Spring 的 XML 配置文件中： -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" /><!-- SqlSessionFactory 需要一个 DataSource(数据源)，可以是任意的 DataSource，配置它就和配置其它 Spring 数据库连接一样。 -->
+		<property name="dataSource" ref="dataSource" /><!-- SqlSessionFactory 需要一个 DataSource(数据源)，可以是任意的 DataSource。 -->
 		<!--property name="configLocation" value="classpath:conf/mybatis.xml" /--><!-- 可以添加mybatis配置文件 -->
-		<property name="mapperLocations" value="classpath:com/mybatis/mapping/*.xml"></property><!-- 从类路径下加载 com.mybatis.mapping 包及其子包下所有的映射器 XML文件 -->
+		<!-- 从类路径下加载 sqlMap 包及其子包下所有的映射器 XML文件 -->
+		<property name="mapperLocations" value="classpath:sqlMap/*.xml"></property><!-- 有多个包的话可以用英文逗号分隔开 -->
 		<!-- property name="mapperLocations">自动扫描多个目录下的映射XML文件可以这么写
 			<list>
 				<value>classpath*:conf/sqlMap/sqlMap_*.xml</value>
@@ -70,7 +71,7 @@
 
 	<!-- Dao层接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mybatis.dao" /><!-- 自动扫描包下的dao类 -->
+		<property name="basePackage" value="com.kunning.dao" /><!-- 自动扫描包下的dao类 -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 

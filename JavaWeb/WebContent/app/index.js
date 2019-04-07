@@ -16,7 +16,7 @@ function ajax() {
 	}
 	
 	// 如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：
-	xmlhttp.open("GET", "/JavaWeb/SpringMVC/ajax", true);
+	xmlhttp.open("GET", "/JavaWeb/SpringMVC/ajax", true);// 注意路径，要加上“/JavaWeb”
 	xmlhttp.send();
 	
 	xmlhttp.onreadystatechange = function() {// 这个方法可以放在send()方法之后。
