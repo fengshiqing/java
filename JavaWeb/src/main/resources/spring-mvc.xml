@@ -20,9 +20,16 @@
 	<context:component-scan base-package="springMVC" />
 
 	<!-- 允许直接访问静态资源 -->
-	<mvc:resources mapping="/app/**" location="/app/" />
+	<mvc:annotation-driven/>
+	<mvc:resources location="/app/" mapping="/app/**" /><!-- 根目录是WebContent -->
+	<!-- <mvc:resources mapping="/styles/**" location="/WEB-INF/resource/styles/"/> -->
+	<!-- <mvc:resources location="/img/" mapping="/img/**"/>   
+	<mvc:resources location="/js/" mapping="/js/**"/>    
+	<mvc:resources location="/css/" mapping="/css/**"/> -->
 
-	<!-- 这个文件就是用来完成spring整合mybatis。
+
+
+	<!-- Spring整合mybati
 	这里面也没多少行配置，主要的就是 自动扫描，自动注入，配置数据库 。注释也很详细，大家看看就明白了。
 	具体详情请参阅官网文档：http://www.mybatis.org/spring/zh/index.html -->
 	<!-- 引入数据库配置文件 -->

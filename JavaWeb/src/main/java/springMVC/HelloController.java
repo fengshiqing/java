@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
@@ -36,6 +37,13 @@ public class HelloController {
 	    
 	    model.addAttribute("message", page);
 	    return "hello";
+	}
+	
+	@RequestMapping(value = "/SpringMVC/ajax")
+	@ResponseBody
+	public String ajax() {
+		LOGGER.info("【ajax】【开始执行】");
+		return "testAJAX";
 	}
 	
 }
