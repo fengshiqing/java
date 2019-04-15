@@ -5,12 +5,12 @@
 
 	<select id="selectByPrimaryKey" resultType="com.kunning.pojo.User">
 		SELECT	username
-		FROM 	users
+		FROM 	user
 		WHERE	username = #{username}
 	</select>
 	
 	<insert id="saveUser" parameterType="com.kunning.pojo.User" >
-		INSERT INTO users
+		INSERT INTO user
 		(
 			username, password
 		) VALUES(
