@@ -12,9 +12,9 @@
 	<insert id="saveUser" parameterType="com.kunning.pojo.User" >
 		INSERT INTO users
 		(
-			username, password, nickname, email
+			username, password
 		) VALUES(
-			#{username}, #{password}, #{nickname}, #{email}
+			#{username}, #{password}
 		)
 	</insert>
 

@@ -5,8 +5,6 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
-	private String nickname;
-	private String email;
 
 	public int getId() {
 		return id;
@@ -32,26 +30,9 @@ public class User {
 		this.password = password;
 	}
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
-				+ ", email=" + email + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 
 }
