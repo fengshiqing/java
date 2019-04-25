@@ -5,7 +5,7 @@
 	<!-- modelVersion是4.0.0，这是当前仅有的可以被Maven2&3同时支持的POM版本，是必须的 -->
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.kun</groupId>
+	<groupId>com.kunning</groupId>
 	<artifactId>JavaWeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>

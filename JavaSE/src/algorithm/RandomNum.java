@@ -23,7 +23,7 @@ public class RandomNum {
 		return num;
 	}
 	
-	public static String suijiString() {
+ 	public static String suijiString() {
 		String result="";
 		for(int i=0;  i<6;  i++) {//循环6次，生成6位字符串，可以提取位数作为参数，又用户确定生成几位字符串
 			int intValue=(int)(Math.random()*26+97);//生成[97,123)的double数，强转成[97-122]的int型的整型
