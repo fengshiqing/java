@@ -12,7 +12,7 @@ package DesignPatterns;
  * 2、两个实现类，其中一个代理类，另一个是被代理类，<br>
  * 3、代理类中创建被代理类的引用，并调用被代理类的方法。
  */
-public class ProxyPattern {
+public class Proxy_Static {
 	public static void main(String[] args) {
 		IAction iAction = new ProxyObject();
 		iAction.action();
