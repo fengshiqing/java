@@ -52,7 +52,9 @@ class MyInvocationHandler implements InvocationHandler {
 	// 动态的有点不一样，当通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		System.out.println("预处理操作——————"); 
 		Object returnVal = method.invoke(obj, args);
+		System.out.println("调用后处理——————");
 		return returnVal;// 这个返回值就是被代理类的方法的返回值。
 	}
 
