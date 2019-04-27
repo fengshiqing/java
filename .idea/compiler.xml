@@ -6,13 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="java" />
         <module name="JavaWeb" />
+        <module name="MyBatis" />
+        <module name="JavaSE" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="_111" target="1.8" />
       <module name="java" target="1.8" />
+      <module name="JavaSE" target="1.8" />
       <module name="JavaWeb" target="1.8" />
+      <module name="MyBatis" target="1.8" />
+      <module name="动态代理" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
