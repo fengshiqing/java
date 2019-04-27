@@ -24,7 +24,7 @@ interface IAction {
 	void action();
 }
 
-//被代理类
+// 被代理类
 class ActionImpl implements IAction {
 	@Override
 	public void action() {
@@ -43,6 +43,7 @@ class ProxyObject implements IAction {
 		iActionObj = new ActionImpl();// 代理类中创建被代理类的引用
 	}
 
+	// 一般都使用上边的构造函数，下边的这个还需要调用创建对象，不太好。
 	public ProxyObject(ActionImpl actionImpl) {
 		System.out.println("代理类创建成功");
 		iActionObj = actionImpl;// 代理类中创建被代理类的引用

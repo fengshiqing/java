@@ -4,6 +4,12 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * 动态代理
+ * 
+ * @author win10
+ * @see http://www.gulixueyuan.com/course/39/task/538/show
+ */
 public class Proxy_Dynamic {
 
 	public static void main(String[] args) {
@@ -13,10 +19,10 @@ public class Proxy_Dynamic {
 		MyInvocationHandler handler = new MyInvocationHandler();
 		// 3、调用blind方法，返回一个同样实现了real所在的类实现的接口Subject的代理类对象。
 		Object obj = handler.blind(real);
-		Subject sub = (Subject)obj;// 此时的sub就是代理类对象
+		Subject sub = (Subject) obj;// 此时的sub就是代理类对象
 		sub.action();// 转到对InvocationHandler 接口的实现类的invoke()方法的嗲用。
 	}
-	
+
 }
 
 // 和静态代理一样，需要一个接口
@@ -34,7 +40,7 @@ class RealSubject implements Subject {
 
 // 代理类
 class MyInvocationHandler implements InvocationHandler {
-	Object obj;// 实现了接口的被代理类的对象
+	private Object obj;// 实现了接口的被代理类的对象
 
 	// 此方法两个作用：1给被代理的对象实例化，2返回“代理类”的实例对象。
 	public Object blind(Object obj) {
@@ -47,7 +53,7 @@ class MyInvocationHandler implements InvocationHandler {
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object returnVal = method.invoke(obj, args);
-		return returnVal;
+		return returnVal;// 这个返回值就是被代理类的方法的返回值。
 	}
 
 }
