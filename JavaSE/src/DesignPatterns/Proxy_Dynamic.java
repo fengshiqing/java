@@ -47,8 +47,6 @@ class MyProxy implements InvocationHandler {
         this.target = target;
     }
 
-    // 静态代理和动态代理的调用方法不一样，通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
-
     /**
      * @param proxy 代理对象，一般情况下，在invoke方法中不能使用该对象，会造成死循环
      * @param method 正在被调用的方法
@@ -56,6 +54,7 @@ class MyProxy implements InvocationHandler {
      * @return
      * @throws Throwable
      */
+    // 静态代理和动态代理的调用方法不一样，通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // proxy.toString();// 造成内存溢出：java.lang.StackOverflowError
