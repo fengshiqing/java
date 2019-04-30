@@ -43,7 +43,7 @@ class MyProxy implements InvocationHandler {
     /**
      * 初始化时绑定目标类
      */
-    public MyProxy(Object target) {
+    MyProxy(Object target) {
         this.target = target;
     }
 
@@ -51,8 +51,8 @@ class MyProxy implements InvocationHandler {
      * @param proxy 代理对象，一般情况下，在invoke方法中不能使用该对象，会造成死循环
      * @param method 正在被调用的方法
      * @param args 调用方法时，传入的参数
-     * @return
-     * @throws Throwable
+     * @return 方法返回值
+     * @throws Throwable 抛出异常
      */
     // 静态代理和动态代理的调用方法不一样，通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
     @Override
