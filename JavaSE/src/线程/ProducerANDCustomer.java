@@ -48,7 +48,7 @@ public class ProducerANDCustomer {
             } else {
                 productNum++;
                 System.out.println(Thread.currentThread().getName() + "：生产了第 " + productNum + " 个产品");
-                this.notify();
+                this.notify();// 通知继续消费
             }
         }
 
@@ -63,7 +63,7 @@ public class ProducerANDCustomer {
             } else {
                 System.out.println(Thread.currentThread().getName() + "：消费了第 " + productNum + " 个产品");
                 productNum--;
-                this.notifyAll();
+                this.notifyAll();// 通知继续生产
             }
         }
     }

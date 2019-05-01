@@ -6,10 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a30d4ada-9e84-4750-bad2-39fadedf1c64" name="Default Changelist" comment="代码优化">
-      <change afterPath="$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaSE/src/线程/ProductorANDCustomer.java" beforeDir="false" />
-    </list>
+    <list default="true" id="a30d4ada-9e84-4750-bad2-39fadedf1c64" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/JavaWeb/target/" />
     <ignored path="$PROJECT_DIR$/JavaSE/target/" />
@@ -64,20 +61,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+            <state relative-caret-position="435">
+              <caret line="74" column="38" lean-forward="true" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+              <folding>
+                <element signature="e#1953#1954#0" expanded="true" />
+                <element signature="e#2353#2354#0" expanded="true" />
+                <element signature="e#2386#2387#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_01_Thread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="136">
+              <caret line="8" column="19" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_02_Runnable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_03.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -127,6 +147,8 @@
         <option value="$PROJECT_DIR$/JavaSE/src/线程/生产者消费者/Test.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/线程/生产者消费者/ProductorANDCustomer.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/线程/ProductorANDCustomer.java" />
+        <option value="$PROJECT_DIR$/JavaSE/src/线程/Thread_01_Thread.java" />
+        <option value="$PROJECT_DIR$/JavaSE/src/线程/Thread_02_Runnable.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java" />
       </list>
     </option>
@@ -237,18 +259,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="线程_练习" type="462c0819:PsiDirectoryNode" />
+              <item name="线程" type="462c0819:PsiDirectoryNode" />
+              <item name="Thread_03.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="MyBatis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="MyBatis" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="线程" type="462c0819:PsiDirectoryNode" />
+              <item name="Thread_DeadLock.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
@@ -290,7 +310,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ProducerANDCustomer">
+  <component name="RunManager" selected="Application.Thread_02_Runnable">
     <configuration name="ProducerANDCustomer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="线程.ProducerANDCustomer" />
       <module name="JavaSE" />
@@ -317,38 +337,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Proxy_CGlib" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DesignPatterns.Proxy_CGlib" />
-      <module name="JavaSE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DesignPatterns.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Proxy_Dynamic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DesignPatterns.Proxy_Dynamic" />
-      <module name="JavaSE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DesignPatterns.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="动态代理.Test" />
       <module name="JavaSE" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="动态代理.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Thread_01_Thread" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="线程.Thread_01_Thread" />
+      <module name="JavaSE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="线程.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Thread_02_Runnable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="线程.Thread_02_Runnable" />
+      <module name="JavaSE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="线程.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -582,20 +602,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Proxy_Dynamic" />
       <item itemvalue="Application.Test" />
-      <item itemvalue="Application.Proxy_CGlib" />
       <item itemvalue="Application.ProductorANDCustomer" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.17" />
       <item itemvalue="Application.ProducerANDCustomer" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.17" />
+      <item itemvalue="Application.Thread_01_Thread" />
+      <item itemvalue="Application.Thread_02_Runnable" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Thread_02_Runnable" />
+        <item itemvalue="Application.Thread_01_Thread" />
         <item itemvalue="Application.ProducerANDCustomer" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.ProductorANDCustomer" />
-        <item itemvalue="Application.Proxy_CGlib" />
-        <item itemvalue="Application.Proxy_Dynamic" />
       </list>
     </recent_temporary>
   </component>
@@ -628,7 +648,8 @@
       <workItem from="1556539439632" duration="58000" />
       <workItem from="1556539550237" duration="9122000" />
       <workItem from="1556623700092" duration="8735000" />
-      <workItem from="1556691228867" duration="4018000" />
+      <workItem from="1556691228867" duration="4136000" />
+      <workItem from="1556704217644" duration="3895000" />
     </task>
     <task id="LOCAL-00001" summary="代码优化">
       <created>1556544763756</created>
@@ -665,11 +686,25 @@
       <option name="project" value="LOCAL" />
       <updated>1556641140700</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="代码优化">
+      <created>1556695685146</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1556695685146</updated>
+    </task>
+    <task id="LOCAL-00007" summary="代码优化">
+      <created>1556717290520</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1556717290520</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50053000" />
+    <option name="totallyTimeSpent" value="54066000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -682,8 +717,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.18230277" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.18443497" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -705,7 +741,7 @@
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50074625" weight="0.15618221" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3286334" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.44360086" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.44360086" />
       <window_info anchor="bottom" id="Application Servers" order="15" weight="0.329718" />
       <window_info anchor="bottom" id="Spring" order="16" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -935,17 +971,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java">
+    <entry file="jar://D:/IT/JDK/jdk1.8.0_192/src.zip!/java/lang/Runnable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+        <state relative-caret-position="544">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_01_Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="136">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_02_Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_03.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="74" column="38" lean-forward="true" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+          <folding>
+            <element signature="e#1953#1954#0" expanded="true" />
+            <element signature="e#2353#2354#0" expanded="true" />
+            <element signature="e#2386#2387#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
