@@ -17,9 +17,9 @@ package 线程;
  */
 public class ProducerANDCustomer {
     public static void main(String[] args) {
-        Clerk clerk = new Clerk();
-        Producer p1 = new Producer(clerk);
-        Consumer c1 = new Consumer(clerk);
+        Clerk clerk = new ProducerANDCustomer().new Clerk();
+        Producer p1 = new ProducerANDCustomer().new Producer(clerk);
+        Consumer c1 = new ProducerANDCustomer().new Consumer(clerk);
 
         Thread t1 = new Thread(p1);
         Thread t3 = new Thread(p1);
@@ -32,83 +32,84 @@ public class ProducerANDCustomer {
         t3.start();
         t2.start();
     }
-}
 
-// 店员
-class Clerk {
-    private int productNum;
+    // 店员
+    class Clerk {
+        private int productNum;
 
-    // 由店员控制继续生产、停止生产
-    public synchronized void addProduct() {
-        if (productNum >= 20) {
-            try {
-                this.wait();// 产品太多，让生产者停止生产
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        // 由店员控制继续生产、停止生产
+        public synchronized void addProduct() {
+            if (productNum >= 20) {
+                try {
+                    this.wait();// 产品太多，让生产者停止生产
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                productNum++;
+                System.out.println(Thread.currentThread().getName() + "：生产了第 " + productNum + " 个产品");
+                this.notify();
             }
-        } else {
-            productNum++;
-            System.out.println(Thread.currentThread().getName() + "：生产了第 " + productNum + " 个产品");
-            this.notify();
+        }
+
+        // 由店员控制消费、等待
+        public synchronized void consumeProduct() {
+            if (productNum <= 0) {
+                try {
+                    this.wait();// 产品不够，让消费者等一下
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println(Thread.currentThread().getName() + "：消费了第 " + productNum + " 个产品");
+                productNum--;
+                this.notifyAll();
+            }
         }
     }
 
-    // 由店员控制消费、等待
-    public synchronized void consumeProduct() {
-        if (productNum <= 0) {
-            try {
-                this.wait();// 产品不够，让消费者等一下
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    // 生产者
+    class Producer implements Runnable {
+        private Clerk clerk;
+
+        public Producer(Clerk clerk) {
+            this.clerk = clerk;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("生产者开始生产产品");
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                clerk.addProduct();
             }
-        } else {
-            System.out.println(Thread.currentThread().getName() + "：消费了第 " + productNum + " 个产品");
-            productNum--;
-            notifyAll();
         }
     }
-}
 
-// 生产者
-class Producer implements Runnable {
-    private Clerk clerk;
+    // 消费者
+    class Consumer implements Runnable {
+        private Clerk clerk;
 
-    public Producer(Clerk clerk) {
-        this.clerk = clerk;
-    }
+        public Consumer(Clerk clerk) {
+            this.clerk = clerk;
+        }
 
-    @Override
-    public void run() {
-        System.out.println("生产者开始生产产品");
-        while (true) {
-            try {
-                Thread.currentThread().sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        @Override
+        public void run() {
+            System.out.println("消费者开始消费产品");
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                clerk.consumeProduct();
             }
-            clerk.addProduct();
         }
     }
-}
 
-// 消费者
-class Consumer implements Runnable {
-    private Clerk clerk;
-
-    public Consumer(Clerk clerk) {
-        this.clerk = clerk;
-    }
-
-    @Override
-    public void run() {
-        System.out.println("消费者开始消费产品");
-        while (true) {
-            try {
-                Thread.currentThread().sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            clerk.consumeProduct();
-        }
-    }
 }

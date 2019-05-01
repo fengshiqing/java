@@ -3,11 +3,11 @@ package 线程;
 /**
  * <创建多线程的第二种方式：实现java.lang.Runnable接口>
  */
-public class Thread_02_Runnable {
+public class Thread_03_Callable {
 
     public static void main(String[] args) {
-        MyThread mt1 = new Thread_02_Runnable().new MyThread(); // 实例化对象
-        MyThread mt2 = new Thread_02_Runnable().new MyThread(); // 实例化对象
+        MyThread mt1 = new Thread_03_Callable().new MyThread(); // 实例化对象
+        MyThread mt2 = new Thread_03_Callable().new MyThread(); // 实例化对象
         Thread t1 = new Thread(mt1); // 实例化Thread类对象
         Thread t2 = new Thread(mt2); // 实例化Thread类对象
         t1.setName("线程1");
