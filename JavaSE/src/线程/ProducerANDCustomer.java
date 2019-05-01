@@ -17,7 +17,7 @@ package 线程;
  */
 public class ProducerANDCustomer {
     public static void main(String[] args) {
-        Clerk clerk = new ProducerANDCustomer().new Clerk();
+        Clerk clerk = new ProducerANDCustomer().new Clerk();// 共享数据
         Producer p1 = new ProducerANDCustomer().new Producer(clerk);
         Consumer c1 = new ProducerANDCustomer().new Consumer(clerk);
 
