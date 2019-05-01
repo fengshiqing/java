@@ -18,24 +18,10 @@ package 线程;
  * setPriority(int newPriority) ：改变线程的优先级
  *
  */
-class SubThread1 extends Thread {
-	@Override
-	public void run() {
-		for (int i = 1; i <= 100; i++) {
-			// try {
-			// Thread.currentThread().sleep(1000);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
-			System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getPriority() + ":" + i);
-		}
-	}
-}
-
-public class Thread_03 {
+public class Thread_00 {
 	public static void main(String[] args) {
 
-		SubThread1 st1 = new SubThread1();
+		SubThread1 st1 = new Thread_00().new SubThread1();
 		st1.setName("子线程1");
 		st1.setPriority(Thread.MAX_PRIORITY);
 		st1.start();
@@ -55,5 +41,19 @@ public class Thread_03 {
 			// }
 		}
 		System.out.println(st1.isAlive());
+	}
+	
+	class SubThread1 extends Thread {
+		@Override
+		public void run() {
+			for (int i = 1; i <= 100; i++) {
+				// try {
+				// Thread.currentThread().sleep(1000);
+				// } catch (InterruptedException e) {
+				// e.printStackTrace();
+				// }
+				System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getPriority() + ":" + i);
+			}
+		}
 	}
 }
