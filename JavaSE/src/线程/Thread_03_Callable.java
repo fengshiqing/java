@@ -1,7 +1,9 @@
 package 线程;
 
+import java.util.concurrent.Callable;
+
 /**
- * <创建多线程的第二种方式：实现java.lang.Runnable接口>
+ * <创建多线程的第三种方式：实现java.util.concurrent.Callable接口>
  */
 public class Thread_03_Callable {
 
@@ -18,13 +20,14 @@ public class Thread_03_Callable {
     }
 
     // 实现Runnable接口，作为线程的实现类
-    class MyThread implements Runnable {
-        @Override
-        public void run() { // 覆写run()方法，作为线程 的操作主体
-            for (int i = 0; i < 10; i++) {
-                System.out.println(Thread.currentThread().getName() + ": i = " + i);
-            }
-        }
+    class MyThread implements Callable {
+		@Override
+		public Object call() throws Exception {
+			for (int i = 0; i < 10; i++) {
+				System.out.println(Thread.currentThread().getName() + ": i = " + i);
+			}
+			return null;
+		}
     }
 
 }
