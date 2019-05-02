@@ -7,10 +7,12 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import com.kunning.pojo.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
 
-	@Select("SELECT * FROM users")
+	@Select("SELECT * FROM user")
     @Results({
         @Result(property = "username",  column = "username", javaType = String.class),
         @Result(property = "nickname", column = "nickname")
