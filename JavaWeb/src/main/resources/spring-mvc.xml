@@ -5,6 +5,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 						http://www.springframework.org/schema/context
@@ -12,11 +13,17 @@
 						http://www.springframework.org/schema/mvc
 						http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 						http://www.springframework.org/schema/tx
-						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+                        http://www.springframework.org/schema/task
+                        http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
 	<!-- 自动扫描该包，SpringMVC会将包下用了@controller注解的类加入到IoC容器中。 -->
 	<context:component-scan base-package="com.itheima" />
 	<context:component-scan base-package="com.kunning.controller" />
+	<context:component-scan base-package="com.kunning.timedTask" />
+
+    <!-- 定时任务 -->
+    <task:annotation-driven />  
 
 	<!-- 允许直接访问静态资源 -->
 	<mvc:annotation-driven/>
