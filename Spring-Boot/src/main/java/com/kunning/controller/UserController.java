@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class UserController {
 	@ApiOperation(value = "用户接口", notes = "查看所有用户")
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String queryAllUser() {
-		LOGGER.info("【hello】【开始执行】");
+		LOGGER.info("【queryAllUser】【开始执行】");
 
 		List<User> userList = userService.queryAllUser();
 		LOGGER.info("【参数：】【userList:{}】", userList);

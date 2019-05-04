@@ -1,57 +1,45 @@
 package com.kunning.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
 public class User {
 
-	private int id;
-	private String username;
-	private String password;
-	private String nickname;
-	private String email;
+    /**
+     * ID
+     */
+    @Setter
+    @Getter
+    private int id;
 
-	public int getId() {
-		return id;
-	}
+    /**
+     * 用户名
+     */
+    @Setter
+    @Getter
+    private String username;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * 密码
+     */
+    @Setter
+    @Getter
+    private String password;
 
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * 昵称
+     */
+    @Setter
+    @Getter
+    private String nickname;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
-				+ ", email=" + email + "]";
-	}
+    /**
+     * 邮箱
+     */
+    @Setter
+    @Getter
+    private String email;
 
 }

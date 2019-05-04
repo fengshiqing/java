@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 应用程序入口
+ * @SpringBootApplication 标注主程序类，表明这是一个Spring Boot应用
  * 
  * @author 冯仕清
  */
