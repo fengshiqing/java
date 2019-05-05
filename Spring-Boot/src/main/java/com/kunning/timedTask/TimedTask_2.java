@@ -1,5 +1,7 @@
 package com.kunning.timedTask;
 
+import com.kunning.service.CronService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.*;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
@@ -18,6 +20,9 @@ import java.time.LocalDateTime;
 @EnableScheduling // 开启定时任务
 public class TimedTask_2 implements SchedulingConfigurer {
 
+    @Autowired
+    CronService cronService;// 可以从数据库获取cron表达式。
+
     /**
      * Callback allowing a {@link TaskScheduler
      * TaskScheduler} and specific {@link Task Task}
@@ -32,7 +37,7 @@ public class TimedTask_2 implements SchedulingConfigurer {
                 () -> System.out.println("执行动态定时任务: " + LocalDateTime.now().toLocalTime()),
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
-                    String cron = "0/3 * * * * ?";// 2.1可以从数据可中获取执行周期，这样就可以动态的改变定时任务的执行周期
+                    String cron = cronService.queryCron();// 2.1可以从数据可中获取执行周期，这样就可以动态的改变定时任务的执行周期
                     if (StringUtils.isEmpty(cron)) {// 2.2 合法性校验
                         // Omitted Code ..
                     }

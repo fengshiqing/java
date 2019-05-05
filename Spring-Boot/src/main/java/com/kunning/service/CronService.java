@@ -1,0 +1,12 @@
+package com.kunning.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class CronService {
+
+    public String queryCron() {
+        return "0/3 * * * * ?";// 每3秒执行一次
+    }
+
+}
