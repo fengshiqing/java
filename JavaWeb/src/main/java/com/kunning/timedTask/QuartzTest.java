@@ -17,7 +17,7 @@ public class QuartzTest {
     /**
      * 日志
      */
-    private static final Logger log = LoggerFactory.getLogger(QuartzTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuartzTest.class);
 
     public static void main(String[] args) {
         try {
@@ -41,6 +41,7 @@ public class QuartzTest {
                             .repeatForever())
                     .build();
 
+            LOGGER.info("【开始执行定时任务：】");
             // Tell quartz to schedule the job using our trigger
             scheduler.scheduleJob(job, trigger);
 
