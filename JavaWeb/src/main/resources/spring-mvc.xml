@@ -17,7 +17,7 @@
                         http://www.springframework.org/schema/task
                         http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
-	<!-- 自动扫描该包，SpringMVC会将包下用了@controller注解的类加入到IoC容器中。 -->
+	<!-- 自动扫描该包，SpringMVC会将包下用了@controller、@Component等注解的类加入到IoC容器中。 -->
 	<context:component-scan base-package="com.itheima" />
 	<context:component-scan base-package="com.kunning.controller" />
 	<context:component-scan base-package="com.kunning.timedTask" />
@@ -108,5 +108,31 @@
         <property name="maxUploadSize" value="10485760000" /><!-- 文件大小最大值 -->
         <property name="maxInMemorySize" value="40960" /><!-- 内存中的最大值 -->
     </bean>
+
+
+	<!-- quartz定时任务 job -->
+	<bean id="Quartz_1" class="com.kunning.timedTask.Quartz_1"/>
+	<!-- 使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法-->
+	<!-- jobDetail -->
+	<bean id="Job_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="Quartz_1"/>
+		<property name="targetMethod" value="task_1"/>
+		<!--false表示等上一个任务执行完后再开启新的任务,这里和上一遍博客中的注解@DisallowConcurrentExecution一个道理-->
+		<property name="concurrent" value="false"/>
+	</bean>
+	<!-- Trigger-->
+	<bean id="oceanStatusCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="Job_1"/>
+		<property name="cronExpression" value="0/3 * * * * ?"/>
+	</bean>
+	<!--Scheduler -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="oceanStatusCronTrigger"/>
+			</list>
+		</property>
+	</bean>
+
 
 </beans>
