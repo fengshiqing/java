@@ -12,7 +12,7 @@
     <modules>
         <module>JavaSE</module>
         <module>JavaWeb</module>
-        <module>MyBatis</module>
+        <module>Spring-Boot</module>
     </modules>
 
     <dependencies>

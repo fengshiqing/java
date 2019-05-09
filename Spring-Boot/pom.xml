@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.kunning</groupId>
-    <artifactId>fengshiqing</artifactId>
+    <artifactId>Spring-Boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Spring-Boot</name>
     <description>Demo project for Spring Boot</description>
