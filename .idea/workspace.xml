@@ -13,11 +13,15 @@
     <ignored path="$PROJECT_DIR$/MyBatis/target/" />
     <ignored path="$PROJECT_DIR$/动态代理/target/" />
     <ignored path="$PROJECT_DIR$/111/target/" />
+    <ignored path="$PROJECT_DIR$/Spring-Boot/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -30,30 +34,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="raspberryPi" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="raspberryPi" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="raspberryPi" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="JavaWeb: schema" type="ebfa3cd1:MariaImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="raspberryPi" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="JavaWeb: schema" type="ebfa3cd1:MariaImplModel$Schema" />
-        <item name="user: table" type="dbc44a63:MariaImplModel$Table" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="DefaultGradleProjectSettings">
@@ -62,28 +43,84 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/SyncDemo03.java">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/HelloJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+            <state relative-caret-position="187">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/DeadLock.java">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/resources/spring-mvc.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
+            <state relative-caret-position="547">
+              <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_DeadLock.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaSE/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="61" column="6" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+            <state relative-caret-position="612">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaSE/src/main/java/com/kunning/DesignPatterns/Proxy_CGlib.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaSE/src/main/resources/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/Quartz_1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/QuartzTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="30" column="34" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4080">
+              <caret line="240" selection-start-line="240" selection-end-line="240" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/resources/quartz.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -94,6 +131,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -103,18 +142,32 @@
       <find>target</find>
       <find>Consumer</find>
       <find>sleep</find>
+      <find>【queryAllUser】【开始执行】</find>
+      <find>characterEncoding</find>
+      <find>getCan</find>
+      <find>sched</find>
+      <find>mybatis</find>
+      <find>redis</find>
+      <find>org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate</find>
+      <find>EnableScheduling</find>
+      <find>quartz</find>
+      <find>org.springframework.boot</find>
+      <find>hello</find>
+      <find>Hello World!</find>
+      <find>oceanJob</find>
+      <find>org.quartz.JobDetail</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/42a61ef9-7464-461c-96c8-9012b579efd3/console.sql" />
-        <option value="$PROJECT_DIR$/JavaSE/src/algorithm/Algorithm.java" />
-        <option value="$PROJECT_DIR$/JavaSE/src/algorithm/RandomNum.java" />
-        <option value="$PROJECT_DIR$/JavaWeb/pom.xml" />
         <option value="$PROJECT_DIR$/动态代理/pom.xml" />
         <option value="$PROJECT_DIR$/JavaSE/src/review" />
         <option value="$PROJECT_DIR$/JavaSE/src/动态代理/HelloWorld.java" />
@@ -126,7 +179,6 @@
         <option value="$PROJECT_DIR$/JavaSE/src/DesignPatterns/Proxy_Static.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/动态代理/LoggerHandler.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/DesignPatterns/动态代理/Test.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/JavaSE/pom.xml" />
         <option value="$PROJECT_DIR$/JavaSE/src/DesignPatterns/Proxy_CGlib.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/DesignPatterns/Proxy_Dynamic.java" />
@@ -138,6 +190,35 @@
         <option value="$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/线程/Thread_03_Callable.java" />
         <option value="$PROJECT_DIR$/JavaSE/src/线程/Thread_03.java" />
+        <option value="$PROJECT_DIR$/JavaSE/src/线程/Thread_DeadLock.java" />
+        <option value="$PROJECT_DIR$/JavaSE/src/线程/Thread_DeadLock_02.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/service/UserService.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/dao/UserMapper.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/resources/mapper/UserMapper.xml" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/pojo/User.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/resources/static/User.html" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/42a61ef9-7464-461c-96c8-9012b579efd3/console.sql" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/resources/static/user.html" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/Application.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/TimedTask.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/TimedTask_1.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/TimedTask_2.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/UploadTask.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/config/QuartzConfig.java" />
+        <option value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/service/CronService.java" />
+        <option value="$PROJECT_DIR$/JavaWeb/pom.xml" />
+        <option value="$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/SimpleExample.java" />
+        <option value="$PROJECT_DIR$/JavaWeb/src/main/resources/quartz.properties" />
+        <option value="$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/HelloJob.java" />
+        <option value="$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/QuartzTest.java" />
+        <option value="$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/Quartz_1.java" />
+        <option value="$PROJECT_DIR$/JavaWeb/src/main/resources/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/MyBatis/pom.xml" />
       </list>
     </option>
   </component>
@@ -167,19 +248,11 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
+          <item name="Spring-Boot" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="Java" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="JavaSE" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="JavaSE" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Spring-Boot" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
       </expand>
@@ -187,15 +260,37 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="638" />
+    <option name="y" value="63" />
+    <option name="width" value="1283" />
+    <option name="height" value="809" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="java" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\workspace\Repository-Git\java" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="java" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\workspace\Repository-Git\java" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="JavaSE" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="java" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\workspace\Repository-Git\java" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="JavaWeb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,28 +314,42 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="线程" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="java" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\workspace\Repository-Git\java" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="java" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\workspace\Repository-Git\java" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="JavaSE" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="java" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\workspace\Repository-Git\java" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="JavaWeb" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kunning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kunning" type="462c0819:PsiDirectoryNode" />
+              <item name="jdbc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -252,22 +361,40 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/JavaWeb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MyBatis" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="Lombok plugin" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/Application.java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\workspace\Repository-Git\java\动态代理" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kunning.timedTask" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\Repository-Git\java\MyBatis" />
+      <recent name="D:\workspace\Repository-Git\java\Spring-Boot" />
+      <recent name="D:\workspace\Repository-Git\java\MyBatis\src\main\java\com\kunning" />
+      <recent name="D:\workspace\Repository-Git\java\JavaWeb\src\main\java\com\kunning\timedTask" />
+      <recent name="D:\workspace\Repository-Git\java\Spring-Boot\src\main\resources\static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -282,13 +409,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Thread_02_Runnable">
-    <configuration name="ProducerANDCustomer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="线程.ProducerANDCustomer" />
-      <module name="JavaSE" />
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.17">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kunning.Application" />
+      <module name="fengshiqing" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="线程.*" />
+          <option name="PATTERN" value="com.kunning.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -296,12 +423,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductorANDCustomer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="线程.ProductorANDCustomer" />
-      <module name="JavaSE" />
+    <configuration name="QuartzTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kunning.timedTask.QuartzTest" />
+      <module name="JavaWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="线程.*" />
+          <option name="PATTERN" value="com.kunning.timedTask.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -309,25 +436,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="动态代理.Test" />
-      <module name="JavaSE" />
+    <configuration name="SimpleExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kunning.timedTask.SimpleExample" />
+      <module name="JavaWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="动态代理.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Thread_01_Thread" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="线程.Thread_01_Thread" />
-      <module name="JavaSE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="线程.*" />
+          <option name="PATTERN" value="com.kunning.timedTask.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -344,6 +458,26 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Thread_DeadLock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="线程.Thread_DeadLock" />
+      <module name="JavaSE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="线程.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="fengshiqing" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kunning.Application" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -574,20 +708,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Test" />
-      <item itemvalue="Application.ProductorANDCustomer" />
-      <item itemvalue="Application.ProducerANDCustomer" />
-      <item itemvalue="Application.Thread_01_Thread" />
       <item itemvalue="Application.Thread_02_Runnable" />
+      <item itemvalue="Application.Thread_DeadLock" />
+      <item itemvalue="Application.Application" />
+      <item itemvalue="Application.QuartzTest" />
+      <item itemvalue="Application.SimpleExample" />
+      <item itemvalue="Spring Boot.Application" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.17" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.QuartzTest" />
+        <item itemvalue="Application.SimpleExample" />
+        <item itemvalue="Application.Application" />
+        <item itemvalue="Application.Thread_DeadLock" />
         <item itemvalue="Application.Thread_02_Runnable" />
-        <item itemvalue="Application.Thread_01_Thread" />
-        <item itemvalue="Application.ProducerANDCustomer" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.ProductorANDCustomer" />
       </list>
     </recent_temporary>
   </component>
@@ -623,6 +758,23 @@
       <workItem from="1556691228867" duration="4136000" />
       <workItem from="1556704217644" duration="4487000" />
       <workItem from="1556726421785" duration="2309000" />
+      <workItem from="1556766118502" duration="3202000" />
+      <workItem from="1556794749259" duration="30000" />
+      <workItem from="1556808752932" duration="2041000" />
+      <workItem from="1556810842337" duration="1325000" />
+      <workItem from="1556812207764" duration="313000" />
+      <workItem from="1556812550819" duration="1800000" />
+      <workItem from="1556815365097" duration="396000" />
+      <workItem from="1556816504599" duration="2494000" />
+      <workItem from="1556850147897" duration="17892000" />
+      <workItem from="1556942743857" duration="7022000" />
+      <workItem from="1557058720706" duration="2524000" />
+      <workItem from="1557062213198" duration="4706000" />
+      <workItem from="1557144017934" duration="7294000" />
+      <workItem from="1557229306849" duration="4924000" />
+      <workItem from="1557320784565" duration="41000" />
+      <workItem from="1557321039715" duration="4864000" />
+      <workItem from="1557403505789" duration="1289000" />
     </task>
     <task id="LOCAL-00001" summary="代码优化">
       <created>1556544763756</created>
@@ -680,11 +832,123 @@
       <option name="project" value="LOCAL" />
       <updated>1556728683547</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="代码优化">
+      <created>1556794059833</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556794059833</updated>
+    </task>
+    <task id="LOCAL-00010" summary="代码优化">
+      <created>1556812036940</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1556812036941</updated>
+    </task>
+    <task id="LOCAL-00011" summary="代码优化">
+      <created>1556813846314</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1556813846314</updated>
+    </task>
+    <task id="LOCAL-00012" summary="代码优化">
+      <created>1556817141848</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1556817141848</updated>
+    </task>
+    <task id="LOCAL-00013" summary="代码优化">
+      <created>1556817709039</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1556817709039</updated>
+    </task>
+    <task id="LOCAL-00014" summary="代码优化">
+      <created>1556979976627</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1556979976627</updated>
+    </task>
+    <task id="LOCAL-00015" summary="配置定时任务">
+      <created>1556981678771</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556981678771</updated>
+    </task>
+    <task id="LOCAL-00016" summary="配置定时任务">
+      <created>1556983851002</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1556983851002</updated>
+    </task>
+    <task id="LOCAL-00017" summary="配置定时任务">
+      <created>1557066588321</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1557066588321</updated>
+    </task>
+    <task id="LOCAL-00018" summary="配置定时任务">
+      <created>1557156245059</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1557156245059</updated>
+    </task>
+    <task id="LOCAL-00019" summary="配置定时任务">
+      <created>1557244846459</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1557244846459</updated>
+    </task>
+    <task id="LOCAL-00020" summary="配置定时任务">
+      <created>1557245077006</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1557245077006</updated>
+    </task>
+    <task id="LOCAL-00021" summary="配置定时任务">
+      <created>1557331580311</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1557331580311</updated>
+    </task>
+    <task id="LOCAL-00022" summary="代码优化">
+      <created>1557404100923</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1557404100923</updated>
+    </task>
+    <task id="LOCAL-00023" summary="代码优化">
+      <created>1557404293452</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1557404293452</updated>
+    </task>
+    <task id="LOCAL-00024" summary="代码优化">
+      <created>1557404633096</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1557404633096</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56967000" />
+    <option name="totallyTimeSpent" value="119124000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,42 +960,45 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="638" y="63" width="1283" height="809" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.18656716" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4974271" visible="true" weight="0.35486507" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" sideWeight="0.5010846" side_tool="true" weight="0.18230277" />
+      <window_info id="Favorites" order="5" sideWeight="0.5025729" side_tool="true" weight="0.18710022" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32321042" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.2646421" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49925372" weight="0.3286334" />
-      <window_info anchor="bottom" id="Database Console" order="8" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286334" />
-      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50074625" weight="0.15618221" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50074625" weight="0.36767897" />
+      <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.49925372" weight="0.3275488" />
+      <window_info anchor="bottom" id="Database Console" order="9" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3286334" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3286334" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329718" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.44360086" />
-      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329718" />
+      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.3286334" />
       <window_info anchor="bottom" id="Spring" order="16" weight="0.329718" />
+      <window_info anchor="bottom" id="Problems" order="17" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32995737" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.13113007" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.23987207" />
+      <window_info anchor="right" id="Database" order="6" weight="0.49234137" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,240 +1055,477 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="配置定时任务" />
     <MESSAGE value="代码优化" />
     <option name="LAST_COMMIT_MESSAGE" value="代码优化" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/JavaSE/bin/algorithm/Algorithm.class" />
-    <entry file="file://$PROJECT_DIR$/README.md" />
-    <entry file="file://$PROJECT_DIR$/吾日三省.md" />
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/springmvc-servlet.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="221">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/java.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/42a61ef9-7464-461c-96c8-9012b579efd3/console.sql" />
-    <entry file="file://$PROJECT_DIR$/JavaWeb/.classpath">
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/annotation/Scheduled.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        <state relative-caret-position="1513">
+          <caret line="108" column="25" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaWeb/JavaWeb.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/algorithm/Algorithm.java">
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/dao/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#930#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/algorithm/RandomNum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/login.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/Java8Tester.java" />
-    <entry file="file://$PROJECT_DIR$/动态代理/webapp/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/动态代理/webapp/WEB-INF/web.xml" />
-    <entry file="file://$PROJECT_DIR$/111/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/JavaWeb/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/动态代理/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/代理_静态/Count.java" />
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/代理_静态/CountImpl.java" />
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/代理_静态/CountProxy.java" />
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/代理_静态/Test.java" />
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/Proxy_Static.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/动态代理/IHelloWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/动态代理/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/动态代理/HelloWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/review">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/动态代理/LoggerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/cglib/cglib/3.2.4/cglib-3.2.4.jar!/net/sf/cglib/proxy/MethodInterceptor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/Proxy_CGlib.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+        <state relative-caret-position="493">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/DesignPatterns/Proxy_Dynamic.java">
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/controller/SampleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/TimedTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/annotation/SchedulingConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-core/5.1.6.RELEASE/spring-core-5.1.6.RELEASE-sources.jar!/org/springframework/util/StringUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
+          <folding>
+            <element signature="e#3044#3045#0" expanded="true" />
+            <element signature="e#3089#3090#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/Trigger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/config/ScheduledTaskRegistrar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="239" column="48" selection-start-line="239" selection-start-column="46" selection-end-line="239" selection-end-column="53" />
+          <folding>
+            <element signature="e#7858#7859#0" expanded="true" />
+            <element signature="e#7911#7912#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/TriggerContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/support/CronTrigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-beans/5.1.6.RELEASE/spring-beans-5.1.6.RELEASE-sources.jar!/org/springframework/beans/factory/annotation/Configurable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
           <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/boot/spring-boot-autoconfigure/2.1.4.RELEASE/spring-boot-autoconfigure-2.1.4.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/SpringBootApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="49" column="7" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/boot/spring-boot/2.1.4.RELEASE/spring-boot-2.1.4.RELEASE-sources.jar!/org/springframework/boot/SpringBootConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="42" column="8" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/context/annotation/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="419" selection-start-line="419" selection-end-line="419" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Repository-Maven/org/springframework/boot/spring-boot-starter-parent/2.1.4.RELEASE/spring-boot-starter-parent-2.1.4.RELEASE.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context/5.1.6.RELEASE/spring-context-5.1.6.RELEASE-sources.jar!/org/springframework/scheduling/annotation/EnableScheduling.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1594">
+          <caret line="208" column="34" selection-start-line="208" selection-start-column="18" selection-end-line="208" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Repository-Maven/org/springframework/boot/spring-boot-starter-quartz/2.1.4.RELEASE/spring-boot-starter-quartz-2.1.4.RELEASE.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="62" column="35" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
           <folding>
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#974#975#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-            <element signature="e#1209#1210#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/IT/JDK/jdk1.8.0_192/src.zip!/java/lang/Runnable.java">
+    <entry file="file://$PROJECT_DIR$/../../Repository-Maven/org/mybatis/spring/boot/mybatis-spring-boot-starter/2.0.0/mybatis-spring-boot-starter-2.0.0.pom">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+        <state relative-caret-position="-85">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_03_Callable.java">
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/service/CronService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+        <state relative-caret-position="170">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_03.java">
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/TimedTask_2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/ProducerANDCustomer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+        <state relative-caret-position="459">
+          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
           <folding>
-            <element signature="e#2146#2147#0" expanded="true" />
-            <element signature="e#2188#2189#0" expanded="true" />
-            <element signature="e#2667#2668#0" expanded="true" />
-            <element signature="e#2709#2710#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_01_Thread.java">
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/TimedTask_1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="204">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#872#873#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_02_Runnable.java">
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0.jar!/org/quartz/simpl/RAMJobStore.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="102">
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/SyncDemo03.java">
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/config/QuartzConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/timedTask/UploadTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spring-Boot/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
-          <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <caret line="31" column="55" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/DeadLock.java">
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/SimpleExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
+        <state relative-caret-position="768">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaSE/src/线程/Thread_DeadLock.java">
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0.jar!/org/quartz/impl/StdSchedulerFactory.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="61" column="6" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+        <state relative-caret-position="300">
+          <caret line="1111" column="28" selection-start-line="1111" selection-start-column="28" selection-end-line="1111" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0-sources.jar!/org/quartz/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="240" column="9" selection-start-line="240" selection-start-column="9" selection-end-line="240" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0-sources.jar!/org/quartz/impl/StdSchedulerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="1571" column="28" selection-start-line="1571" selection-start-column="28" selection-end-line="1571" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0-sources.jar!/org/quartz/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/com.kunning:JavaWeb:0.0.1-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>com.kunning:JavaWeb:0.0.1-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">com.kunning:JavaWeb:0.0.1-SNAPSHOT</node>
+            <node x="" y="">javax.servlet:javax.servlet-api:jar:3.1.0</node>
+            <node x="" y="">javax.servlet.jsp:javax.servlet.jsp-api:jar:2.3.1</node>
+            <node x="" y="">javax.servlet:jstl:jar:1.2</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.7.25</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.7.25/org.slf4j:slf4j-api:jar:1.7.25</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.7.25/log4j:log4j:jar:1.2.17</node>
+            <node x="" y="">junit:junit:jar:4.12</node>
+            <node x="" y="">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
+            <node x="" y="">dom4j:dom4j:jar:1.6.1</node>
+            <node x="" y="">dom4j:dom4j:jar:1.6.1/xml-apis:xml-apis:jar:1.0.b2</node>
+            <node x="" y="">commons-beanutils:commons-beanutils:jar:1.9.3</node>
+            <node x="" y="">commons-beanutils:commons-beanutils:jar:1.9.3/commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">commons-beanutils:commons-beanutils:jar:1.9.3/commons-collections:commons-collections:jar:3.2.2</node>
+            <node x="" y="">mysql:mysql-connector-java:jar:5.1.38</node>
+            <node x="" y="">org.mybatis:mybatis:jar:3.4.6</node>
+            <node x="" y="">org.mybatis:mybatis-spring:jar:1.3.2</node>
+            <node x="" y="">commons-dbcp:commons-dbcp:jar:1.4</node>
+            <node x="" y="">commons-dbcp:commons-dbcp:jar:1.4/commons-pool:commons-pool:jar:1.5.4</node>
+            <node x="" y="">org.apache.poi:poi:jar:3.17</node>
+            <node x="" y="">org.apache.poi:poi:jar:3.17/commons-codec:commons-codec:jar:1.10</node>
+            <node x="" y="">org.apache.poi:poi:jar:3.17/org.apache.commons:commons-collections4:jar:4.1</node>
+            <node x="" y="">org.apache.poi:poi-ooxml:jar:3.17</node>
+            <node x="" y="">org.apache.poi:poi-ooxml:jar:3.17/org.apache.poi:poi-ooxml-schemas:jar:3.17</node>
+            <node x="" y="">org.apache.poi:poi-ooxml:jar:3.17/org.apache.poi:poi-ooxml-schemas:jar:3.17/org.apache.xmlbeans:xmlbeans:jar:2.6.0</node>
+            <node x="" y="">org.apache.poi:poi-ooxml:jar:3.17/org.apache.poi:poi-ooxml-schemas:jar:3.17/org.apache.xmlbeans:xmlbeans:jar:2.6.0/stax:stax-api:jar:1.0.1</node>
+            <node x="" y="">org.apache.poi:poi-ooxml:jar:3.17/com.github.virtuald:curvesapi:jar:1.04</node>
+            <node x="" y="">commons-net:commons-net:jar:3.6</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.3.20.RELEASE/org.springframework:spring-expression:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-beans:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-core:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-web:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-oxm:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-tx:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aop:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.20.RELEASE</node>
+            <node x="" y="">org.springframework:spring-test:jar:4.3.20.RELEASE</node>
+            <node x="" y="">com.alibaba:fastjson:jar:1.2.47</node>
+            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.3.3</node>
+            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.3.3/commons-io:commons-io:jar:2.2</node>
+            <node x="" y="">commons-io:commons-io:jar:2.4</node>
+            <node x="" y="">org.jsoup:jsoup:jar:1.11.3</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.mchange:c3p0:jar:0.9.5.2</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.mchange:mchange-commons-java:jar:0.2.11</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.zaxxer:HikariCP-java6:jar:2.3.13</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.zaxxer:HikariCP-java6:jar:2.3.13/org.slf4j:slf4j-api:jar:1.7.10</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/org.slf4j:slf4j-api:jar:1.7.7</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.4511760966306422" x="504.0" y="672.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context-support/4.3.20.RELEASE/spring-context-support-4.3.20.RELEASE-sources.jar!/org/springframework/scheduling/quartz/MethodInvokingJobDetailFactoryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context-support/4.3.20.RELEASE/spring-context-support-4.3.20.RELEASE-sources.jar!/org/springframework/scheduling/quartz/CronTriggerFactoryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/springframework/spring-context-support/4.3.20.RELEASE/spring-context-support-4.3.20.RELEASE-sources.jar!/org/springframework/scheduling/quartz/SchedulerFactoryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Repository-Maven/org/apache/tomcat/embed/tomcat-embed-core/9.0.17/tomcat-embed-core-9.0.17-sources.jar!/org/apache/catalina/loader/WebappClassLoaderBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1362" column="14" selection-start-line="1362" selection-start-column="14" selection-end-line="1362" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/HelloJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/QuartzTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4080">
+          <caret line="240" selection-start-line="240" selection-end-line="240" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/resources/quartz.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/resources/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/review">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/main/java/com/kunning/DesignPatterns/Proxy_CGlib.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="39" column="59" lean-forward="true" selection-start-line="39" selection-start-column="59" selection-end-line="39" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaSE/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/timedTask/Quartz_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
@@ -1084,7 +1588,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.alibaba:fastjson:1.2.47</last-edited>
+          <last-edited>Maven: com.fasterxml:classmate:1.4.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
