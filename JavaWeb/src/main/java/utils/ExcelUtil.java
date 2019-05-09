@@ -44,10 +44,9 @@ import org.slf4j.LoggerFactory;
  * <Excel工具类>
  *
  * @author 冯仕清
- * @see #http://blog.csdn.net/lenotang/article/details/2823230
- * 
- * @see https://blog.csdn.net/u011199063/article/details/74504550
  */
+//@see https://blog.csdn.net/u011199063/article/details/74504550
+//@see #http://blog.csdn.net/lenotang/article/details/2823230
 public class ExcelUtil<T> {
 
 	/**
@@ -69,9 +68,9 @@ public class ExcelUtil<T> {
 	 * <导出Excel><br>
 	 * 3个参数的重载
 	 *
-	 * @param thNameArr
-	 * @param thCodeArr
-	 * @param dataList
+	 * @param thNameArr 表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
+	 * @param thCodeArr 表格列名对应的Code组成的数组。
+	 * @param dataList 要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
 	 * @see #exportExcel(String, String[], String[], List, String)
 	 */
 	public Workbook exportExcel(String[] thNameArr, String[] thCodeArr, List<T> dataList) {
@@ -82,10 +81,10 @@ public class ExcelUtil<T> {
 	 * <导出Excel><br>
 	 * 4个参数的重载
 	 *
-	 * @param thNameArr
-	 * @param thCodeArr
-	 * @param dataList
-	 * @param dateFormat
+	 * @param thNameArr 2、表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
+	 * @param thCodeArr 3、表格列名对应的Code组成的数组。
+	 * @param dataList 4、要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
+	 * @param dateFormat 5、日期格式。
 	 * @see #exportExcel(String, String[], String[], List, String)
 	 */
 	public Workbook exportExcel(String[] thNameArr, String[] thCodeArr, List<T> dataList, String dateFormat) {
@@ -96,10 +95,10 @@ public class ExcelUtil<T> {
 	 * <导出Excel><br>
 	 * 4个参数的重载
 	 *
-	 * @param sheetName
-	 * @param thNameArr
-	 * @param thCodeArr
-	 * @param dataList
+	 * @param sheetName 1、表格sheet的名字。
+	 * @param thNameArr 2、表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
+	 * @param thCodeArr 3、表格列名对应的Code组成的数组。
+	 * @param dataList 4、要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
 	 * @see #exportExcel(String, String[], String[], List, String)
 	 */
 	public Workbook exportExcel(String sheetName, String[] thNameArr, String[] thCodeArr, List<T> dataList) {
@@ -215,15 +214,7 @@ public class ExcelUtil<T> {
 							cell.setCellValue(cellValue);
 						}
 					}
-				} catch (SecurityException e) {
-					LOGGER.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
-				} catch (NoSuchMethodException e) {
-					LOGGER.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
-				} catch (IllegalArgumentException e) {
-					LOGGER.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
-				} catch (IllegalAccessException e) {
-					LOGGER.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
-				} catch (InvocationTargetException e) {
+				} catch (SecurityException | IllegalAccessException | NoSuchMethodException | IllegalArgumentException | InvocationTargetException e) {
 					LOGGER.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
 				}
 			}
@@ -395,8 +386,7 @@ public class ExcelUtil<T> {
 
 	/**
 	 * 获取两个时间的时间差，精确到毫秒
-	 * 
-	 * @param str
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("unused")
