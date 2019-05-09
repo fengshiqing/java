@@ -13,12 +13,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/JavaWeb/pom.xml" />
         <option value="$PROJECT_DIR$/Spring-Boot/pom.xml" />
+        <option value="$PROJECT_DIR$/JavaSE/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/111/pom.xml" />
-        <option value="$PROJECT_DIR$/JavaSE/pom.xml" />
         <option value="$PROJECT_DIR$/动态代理/pom.xml" />
       </set>
     </option>

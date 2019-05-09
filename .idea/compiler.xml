@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="JavaWeb" />
         <module name="JavaSE" />
-        <module name="fengshiqing" />
+        <module name="Spring-Boot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,11 +17,13 @@
       <module name="java" target="1.8" />
       <module name="JavaSE" target="1.8" />
       <module name="JavaWeb" target="1.8" />
+      <module name="Spring-Boot" target="1.8" />
       <module name="动态代理" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Spring-Boot" options="-parameters" />
       <module name="fengshiqing" options="-parameters" />
     </option>
   </component>
