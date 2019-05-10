@@ -1,8 +1,10 @@
 package com.kunning.mybatis.mappers;
 
+import com.kunning.pojo.User;
+
 public interface StudentMapper {
 	
-//	public int add(Student student);
+	public int add(User user);
 	
 //	public int update(Student student);
 //	
