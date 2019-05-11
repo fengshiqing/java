@@ -1,8 +1,17 @@
 package com.kunning.timedTask;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Quartz_1 {
 
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(Quartz_1.class);
+
     public void task_1() {
+        LOGGER.info("【task_1】");
         System.out.println("【task_1】");
     }
 
