@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="JavaWeb" />
+      <artifact name="JavaWeb:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a30d4ada-9e84-4750-bad2-39fadedf1c64" name="Default Changelist" comment="代码优化">
+    <list default="true" id="a30d4ada-9e84-4750-bad2-39fadedf1c64" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaWeb/JavaWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaWeb/JavaWeb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/JavaWeb/target/" />
@@ -83,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="85" selection-start-line="85" selection-start-column="4" selection-end-line="89" selection-end-column="25" />
+            <state relative-caret-position="294">
+              <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -318,12 +316,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/JavaWeb/WebContent" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/JavaWeb/target/JavaWeb-0.0.1-SNAPSHOT" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25199544" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -331,12 +329,9 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Spring-Boot/src/main/java/com/kunning/Application.java" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\Repository-Git\java\JavaWeb\web\WEB-INF" />
-      <recent name="D:\workspace\Repository-Git\java\JavaWeb\web" />
-      <recent name="D:\workspace\Repository-Git\java\JavaSE\src\main\java\com\kunning\mybatis\mappers" />
-      <recent name="D:\workspace\Repository-Git\java\MyBatis" />
-      <recent name="D:\workspace\Repository-Git\java\Spring-Boot" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\Repository-Git\java\JavaSE\src\main\resources\sqlMap" />
+      <recent name="D:\workspace\Repository-Git\java\动态代理" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.kunning.mybatis.mappers" />
@@ -344,9 +339,12 @@
       <recent name="com.kunning.utils" />
       <recent name="com.kunning.timedTask" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\Repository-Git\java\JavaSE\src\main\resources\sqlMap" />
-      <recent name="D:\workspace\Repository-Git\java\动态代理" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\Repository-Git\java\JavaWeb\web\WEB-INF" />
+      <recent name="D:\workspace\Repository-Git\java\JavaWeb\web" />
+      <recent name="D:\workspace\Repository-Git\java\JavaSE\src\main\java\com\kunning\mybatis\mappers" />
+      <recent name="D:\workspace\Repository-Git\java\MyBatis" />
+      <recent name="D:\workspace\Repository-Git\java\Spring-Boot" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -361,7 +359,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.17">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.40">
     <configuration name="ExcelUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kunning.utils.ExcelUtil" />
       <module name="Spring-Boot" />
@@ -401,7 +399,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Test" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kunning.mybatis.Test" />
       <module name="JavaSE" />
       <extension name="coverage">
@@ -496,20 +494,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.17" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.17" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/JavaWeb_0_0_1_SNAPSHOT_war/" />
+    <configuration name="Tomcat 8.5.40" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.40" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
-        <file path="$PROJECT_DIR$/JavaWeb/target/JavaWeb-0.0.1-SNAPSHOT.war">
+        <artifact name="JavaWeb:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/JavaWeb_0_0_1_SNAPSHOT_war" />
+            <option name="CONTEXT_PATH" value="/JavaWeb" />
           </settings>
-        </file>
+        </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Tomcat_9_0_17_java_2" />
-        <option name="DEPLOY_TOMCAT_APPS" value="true" />
+        <option name="BASE_DIRECTORY_NAME" value="Tomcat_9_0_17_java_3" />
       </server-settings>
       <predefined_log_file id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
@@ -565,12 +562,20 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="JavaWeb:war exploded" />
+        </option>
       </method>
     </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.17" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
+      <deployment>
+        <artifact name="JavaWeb:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/JavaWeb" />
+          </settings>
+        </artifact>
+      </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="_java" />
       </server-settings>
@@ -629,6 +634,9 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="JavaWeb:war exploded" />
+        </option>
       </method>
     </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
@@ -668,7 +676,7 @@
       <item itemvalue="Application.YangHuiTriangle" />
       <item itemvalue="Application.SqlSessionFactoryUtil" />
       <item itemvalue="Spring Boot.Application" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.17" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.40" />
     </list>
     <recent_temporary>
       <list>
@@ -736,7 +744,7 @@
       <workItem from="1557487093976" duration="7436000" />
       <workItem from="1557551636043" duration="207000" />
       <workItem from="1557551873553" duration="17473000" />
-      <workItem from="1557577830080" duration="893000" />
+      <workItem from="1557577830080" duration="5045000" />
     </task>
     <task id="LOCAL-00001" summary="代码优化">
       <created>1556544763756</created>
@@ -955,11 +963,25 @@
       <option name="project" value="LOCAL" />
       <updated>1557578161127</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="代码优化">
+      <created>1557578791685</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1557578791685</updated>
+    </task>
+    <task id="LOCAL-00033" summary="代码优化">
+      <created>1557578951730</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1557578951730</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152158000" />
+    <option name="totallyTimeSpent" value="156310000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -972,9 +994,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4974271" visible="true" weight="0.20309168" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4974271" visible="true" weight="0.20309168" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -985,7 +1006,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.33188722" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.33188722" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.5444685" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -1003,7 +1024,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.20628998" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.20628998" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" weight="0.32942432" />
@@ -1396,8 +1417,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="85" selection-start-line="85" selection-start-column="4" selection-end-line="89" selection-end-column="25" />
+        <state relative-caret-position="294">
+          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1418,11 +1439,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>JavaWeb:Web exploded</last-edited>
+          <last-edited>JavaWeb:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.25199544" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1430,7 +1452,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Web (JavaWeb)|Web</last-edited>
+          <last-edited>Web (java)|Web</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1465,7 +1487,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>JavaWeb</last-edited>
+          <last-edited>java</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1478,7 +1500,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.fasterxml:classmate:1.4.0</last-edited>
+          <last-edited>Maven: com.zaxxer:HikariCP-java7:2.4.13</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
