@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a30d4ada-9e84-4750-bad2-39fadedf1c64" name="Default Changelist" comment="代码优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaSE/src/main/java/com/kunning/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaSE/src/main/java/com/kunning/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaWeb/JavaWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaWeb/JavaWeb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/JavaWeb/target/" />
@@ -70,11 +71,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JavaSE/src/main/java/com/kunning/pojo/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="85" selection-start-line="85" selection-start-column="4" selection-end-line="89" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -186,9 +196,9 @@
         <option value="$PROJECT_DIR$/JavaWeb/src/main/java/com/kunning/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/JavaWeb/src/test/java/com/mybatis/test/TestMyBatis.java" />
         <option value="$PROJECT_DIR$/JavaWeb/pom.xml" />
-        <option value="$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/JavaWeb/src/main/resources/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/JavaSE/src/main/java/com/kunning/pojo/User.java" />
+        <option value="$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml" />
       </list>
     </option>
   </component>
@@ -233,8 +243,8 @@
     <option name="skipTests" value="true" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3" />
-    <option name="y" value="106" />
+    <option name="x" value="-56" />
+    <option name="y" value="82" />
     <option name="width" value="1283" />
     <option name="height" value="809" />
   </component>
@@ -275,47 +285,20 @@
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaWeb" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kunning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaSE" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kunning" type="462c0819:PsiDirectoryNode" />
-              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -335,12 +318,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/JavaWeb/target/JavaWeb-0.0.1-SNAPSHOT.war" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/JavaWeb/WebContent" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25199544" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -753,7 +736,7 @@
       <workItem from="1557487093976" duration="7436000" />
       <workItem from="1557551636043" duration="207000" />
       <workItem from="1557551873553" duration="17473000" />
-      <workItem from="1557577830080" duration="280000" />
+      <workItem from="1557577830080" duration="893000" />
     </task>
     <task id="LOCAL-00001" summary="代码优化">
       <created>1556544763756</created>
@@ -965,11 +948,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557563505032</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="代码优化">
+      <created>1557578161127</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1557578161127</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151545000" />
+    <option name="totallyTimeSpent" value="152158000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -995,7 +985,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.33188722" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.33188722" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.5444685" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -1374,13 +1364,6 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaWeb/web/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JavaWeb/src/main/resources/spring-mvc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
@@ -1408,6 +1391,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaWeb/WebContent/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="85" selection-start-line="85" selection-start-column="4" selection-end-line="89" selection-end-column="25" />
         </state>
       </provider>
     </entry>

@@ -83,11 +83,11 @@
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.itheima.web.LoginServlet</servlet-class>
-		<init-param>
-			<param-name></param-name>
-			<param-value></param-value>
-			<description></description>
-		</init-param>
+<!--		<init-param>-->
+<!--			<param-name></param-name>-->
+<!--			<param-value></param-value>-->
+<!--			<description></description>-->
+<!--		</init-param>-->
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
