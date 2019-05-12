@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>服务器出错了亲</h1>
+	<h1>找不到你需要的网站哟</h1>
 </body>
 </html>
