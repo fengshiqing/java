@@ -108,13 +108,6 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
-
-		<!-- 大数据 storm -->
-		<!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
-		<!-- <dependency> <groupId>org.apache.storm</groupId> <artifactId>storm-core</artifactId> 
-			<version>1.2.2</version> <scope>provided</scope> </dependency> -->
-
 
 		<!-- Excel导入导出 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->

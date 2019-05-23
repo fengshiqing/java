@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="BigData" />
         <module name="JavaWeb" />
         <module name="JavaSE" />
         <module name="Spring-Boot" />
@@ -13,6 +14,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="_111" target="1.8" />
+      <module name="BigData" target="1.8" />
       <module name="fengshiqing" target="1.8" />
       <module name="java" target="1.8" />
       <module name="JavaSE" target="1.8" />
