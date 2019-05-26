@@ -4,7 +4,6 @@ import com.kunning.beans.ResultData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,7 +57,7 @@ public class UploadController {
         }
 
         LOGGER.info("【uploadPhoto】【开始执行】【执行成功】");
-        return new ResultData<Object>();
+        return new ResultData<>();
     }
 
 }
