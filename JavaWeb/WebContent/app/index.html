@@ -70,6 +70,22 @@
 	</form>
 
 
+
+
+
+    <h1>上传图片：</h1>
+    <fieldset>
+        <legend>图片上传</legend>
+        <h4>只能上传单张10M以下的图片。支持格式：PNG、JPG、GIF</h4>
+        <form action="/JavaWeb/uploadPhoto" method="post" enctype="multipart/form-data">
+            选择文件：<input type="file" name="file">
+            <input type="submit" value="上传">
+        </form>
+    </fieldset>
+
+
+
+
     <!-- JS文件-->
     <script type="text/javascript" src="./app/index.js"></script>
 
