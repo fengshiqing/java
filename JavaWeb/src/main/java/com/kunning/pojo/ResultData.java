@@ -1,4 +1,4 @@
-package com.kunning.beans;
+package com.kunning.pojo;
 
 public class ResultData<T> {
 
