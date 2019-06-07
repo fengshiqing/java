@@ -20,6 +20,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/111/pom.xml" />
+        <option value="$PROJECT_DIR$/BigData/pom.xml" />
         <option value="$PROJECT_DIR$/动态代理/pom.xml" />
       </set>
     </option>
