@@ -57,6 +57,10 @@
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Maven: com.zaxxer:HikariCP-java6:2.3.13" />
+          <element id="library" level="project" name="Maven: com.octo.captcha:jcaptcha:1.0" />
+          <element id="library" level="project" name="Maven: com.octo.captcha:jcaptcha-api:1.0" />
+          <element id="library" level="project" name="Maven: com.jhlabs:imaging:01012005" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">
