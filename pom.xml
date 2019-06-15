@@ -13,7 +13,6 @@
         <module>JavaSE</module>
         <module>JavaWeb</module>
         <module>Spring-Boot</module>
-        <module>BigData</module>
     </modules>
     
 </project>
