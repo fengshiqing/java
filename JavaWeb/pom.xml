@@ -241,11 +241,11 @@
 
 		<!-- 验证码生成工具 -->
 		<!-- https://mvnrepository.com/artifact/com.octo.captcha/jcaptcha -->
-		<dependency>
-			<groupId>com.octo.captcha</groupId>
-			<artifactId>jcaptcha</artifactId>
-			<version>1.0</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.octo.captcha</groupId>-->
+<!--			<artifactId>jcaptcha</artifactId>-->
+<!--			<version>1.0</version>-->
+<!--		</dependency>-->
 	</dependencies>
 
 
