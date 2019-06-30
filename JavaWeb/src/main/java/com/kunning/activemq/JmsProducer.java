@@ -21,27 +21,27 @@ public class JmsProducer {
      */
     public static void main(String[] args) throws JMSException {
 
-        // 1、创建连接工厂，给定url，用户名密码采用默认的
+        // 1、new出连接工厂，给定url，用户名密码采用默认的
         ActiveMQConnectionFactory mqConnectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
-        // 2、通过连接工厂获得connection，并启动，如果连接不通，可能是防火墙。
+        // 2、创建connection，并启动start，如果连接不通，可能是防火墙。
         Connection connection = mqConnectionFactory.createConnection();
         connection.start();
         //  3、创建会话session。第一个参数表示事务，第二个参数表示签收
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        // 4、创建目的地，明确是队列，还是主题
+        // 4、创建目的地（队列 or 主题）
         Queue queue = session.createQueue(QUEUE_NAME);
         // Destination destination = session.createQueue(QUEUE_NAME);
 
         // 5、创建消息的生产者，放到队列中。
         MessageProducer messageProducer = session.createProducer(queue);
-        // 6、通过使用 messageProducer 生产3条消息，并发送到MQ的队列中。
+        // 通过使用 messageProducer 生产3条消息，并发送到MQ的队列中。
         for (int i = 1; i<=3; i++) {
-            // 7、创建消息
+            // 6、创建消息
             TextMessage textMessage = session.createTextMessage("【msg---】" + i);// 理解为一个字符串
-            // 8、通过 messageProducer 将消息发送给 MQ
+            // 7、通过 messageProducer 将消息发送给 MQ 队列中
             messageProducer.send(textMessage);
         }
-        // 9、关闭资源
+        // 8、关闭资源
         messageProducer.close();
         session.close();
         connection.close();
