@@ -29,7 +29,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
-			<scope>provided</scope><!-- provided表明该包只在编译和测试的时候用发布时不用 -->
+			<!-- <scope>provided</scope>provided表明该包只在编译和测试的时候用发布时不用 -->
 		</dependency>
 
 		<!-- Jsp -->
@@ -38,7 +38,7 @@
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
-			<scope>provided</scope><!-- provided表明该包只在编译和测试的时候用发布时不用 -->
+			<!-- <scope>provided</scope>provided表明该包只在编译和测试的时候用发布时不用 -->
 		</dependency>
 
 		<!-- JSTL -->
@@ -247,7 +247,7 @@
 <!--			<version>1.0</version>-->
 <!--		</dependency>-->
 
-		<!-- ActiveMQ -->
+		<!-- ActiveMQ 单独整合 start -->
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-all</artifactId>
@@ -269,14 +269,30 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.5</version>
+			<version>2.9.9</version>
 		</dependency>
+		<!-- ActiveMQ 单独整合 start -->
+
+		<!-- Spring 整合 ActiveMQ start -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-pool -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+			<version>5.15.9</version>
+		</dependency>
+		<!-- Spring 整合 ActiveMQ end -->
 	</dependencies>
 
 
 	<!-- ===================================================分割线=================================================== -->
-	
-	
+
+
 	<build>
 		<plugins>
 			<plugin>

@@ -29,7 +29,7 @@
 	</filter-mapping>
 
 
-	<!-- Spring监听器，默认查找“/WEB-INF/applicationContext.xml”，可以通过配置全局属性contextConfigLocation来改变查找的路径 -->
+	<!-- Spring监听器，默认查找“/WEB-INF/applicationContext.xml”，可以通过配置全局属性 contextConfigLocation 来改变查找的路径 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

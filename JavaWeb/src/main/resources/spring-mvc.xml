@@ -55,11 +55,11 @@
         <property name="username" value="${username}"/><!-- 用户名 -->
         <property name="password" value="${password}"/><!-- 密码 -->
 
-        <property name="initialSize" value="${initialSize}"></property><!-- 初始化连接大小 -->
-        <property name="maxActive" value="${maxActive}"></property><!-- 连接池最大数量 -->
-        <property name="maxIdle" value="${maxIdle}"></property><!-- 连接池最大空闲数 -->
-        <property name="minIdle" value="${minIdle}"></property><!-- 连接池最小空闲数 -->
-        <property name="maxWait" value="${maxWait}"></property><!-- 获取连接最大等待时间 -->
+        <property name="initialSize" value="${initialSize}"/><!-- 初始化连接大小 -->
+        <property name="maxActive" value="${maxActive}"/><!-- 连接池最大数量 -->
+        <property name="maxIdle" value="${maxIdle}"/><!-- 连接池最大空闲数 -->
+        <property name="minIdle" value="${minIdle}"/><!-- 连接池最小空闲数 -->
+        <property name="maxWait" value="${maxWait}"/><!-- 获取连接最大等待时间 -->
     </bean>
 
     <!-- Spring 整合 MyBatis时，就不再需要mybatis的配置映射文件了。
@@ -70,7 +70,7 @@
         <property name="dataSource" ref="dataSource"/><!-- SqlSessionFactory 需要一个 DataSource(数据源)，可以是任意的 DataSource。 -->
         <!--property name="configLocation" value="classpath:conf/mybatis.xml" /--><!-- 可以添加mybatis配置文件 -->
         <!-- 从类路径下加载 sqlMap 包及其子包下所有的映射器 XML文件 -->
-        <property name="mapperLocations" value="classpath:sqlMap/*.xml"></property><!-- 有多个包的话可以用英文逗号分隔开 -->
+        <property name="mapperLocations" value="classpath:sqlMap/*.xml"/><!-- 有多个包的话可以用英文逗号分隔开 -->
         <!-- property name="mapperLocations">自动扫描多个目录下的映射XML文件可以这么写
             <list>
                 <value>classpath*:conf/sqlMap/sqlMap_*.xml</value>
@@ -82,7 +82,7 @@
     <!-- Dao层接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.kunning.dao"/><!-- 自动扫描包下的dao类 -->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <!-- 要开启Spring的事务处理，在Spring的XML配置文件中简单创建一个 DataSourceTransactionManager 对象即可。
@@ -128,18 +128,18 @@ MultipartResolver 的实现类有两个：
 
 
     <!-- quartz定时任务 job -->
-    <bean id="Quartz_1" class="com.kunning.timedTask.Quartz_1"/>
+    <bean id="quartz_1" class="com.kunning.timedTask.Quartz_1"/>
     <!-- 使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法-->
     <!-- jobDetail -->
-    <bean id="Job_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="Quartz_1"/>
+    <bean id="job_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="quartz_1"/>
         <property name="targetMethod" value="task_1"/>
         <!--false表示等上一个任务执行完后再开启新的任务,这里和上一遍博客中的注解@DisallowConcurrentExecution一个道理-->
         <property name="concurrent" value="false"/>
     </bean>
     <!-- Trigger-->
     <bean id="oceanStatusCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="Job_1"/>
+        <property name="jobDetail" ref="job_1"/>
         <property name="cronExpression" value="0 0/1 * * * ?"/>
     </bean>
     <!--Scheduler -->
@@ -151,5 +151,5 @@ MultipartResolver 的实现类有两个：
         </property>
     </bean>
 
-
+    <import resource="spring-mvc-mq.xml"/>
 </beans>
