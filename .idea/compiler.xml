@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="JavaWeb" />
         <module name="JavaSE" />
-        <module name="Spring-Boot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

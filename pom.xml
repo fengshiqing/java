@@ -12,7 +12,6 @@
     <modules>
         <module>JavaSE</module>
         <module>JavaWeb</module>
-        <module>Spring-Boot</module>
     </modules>
     
 </project>
