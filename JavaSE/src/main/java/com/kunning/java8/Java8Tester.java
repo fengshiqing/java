@@ -9,14 +9,14 @@ public class Java8Tester {
 
 	public static void main(String args[]) {
 
-		List<String> names1 = new ArrayList<String>();
+		List<String> names1 = new ArrayList<>();
 		names1.add("Google ");
 		names1.add("Runoob ");
 		names1.add("Taobao ");
 		names1.add("Baidu ");
 		names1.add("Sina ");
 
-		List<String> names2 = new ArrayList<String>();
+		List<String> names2 = new ArrayList<>();
 		names2.add("Google ");
 		names2.add("Runoob ");
 		names2.add("Taobao ");
