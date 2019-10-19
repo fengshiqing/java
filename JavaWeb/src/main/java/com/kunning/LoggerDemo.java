@@ -24,7 +24,7 @@ public class LoggerDemo {
         System.out.println(LOGGER.isDebugEnabled());
         System.out.println(LOGGER.isInfoEnabled());
 
-        LOGGER.info("【么么哒】【开始执行】【亲爱的{}】", "丿sdf 双");
+        LOGGER.info("【LoggerDemo】【main】【开始执行】【参数】", "sdfsdfasfd");
         // slf4j 支持占位符，相比log4j 节省内存，性能高效。
         LOGGER.info("【参数：】【{}，{}，{}，{}，{}，{}，{}，{}】", "fengshiqing", "sdfsadf", "sdf", "fef", "冯仕清", "sdfsadf", "sdf", "fef");
     }
