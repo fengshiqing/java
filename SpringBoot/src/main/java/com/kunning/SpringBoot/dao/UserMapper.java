@@ -1,8 +1,8 @@
-package com.kunning.javaSE.dao;
+package com.kunning.SpringBoot.dao;
 
 import java.util.List;
 
-import com.kunning.javaSE.pojo.User;
+import com.kunning.SpringBoot.pojo.User;
 import org.apache.ibatis.annotations.*;
 
 import org.springframework.stereotype.Repository;

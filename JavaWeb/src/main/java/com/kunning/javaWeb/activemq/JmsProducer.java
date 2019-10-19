@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.activemq;
+package com.kunning.JavaWeb.activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 

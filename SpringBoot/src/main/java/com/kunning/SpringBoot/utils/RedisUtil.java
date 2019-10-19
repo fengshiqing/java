@@ -1,4 +1,4 @@
-package com.kunning.javaSE.utils;
+package com.kunning.SpringBoot.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

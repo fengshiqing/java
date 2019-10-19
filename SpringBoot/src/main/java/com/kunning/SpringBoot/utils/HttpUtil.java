@@ -1,4 +1,4 @@
-package com.kunning.javaSE.utils;
+package com.kunning.SpringBoot.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;

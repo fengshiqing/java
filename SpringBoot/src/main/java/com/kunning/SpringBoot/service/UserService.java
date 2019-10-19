@@ -1,15 +1,15 @@
-package com.kunning.javaSE.service;
+package com.kunning.SpringBoot.service;
 
 import java.util.List;
 
-import com.kunning.javaSE.controller.UserController;
+import com.kunning.SpringBoot.controller.UserController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kunning.javaSE.dao.UserMapper;
-import com.kunning.javaSE.pojo.User;
+import com.kunning.SpringBoot.dao.UserMapper;
+import com.kunning.SpringBoot.pojo.User;
 
 @Service("userService")
 public class UserService {

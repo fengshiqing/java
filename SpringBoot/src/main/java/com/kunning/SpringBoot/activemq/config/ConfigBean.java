@@ -1,4 +1,4 @@
-package com.kunning.javaSE.activemq.config;
+package com.kunning.SpringBoot.activemq.config;
 
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Value;

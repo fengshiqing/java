@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.pojo;
+package com.kunning.JavaWeb.pojo;
 
 public class User {
 

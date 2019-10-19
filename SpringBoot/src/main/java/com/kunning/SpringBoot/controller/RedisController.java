@@ -1,6 +1,6 @@
-package com.kunning.javaSE.controller;
+package com.kunning.SpringBoot.controller;
 
-import com.kunning.javaSE.service.RedisService;
+import com.kunning.SpringBoot.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

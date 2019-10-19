@@ -1,4 +1,4 @@
-package com.kunning.javaSE.utils;
+package com.kunning.SpringBoot.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.timerTask;
+package com.kunning.JavaWeb.timerTask;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

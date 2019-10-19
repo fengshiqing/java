@@ -1,4 +1,4 @@
-package com.kunning.javaSE.controller;
+package com.kunning.SpringBoot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

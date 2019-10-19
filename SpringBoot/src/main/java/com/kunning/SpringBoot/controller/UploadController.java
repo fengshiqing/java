@@ -1,6 +1,6 @@
-package com.kunning.javaSE.controller;
+package com.kunning.SpringBoot.controller;
 
-import com.kunning.javaSE.pojo.ResultData;
+import com.kunning.SpringBoot.pojo.ResultData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

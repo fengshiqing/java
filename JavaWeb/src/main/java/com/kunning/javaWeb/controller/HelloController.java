@@ -1,6 +1,6 @@
-package com.kunning.javaWeb.controller;
+package com.kunning.JavaWeb.controller;
 
-import com.kunning.javaWeb.service.UserService;
+import com.kunning.JavaWeb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kunning.javaWeb.dao.UserDao;
-import com.kunning.javaWeb.pojo.User;
+import com.kunning.JavaWeb.dao.UserDao;
+import com.kunning.JavaWeb.pojo.User;
 
 @Controller
 public class HelloController {

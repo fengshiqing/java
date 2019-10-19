@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.kunning.javaWeb.servlet;
+package com.kunning.JavaWeb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

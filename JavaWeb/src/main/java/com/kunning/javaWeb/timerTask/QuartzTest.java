@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.timerTask;
+package com.kunning.JavaWeb.timerTask;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;

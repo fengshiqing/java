@@ -1,9 +1,9 @@
-package com.kunning.javaWeb.springIoC;
+package com.kunning.JavaWeb.springIoC;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.kunning.javaWeb.beans.HelloWorld;
+import com.kunning.JavaWeb.beans.HelloWorld;
 
 /**
  * 获取IoC容器中的对象

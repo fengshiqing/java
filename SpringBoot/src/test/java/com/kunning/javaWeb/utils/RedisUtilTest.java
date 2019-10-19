@@ -1,6 +1,6 @@
-package com.kunning.javaSE.utils;
+package com.kunning.SpringBoot.utils;
 
-import com.kunning.javaSE.Application;
+import com.kunning.SpringBoot.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

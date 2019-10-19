@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.activemq;
+package com.kunning.JavaWeb.activemq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.servlet.listener;
+package com.kunning.JavaWeb.servlet.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

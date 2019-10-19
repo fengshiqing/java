@@ -1,6 +1,6 @@
-package com.kunning.javaSE.config;
+package com.kunning.SpringBoot.config;
 
-import com.kunning.javaSE.timerTask.UploadTask;
+import com.kunning.SpringBoot.timerTask.UploadTask;
 import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

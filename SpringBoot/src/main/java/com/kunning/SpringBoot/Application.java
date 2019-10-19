@@ -1,4 +1,4 @@
-package com.kunning.javaSE;
+package com.kunning.SpringBoot;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

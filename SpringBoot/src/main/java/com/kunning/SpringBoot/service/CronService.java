@@ -1,4 +1,4 @@
-package com.kunning.javaSE.service;
+package com.kunning.SpringBoot.service;
 
 import org.springframework.stereotype.Service;
 

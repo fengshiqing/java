@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.globalhandler;
+package com.kunning.JavaWeb.globalhandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

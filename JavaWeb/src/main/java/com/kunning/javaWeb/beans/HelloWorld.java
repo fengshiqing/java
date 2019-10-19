@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.beans;
+package com.kunning.JavaWeb.beans;
 
 public class HelloWorld {
 

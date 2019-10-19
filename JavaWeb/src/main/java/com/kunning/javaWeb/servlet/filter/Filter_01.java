@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.servlet.filter;
+package com.kunning.JavaWeb.servlet.filter;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.servlet.response;
+package com.kunning.JavaWeb.servlet.response;
 
 import java.io.IOException;
 

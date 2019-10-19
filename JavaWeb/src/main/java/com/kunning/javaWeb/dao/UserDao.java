@@ -1,6 +1,6 @@
-package com.kunning.javaWeb.dao;
+package com.kunning.JavaWeb.dao;
 
-import com.kunning.javaWeb.pojo.User;
+import com.kunning.JavaWeb.pojo.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

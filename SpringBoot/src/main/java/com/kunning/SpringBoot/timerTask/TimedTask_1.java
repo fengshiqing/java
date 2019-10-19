@@ -1,4 +1,4 @@
-package com.kunning.javaSE.timerTask;
+package com.kunning.SpringBoot.timerTask;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;

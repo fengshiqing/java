@@ -1,4 +1,4 @@
-package com.kunning.javaSE.pojo;
+package com.kunning.SpringBoot.pojo;
 
 public class ResultData<T> {
 

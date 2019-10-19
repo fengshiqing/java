@@ -1,7 +1,7 @@
-package com.kunning.javaWeb.service;
+package com.kunning.JavaWeb.service;
 
-import com.kunning.javaWeb.dao.UserDao;
-import com.kunning.javaWeb.pojo.User;
+import com.kunning.JavaWeb.dao.UserDao;
+import com.kunning.JavaWeb.pojo.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.utils;
+package com.kunning.JavaWeb.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

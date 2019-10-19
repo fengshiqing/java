@@ -1,4 +1,4 @@
-package com.kunning.javaSE.pojo;
+package com.kunning.SpringBoot.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

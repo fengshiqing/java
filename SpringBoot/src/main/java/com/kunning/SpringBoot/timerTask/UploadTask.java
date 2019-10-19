@@ -1,4 +1,4 @@
-package com.kunning.javaSE.timerTask;
+package com.kunning.SpringBoot.timerTask;
 
 import org.quartz.JobExecutionContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;

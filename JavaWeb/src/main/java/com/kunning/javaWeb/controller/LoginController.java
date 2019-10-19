@@ -1,6 +1,6 @@
-package com.kunning.javaWeb.controller;
+package com.kunning.JavaWeb.controller;
 
-import com.kunning.javaWeb.utils.VerificationCode;
+import com.kunning.JavaWeb.utils.VerificationCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

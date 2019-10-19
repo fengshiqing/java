@@ -1,4 +1,4 @@
-package com.kunning.javaSE.controller;
+package com.kunning.SpringBoot.controller;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kunning.javaSE.pojo.User;
-import com.kunning.javaSE.service.UserService;
+import com.kunning.SpringBoot.pojo.User;
+import com.kunning.SpringBoot.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -15,7 +15,7 @@
  *
  */
 
-package com.kunning.javaWeb.timerTask;
+package com.kunning.JavaWeb.timerTask;
 
 import static org.quartz.DateBuilder.evenMinuteDate;
 import static org.quartz.JobBuilder.newJob;

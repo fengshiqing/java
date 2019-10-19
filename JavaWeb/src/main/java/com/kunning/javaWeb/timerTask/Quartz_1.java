@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.timerTask;
+package com.kunning.JavaWeb.timerTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

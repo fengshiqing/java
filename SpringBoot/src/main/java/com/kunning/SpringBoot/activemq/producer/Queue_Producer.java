@@ -1,4 +1,4 @@
-package com.kunning.javaSE.activemq.producer;
+package com.kunning.SpringBoot.activemq.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;

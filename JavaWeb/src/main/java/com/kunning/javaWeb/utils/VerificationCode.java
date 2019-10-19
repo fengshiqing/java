@@ -1,4 +1,4 @@
-package com.kunning.javaWeb.utils;
+package com.kunning.JavaWeb.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

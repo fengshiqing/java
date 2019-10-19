@@ -1,6 +1,6 @@
-package com.kunning.javaSE.timerTask;
+package com.kunning.SpringBoot.timerTask;
 
-import com.kunning.javaSE.service.CronService;
+import com.kunning.SpringBoot.service.CronService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.*;
