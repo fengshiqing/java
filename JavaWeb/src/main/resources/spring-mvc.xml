@@ -21,7 +21,7 @@
     <context:component-scan base-package="com.kunning.controller"/>
     <context:component-scan base-package="com.kunning.globalhandler"/>
     <context:component-scan base-package="com.kunning.service"/>
-    <context:component-scan base-package="com.kunning.timedTask"/>
+    <context:component-scan base-package="com.kunning.timerTask"/>
 
     <!-- 定时任务 -->
     <task:annotation-driven/>
@@ -128,7 +128,7 @@ MultipartResolver 的实现类有两个：
 
 
     <!-- quartz定时任务 job -->
-    <bean id="quartz_1" class="com.kunning.timedTask.Quartz_1"/>
+    <bean id="quartz_1" class="com.kunning.timerTask.Quartz_1"/>
     <!-- 使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法-->
     <!-- jobDetail -->
     <bean id="job_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">

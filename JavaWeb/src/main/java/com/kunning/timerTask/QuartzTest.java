@@ -1,4 +1,4 @@
-package com.kunning.timedTask;
+package com.kunning.timerTask;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
