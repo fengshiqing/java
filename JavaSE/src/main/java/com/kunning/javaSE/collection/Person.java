@@ -1,4 +1,4 @@
-package com.kunning.javaSE.collection;
+package com.kunning.JavaSE.collection;
 
 public class Person implements Comparable<Object> {
 

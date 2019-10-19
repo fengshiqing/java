@@ -1,4 +1,4 @@
-package com.kunning.javaSE.泛型;
+package com.kunning.JavaSE.泛型;
 
 public class TestCustomerDAO {
 	public static void main(String[] args) {

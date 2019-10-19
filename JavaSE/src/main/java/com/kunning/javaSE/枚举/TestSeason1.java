@@ -1,4 +1,4 @@
-package com.kunning.javaSE.枚举;
+package com.kunning.JavaSE.枚举;
 
 public class TestSeason1 {
 

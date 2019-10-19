@@ -1,4 +1,4 @@
-package com.kunning.javaSE.collection;
+package com.kunning.JavaSE.collection;
 
 import java.util.Enumeration;
 import java.util.StringTokenizer;

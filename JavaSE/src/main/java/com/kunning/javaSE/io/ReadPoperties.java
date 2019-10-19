@@ -1,4 +1,4 @@
-package com.kunning.javaSE.io;
+package com.kunning.JavaSE.io;
 
 import java.io.FileReader;
 import java.io.IOException;

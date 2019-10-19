@@ -1,4 +1,4 @@
-package com.kunning.javaSE.webservice;
+package com.kunning.JavaSE.webservice;
 
 public class HelloClient {
 

@@ -1,4 +1,4 @@
-package com.kunning.javaSE.basics;
+package com.kunning.JavaSE.basics;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程_练习;
+package com.kunning.JavaSE.线程_练习;
 
 import java.io.BufferedReader;
 import java.io.IOException;

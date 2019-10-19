@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程;
+package com.kunning.JavaSE.线程;
 
 /**
  * @see https://blog.csdn.net/c10wtiybq1ye3/article/details/78212045

@@ -1,4 +1,4 @@
-package com.kunning.javaSE.load;
+package com.kunning.JavaSE.load;
 
 /**
  * JVM 中静态变量加载初始化的顺序可以归纳总结如下：<br>

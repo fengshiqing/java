@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程_练习;
+package com.kunning.JavaSE.线程_练习;
 
 public class TestWindow_1 {
 

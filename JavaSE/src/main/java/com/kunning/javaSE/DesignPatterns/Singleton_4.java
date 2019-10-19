@@ -1,4 +1,4 @@
-package com.kunning.javaSE.DesignPatterns;
+package com.kunning.JavaSE.DesignPatterns;
 
 /**
  * Singleton_3的方式还是有问题，每一次调用都需要同步，实际上只有第一次创建对象时才需要同步，以后每次获取对象同步都是一种累赘，严重降低效率，必须进一步优化：<br>

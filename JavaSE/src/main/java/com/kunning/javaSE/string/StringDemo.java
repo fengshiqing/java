@@ -1,4 +1,4 @@
-package com.kunning.javaSE.string;
+package com.kunning.JavaSE.string;
 
 public class StringDemo {
 

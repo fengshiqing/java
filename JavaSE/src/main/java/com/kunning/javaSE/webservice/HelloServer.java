@@ -1,4 +1,4 @@
-package com.kunning.javaSE.webservice;
+package com.kunning.JavaSE.webservice;
 
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;

@@ -1,4 +1,4 @@
-package com.kunning.javaSE.array;
+package com.kunning.JavaSE.array;
 
 public class 查找数组元素 {
 

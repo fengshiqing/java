@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程;
+package com.kunning.JavaSE.线程;
 
 /**
  * <创建多线程的第一种方式：继承java.lang.Thread类>

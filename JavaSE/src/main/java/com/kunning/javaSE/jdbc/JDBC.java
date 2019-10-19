@@ -1,4 +1,4 @@
-package com.kunning.javaSE.jdbc;
+package com.kunning.JavaSE.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

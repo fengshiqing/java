@@ -1,8 +1,8 @@
-package com.kunning.javaSE.mybatis;
+package com.kunning.JavaSE.mybatis;
 
-import com.kunning.javaSE.mybatis.dao.UserDao;
-import com.kunning.javaSE.mybatis.util.SqlSessionFactoryUtil;
-import com.kunning.javaSE.pojo.User;
+import com.kunning.JavaSE.mybatis.dao.UserDao;
+import com.kunning.JavaSE.mybatis.util.SqlSessionFactoryUtil;
+import com.kunning.JavaSE.pojo.User;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

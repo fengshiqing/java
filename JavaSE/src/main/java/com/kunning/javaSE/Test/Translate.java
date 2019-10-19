@@ -1,4 +1,4 @@
-package com.kunning.javaSE.Test;
+package com.kunning.JavaSE.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;

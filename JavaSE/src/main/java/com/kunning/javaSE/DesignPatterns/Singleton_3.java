@@ -1,4 +1,4 @@
-package com.kunning.javaSE.DesignPatterns;
+package com.kunning.JavaSE.DesignPatterns;
 
 /**
  * Singleton_在高并发环境下，会创建出多个对象。<br>

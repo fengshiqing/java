@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程;
+package com.kunning.JavaSE.线程;
 
 /**
  * Thread的常用方法：

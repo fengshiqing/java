@@ -1,4 +1,4 @@
-package com.kunning.javaSE.net;
+package com.kunning.JavaSE.net;
 
 import java.io.IOException;
 import java.io.OutputStream;

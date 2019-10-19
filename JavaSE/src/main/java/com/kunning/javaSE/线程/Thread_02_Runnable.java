@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程;
+package com.kunning.JavaSE.线程;
 
 /**
  * <创建多线程的第二种方式：实现java.lang.Runnable接口>

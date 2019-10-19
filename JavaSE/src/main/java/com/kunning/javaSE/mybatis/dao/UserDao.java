@@ -1,6 +1,6 @@
-package com.kunning.javaSE.mybatis.dao;
+package com.kunning.JavaSE.mybatis.dao;
 
-import com.kunning.javaSE.pojo.User;
+import com.kunning.JavaSE.pojo.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

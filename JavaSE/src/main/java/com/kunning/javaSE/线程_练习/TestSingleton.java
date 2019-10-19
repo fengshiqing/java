@@ -1,4 +1,4 @@
-package com.kunning.javaSE.线程_练习;
+package com.kunning.JavaSE.线程_练习;
 
 //关于懒汉式的线程安全问题：使用同步机制
 //对于一般的方法内，使用同步代码块，可以考虑使用this。

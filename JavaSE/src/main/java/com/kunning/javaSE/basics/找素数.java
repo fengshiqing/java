@@ -1,4 +1,4 @@
-package com.kunning.javaSE.basics;
+package com.kunning.JavaSE.basics;
 
 public class 找素数 {
 

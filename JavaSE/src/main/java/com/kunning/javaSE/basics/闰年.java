@@ -1,4 +1,4 @@
-package com.kunning.javaSE.basics;
+package com.kunning.JavaSE.basics;
 
 //闰年  java300问的第31问
 import java.util.Scanner;

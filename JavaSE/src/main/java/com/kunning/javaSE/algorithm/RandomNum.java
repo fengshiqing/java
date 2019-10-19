@@ -1,4 +1,4 @@
-package com.kunning.javaSE.algorithm;
+package com.kunning.JavaSE.algorithm;
 
 import java.util.Random;
 

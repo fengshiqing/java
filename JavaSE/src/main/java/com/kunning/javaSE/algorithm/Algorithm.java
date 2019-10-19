@@ -8,7 +8,7 @@
  * <author>      <time>      <version>    <desc>
  * 修改人姓名             修改时间            版本号                  描述
  */
-package com.kunning.javaSE.algorithm;
+package com.kunning.JavaSE.algorithm;
 
 /**
  * 〈一句话功能简述〉<br>

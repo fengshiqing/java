@@ -1,4 +1,4 @@
-package com.kunning.javaSE.DesignPatterns;
+package com.kunning.JavaSE.DesignPatterns;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

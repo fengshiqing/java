@@ -1,4 +1,4 @@
-package com.kunning.javaSE.DesignPatterns.动态代理;
+package com.kunning.JavaSE.DesignPatterns.动态代理;
 
 public class HelloWorld implements IHelloWorld {
 

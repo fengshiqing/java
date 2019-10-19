@@ -1,4 +1,4 @@
-package com.kunning.javaSE.DesignPatterns;
+package com.kunning.JavaSE.DesignPatterns;
 
 /*
  一：代理模式（静态代理）

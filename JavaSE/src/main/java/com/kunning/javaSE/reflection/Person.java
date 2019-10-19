@@ -1,4 +1,4 @@
-package com.kunning.javaSE.reflection;
+package com.kunning.JavaSE.reflection;
 
 public class Person {
 

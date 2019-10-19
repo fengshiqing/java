@@ -1,4 +1,4 @@
-package com.kunning.javaSE.DesignPatterns;
+package com.kunning.JavaSE.DesignPatterns;
 
 /**
  * 单态设计模式：就是要保证在整个程序中某个类只能存在一个对象，这个类不能再创建第二个对象。<br>

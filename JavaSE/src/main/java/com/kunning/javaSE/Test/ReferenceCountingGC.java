@@ -1,4 +1,4 @@
-package com.kunning.javaSE.Test;
+package com.kunning.JavaSE.Test;
 
 /**
  * 虚拟机参数：-verbose:gc

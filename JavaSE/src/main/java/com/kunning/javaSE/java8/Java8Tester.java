@@ -1,4 +1,4 @@
-package com.kunning.javaSE.java8;
+package com.kunning.JavaSE.java8;
 
 import java.util.ArrayList;
 import java.util.Collections;
