@@ -1,4 +1,4 @@
-package com.kunning.timedTask;
+package com.kunning.timerTask;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -15,25 +15,25 @@ import org.springframework.stereotype.Component;
 @EnableAsync // 允许多线程的运行定时任务
 public class TimedTask_1 {
 
-    @Scheduled(cron="0 0 */2 * * ?")
+    @Scheduled(cron="0 0/5 * * * ?")
     public void schedule_1() {
         System.out.println(Thread.currentThread().getName() + "【定时任务1】");
     }
 
-    @Scheduled(cron="0 0 */2 * * ?")
+    @Scheduled(cron="0 0/5 * * * ?")
     public void schedule_2() {
         System.out.println(Thread.currentThread().getName() + "【定时任务2】");
     }
 
     // 多线程定时任务
     @Async
-    @Scheduled(cron="0 0 */2 * * ?")
+    @Scheduled(cron="0 0/5 * * * ?")
     public void schedule_3() {
         System.out.println(Thread.currentThread().getName() + "【定时任务3】");
     }
 
     @Async
-    @Scheduled(cron="0 0 */2 * * ?")
+    @Scheduled(cron="0 0/5 * * * ?")
     public void schedule_4() {
         System.out.println(Thread.currentThread().getName() + "【定时任务4】");
     }

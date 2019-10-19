@@ -1,16 +1,12 @@
-package com.kunning.timedTask;
-
+package com.kunning.timerTask;
 
 import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import javax.annotation.Resource;
-
-public class UploadTask  extends QuartzJobBean {
+public class UploadTask extends QuartzJobBean {
 
     @Override
-    protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+    protected void executeInternal(JobExecutionContext jobExecutionContext) {
         System.out.println("任务开始");
         try {
             Thread.sleep(6000);

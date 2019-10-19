@@ -1,4 +1,4 @@
-package com.kunning.timedTask;
+package com.kunning.timerTask;
 
 import com.kunning.service.CronService;
 import org.springframework.beans.factory.annotation.Autowired;

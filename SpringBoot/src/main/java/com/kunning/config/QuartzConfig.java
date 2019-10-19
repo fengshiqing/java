@@ -1,6 +1,6 @@
 package com.kunning.config;
 
-import com.kunning.timedTask.UploadTask;
+import com.kunning.timerTask.UploadTask;
 import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
