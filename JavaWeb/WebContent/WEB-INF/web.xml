@@ -60,19 +60,19 @@
 
 	<!-- 典型的 Listener监听器 配置 -->
 	<listener>
-		<listener-class>com.kunning.servlet.listener.MyServletContextListener</listener-class>
+		<listener-class>com.kunning.javaSE.servlet.listener.MyServletContextListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.kunning.servlet.listener.MyHttpSessionListener</listener-class>
+		<listener-class>com.kunning.javaSE.servlet.listener.MyHttpSessionListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.kunning.servlet.listener.MyServletRequestListener</listener-class>
+		<listener-class>com.kunning.javaSE.servlet.listener.MyServletRequestListener</listener-class>
 	</listener>
 
 	<!-- 配置过滤器 -->
 	<filter>
 		<filter-name>Filter_01</filter-name>
-		<filter-class>com.kunning.servlet.filter.Filter_01</filter-class>
+		<filter-class>com.kunning.javaSE.servlet.filter.Filter_01</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>Filter_01</filter-name>
