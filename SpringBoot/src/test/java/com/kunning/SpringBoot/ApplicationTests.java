@@ -1,4 +1,4 @@
-package com.kunning;
+package com.kunning.SpringBoot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
