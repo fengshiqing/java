@@ -1,8 +1,7 @@
 package com.kunning.commons.algorithms;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class AlgorithmTest {
 
@@ -23,6 +22,19 @@ public class AlgorithmTest {
     public void fibonacci() {
         int fibonacciNum = Algorithm.fibonacci(10);
         System.out.println("【斐波那契数字是：】" + fibonacciNum);
+    }
+
+    // ==================================================最大公约数、最小公倍数==================================================
+    @Test
+    public void GCD() {// 最大公约数
+        int gcdNum = Algorithm.GCD(15, 6);
+        System.out.println("【最大公约数：】" + gcdNum);
+    }
+
+    @Test
+    public void LCM() {// 最小公倍数
+        int lcmNum = Algorithm.LCM(15, 6);
+        System.out.println("【最小公倍数：】" + lcmNum);
     }
 
     // ======================================================随机整数======================================================

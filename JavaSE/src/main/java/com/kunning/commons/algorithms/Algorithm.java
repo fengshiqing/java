@@ -10,8 +10,6 @@
  */
 package com.kunning.commons.algorithms;
 
-import java.util.Random;
-
 /**
  * 〈一句话功能简述〉<br>
  * 〈功能详细描述〉
@@ -73,6 +71,7 @@ public class Algorithm {
      * 功能描述：打印第 {@code n} 个斐波那契数列
      *
      * @param n 打印第 {@code n} 个斐波那契数列
+     *
      * @return 第 {@code n} 个斐波那契数字
      */
     public static int fibonacci(int n) {
@@ -80,6 +79,34 @@ public class Algorithm {
             return 1;
         }
         return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    // ==================================================最大公约数、最小公倍数==================================================
+
+    /**
+     * 功能描述：求最大公约数。
+     * greatest common divisor(gcd)
+     *
+     * @param a 数字1
+     * @param b 数字2
+     *
+     * @return 最大公约数
+     */
+    public static int GCD(int a, int b) {// 最大公约数
+        return a % b == 0 ? b : GCD(b, a % b);// 递归，不错（辗转相除法）
+    }
+
+    /**
+     * 功能描述：求最小公倍数。
+     * lowest common multiple (LCM)
+     *
+     * @param a 数字1
+     * @param b 数字2
+     *
+     * @return 最小公倍数
+     */
+    public static int LCM(int a, int b) {// 最小公倍数
+        return a * b / GCD(a, b);
     }
 
     // ======================================================随机数======================================================
@@ -93,7 +120,7 @@ public class Algorithm {
      * 功能描述：获取 从 [start, end) 之间的随机整数
      *
      * @param start 范围起点
-     * @param end  范围终点
+     * @param end   范围终点
      *
      * @return 从 start 到 end 之间的随机整数
      */
@@ -107,6 +134,7 @@ public class Algorithm {
      * 说明：可以用来做验证码。
      *
      * @param num 位数
+     *
      * @return num 位数字组成的随机字符串
      */
     public static String getRandomStr(int num) {
