@@ -1,4 +1,4 @@
-package com.kunning.commons.algorithm;
+package com.kunning.commons.algorithms;
 
 import java.util.Arrays;
 
