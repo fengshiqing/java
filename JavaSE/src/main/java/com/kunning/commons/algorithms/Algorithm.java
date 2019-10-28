@@ -76,6 +76,26 @@ public class Algorithm {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
+    // =======================================================阶乘=======================================================
+
+    public static int factorial(int x) {// 迭代的方法
+        if(x==0 || x==1) {
+            return 1;
+        }
+        return x*factorial(x-1);
+    }
+
+    public static int factorial2(int x) {// 循环求解
+        if(x==0 || x==1) {
+            return 1;
+        }
+        int sum = 1;
+        for(int i=1; i<=x; i++) {
+            sum = sum*i;
+        }
+        return sum;
+    }
+
     // ==================================================最大公约数、最小公倍数==================================================
 
     /**

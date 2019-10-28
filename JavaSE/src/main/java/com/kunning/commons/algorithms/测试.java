@@ -1,5 +1,7 @@
 package com.kunning.commons.algorithms;
 
+import java.util.Scanner;
+
 public class 测试 {
     public static void main(String[] args) {
         float f1 = 13.23f;
@@ -40,5 +42,17 @@ public class 测试 {
         //String str = new String(byteArr, 0, 3);// java.lang.StringIndexOutOfBoundsException: String index out of range: 3
         String str = new String(byteArr, 0, 2);
         System.out.println(str);
+    }
+
+    public static void main111(String[] args) {
+        int A, B, C;
+        Scanner input = new Scanner(System.in);// 控制台输入
+        System.out.print("请输入");
+        A = input.nextInt();
+        B = input.nextInt();
+        C = input.nextInt();
+        System.out.println("您输入的是" + input);
+        input.close();
+        System.out.println(A + B + C);
     }
 }

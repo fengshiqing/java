@@ -23,6 +23,13 @@ public class AlgorithmTest {
         System.out.println("【斐波那契数字是：】" + fibonacciNum);
     }
 
+    // =======================================================阶乘=======================================================
+    @Test
+    public void factorial() {
+        System.out.println("【阶乘结果：】" + Algorithm.factorial(10));
+        System.out.println("【阶乘结果：】" + Algorithm.factorial2(10));
+    }
+
     // ==================================================最大公约数、最小公倍数==================================================
     @Test
     public void GCD() {// 最大公约数
