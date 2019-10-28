@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 import com.itheima.domain.User;
 
-import com.kunning.JavaWeb.utils.JDBCUtils;
+import com.kunning.web.utils.JDBCUtils;
 
 public class MySqlUserDao implements UserDao {
 

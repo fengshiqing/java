@@ -62,6 +62,14 @@ public class AlgorithmTest {
         Algorithm.polygon();
     }
 
+    // =====================================================乘法口诀表=====================================================
+    @Test
+    public void multiplicationTable() {
+        Algorithm.multiplicationTable();
+        Algorithm.multiplicationTable2();
+    }
+
+    // =======================================================闰年=======================================================
     @Test
     public void judgeLeapYear() {
         boolean bool = Algorithm.judgeLeapYear(1900);

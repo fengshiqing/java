@@ -1,4 +1,4 @@
-package com.kunning.commons.array;
+package com.kunning.commons.algorithms;
 
 public class 查找数组元素 {
 

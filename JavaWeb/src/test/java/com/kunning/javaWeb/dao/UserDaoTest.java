@@ -1,7 +1,7 @@
-package com.kunning.JavaWeb.dao;
+package com.kunning.web.dao;
 
-import com.kunning.JavaWeb.pojo.User;
-import com.kunning.JavaWeb.service.UserService;
+import com.kunning.web.pojo.User;
+import com.kunning.web.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
