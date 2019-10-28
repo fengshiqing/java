@@ -11,16 +11,11 @@
 package com.kunning.commons.algorithms;
 
 /**
- * 〈一句话功能简述〉<br>
- * 〈功能详细描述〉
+ * 功能描述：整理常用的算法，具体看此类的单元测试类：AlgorithmTest.java
  *
- * @author kun
- * @see [相关类/方法]（可选）
- * @since [产品/模块版本] （可选）
+ * @author 冯仕清
  */
 public class Algorithm {
-
-    // 整理常用的算法，具体看此类的单元测试类：AlgorithmTest.java
 
     // =======================================================素数=======================================================
 
@@ -75,7 +70,7 @@ public class Algorithm {
      * @return 第 {@code n} 个斐波那契数字
      */
     public static int fibonacci(int n) {
-        if (n == 1 || n == 2) {//斐波那契数列的第一、第二个数字都为 1.
+        if (n == 1 || n == 2) { // 斐波那契数列的第一、第二个数字都为 1.
             return 1;
         }
         return fibonacci(n - 1) + fibonacci(n - 2);
@@ -110,11 +105,6 @@ public class Algorithm {
     }
 
     // ======================================================随机数======================================================
-    public static void main(String[] args) {
-        // 产生一个[0，1)之间的随机数,大于等于 0.0 且小于 1.0 的[0,1)范围内的 double 类型的数
-        System.out.println("[0,1)范围内的随机数：" + Math.random());//Random类也可以生成随机数，具体的看API文档
-        System.out.println("[1,10)范围内的随机数：" + (1 + Math.random() * 9));//从1到10的 double 型随数数
-    }
 
     /**
      * 功能描述：获取 从 [start, end) 之间的随机整数
@@ -125,8 +115,8 @@ public class Algorithm {
      * @return 从 start 到 end 之间的随机整数
      */
     public static int getRandomNum(int start, int end) {
-        int num = (int) (start + Math.random() * (end - start));
-        return num;
+        double num = start + Math.random() * (end - start);
+        return (int) num;
     }
 
     /**
@@ -146,4 +136,126 @@ public class Algorithm {
         return strBuilder.toString();
     }
 
+    // =====================================================花样多边形=====================================================
+
+    /**
+     * 功能描述: 打印多边形
+     */
+    public static void polygon() {
+
+        System.out.println("左直角三角形");// 直角三角形
+        for (int i = 1; i <= 9; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("右直角三角形");// 右直角三角形
+        for (int i = 9; i >= 1; i--) {
+            for (int j = 1; j < i; j++) {
+                System.out.print(" ");
+            }
+            for (int z = i; z <= 9; z++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("倒右直角三角形");
+        for (int i = 9; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("倒左直角三角形");
+        for (int i = 1; i <= 9; i++) {
+            for (int j = 1; j < i; j++) {
+                System.out.print(" ");
+            }
+            for (int z = i; z <= 9; z++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("等腰三角形"); // 等腰三角形
+        for (int i = 0; i < 5; i++) {
+            for (int j = i; j < 5; j++) {
+                System.out.print(" ");
+            }
+            for (int z = 0; z < 2 * i + 1; z++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("三角帆："); // 三角帆：
+        for (int i = 1; i <= 9; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(" ");
+            }
+            System.out.println("*");
+        }
+
+        System.out.println("矩形："); // 矩形
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("平行四边形："); // 平行四边形
+        for (int i = 9; i >= 1; i--) {
+            for (int z = 1; z <= i; z++) {
+                System.out.print(" ");
+            }
+
+            for (int j = 1; j <= 9; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("左直角梯形："); // 左直角梯形
+        for (int i = 0; i < 9; i++) {
+            for (int j = 1; j <= 9 + i; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("右直角梯形："); // 右直角梯形
+        for (int i = 0; i < 9; i++) {
+            for (int z = 9 - i; z > 1; z--) {
+                System.out.print(" ");
+            }
+
+            for (int j = 1; j <= 9 + i; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("等腰梯形："); // 等腰梯形
+        for (int i = 0; i < 9; i++) {
+            for (int z = 9 - i; z > 1; z--) {
+                System.out.print(" ");
+            }
+
+            for (int j = 1; j <= 9 + 2 * i; j++) {
+                System.out.print("*");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    // =======================================================闰年=======================================================
+
+    public static boolean judgeLeapYear(int year) {
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    }
 }

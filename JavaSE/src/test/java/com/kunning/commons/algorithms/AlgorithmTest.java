@@ -1,6 +1,5 @@
 package com.kunning.commons.algorithms;
 
-
 import org.junit.Test;
 
 public class AlgorithmTest {
@@ -48,6 +47,18 @@ public class AlgorithmTest {
     public void getRandomStr() {
         String randomStr = Algorithm.getRandomStr(6);
         System.out.println("【随机数字字符串：】" + randomStr);
+    }
+
+    // =====================================================花样多边形=====================================================
+    @Test
+    public void polygon() {
+        Algorithm.polygon();
+    }
+
+    @Test
+    public void judgeLeapYear() {
+        boolean bool = Algorithm.judgeLeapYear(1900);
+        System.out.println("是否为闰年：】" + bool);
     }
 
 }

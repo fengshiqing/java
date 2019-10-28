@@ -1,4 +1,4 @@
-package com.kunning.commons.basics;
+package com.kunning.commons.algorithms;
 
 public class Test1 {
 

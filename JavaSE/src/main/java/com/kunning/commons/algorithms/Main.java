@@ -1,4 +1,4 @@
-package com.kunning.commons.basics;
+package com.kunning.commons.algorithms;
 
 import java.util.Scanner;
 
@@ -14,7 +14,6 @@ public class Main {
         System.out.println("您输入的是" + input);
         input.close();
         System.out.println(A + B + C);
-        
     }
 
 }

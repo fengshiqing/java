@@ -1,4 +1,4 @@
-package com.kunning.commons.basics;
+package com.kunning.commons.algorithms;
 
 public class 测试 {
     public static void main(String[] args) {
@@ -34,5 +34,11 @@ public class 测试 {
         String s = "a";// 注意:这里s用final修饰，相当于一个常量
         String str5 = s + "b";
         System.out.println(str5 == "ab");// true
+
+
+        byte[] byteArr = new byte[2];
+        //String str = new String(byteArr, 0, 3);// java.lang.StringIndexOutOfBoundsException: String index out of range: 3
+        String str = new String(byteArr, 0, 2);
+        System.out.println(str);
     }
 }
