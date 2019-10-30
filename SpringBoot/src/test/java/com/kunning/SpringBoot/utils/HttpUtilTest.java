@@ -1,4 +1,4 @@
-package com.kunning.SpringBoot.utils;
+package com.kunning.springboot.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpRequest;
