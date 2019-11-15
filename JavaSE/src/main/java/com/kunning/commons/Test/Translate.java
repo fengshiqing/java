@@ -6,16 +6,16 @@ import java.util.Arrays;
 public class Translate {
 
 	public static void main(String[] args) {
-		String str = translate("adv");
+		String str = translate("冯仕清");
 		System.out.println(str);
 	}
 	
 	public static String translate(String str) {
 		String result = "";
 		try {
-			byte[] s = str.getBytes("ISO-8859-1");
+			byte[] s = str.getBytes();
 			System.out.println(Arrays.toString(s));
-			result = new String(str.getBytes("ISO-8859-1"), "GBK");
+			result = new String(null, "GBK");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

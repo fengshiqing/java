@@ -1,4 +1,4 @@
-package com.kunning.commons.load;
+package com.kunning.commons.jvm;
 
 /**
  * JVM 中静态变量加载初始化的顺序可以归纳总结如下：<br>

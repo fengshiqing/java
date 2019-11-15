@@ -1,4 +1,4 @@
-package com.kunning.commons.Test;
+package com.kunning.commons.jvm;
 
 /**
  * 虚拟机参数：-verbose:gc
