@@ -1,5 +1,7 @@
 package com.kunning.commons.Test;
 
+import java.util.Properties;
+
 public class Test111 {
     static String sentence = "I don't know.";// 此处不论是静态变量还是非静态变量，都会被局部变量覆盖！
     
@@ -20,6 +22,11 @@ public class Test111 {
         System.out.println("Testing Assertion that x==100");
         assert x == 100 : "Out assertion failed!"; // 断言默认是关闭的。
         System.out.println("Test passed!");
+
+
+        // 获取系统属性
+        Properties properties = System.getProperties();
+        System.out.println(properties);
     }
     
 }
