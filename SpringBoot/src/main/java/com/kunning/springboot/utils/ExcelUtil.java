@@ -1,47 +1,25 @@
 package com.kunning.springboot.utils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.swing.JOptionPane;
-
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.RichTextString;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
- * <Excel工具类>
+ * 功能描述：Excel工具类。
  *
  * @author 冯仕清
  */
@@ -50,27 +28,27 @@ import org.slf4j.LoggerFactory;
 public class ExcelUtil<T> {
 
     /**
-     * <日志>
+     * 日志
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
 
     /**
-     * <默认sheet名>
+     * 默认sheet名
      */
     private static final String SHEET_NAME = "导出的Excel文档";
 
     /**
-     * <默认日期格式>
+     * 默认日期格式
      */
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     /**
-     * <导出Excel><br>
+     * 功能描述：导出Excel
      * 3个参数的重载
      *
      * @param thNameArr 表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
      * @param thCodeArr 表格列名对应的Code组成的数组。
-     * @param dataList 要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
+     * @param dataList  要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
      * @see #exportExcel(String, String[], String[], List, String)
      */
     public Workbook exportExcel(String[] thNameArr, String[] thCodeArr, List<T> dataList) {
@@ -78,12 +56,12 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * <导出Excel><br>
+     * 功能描述：导出Excel
      * 4个参数的重载
      *
-     * @param thNameArr 2、表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
-     * @param thCodeArr 3、表格列名对应的Code组成的数组。
-     * @param dataList 4、要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
+     * @param thNameArr  2、表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
+     * @param thCodeArr  3、表格列名对应的Code组成的数组。
+     * @param dataList   4、要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
      * @param dateFormat 5、日期格式。
      * @see #exportExcel(String, String[], String[], List, String)
      */
@@ -92,13 +70,13 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * <导出Excel><br>
+     * 功能描述：导出Excel
      * 4个参数的重载
      *
      * @param sheetName 1、表格sheet的名字。
      * @param thNameArr 2、表格列名组成的数组。th：意思与<th>标签一样，表示tablehander表头。
      * @param thCodeArr 3、表格列名对应的Code组成的数组。
-     * @param dataList 4、要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
+     * @param dataList  4、要导出的数据的集合，集合元素为javabean对象，getXxx()方法的方法名，必须严格遵循javaBean规范。
      * @see #exportExcel(String, String[], String[], List, String)
      */
     public Workbook exportExcel(String sheetName, String[] thNameArr, String[] thCodeArr, List<T> dataList) {
@@ -106,8 +84,8 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * <导出Excel><br>
-     * <注意：参数的顺序！！！示例：见本类中的 main() 方法>
+     * 功能描述：导出Excel
+     * 注意：参数的顺序！！！示例：见本类中的 main() 方法
      *
      * @param sheetName  1、表格sheet的名字。
      * @param thNameArr  2、表格列名组成的数组。th：意思与HTML中的th标签一样，表示tablehander表头。
@@ -118,7 +96,7 @@ public class ExcelUtil<T> {
     public Workbook exportExcel(String sheetName, String[] thNameArr, String[] thCodeArr, List<T> dataList,
                                 String dateFormat) {
         LOGGER.info("【exportExcel】【开始执行】【请求参数：】【sheetName:{}, thNameArr:{}, thCodeArr:{}, dataList:{}, dateFormat:{}】",
-                new Object[] { sheetName, thNameArr, thCodeArr, dataList.size(), dateFormat });
+                sheetName, thNameArr, thCodeArr, dataList.size(), dateFormat);
 
         // 步骤：1，2，3，4
         // 1、创建 Excel对象，和 sheet 表格
@@ -192,8 +170,8 @@ public class ExcelUtil<T> {
                 // sheet.autoSizeColumn(i);// 自动设置宽高
                 Class<? extends Object> baseClass = baseObj.getClass();
                 try {
-                    Method method = baseClass.getMethod(methodName, new Class[] {});
-                    Object fieldValue = method.invoke(baseObj, new Object[] {});// 执行 getXxx() 方法获取DTO字段的值
+                    Method method = baseClass.getMethod(methodName, new Class[]{});
+                    Object fieldValue = method.invoke(baseObj, new Object[]{});// 执行 getXxx() 方法获取DTO字段的值
                     fieldValue = fieldValue != null ? fieldValue : "";
                     // 类型转换
                     String cellValue = null;// 定义单元格值，用来存放：处理后的字段值fieldValue
@@ -225,8 +203,8 @@ public class ExcelUtil<T> {
     // 本地测试方法，直接本地运行即可查看效果。注释掉测试代码 modify by 冯仕清 2017年11月6日 16:19:46
     public static void main(String[] args) {
         ExcelUtil<Student> excelUtil1 = new ExcelUtil<Student>();// 测试学生
-        String[] thCodeArr = { "id", "name", "age", "sex", "birthday" };// 设置要导出的Excel的标题行的中文名字
-        String[] thNameArr = { "学号", "姓名", "年龄", "性别", "出生日期" };// 设置要导出的Excel的标题行的中文名字
+        String[] thCodeArr = {"id", "name", "age", "sex", "birthday"};// 设置要导出的Excel的标题行的中文名字
+        String[] thNameArr = {"学号", "姓名", "年龄", "性别", "出生日期"};// 设置要导出的Excel的标题行的中文名字
         List<Student> studentDtoList = new ArrayList<Student>();
         studentDtoList.add(new Student(10000001, "张三", 20, true, new Date()));
         studentDtoList.add(new Student(20000002, "李四", 24, false, new Date()));
@@ -242,22 +220,20 @@ public class ExcelUtil<T> {
             fileOutStream1.close();
             JOptionPane.showMessageDialog(null, "导出成功！");
             System.out.println("excel导出成功！");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * 读取Excel
+     * 功能描述：读取Excel
      *
-     * @throws IOException
+     * @throws IOException IO异常
      */
     @SuppressWarnings("deprecation")
     public static void readExcel() throws IOException {
         String filePath = "D:\\test.xlsx";
-        String columns[] = { "上班时间", "下班时间", "总工时" };// Excel表头
+        String[] columns = {"上班时间", "下班时间", "总工时"};// Excel表头
 
         Workbook wb = readExcel(filePath);
         if (wb == null) {
@@ -324,9 +300,9 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * <读取指定路径下的Excel文件>
+     * 功能描述：读取指定路径下的Excel文件
      *
-     * @throws IOException
+     * @throws IOException IO异常
      */
     public static Workbook readExcel(String filePath) throws IOException {
         if (filePath == null) {
@@ -345,22 +321,21 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 获取单元格内容
+     * 功能描述：获取单元格内容
      *
-     * @param cell
-     * @return
+     * @param cell 单元格内容
+     * @return 单元格对象
      */
-    @SuppressWarnings("deprecation")
     public static Object getCellFormatValue(Cell cell) {
         Object cellValue = null;
         if (cell != null) {
 
             switch (cell.getCellType()) {// 判断cell类型
-                case Cell.CELL_TYPE_NUMERIC: {
+                case NUMERIC: {
                     cellValue = String.valueOf(cell.getNumericCellValue());
                     break;
                 }
-                case Cell.CELL_TYPE_FORMULA: {
+                case FORMULA: {
                     // 判断cell是否为日期格式
                     if (DateUtil.isCellDateFormatted(cell)) {
                         // 转换为日期格式YYYY-mm-dd
@@ -371,7 +346,7 @@ public class ExcelUtil<T> {
                     }
                     break;
                 }
-                case Cell.CELL_TYPE_STRING: {
+                case STRING: {
                     cellValue = cell.getRichStringCellValue().getString();
                     break;
                 }
@@ -385,11 +360,10 @@ public class ExcelUtil<T> {
     }
 
     /**
-     * 获取两个时间的时间差，精确到毫秒
+     * 功能描述：获取两个时间的时间差，精确到毫秒
      *
-     * @return
+     * @return 时间差值
      */
-    @SuppressWarnings("unused")
     public static String TimeDifference(Date start, Date end) {
         long diffVal = end.getTime() - start.getTime();// 时间差值
         long day = diffVal / (24 * 60 * 60 * 1000);
@@ -399,13 +373,12 @@ public class ExcelUtil<T> {
         long ms = (diffVal - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - minutes * 60 * 1000 - s * 1000);
         // String timeDifference = day + "天" + hour + "小时" + minutes + "分" + s + "秒" +
         // ms + "毫秒";
-        String timeDifference = hour + "小时" + minutes + "分";
-        return timeDifference;
+        return hour + "小时" + minutes + "分";
     }
 
 }
 
-// 此类用来测试，这是一个规范的javaBean。
+// 功能描述：此类用来测试，这是一个规范的javaBean。
 class Student {
     private long id;
     private String name;
