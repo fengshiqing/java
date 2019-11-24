@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.TimeZone;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DateTimeUtilTest {
 
     @Test
@@ -119,8 +117,10 @@ class DateTimeUtilTest {
     }
 
     @Test
-    void main() {
+    void parseDateTime() {
+        DateTimeUtil.parseDateTime();
     }
+
 
 
     @Test

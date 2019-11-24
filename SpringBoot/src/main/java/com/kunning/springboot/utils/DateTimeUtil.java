@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -439,6 +440,7 @@ public class DateTimeUtil {
 
 
     // =====================================================java8=====================================================
+    // 这个讲解的很不错：https://www.toutiao.com/i6736371516507685390/
 
     /**
      * 功能描述：获取默认格式的的当前日期时间
@@ -496,6 +498,25 @@ public class DateTimeUtil {
         LocalDateTime localDateTime = LocalDateTime.now(); // 默认的日期时间格式为：2019-11-24T10:40:13.778
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
         return localDateTime.format(dateTimeFormatter);
+    }
+
+    public static void parseDateTime() {
+        LocalDate dateTime1 = LocalDate.parse("20191124", DateTimeFormatter.BASIC_ISO_DATE);
+        LocalDate dateTime2 = LocalDate.parse("2019-11-24", DateTimeFormatter.ISO_LOCAL_DATE);
+        System.out.println(dateTime1);
+        System.out.println(dateTime2);
+    }
+
+    public void aaa() {
+        LocalDateTime from = LocalDateTime.of(2017, 1, 1, 0,0,0);
+        LocalDateTime to = LocalDateTime.of(2019, 7, 1, 0,0,0);
+        Duration duration = Duration.between(from, to);
+        long days = duration.toDays(); // 这段时间的总天数
+        long hours = duration.toDays(); // 这段时间的总小时
+        long minutes = duration.toDays(); // 这段时间的总分钟数
+        long seconds = duration.toDays(); // 这段时间的总秒数
+        long milliSeconds = duration.toDays(); // 这段时间的总毫秒数
+        long nanoSeconds = duration.toDays(); // 这段时间的总纳秒数
     }
 
 
