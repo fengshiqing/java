@@ -3,6 +3,7 @@ package com.kunning.SpringBoot.utils;
 import com.kunning.springboot.utils.DateTimeUtil;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.TimeZone;
 
 class DateTimeUtilTest {
@@ -118,7 +119,6 @@ class DateTimeUtilTest {
         System.out.println("【获取当前日期：】" + DateTimeUtil.getCurrentDate());
     }
 
-
     @Test
     void getCurrentTime() {
         System.out.println("【获取当前时间：】" + DateTimeUtil.getCurrentTime());
@@ -139,4 +139,13 @@ class DateTimeUtilTest {
         DateTimeUtil.isLeapYear(1234);
     }
 
+    @Test
+    void aaa() {
+        LocalDateTime localDateTime = LocalDateTime.of(2019, 3, 30, 18, 30, 30);
+        System.out.println("【当月第一天是今年的第几天（闰年）：】" + localDateTime.getMonth().firstDayOfYear(true)); // 当月第一天是今年的第几天
+        System.out.println("【当月第一天是今年的第几天（平年）：】" + localDateTime.getMonth().firstDayOfYear(false));
+        System.out.println("【当天是今年的第几天：】" + localDateTime.getDayOfYear()); // 当月第一天是今年的第几天
+        System.out.println("【当天是周几（英文）：】" + localDateTime.getDayOfWeek());
+        System.out.println("【当天是周几（数字）：】" + localDateTime.getDayOfWeek().getValue());
+    }
 }

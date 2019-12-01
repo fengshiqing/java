@@ -48,7 +48,7 @@ public class DateTimeUtil {
         // 再转换为时间
         Date date = null;
         try {
-            date = SDF_4.parse(strDate);
+            date = SDF_3.parse(strDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
