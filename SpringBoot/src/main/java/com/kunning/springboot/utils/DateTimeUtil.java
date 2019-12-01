@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -362,37 +359,9 @@ public class DateTimeUtil {
     }
 
     /**
-     * 两个时间之间的天数
-     */
-    public static long getDays(String date1, String date2) {
-        Objects.requireNonNull(date1, "参数【date1】不能为null");
-        Objects.requireNonNull(date2, "参数【date2】不能为null");
-
-        // 转换为标准时间
-        Date date = null;
-        Date mydate = null;
-        try {
-            date = SDF_4.parse(date1);
-            mydate = SDF_4.parse(date2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        long day = 0;
-        if (date.before(mydate)) {
-            day = (mydate.getTime() - date.getTime()) / (24 * 60 * 60 * 1000);
-        } else {
-            day = (date.getTime() - mydate.getTime()) / (24 * 60 * 60 * 1000);
-        }
-        return day;
-    }
-
-    /**
      *
      */
     public static void main(String[] args) {
-        System.out.println("/*--------------------------两个时间之间的天数--------------------------*/");
-        System.out.println("两个时间之间的天数1  :   " + getDays("2012-05-10", "2012-05-15"));
-        System.out.println("两个时间之间的天数2  :   " + getDays("2012-06-10", "2012-05-15"));
         System.out.println("/*--------------------------获得上年第一天的日期--------------------------*/");
         System.out.println("获得上年第一天的日期  :   " + getFirstDayOfPreviousYear());
         System.out.println("/*--------------------------获得本年最后一天的日期--------------------------*/");
@@ -443,7 +412,56 @@ public class DateTimeUtil {
     // 这个讲解的很不错：https://www.toutiao.com/i6736371516507685390/
 
     /**
-     * 功能描述：获取默认格式的的当前日期时间
+     * 功能描述：获取默认格式"yyyy-MM-dd"的当前日期。
+     *
+     * @return 指定格式的当前日期
+     */
+    public static String getCurrentDate() {
+        return DateTimeUtil.getCurrentDate(FORMAT.fromat_3);
+    }
+
+    /**
+     * 功能描述：获取特定格式的当前日期
+     *
+     * @param pattern 日期的格式
+     *
+     * @return 指定格式的当前日期
+     */
+    public static String getCurrentDate(String pattern) {
+        Objects.requireNonNull(pattern, "参数【pattern】不能为null");
+        LocalDate localDate = LocalDate.now(); // 默认的日期时间格式为："2019-11-24"
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+        return localDate.format(dateTimeFormatter);
+    }
+
+    /**
+     * 功能描述：获取默认格式"HH:mm:ss"的当前时间
+     *
+     * @return 默认格式的当前时间
+     */
+    public static String getCurrentTime() {
+        return DateTimeUtil.getCurrentTime(FORMAT.fromat_4);
+    }
+
+    /**
+     * 功能描述：获取特定格式的当前时间
+     *
+     * @param pattern 时间的格式
+     *
+     * @return 指定格式的当前时间
+     */
+    public static String getCurrentTime(String pattern) {
+        Objects.requireNonNull(pattern, "参数【pattern】不能为null");
+        LocalTime localTime = LocalTime.now(); // 默认的日期时间格式为：18:19:13.778
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+        return localTime.format(dateTimeFormatter);
+    }
+
+
+    /**
+     * 功能描述：获取默认格式"yyyy-MM-dd HH:mm:ss"的的当前日期时间
+     *
+     * @return 默认格式的当前日期时间
      */
     public static String getCurrentDateTime() {
         return getCurrentDateTime(FORMAT.fromat_1);
@@ -453,6 +471,7 @@ public class DateTimeUtil {
      * 功能描述：获取特定格式的当前日期时间
      *
      * @param pattern 日期时间的格式
+     *
      * @return 指定格式的当前日期时间
      */
     public static String getCurrentDateTime(String pattern) {
@@ -462,69 +481,36 @@ public class DateTimeUtil {
         return localDateTime.format(dateTimeFormatter);
     }
 
-
     /**
-     * 功能描述：获取特定格式的当前日期时间
+     * 功能描述：获取两个时间点的差值。
      *
-     * @param pattern 日期的格式
-     * @return 指定格式的当前日期
-     */
-    public static String getCurrentDate(String pattern) {
-        Objects.requireNonNull(pattern, "参数【pattern】不能为null");
-        LocalDate localDate = LocalDate.now(); // 默认的日期时间格式为：2019-11-24T10:40:13.778
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
-        return localDate.format(dateTimeFormatter);
-    }
-
-
-    /**
-     * 功能描述：获取特定格式的当前时间
+     * @param start 开始时间，格式："2019-11-24"
+     * @param end   结束时间，格式："2019-11-25"
      *
-     * @param pattern 时间的格式
-     * @return 指定格式的当前时间
+     * @return 时间差
      */
-    public static String getCurrentTime(String pattern) {
-        Objects.requireNonNull(pattern, "参数【pattern】不能为null");
-        LocalTime localTime = LocalTime.now(); // 默认的日期时间格式为：2019-11-24T10:40:13.778
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
-        return localTime.format(dateTimeFormatter);
+    // https://blog.csdn.net/neweastsun/article/details/88770592
+    public static long dateInterval(String start, String end) throws Exception {
+        LocalDate from = LocalDate.parse(start, DateTimeFormatter.ISO_LOCAL_DATE); // 格式化日期
+        LocalDate to = LocalDate.parse(end, DateTimeFormatter.ISO_LOCAL_DATE); // 格式化日期
+        Period period = Period.between(from, to);
+        if (period.isNegative()) {
+            LOGGER.error("【开始时间不能大于结束时间】");
+            throw new Exception("【开始时间不能大于结束时间】");
+        }
+        // Duration duration = Duration.between(from, to);
+        System.out.println("【差值/年：】" + period.getYears());
+        System.out.println("【差值/月：】" + period.getMonths());
+        System.out.println("【差值/日：】" + period.getDays());
+        return period.getDays();
     }
-
-    /**
-     * 功能描述：格式化日期时间
-     */
-    public static String formatDateTime(String pattern) {
-        Objects.requireNonNull(pattern, "参数【pattern】不能为null");
-        LocalDateTime localDateTime = LocalDateTime.now(); // 默认的日期时间格式为：2019-11-24T10:40:13.778
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
-        return localDateTime.format(dateTimeFormatter);
-    }
-
-    public static void parseDateTime() {
-        LocalDate dateTime1 = LocalDate.parse("20191124", DateTimeFormatter.BASIC_ISO_DATE);
-        LocalDate dateTime2 = LocalDate.parse("2019-11-24", DateTimeFormatter.ISO_LOCAL_DATE);
-        System.out.println(dateTime1);
-        System.out.println(dateTime2);
-    }
-
-    public void aaa() {
-        LocalDateTime from = LocalDateTime.of(2017, 1, 1, 0,0,0);
-        LocalDateTime to = LocalDateTime.of(2019, 7, 1, 0,0,0);
-        Duration duration = Duration.between(from, to);
-        long days = duration.toDays(); // 这段时间的总天数
-        long hours = duration.toDays(); // 这段时间的总小时
-        long minutes = duration.toDays(); // 这段时间的总分钟数
-        long seconds = duration.toDays(); // 这段时间的总秒数
-        long milliSeconds = duration.toDays(); // 这段时间的总毫秒数
-        long nanoSeconds = duration.toDays(); // 这段时间的总纳秒数
-    }
-
 
     /**
      * 功能描述：判断是否闰年
      *
      * @param year 年份
-     * @return boolean
+     *
+     * @return true闰年，false平年
      */
     public static boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);

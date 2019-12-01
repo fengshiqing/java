@@ -2,10 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <!-- modelVersion是4.0.0，这是当前仅有的可以被Maven2&3同时支持的POM版本，是必须的 -->
     <modelVersion>4.0.0</modelVersion>
 
+
+    <!-- 所有的 springboot 项目都要有这个父项目 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -13,30 +14,33 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
     <groupId>com.kunning</groupId>
     <artifactId>SpringBoot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SpringBoot</name>
     <description>Demo project for Spring Boot</description>
 
+
     <properties>
         <java.version>1.8</java.version>
         <tomcat.version>8.5.40</tomcat.version><!-- 自定义Tomcat版本 -->
     </properties>
 
+
     <dependencies>
-        <!-- 整合 ActiveMQ -->
+        <!-- 引入 ActiveMQ starter 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
 
-        <!-- redis -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-redis</artifactId>-->
-<!--        </dependency>-->
-        <!--可以看出两个包并没有区别，但是当springBoot的版本为1.4.7 以上的时候，spring-boot-starter-redis 就空了。
+        <!-- 引入 redis starter 依赖 -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-redis</artifactId>-->
+        <!--        </dependency>-->
+        <!--可以看出两个包并没有区别，但是当springBoot的版本为1.4.7 以上时，spring-boot-starter-redis 就空了。
         要想引入redis就只能选择有data的。-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -177,6 +181,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <plugins>
             <plugin>
@@ -185,5 +190,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

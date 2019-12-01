@@ -95,11 +95,6 @@ class DateTimeUtilTest {
     }
 
     @Test
-    void isLeapYear() {
-        DateTimeUtil.isLeapYear(1234);
-    }
-
-    @Test
     void getFirstDayOfThisYear() {
     }
 
@@ -116,16 +111,32 @@ class DateTimeUtilTest {
     void getDays() {
     }
 
+    // =====================================================java8=====================================================
+
     @Test
-    void parseDateTime() {
-        DateTimeUtil.parseDateTime();
+    void getCurrentDate() {
+        System.out.println("【获取当前日期：】" + DateTimeUtil.getCurrentDate());
     }
 
 
+    @Test
+    void getCurrentTime() {
+        System.out.println("【获取当前时间：】" + DateTimeUtil.getCurrentTime());
+    }
 
     @Test
     void getCurrentDateTime() {
-        DateTimeUtil.getCurrentDateTime(null);
+        System.out.println("【获取当前日期时间：】" + DateTimeUtil.getCurrentDateTime());
+    }
+
+    @Test
+    void timeInterval() throws Exception {
+        System.out.println("【时间差/天】" + DateTimeUtil.dateInterval("2019-11-11", "2019-11-02"));
+    }
+
+    @Test
+    void isLeapYear() {
+        DateTimeUtil.isLeapYear(1234);
     }
 
 }
