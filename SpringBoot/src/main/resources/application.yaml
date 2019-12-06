@@ -1,7 +1,7 @@
 # springboot 整合 ActiveMQ
 spring:
   activemq:
-    broker-url: tcp://192.168.124.11:61616
+    broker-url: tcp://192.168.1.100:61616
     user: admin
     password: admin
   jms:

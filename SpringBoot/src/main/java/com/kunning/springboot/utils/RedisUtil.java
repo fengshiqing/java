@@ -34,7 +34,7 @@ public class RedisUtil {
     private static final String LOCK_PREFIX = "";
     private static final long LOCK_EXPIRE = 1000L;
 
-    private static final String REDIS_HOST = "192.168.124.11";
+    private static final String REDIS_HOST = "192.168.1.100";
 
     /**
      * 功能描述：简单连接redis
@@ -45,7 +45,7 @@ public class RedisUtil {
     public static void main(String[] args) {
         //连接 Redis 服务
         Jedis jedis = new Jedis(REDIS_HOST);// 默认端口号：6379
-//        Jedis jedis = new Jedis("192.168.124.11", 6379);
+//        Jedis jedis = new Jedis("192.168.1.100", 6379);
         System.out.println("【isConnected：此时是false】" + jedis.isConnected());
         //查看服务是否运行
         String pingResult = jedis.ping();

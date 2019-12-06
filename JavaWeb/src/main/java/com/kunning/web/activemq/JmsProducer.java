@@ -9,7 +9,7 @@ public class JmsProducer {
     /**
      * ActiveMQ的管理台地址
      */
-    private static final String ACTIVEMQ_URL = "tcp://192.168.124.16:61616";
+    private static final String ACTIVEMQ_URL = "tcp://192.168.1.100:61616";
 
     /**
      * 队列名

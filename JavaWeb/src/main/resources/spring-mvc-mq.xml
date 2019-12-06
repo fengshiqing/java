@@ -16,7 +16,7 @@
         <property name="connectionFactory">
             <!-- 真正可以产生 Connection 的 Factory，由对应的 JMS 服务厂商提供 -->
             <bean class="org.apache.activemq.ActiveMQConnectionFactory"><!-- ActiveMQConnectionFactory 这个就是我们单独整合MQ时用到的。 -->
-                <property name="brokerURL" value="tcp://192.168.124.16:61616"/>
+                <property name="brokerURL" value="tcp://192.168.1.100:61616"/>
             </bean>
         </property>
         <property name="maxConnections" value="100"/><!-- 最大连接数 -->
