@@ -1,5 +1,7 @@
 package com.kunning.springboot.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -24,6 +26,11 @@ import java.util.concurrent.TimeUnit;
  * @since 2019年10月1日 20点07分
  */
 public class RedisUtil {
+
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisUtil.class);
 
     /**
      * redisTemplate
