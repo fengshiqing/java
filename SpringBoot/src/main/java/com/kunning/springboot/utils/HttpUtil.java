@@ -19,7 +19,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
- * Httpgongjulei
+ * 功能描述：Http工具类。
+ *
+ * @author 冯仕清
  */
 public class HttpUtil {
 
