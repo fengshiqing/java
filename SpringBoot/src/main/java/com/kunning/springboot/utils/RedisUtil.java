@@ -55,6 +55,7 @@ public class RedisUtil {
         //连接 Redis 服务
         Jedis jedis = new Jedis(REDIS_HOST);// 默认端口号：6379
 //        Jedis jedis = new Jedis("192.168.1.100", 6379);
+        jedis.auth("feng234800");
         System.out.println("【isConnected：此时是false】" + jedis.isConnected());
         //查看服务是否运行
         String pingResult = jedis.ping();
