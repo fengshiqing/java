@@ -1,9 +1,6 @@
-package com.kunning.SpringBoot.utils;
+package com.kunning.springboot.utils;
 
-import com.kunning.springboot.utils.SendEmail;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SendEmailTest {
 

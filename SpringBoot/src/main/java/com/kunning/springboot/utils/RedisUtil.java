@@ -36,9 +36,11 @@ public class RedisUtil {
      * redisTemplate
      */
     @Autowired
-    private RedisTemplate redisTemplate;
+    private static RedisTemplate redisTemplate;
 
-    private static final String LOCK_PREFIX = "";
+    /**
+     * 过期时间
+     */
     private static final long LOCK_EXPIRE = 1000L;
 
     private static final String REDIS_HOST = "192.168.1.100";
@@ -63,7 +65,9 @@ public class RedisUtil {
         System.out.println("【isConnected：执行过命令就变成true了】" + jedis.isConnected());
         jedis.close();
         System.out.println("【isConnected：close后就变成false】" + jedis.isConnected());
-
+        LOGGER.info("【连接redis】");
+        RedisUtil.set("hello1", "123");
+        System.out.println(jedis.get("hello1"));
         // 关于这个 isConnected，可以看这个：https://blog.csdn.net/u013013102/article/details/52168422
     }
 
@@ -87,7 +91,7 @@ public class RedisUtil {
 
 
 
-    public void set(String key, String value) {
+    public static void set(String key, String value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
@@ -106,7 +110,7 @@ public class RedisUtil {
      * @return 是否获取到
      */
     public boolean lock(String key) {
-        String lock = LOCK_PREFIX + key;
+        String lock = key;
         // 利用lambda表达式
         return (Boolean) redisTemplate.execute(new RedisCallback<Object>() {
             @Override

@@ -1,6 +1,5 @@
-package com.kunning.SpringBoot.utils;
+package com.kunning.springboot.utils;
 
-import com.kunning.springboot.utils.DateTimeUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
@@ -139,7 +138,7 @@ class DateTimeUtilTest {
 
     @Test
     void isLeapYear() {
-        DateTimeUtil.isLeapYear(1234);
+        System.out.println("【是否是闰年：】" + DateTimeUtil.isLeapYear(1234));
     }
 
     @Test
