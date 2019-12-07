@@ -17,7 +17,6 @@ class PrintNum implements Runnable {
 					try {
 						Thread.currentThread().sleep(10);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					System.out.println(Thread.currentThread().getName() + ":"
@@ -30,7 +29,6 @@ class PrintNum implements Runnable {
 				try {
 					obj.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

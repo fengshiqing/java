@@ -15,7 +15,6 @@ public class TestDeadLock {
 					try {
 						Thread.currentThread().sleep(10);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					sb1.append("A");
@@ -35,7 +34,6 @@ public class TestDeadLock {
 					try {
 						Thread.currentThread().sleep(10);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					sb1.append("C");
