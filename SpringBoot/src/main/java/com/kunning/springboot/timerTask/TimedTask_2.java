@@ -4,6 +4,7 @@ import com.kunning.springboot.service.CronService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.*;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
@@ -26,6 +27,12 @@ public class TimedTask_2 implements SchedulingConfigurer {
 
     private final CronService cronService; // 可以从数据库获取cron表达式。
 
+    /**
+     * 从配置文件中读取配置项
+     */
+    @Value("${myqueue}")
+    private String cron;
+
     @Autowired
     public TimedTask_2(CronService cronService) {
         this.cronService = cronService;
@@ -45,12 +52,9 @@ public class TimedTask_2 implements SchedulingConfigurer {
                 () -> LOGGER.info("【执行动态定时任务】"),
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
-                    String cron = cronService.queryCron(); // 2.1可以从数据可中获取执行周期，这样就可以动态的改变定时任务的执行周期
-                    if (StringUtils.isEmpty(cron)) { // 2.2 合法性校验
-                        LOGGER.info("【Cron表达式为空】");
-                        return null;
-                    }
-                    return new CronTrigger(cron).nextExecutionTime(triggerContext); // 2.3 返回执行周期(Date)
+                    String cron = cronService.queryCron(); // 可以从数据库、配置项中获取执行周期，这样就可以动态的改变定时任务的执行周期
+                    LOGGER.info("【Cron表达式为：】", cron);
+                    return new CronTrigger(cron).nextExecutionTime(triggerContext); // 返回执行周期(Date)
                 }
         );
     }

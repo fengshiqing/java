@@ -13,7 +13,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -47,15 +47,14 @@ public class CipherUtil {
 
     public static String encrypt(String dataStr, String slat) {
         try {
-            dataStr = dataStr + slat;
             MessageDigest m = MessageDigest.getInstance("MD5");
-            m.update(dataStr.getBytes("UTF8"));
-            byte byteArr[] = m.digest();
-            String result = "";
-            for (int i = 0; i < byteArr.length; i++) {
-                result += Integer.toHexString((0x000000FF & byteArr[i]) | 0xFFFFFF00).substring(6);
+            m.update((dataStr + slat).getBytes(StandardCharsets.UTF_8));
+            byte[] byteArr = m.digest();
+            StringBuilder result = new StringBuilder();
+            for (byte b : byteArr) {
+                result.append(Integer.toHexString((0x000000FF & b) | 0xFFFFFF00).substring(6));
             }
-            return result;
+            return result.toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,12 +86,12 @@ public class CipherUtil {
 
         // 2、Apache.Commons。Codec有提供Base64的编码与解码功能，会使用到org.apache.commons.codec.binary套件下的Base64类别，用法如下：
         final Base64 base64 = new Base64();
-        final byte[] textByte = text.getBytes("UTF-8");
+        final byte[] textByte = text.getBytes(StandardCharsets.UTF_8);
         //编码
         final String encodedText2 = base64.encodeToString(textByte);
         System.out.println("【base64编码后的值：】" + encodedText2);
         //解码
-        System.out.println("【base64解码后的值：】" + new String(base64.decode(encodedText2), "UTF-8"));
+        System.out.println("【base64解码后的值：】" + new String(base64.decode(encodedText2), StandardCharsets.UTF_8));
 
         // 以上的代码看起来又比早期用sun.mis c套件还要更精简，效能实际执行起来也快了不少。
         // 缺点是需要引用 Apache.Commons.Codec，相对有点麻烦
@@ -102,10 +101,10 @@ public class CipherUtil {
         java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();
 
         //编码
-        final String encodedText3 = encoder.encodeToString(text.getBytes("UTF-8"));
+        final String encodedText3 = encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8));
         System.out.println(encodedText3);
         //解码
-        System.out.println(new String(decoder.decode(encodedText3), "UTF-8"));
+        System.out.println(new String(decoder.decode(encodedText3), StandardCharsets.UTF_8));
 
         // 与sun.misc套件和Apache Commons Codec所提供的Base64编解码器来比较的话，Java 8提供的Base64拥有更好的效能。
         // 实际测试编码与解码速度的话，Java 8提供的Base64，要比sun.mis c套件提供的还要快至少11倍，比Apache Commons Codec提供的还要快至少3倍。
@@ -122,13 +121,12 @@ public class CipherUtil {
      *
      * @param plaintext 明文
      * @param secretKey 密钥
-     * @param iv        向量
      *
      * @return 加密后的字符串
      *
      * @throws Exception 异常
      */
-    public static String Encrypt(String plaintext, String secretKey, String iv) throws Exception {
+    public static String Encrypt(String plaintext, String secretKey) throws Exception {
 
         // 参考：https://blog.csdn.net/TangHao_0226/article/details/80264572
 
@@ -157,11 +155,10 @@ public class CipherUtil {
      *
      * @param ciphertext 密文
      * @param secretKey  密钥
-     * @param iv         向量
      *
      * @return 解密后的字符串
      */
-    public static String Decrypt(String ciphertext, String secretKey, String iv) {
+    public static String Decrypt(String ciphertext, String secretKey) {
         try {
             // 判断Key是否正确
             if (secretKey == null) {

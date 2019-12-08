@@ -21,6 +21,7 @@ public class TimedTask_1 {
     private static final Logger LOGGER = LoggerFactory.getLogger(TimedTask_1.class);
 
     @Scheduled(cron="0/3 * * * * ?")
+//    @Scheduled(fixedRate = 3000) // 这两种是一个作用
     public void schedule_1() {
         LOGGER.info("【定时任务1】");
     }
