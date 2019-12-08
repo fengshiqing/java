@@ -5,22 +5,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-public class UploadTask extends QuartzJobBean {
+public class QuartzTask extends QuartzJobBean {
 
     /**
      * 日志
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(UploadTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuartzTask.class);
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) {
-        LOGGER.info("【任务开始】");
+        LOGGER.info("【Quartz任务开始】");
         try {
-            Thread.sleep(6000);
+            Thread.sleep(60000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        LOGGER.info("【任务结束】");
+        LOGGER.info("【Quartz任务结束】");
     }
 
 }

@@ -3,7 +3,6 @@ package com.kunning.springboot.timerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @EnableScheduling // 开启定时任务
-@EnableAsync // 允许多线程的运行定时任务
 public class TimedTask_1 {
 
     /**
@@ -22,25 +20,25 @@ public class TimedTask_1 {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(TimedTask_1.class);
 
-    @Scheduled(cron="0 0/5 * * * ?")
+    @Scheduled(cron="0/3 * * * * ?")
     public void schedule_1() {
         LOGGER.info("【定时任务1】");
     }
 
-    @Scheduled(cron="0 0/5 * * * ?")
+    @Scheduled(cron="0/3 * * * * ?")
     public void schedule_2() {
         LOGGER.info("【定时任务2】");
     }
 
     // 多线程定时任务
     @Async
-    @Scheduled(cron="0 0/5 * * * ?")
+    @Scheduled(cron="0/3 * * * * ?")
     public void schedule_3() {
         LOGGER.info("【定时任务3】");
     }
 
     @Async
-    @Scheduled(cron="0 0/5 * * * ?")
+    @Scheduled(cron="0/3 * * * * ?")
     public void schedule_4() {
         LOGGER.info("【定时任务4】");
     }

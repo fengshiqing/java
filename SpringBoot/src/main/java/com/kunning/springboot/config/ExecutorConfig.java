@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author 冯仕清
  * @since 2019/12/08 19:09
  */
+// https://blog.csdn.net/qq_39385706/article/details/79365849
 @Configuration
 @EnableAsync
 public class ExecutorConfig {
@@ -27,20 +28,27 @@ public class ExecutorConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExecutorConfig.class);
 
     /**
+     * 构造函数
+     */
+    public ExecutorConfig() {
+        LOGGER.info("【初始化 线程池 配置】");
+    }
+
+    /**
      * 功能描述：配置异步线程池
      *
      * @return 线程池
      */
     @Bean
     public Executor asyncServiceExecutor() {
-        LOGGER.info("【配置异步线程池】【start】");
+        LOGGER.info("【配置线程池】【start】");
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(10); // 配置核心线程数
         executor.setMaxPoolSize(20); // 配置最大线程数
         executor.setKeepAliveSeconds(60); //
         executor.setQueueCapacity(999); // 配置队列大小
-        executor.setThreadNamePrefix("async-pool-"); // 配置线程池中的线程的名称前缀
+        executor.setThreadNamePrefix("Async-Pool-"); // 配置线程池中的线程的名称前缀
 
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
@@ -48,7 +56,7 @@ public class ExecutorConfig {
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.initialize(); // 执行初始化
 
-        LOGGER.info("【配置异步线程池】【end】");
+        LOGGER.info("【配置线程池】【end】");
         return executor;
     }
 
