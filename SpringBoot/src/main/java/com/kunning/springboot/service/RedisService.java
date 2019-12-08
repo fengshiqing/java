@@ -11,9 +11,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 功能描述：redis服务类
+ *
+ * @author 冯仕清
+ * @since 2019年10月01日
+ */
 @Service
 public class RedisService {
 
+    /**
+     * 日志
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
 
     @Autowired
