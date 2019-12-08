@@ -1,5 +1,8 @@
 package com.kunning.springboot.activemq.producer;
 
+import com.kunning.springboot.config.ExecutorConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,6 +17,11 @@ import java.util.UUID;
 @Component
 public class Queue_Producer {
 
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(Queue_Producer.class);
+
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
 
@@ -25,11 +33,11 @@ public class Queue_Producer {
     }
 
     /**
-     * 间隔3s定时投送消息
+     * 间隔30s定时投送消息
      */
-    @Scheduled(fixedDelay = 3000)
+    @Scheduled(fixedDelay = 30000)
     public void produceMsgScheduled() {
         jmsMessagingTemplate.convertAndSend(queue, "【【【Scheduled】" + UUID.randomUUID().toString().substring(0, 6));
-        System.out.println("【定时发送消息成功】");
+        LOGGER.info("【定时发送消息成功】");
     }
 }
