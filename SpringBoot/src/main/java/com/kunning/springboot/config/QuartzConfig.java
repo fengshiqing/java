@@ -7,6 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 功能描述：配置 Quartz。
+ *
+ * @author 冯仕清
+ * @since 2019/12/10
+ */
 @Configuration
 public class QuartzConfig {
 

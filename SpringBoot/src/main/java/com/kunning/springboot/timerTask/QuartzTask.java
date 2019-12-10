@@ -5,6 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+/**
+ * 功能描述：Quartz 定时任务。
+ *
+ * @author 冯仕清
+ * @since 2019/12/10
+ */
 public class QuartzTask extends QuartzJobBean {
 
     /**
@@ -15,12 +21,22 @@ public class QuartzTask extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) {
         LOGGER.info("【Quartz任务开始】");
+
+        LOGGER.info("【当前任务时间：】{}", jobExecutionContext.getFireTime().toString());
+        LOGGER.info("【下次任务时间：】{}", jobExecutionContext.getNextFireTime().toString());
+        LOGGER.info("【前一次任务时间：】{}", jobExecutionContext.getPreviousFireTime().toString());
+        System.out.println();;
         try {
             Thread.sleep(60000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         LOGGER.info("【Quartz任务结束】");
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
