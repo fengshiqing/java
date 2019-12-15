@@ -18,7 +18,7 @@ import com.kunning.web.pojo.User;
 public class HelloController {
 
 	/**
-	 * <日志>
+	 * 日志
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
