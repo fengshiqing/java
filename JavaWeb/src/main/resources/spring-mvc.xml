@@ -18,10 +18,10 @@
 
     <!-- 自动扫描该包，SpringMVC会将包下用了@controller、@Component等注解的类加入到IoC容器中。 -->
     <context:component-scan base-package="com.itheima"/>
-    <context:component-scan base-package="com.kunning.controller"/>
-    <context:component-scan base-package="com.kunning.globalhandler"/>
-    <context:component-scan base-package="com.kunning.service"/>
-    <context:component-scan base-package="com.kunning.timerTask"/>
+    <context:component-scan base-package="com.kunning.web.controller"/>
+    <context:component-scan base-package="com.kunning.web.globalhandler"/>
+    <context:component-scan base-package="com.kunning.web.service"/>
+    <context:component-scan base-package="com.kunning.web.timerTask"/>
 
     <!-- 定时任务 -->
     <task:annotation-driven/>
@@ -81,7 +81,7 @@
 
     <!-- Dao层接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.kunning.dao"/><!-- 自动扫描包下的dao类 -->
+        <property name="basePackage" value="com.kunning.web.dao"/><!-- 自动扫描包下的dao类 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
@@ -92,7 +92,8 @@
         <!-- <constructor-arg ref="dataSource" /> --><!-- 这种方式也行 -->
     </bean>
     <!--支持事务注解 -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+<!--    <tx:annotation-driven transaction-manager="transactionManager"/>--><!-- 默认属性的名字就是“transactionManager”，只有不是“transactionManager”时，才需要配置 -->
+    <tx:annotation-driven/>
 
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
@@ -128,7 +129,7 @@ MultipartResolver 的实现类有两个：
 
 
     <!-- quartz定时任务 job -->
-    <bean id="quartz_1" class="com.kunning.javaWeb.timerTask.Quartz_1"/>
+    <bean id="quartz_1" class="com.kunning.web.timerTask.Quartz_1"/>
     <!-- 使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法-->
     <!-- jobDetail -->
     <bean id="job_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
