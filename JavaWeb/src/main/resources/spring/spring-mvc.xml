@@ -5,16 +5,11 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-						http://www.springframework.org/schema/context
-						http://www.springframework.org/schema/context/spring-context-3.1.xsd
-						http://www.springframework.org/schema/mvc
-						http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-						http://www.springframework.org/schema/tx
-						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-                        http://www.springframework.org/schema/task
-                        http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+						   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+                           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
     <!-- 自动扫描该包，SpringMVC会将包下用了@controller、@Component等注解的类加入到IoC容器中。 -->
     <context:component-scan base-package="com.itheima"/>
@@ -70,7 +65,7 @@
         <property name="dataSource" ref="dataSource"/><!-- SqlSessionFactory 需要一个 DataSource(数据源)，可以是任意的 DataSource。 -->
         <!--property name="configLocation" value="classpath:conf/mybatis.xml" /--><!-- 可以添加mybatis配置文件 -->
         <!-- 从类路径下加载 sqlMap 包及其子包下所有的映射器 XML文件 -->
-        <property name="mapperLocations" value="classpath:sqlMap/*.xml"/><!-- 有多个包的话可以用英文逗号分隔开 -->
+        <property name="mapperLocations" value="classpath:sqlMap/UserSqlMap.xml"/><!-- 有多个包的话可以用英文逗号分隔开 -->
         <!-- property name="mapperLocations">自动扫描多个目录下的映射XML文件可以这么写
             <list>
                 <value>classpath*:conf/sqlMap/sqlMap_*.xml</value>
@@ -92,7 +87,7 @@
         <!-- <constructor-arg ref="dataSource" /> --><!-- 这种方式也行 -->
     </bean>
     <!--支持事务注解 -->
-<!--    <tx:annotation-driven transaction-manager="transactionManager"/>--><!-- 默认属性的名字就是“transactionManager”，只有不是“transactionManager”时，才需要配置 -->
+    <!--    <tx:annotation-driven transaction-manager="transactionManager"/>--><!-- 默认属性的名字就是“transactionManager”，只有不是“transactionManager”时，才需要配置 -->
     <tx:annotation-driven/>
 
 
