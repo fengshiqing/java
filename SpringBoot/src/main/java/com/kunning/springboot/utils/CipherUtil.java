@@ -19,6 +19,9 @@ import java.security.MessageDigest;
 /**
  * 功能简述：密码工具类。
  * MD5摘要、Base64编码。
+ *
+ * @author 冯仕清
+ * @since 2019/12/19
  */
 public class CipherUtil {
 
@@ -70,42 +73,31 @@ public class CipherUtil {
      * @param plaintext 明文
      */
     public void base64(String plaintext) throws IOException {
-
         // 参考：https://www.cnblogs.com/alter888/p/9140732.html
+        String text = "字串文字";
 
         // 1、早期在Java上做Base64的编码与解码，会使用到JDK里sun.misc套件下的BASE64Encoder和BASE64Decoder两个类，用法如下：
-        String text = "字串文字";
-        //编码
-        String encodedText = new BASE64Encoder().encode(text.getBytes());
+        String encodedText = new BASE64Encoder().encode(text.getBytes()); // 编码
         System.out.println("【base64编码后的值：】" + encodedText);
-        //解码
-        System.out.println("【base64解码后的值：】" + new String(new BASE64Decoder().decodeBuffer(encodedText)));
-
+        System.out.println("【base64解码后的值：】" + new String(new BASE64Decoder().decodeBuffer(encodedText))); // 解码
         // 从以上代码可以发现，在Java用Base64一点都不难，几行代码就解决了！
         // 只是这个 sun.misc 套件所提供的Base64功能，编码和解码的效率不太好，而且在以后的Java版本可能就不被支持了，所以完全不建议使用。
 
         // 2、Apache.Commons。Codec有提供Base64的编码与解码功能，会使用到org.apache.commons.codec.binary套件下的Base64类别，用法如下：
         final Base64 base64 = new Base64();
-        final byte[] textByte = text.getBytes(StandardCharsets.UTF_8);
-        //编码
-        final String encodedText2 = base64.encodeToString(textByte);
-        System.out.println("【base64编码后的值：】" + encodedText2);
-        //解码
-        System.out.println("【base64解码后的值：】" + new String(base64.decode(encodedText2), StandardCharsets.UTF_8));
 
+        final String encodedText2 = base64.encodeToString(text.getBytes(StandardCharsets.UTF_8)); // 编码
+        System.out.println("【base64编码后的值：】" + encodedText2);
+        System.out.println("【base64解码后的值：】" + new String(base64.decode(encodedText2), StandardCharsets.UTF_8)); // 解码
         // 以上的代码看起来又比早期用sun.mis c套件还要更精简，效能实际执行起来也快了不少。
         // 缺点是需要引用 Apache.Commons.Codec，相对有点麻烦
 
         // 3、Java 8的java.util套件中，新增了Base64的类别，可以用来处理Base64的编码与解码，用法如下：
-        java.util.Base64.Decoder decoder = java.util.Base64.getDecoder();
         java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();
-
-        //编码
-        final String encodedText3 = encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8));
+        java.util.Base64.Decoder decoder = java.util.Base64.getDecoder();
+        final String encodedText3 = encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8)); // 编码
         System.out.println(encodedText3);
-        //解码
-        System.out.println(new String(decoder.decode(encodedText3), StandardCharsets.UTF_8));
-
+        System.out.println(new String(decoder.decode(encodedText3), StandardCharsets.UTF_8)); // 解码
         // 与sun.misc套件和Apache Commons Codec所提供的Base64编解码器来比较的话，Java 8提供的Base64拥有更好的效能。
         // 实际测试编码与解码速度的话，Java 8提供的Base64，要比sun.mis c套件提供的还要快至少11倍，比Apache Commons Codec提供的还要快至少3倍。
         // 因此在Java上若要使用Base64，这个Java 8底下的java .util套件所提供的Base64类别绝对是首选！
