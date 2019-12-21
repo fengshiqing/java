@@ -25,17 +25,10 @@ public class SwaggerController {
 	}
 
 	@ApiOperation(value = "接口文档2", notes = "note信息2")
-	@PostMapping(value = "/接口2路径")
+	@RequestMapping(value = "/接口2路径", method = {RequestMethod.GET, RequestMethod.POST})
 	public String hello222() {
 		LOGGER.info("【hello】【开始执行】");
 		return "Hello World111!";
-	}
-
-	@ApiOperation(value = "接口文档3", notes = "note信息3")
-	@RequestMapping(value = "/uploadStatus", method = {RequestMethod.GET, RequestMethod.POST})
-	public String hello333() {
-		LOGGER.info("【hello】【开始执行】");
-		return "uploadStatus";
 	}
 
 }
