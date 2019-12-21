@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kunning.springboot.dao.UserMapper;
+import com.kunning.springboot.dao.UserDao;
 import com.kunning.springboot.pojo.User;
 
 @Service("userService")
@@ -20,7 +20,7 @@ public class UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserDao userMapper;
 
 	public List<User> queryAllUser() {
 		LOGGER.info("【queryAllUser】【开始执行】");

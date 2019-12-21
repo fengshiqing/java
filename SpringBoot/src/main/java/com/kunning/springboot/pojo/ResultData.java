@@ -1,41 +1,29 @@
 package com.kunning.springboot.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
 public class ResultData<T> {
 
+    @Getter
+    @Setter
+    private int code = 200;
+
+    @Getter
+    @Setter
+    private String msg = "成功";
+
+    @Getter
+    @Setter
     private T data;
 
-    private int code =200;
+    public ResultData() {
+    }
 
-    private String msg;
 
-    private Boolean success = true;
-    public Boolean getSuccess() {
-        return success;
-    }
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-    public T getData() {
-        return data;
-    }
-    public void setData(T data) {
+    public ResultData(T data) {
         this.data = data;
     }
-    public int getCode() {
-
-        return code;
-    }
-    public void setCode(int code) {
-        if(200 != code){
-            success = false;
-        }
-        this.code = code;
-    }
-    public String getMsg() {
-        return msg;
-    }
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
 }
