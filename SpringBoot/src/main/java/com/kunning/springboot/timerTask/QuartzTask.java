@@ -24,7 +24,7 @@ public class QuartzTask extends QuartzJobBean {
 
         LOGGER.info("【当前任务时间：】{}", jobExecutionContext.getFireTime().toString());
         LOGGER.info("【下次任务时间：】{}", jobExecutionContext.getNextFireTime().toString());
-        LOGGER.info("【前一次任务时间：】{}", jobExecutionContext.getPreviousFireTime().toString());
+//        LOGGER.info("【前一次任务时间：】{}", jobExecutionContext.getPreviousFireTime().toString());
         try {
             Thread.sleep(60000);
         } catch (InterruptedException e) {
