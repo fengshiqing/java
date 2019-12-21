@@ -26,6 +26,12 @@ import java.util.*;
 public class HttpUtil {
 
     /**
+     * 私有化构造函数
+     */
+    private HttpUtil() {
+    }
+
+    /**
      * 功能描述：GET请求
      *
      * @param httpUrl 请求地址，不负责拼接参数

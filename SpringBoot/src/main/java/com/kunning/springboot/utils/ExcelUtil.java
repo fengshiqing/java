@@ -33,6 +33,12 @@ public class ExcelUtil<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
 
     /**
+     * 私有化构造函数
+     */
+    private ExcelUtil(){
+    }
+
+    /**
      * 默认sheet名
      */
     private static final String SHEET_NAME = "导出的Excel文档";

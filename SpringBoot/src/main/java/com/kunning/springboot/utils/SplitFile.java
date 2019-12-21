@@ -13,6 +13,12 @@ public class SplitFile {
     private static final Logger LOGGER = LoggerFactory.getLogger(SplitFile.class);
 
     /**
+     * 私有化构造函数
+     */
+    private SplitFile() {
+    }
+
+    /**
      * 功能描述：读取文件
      *
      * @throws IOException IO异常

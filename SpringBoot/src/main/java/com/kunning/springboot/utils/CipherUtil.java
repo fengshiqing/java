@@ -31,6 +31,12 @@ public class CipherUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(CipherUtil.class);
 
     /**
+     * 私有化构造函数
+     */
+    private CipherUtil() {
+    }
+
+    /**
      * 功能描述：获取 MD5 摘要。
      *
      * @param plaintext 明文

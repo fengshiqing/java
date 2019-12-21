@@ -33,6 +33,12 @@ public class RedisUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisUtil.class);
 
     /**
+     * 私有化构造函数
+     */
+    private RedisUtil(){
+    }
+
+    /**
      * redisTemplate
      */
     @Autowired

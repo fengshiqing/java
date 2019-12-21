@@ -24,6 +24,12 @@ public class DateTimeUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(DateTimeUtil.class);
 
     /**
+     * 私有化构造函数
+     */
+    private DateTimeUtil() {
+    }
+
+    /**
      * 功能描述：定义日期时间的格式。
      * 格式可以参考这个：https://www.cnblogs.com/jyiqing/p/6858224.html
      */

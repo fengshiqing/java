@@ -25,6 +25,12 @@ public class SendEmail {
     private static final Logger LOGGER = LoggerFactory.getLogger(SendEmail.class);
 
     /**
+     * 私有化构造函数
+     */
+    private SendEmail() {
+    }
+
+    /**
      * 功能描述：发送电子邮件
      *
      * @param from    发件人

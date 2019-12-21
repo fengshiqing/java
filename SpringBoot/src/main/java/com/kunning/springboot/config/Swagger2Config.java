@@ -39,7 +39,7 @@ public class Swagger2Config {
 	@Bean
 	public Docket createRestApi() {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(this.apiInfo()).groupName("groupName123").select()
-				.apis(RequestHandlerSelectors.basePackage("com.kunning.controller")).paths(PathSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage("com.kunning.springboot.controller")).paths(PathSelectors.any())
 				.build();
 	}
 
