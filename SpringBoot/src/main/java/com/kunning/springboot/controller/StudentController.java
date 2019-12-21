@@ -10,7 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@Api(tags = "StudentController", description = "学生接口")
+@Api(tags = "学生接口")
 public class StudentController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);

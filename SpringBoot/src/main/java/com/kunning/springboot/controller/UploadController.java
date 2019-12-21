@@ -1,6 +1,7 @@
 package com.kunning.springboot.controller;
 
 import com.kunning.springboot.pojo.ResultData;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.regex.Pattern;
  * 具体看这个：https://blog.csdn.net/qq_28089993/article/details/76854112
  */
 @Controller
+@Api(tags = "上传接口")
 public class UploadController {
 
     /**

@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,11 +17,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@Api(tags = "UserController", description = "用户接口")
+@Api(tags = "用户接口")
 public class UserController {
 	
 	/**
-	 * <日志>
+	 * 日志
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -28,7 +29,7 @@ public class UserController {
     private UserService userService;
 
 	@ApiOperation(value = "用户接口", notes = "查看所有用户")
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@GetMapping(value = "/user")
 	public String queryAllUser() {
 		LOGGER.info("【queryAllUser】【开始执行】");
 
