@@ -13,6 +13,9 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "学生接口")
 public class StudentController {
 
+	/**
+	 * 日志
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
 	@ApiOperation(value = "接口文档111", notes = "")

@@ -2,6 +2,8 @@ package com.kunning.springboot.controller;
 
 import com.kunning.springboot.service.RedisService;
 import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "redis接口")
 public class RedisController {
 
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisController.class);
+
     @Autowired
     RedisService redisService;
 
     @RequestMapping(value = "/redis/setValue")
     public void demoTest() {
         redisService.set("1", "value22222");
-        System.out.println("【值为：】" + redisService.get("1"));
+        LOGGER.info("【插入redis的值为：】" + redisService.get("1"));
     }
 }
