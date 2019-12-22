@@ -12,12 +12,12 @@ public interface UserDao {
 
     int insert(User user);
 
+    int update(User user);
+
+    int delete(Long id);
+
     User queryUserById(int id);
 
     List<User> queryAllUser();
-
-    void update(User user);
-
-    void delete(Long id);
 
 }
