@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kunning.springboot.dao">
+<mapper namespace="com.kunning.springboot.dao.UserDao">
 
-    <insert id="insert">
+    <insert id="insert" parameterType="com.kunning.springboot.pojo.User">
         INSERT INTO user
             (username, password)
         VALUES
@@ -11,10 +11,31 @@
     </insert>
 
 
-    <select id="queryAllUser" resultType="com.kunning.springboot.pojo.User">
+    <update id="update" parameterType="com.kunning.springboot.pojo.User">
+        UPDATE user
+           SET userName=#{username}, password=#{password}
+        WHERE id = #{id}
+    </update>
+
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM user
+         WHERE id = #{id}
+    </delete>
+
+
+    <select id="queryAllUser" parameterType="com.kunning.springboot.pojo.User" resultType="com.kunning.springboot.pojo.User">
         SELECT *
           FROM user
          WHERE 1 = 1
+    </select>
+
+
+    <select id="queryUserById" parameterType="int" resultType="com.kunning.springboot.pojo.User">
+        SELECT *
+          FROM user
+         WHERE 1 = 1
+           AND id = #{userId}
     </select>
 
 </mapper>

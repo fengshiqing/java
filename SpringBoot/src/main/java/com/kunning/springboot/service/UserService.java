@@ -15,7 +15,7 @@ import com.kunning.springboot.pojo.User;
 public class UserService {
 
 	/**
-	 * <日志>
+	 * 日志
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -25,7 +25,7 @@ public class UserService {
 	public List<User> queryAllUser() {
 		LOGGER.info("【queryAllUser】【开始执行】");
 
-		List<User> userList = userMapper.getAll();
+		List<User> userList = userMapper.queryAllUser();
 		LOGGER.info("【参数：】【userList:{}】", userList);
 
 		return userList;
