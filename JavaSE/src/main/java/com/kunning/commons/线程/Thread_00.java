@@ -1,5 +1,7 @@
 package com.kunning.commons.线程;
 
+import org.junit.Test;
+
 /**
  * Thread的常用方法：
  * 1.start()：启动线程使线程进入“就绪”状态，等待获取CPU执行权执行run()方法
@@ -13,47 +15,47 @@ package com.kunning.commons.线程;
  * 8.isAlive():判断当前线程是否还存活
  * 9.sleep(long l):显式的让当前线程睡眠l毫秒
  * 10.线程通信：wait()   notify()   ()
- * 
+ * <p>
  * getPriority() ：返回线程优先值 ，优先级设置为10最高的，不表示一定是此线程先执行完再执行其他的，优先级高只表示抢到cpu执行权的概率变大。
  * setPriority(int newPriority) ：改变线程的优先级
- *
  */
 public class Thread_00 {
-	public static void main(String[] args) {
 
-		SubThread1 st1 = new Thread_00().new SubThread1();
-		st1.setName("子线程1");
-		st1.setPriority(Thread.MAX_PRIORITY);
-		st1.start();
-		Thread.currentThread().setName("========主线程");
-		for (int i = 1; i <= 100; i++) {
-			System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getPriority() + ":" + i);
-//			 if(i % 10 == 0){
-			// 当前线程为主线程，yield便是主线程让出cpu使用权，下一次cpu的使用权就看谁能抢得到了，有可能是主线程，也有可能是子线程。
-//			 Thread.currentThread().yield();
-//			 }
-			// if(i == 20){
-			// try {
-			// st1.join();// 表示st1插队了，先执行了。
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
-			// }
-		}
-		System.out.println(st1.isAlive());
-	}
-	
-	class SubThread1 extends Thread {
-		@Override
-		public void run() {
-			for (int i = 1; i <= 100; i++) {
-				// try {
-				// Thread.currentThread().sleep(1000);
-				// } catch (InterruptedException e) {
-				// e.printStackTrace();
-				// }
-				System.out.println(Thread.currentThread().getName() + ":" + Thread.currentThread().getPriority() + ":" + i);
-			}
-		}
-	}
+    @Test
+    public void test() {
+        SubThread1 st1 = new SubThread1();
+        st1.setName("子线程1");
+        st1.setPriority(Thread.MAX_PRIORITY);
+        st1.start();
+        Thread.currentThread().setName("========主线程");
+        for (int i = 1; i <= 100; i++) {
+            System.out.println(Thread.currentThread().getName() + ":" + i);
+            if (i % 10 == 0) {
+                // 当前线程为主线程，yield便是主线程让出cpu使用权，下一次cpu的使用权就看谁能抢得到了，有可能是主线程，也有可能是子线程。
+                Thread.yield();
+            }
+            if (i == 20) {
+                try {
+                    st1.join();// 表示st1插队了，先执行了。
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println(st1.isAlive());
+    }
+
+    static class SubThread1 extends Thread {
+        @Override
+        public void run() {
+            for (int i = 1; i <= 100; i++) {
+                try {
+                    Thread.currentThread().sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + ":" + i);
+            }
+        }
+    }
 }

@@ -1,13 +1,19 @@
 package com.kunning.commons.线程;
 
+import org.junit.Test;
+
 /**
- * <创建多线程的第一种方式：继承java.lang.Thread类>
+ * 功能描述：创建多线程的第一种方式：继承java.lang.Thread类
+ *
+ * @author 冯仕清
+ * @since 2019/12/24
  */
 public class Thread_01_Thread {
 
-    public static void main(String[] args) {
-        MyThread t1 = new Thread_01_Thread().new MyThread(); // 实例化对象
-        MyThread t2 = new Thread_01_Thread().new MyThread(); // 实例化对象
+    @Test
+    public void test() {
+        MyThread t1 = new MyThread(); // 实例化对象
+        MyThread t2 = new MyThread(); // 实例化对象
         t1.setName("线程1");
         t2.setName("线程2");
         // 一个线程只能够执行一次start()，执行多次会抛异常
@@ -16,7 +22,7 @@ public class Thread_01_Thread {
     }
 
     // 继承Thread类，作为线程的实现类
-    class MyThread extends Thread {
+    static class MyThread extends Thread {
         @Override
         public void run() { // 覆写run()方法，作为线程 的操作主体
             for (int i = 0; i < 10; i++) {
