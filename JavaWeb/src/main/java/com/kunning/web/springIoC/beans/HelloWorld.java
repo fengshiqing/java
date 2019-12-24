@@ -1,4 +1,4 @@
-package com.kunning.web.beans;
+package com.kunning.web.springIoC.beans;
 
 public class HelloWorld {
 

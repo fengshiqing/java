@@ -3,7 +3,7 @@ package com.kunning.web.springIoC;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.kunning.web.beans.HelloWorld;
+import com.kunning.web.springIoC.beans.HelloWorld;
 
 /**
  * 功能描述：获取IoC容器中的对象
