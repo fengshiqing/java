@@ -2,7 +2,6 @@ package com.kunning.commons.pojo;
 
 public class User {
 
-
     /**
      * ID
      */
@@ -18,17 +17,6 @@ public class User {
      */
     private String password;
 
-    /**
-     * 昵称
-     */
-    private String nickname;
-
-    /**
-     * 邮箱
-     */
-    private String email;
-
-
     public int getId() {
         return id;
     }
@@ -37,7 +25,7 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
+    public String setUsername() {
         return username;
     }
 
