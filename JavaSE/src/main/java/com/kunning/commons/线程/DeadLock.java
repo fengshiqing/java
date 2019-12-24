@@ -1,4 +1,4 @@
-package com.kunning.commons.Test.thread;
+package com.kunning.commons.线程;
 
 public class DeadLock {
 	
