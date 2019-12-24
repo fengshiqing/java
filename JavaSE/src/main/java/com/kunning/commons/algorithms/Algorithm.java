@@ -79,19 +79,19 @@ public class Algorithm {
     // =======================================================阶乘=======================================================
 
     public static int factorial(int x) {// 迭代的方法
-        if(x==0 || x==1) {
+        if (x == 0 || x == 1) {
             return 1;
         }
-        return x*factorial(x-1);
+        return x * factorial(x - 1);
     }
 
     public static int factorial2(int x) {// 循环求解
-        if(x==0 || x==1) {
+        if (x == 0 || x == 1) {
             return 1;
         }
         int sum = 1;
-        for(int i=1; i<=x; i++) {
-            sum = sum*i;
+        for (int i = 1; i <= x; i++) {
+            sum = sum * i;
         }
         return sum;
     }
@@ -277,23 +277,23 @@ public class Algorithm {
 
     public static void multiplicationTable() {
         long startTime = System.currentTimeMillis();//开始时间
-        for(int i=1,j=1; j<=9; i++) {
-            System.out.print(i + "x" + j + "=" + i*j + " ");
-            if(i == j) {
+        for (int i = 1, j = 1; j <= 9; i++) {
+            System.out.print(i + "x" + j + "=" + i * j + " ");
+            if (i == j) {
                 System.out.println();
-                i=0;//下一行将i 重置为0，因为之后会进行 ++ 运算
+                i = 0;//下一行将i 重置为0，因为之后会进行 ++ 运算
                 j++;
             }
         }
         long endTime = System.currentTimeMillis();//结束时间
-        long time = endTime-startTime;
+        long time = endTime - startTime;
         System.out.println("用时：" + time);
     }
 
     public static void multiplicationTable2() {
-        for(int i=1;  i<=9;  i++) {
-            for(int j=1;  j<=i;  j++) {
-                System.out.print(i + "*" + j + " = " + i*j + "   ");
+        for (int i = 1; i <= 9; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i + "*" + j + " = " + i * j + "   ");
             }
             System.out.print("\n");
         }
@@ -303,6 +303,8 @@ public class Algorithm {
     // =======================================================闰年=======================================================
 
     public static boolean judgeLeapYear(int year) {
+        // 地球绕太阳一圈成为一年，所用时间为：365天5小时48分46秒，取365天为一年，这样4年后将多出23小时15分6秒，将近一天，
+        // 所以每4年增加一个闰日（2月29日），该年成为闰年。
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 }
