@@ -9,7 +9,7 @@ public class HelloWorld {
 	}
 
 	public void getMessage() {
-		System.out.println("Your Message : " + message);
+		System.out.println("【Spring容器中的对象：】" + message);
 	}
 
 }
