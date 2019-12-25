@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
-
-    <!-- 控制台输出日志级别 -->
-    <root level="info">
-        <appender-ref ref="STDOUT"/>
-    </root>
-    <!-- 指定项目中某个包，当有日志操作行为时的日志记录级别 -->
-    <!-- "com.kunning.springboot"为根包，也就是只要是发生在这个根包下面的所有日志操作行为的权限都是DEBUG -->
-    <!-- 级别【从高到低】依次为：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
-    <logger name="com.kunning.springboot" level="DEBUG">
-        <appender-ref ref="file"/>
-    </logger>
-
     <!-- %d日期时间，%p日志级别，%t线程名，%c类的全名，%m输出的信息，%i索引【从数字0开始递增】,,, -->
     <!-- appender 是 configuration 的子节点，是负责写日志的组件。 -->
     <!-- ConsoleAppender：把日志输出到控制台 -->
@@ -35,16 +23,23 @@
         <!-- TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 活动文件的名字会根据fileNamePattern的值，每隔一段时间改变一次 -->
-            <!-- 文件名：log/sys.2017-12-05.0.log -->
-            <fileNamePattern>/workspace/log/springboot.%d.%i.log</fileNamePattern>
+            <!-- 文件名：springboot.2019122523.0.log -->
+            <fileNamePattern>/workspace/log/springboot.%d{yyyyMMddHH}.%i.log</fileNamePattern>
             <!-- 每产生一个日志文件，该日志文件的保存期限为30天 -->
             <maxHistory>360</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 -->
-                <maxFileSize>100KB</maxFileSize>
+                <maxFileSize>10240KB</maxFileSize><!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 -->
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-
     </appender>
 
+    <!-- 控制台输出日志级别 -->
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <!-- 指定项目中某个包的代码的日志级别，以"com.kunning.springboot"为例，此包及其子包下面的所有日志记录级别都是DEBUG -->
+    <!-- 级别【从高到低】依次为：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
+    <logger name="com.kunning.springboot" level="DEBUG">
+        <appender-ref ref="file"/>
+    </logger>
 </configuration>
