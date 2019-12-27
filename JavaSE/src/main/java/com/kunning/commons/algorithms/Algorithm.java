@@ -10,6 +10,9 @@
  */
 package com.kunning.commons.algorithms;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 功能描述：整理常用的算法，具体看此类的单元测试类：AlgorithmTest.java
  *
@@ -99,8 +102,7 @@ public class Algorithm {
     // ==================================================最大公约数、最小公倍数==================================================
 
     /**
-     * 功能描述：求最大公约数。
-     * greatest common divisor(gcd)
+     * 功能描述：求最大公约数。 greatest common divisor(gcd)
      *
      * @param a 数字1
      * @param b 数字2
@@ -112,8 +114,7 @@ public class Algorithm {
     }
 
     /**
-     * 功能描述：求最小公倍数。
-     * lowest common multiple (LCM)
+     * 功能描述：求最小公倍数。 lowest common multiple (LCM)
      *
      * @param a 数字1
      * @param b 数字2
@@ -140,8 +141,7 @@ public class Algorithm {
     }
 
     /**
-     * 功能描述：n位数字组成的随机字符串。
-     * 说明：可以用来做验证码。
+     * 功能描述：n位数字组成的随机字符串。 说明：可以用来做验证码。
      *
      * @param num 位数
      *
@@ -151,7 +151,7 @@ public class Algorithm {
         StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < num; i++) {
             int randomNum = getRandomNum(0, 10); // 生成[0,10)区间内的整数
-            strBuilder.append(randomNum);//将intValue强制转化成char类型后接到result后面
+            strBuilder.append(randomNum);// 将intValue强制转化成char类型后接到result后面
         }
         return strBuilder.toString();
     }
@@ -276,16 +276,16 @@ public class Algorithm {
     // =====================================================乘法口诀表=====================================================
 
     public static void multiplicationTable() {
-        long startTime = System.currentTimeMillis();//开始时间
+        long startTime = System.currentTimeMillis();// 开始时间
         for (int i = 1, j = 1; j <= 9; i++) {
             System.out.print(i + "x" + j + "=" + i * j + " ");
             if (i == j) {
                 System.out.println();
-                i = 0;//下一行将i 重置为0，因为之后会进行 ++ 运算
+                i = 0;// 下一行将i 重置为0，因为之后会进行 ++ 运算
                 j++;
             }
         }
-        long endTime = System.currentTimeMillis();//结束时间
+        long endTime = System.currentTimeMillis();// 结束时间
         long time = endTime - startTime;
         System.out.println("用时：" + time);
     }
@@ -299,7 +299,6 @@ public class Algorithm {
         }
     }
 
-
     // =======================================================闰年=======================================================
 
     public static boolean judgeLeapYear(int year) {
@@ -307,4 +306,19 @@ public class Algorithm {
         // 所以每4年增加一个闰日（2月29日），该年成为闰年。
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
+
+    // =======================================================闰年=======================================================
+
+    public static boolean isHaveHanZi(String str) {
+        int count = 0;
+        Pattern pattern = Pattern.compile("[\\u4e00-\\u9fa5]");
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            for (int i = 0; i <= matcher.groupCount(); i++) {
+                count = count + 1;
+            }
+        }
+        return count != 0;
+    }
+
 }

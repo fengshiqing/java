@@ -76,4 +76,10 @@ public class AlgorithmTest {
         System.out.println("是否为闰年：】" + bool);
     }
 
+    @Test
+    public void isHaveHanZi() {
+        System.out.println("【是否有汉字：】" + Algorithm.isHaveHanZi("我是冯仕清"));
+        System.out.println("【是否有汉字：】" + Algorithm.isHaveHanZi("abcdefg123"));
+    }
+
 }
