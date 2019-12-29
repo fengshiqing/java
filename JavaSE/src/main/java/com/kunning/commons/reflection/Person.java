@@ -1,5 +1,8 @@
 package com.kunning.commons.reflection;
 
+import com.kunning.commons.reflection.annotation.DoSomething;
+
+@DoSomething(key = "key111", cacheName = "cacheName111")
 public class Person {
 
 	public String name;

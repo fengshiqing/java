@@ -1,5 +1,6 @@
 package com.kunning.commons.reflection;
 
+import com.kunning.commons.reflection.annotation.DoSomething;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -137,4 +138,30 @@ public class ReflectionTest {
 		p.show();
 //			p.display("HK");
 	}
+
+	@Test
+	public void annotation() {
+		Class<Person> clazz = Person.class;
+		Class<DoSomething> anno = DoSomething.class;
+
+		// 获取 类 上的注解
+		if(clazz.isAnnotationPresent(anno)) {
+			DoSomething annotation = clazz.getAnnotation(anno);
+			System.out.println(annotation.key());
+			System.out.println(annotation.cacheName());
+			System.out.println(annotation.needLog());
+		}
+
+		Method[] methods = clazz.getMethods();
+		for (Method method : methods) {
+			// 获取 方法 上的注解
+			if (method.isAnnotationPresent(anno)) {
+				DoSomething annotation = method.getAnnotation(anno);
+				System.out.println(annotation.key());
+				System.out.println(annotation.cacheName());
+				System.out.println(annotation.needLog());
+			}
+		}
+	}
+
 }

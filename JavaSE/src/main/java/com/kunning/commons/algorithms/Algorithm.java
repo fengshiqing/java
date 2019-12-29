@@ -1,13 +1,3 @@
-/*
- * Copyright (C), 2002-2018, XXXXX公司
- * FileName: Algorithm.java
- * Author:   kun
- * DateTime: 2018年5月5日 下午7:17:08
- * Description: //模块目的、功能描述
- * History: //修改记录
- * <author>      <time>      <version>    <desc>
- * 修改人姓名             修改时间            版本号                  描述
- */
 package com.kunning.commons.algorithms;
 
 import java.util.regex.Matcher;
@@ -17,6 +7,7 @@ import java.util.regex.Pattern;
  * 功能描述：整理常用的算法，具体看此类的单元测试类：AlgorithmTest.java
  *
  * @author 冯仕清
+ * @since 2014/07/27
  */
 public class Algorithm {
 
@@ -307,7 +298,7 @@ public class Algorithm {
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 
-    // =======================================================闰年=======================================================
+    // ======================================================匹配汉字======================================================
 
     public static boolean isHaveHanZi(String str) {
         int count = 0;
