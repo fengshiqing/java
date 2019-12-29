@@ -6,13 +6,16 @@
 
     <display-name>Spring MVC Application</display-name>
 
-    <!-- Spring和mybatis的配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/spring.xml</param-value><!-- 配置两次相当于创建了两个IOC容器，导致定时任务执行两次 -->
+        <param-value>classpath:spring/spring.xml</param-value>
     </context-param>
-    <!-- Spring监听器，默认查找“/WEB-INF/applicationContext.xml”，可以通过配置全局属性 contextConfigLocation 来改变查找的路径 -->
     <listener>
+        <!-- 这个是 Spring 自带的监听器，用来在 java容器 加载应用时，启动 Spring IOC容器。 -->
+        <!-- 默认查找“[/WEB-INF/applicationContext.xml]”，当然也可以通过配置全局属性 contextConfigLocation 来改变查找的路径 -->
+        <!-- \org\springframework\web\context\ContextLoader.java configureAndRefreshWebApplicationContext()429行 -->
+        <!-- 注意：Spring容器 和 SpringMVC容器 是两个容器，Spring容器是父容器，SpringMVC容器是子容器。父容器不可以访问子容器，子容器可以访问父容器。 -->
+        <!-- 如果只用SpringMVC。就可以不用配置 Spring容器了。如果都配置，并且都加载了相同的bean，就会有重复的bean了。 -->
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
@@ -31,7 +34,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
 
