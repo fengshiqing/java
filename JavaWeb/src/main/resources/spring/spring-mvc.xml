@@ -78,6 +78,11 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
+    <!-- 配置 Spring 的JdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <!-- 要开启Spring的事务处理，在Spring的XML配置文件中简单创建一个 DataSourceTransactionManager 对象即可。
     注意，事务管理器的 DataSource 必须和 SqlSessionFactoryBean 的是同一个数据源，否则事务管理器无法工作。 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
