@@ -1,10 +1,9 @@
-package com.kunning.commons.DesignPatterns;
+package com.kunning.commons.DesignPatterns.singleton;
 
 /**
  * Singleton_3的方式还是有问题，每一次调用都需要同步，实际上只有第一次创建对象时才需要同步，以后每次获取对象同步都是一种累赘，严重降低效率，必须进一步优化：<br>
- * 
- * @see https://www.cnblogs.com/zhaoyan001/p/6365064.html
  */
+// https://www.cnblogs.com/zhaoyan001/p/6365064.html
 public class Singleton_4 {
 
 	private volatile static Singleton_4 single;// 1、私有静态变量

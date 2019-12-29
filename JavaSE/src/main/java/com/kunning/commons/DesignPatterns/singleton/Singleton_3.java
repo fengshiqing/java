@@ -1,11 +1,8 @@
-package com.kunning.commons.DesignPatterns;
+package com.kunning.commons.DesignPatterns.singleton;
 
 /**
- * Singleton_在高并发环境下，会创建出多个对象。<br>
- * 
- * 此处进行加锁处理
+ * Singleton_2.java 在高并发环境下，会创建出多个对象。Singleton_3 进行加锁处理。
  */
-
 public class Singleton_3 {
 
 	private static Singleton_3 single;// 1、私有静态变量
