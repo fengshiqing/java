@@ -1,4 +1,4 @@
-package com.kunning.commons.DesignPatterns.动态代理;
+package com.kunning.commons.DesignPatterns.proxy.动态代理;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -15,7 +15,6 @@ public class LoggerHandler {
 		this.target = target;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public IHelloWorld getLoggerProxy() {
 		// 当调用代理对象中的方法时，执行此代码
 		InvocationHandler h = new InvocationHandler() {
@@ -31,8 +30,7 @@ public class LoggerHandler {
 			}
 		};
 
-		IHelloWorld proxy = (IHelloWorld) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), h);
-		return proxy;
+		return (IHelloWorld) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), h);
 	}
 
 }

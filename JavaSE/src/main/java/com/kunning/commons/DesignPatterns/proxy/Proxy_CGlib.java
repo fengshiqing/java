@@ -1,4 +1,4 @@
-package com.kunning.commons.DesignPatterns;
+package com.kunning.commons.DesignPatterns.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

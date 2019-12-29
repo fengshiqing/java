@@ -1,4 +1,4 @@
-package com.kunning.commons.DesignPatterns;
+package com.kunning.commons.DesignPatterns.proxy.动态代理;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -48,28 +48,28 @@ class MyProxy implements InvocationHandler {
     }
 
     /**
-     * @param proxy 代理对象，一般情况下，在invoke方法中不能使用该对象，会造成死循环
+     * @param proxy  代理对象，一般情况下，在invoke方法中不能使用该对象，会造成死循环
      * @param method 正在被调用的方法
-     * @param args 调用方法时，传入的参数
+     * @param args   调用方法时，传入的参数
+     *
      * @return 方法返回值
-     * @throws Throwable 抛出异常
+     *
+     * @throws Exception 抛出异常
      */
     // 静态代理和动态代理的调用方法不一样，通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
         // proxy.toString();// 造成内存溢出：java.lang.StackOverflowError
         System.out.println("预处理操作——————");
         Object returnVal = method.invoke(target, args);
         System.out.println("调用后处理——————");
         return returnVal;// 这个返回值就是被代理类的方法的返回值。
     }
-
 }
 
 // JDK动态代理的代理对象在创建时，需要使用业务实现类所实现的接口作为参数（因为在后面代理方法时需要根据接口内的方法名进行调用）。
 // 如果业务实现类是没有实现接口而是直接定义业务方法的话，就无法使用JDK动态代理了。
 // 并且，如果业务实现类中新增了接口中没有的方法，这些方法是无法被代理的（因为无法被调用）。
-
 
 
 // 静态代理是通过在代码中显式定义一个业务实现类一个代理，在代理类中对同名的业务方法进行包装，用户通过代理类调用被包装过的业务方法；

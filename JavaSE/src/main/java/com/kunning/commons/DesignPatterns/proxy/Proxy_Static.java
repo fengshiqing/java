@@ -1,4 +1,4 @@
-package com.kunning.commons.DesignPatterns;
+package com.kunning.commons.DesignPatterns.proxy;
 
 /*
  一：代理模式（静态代理）
