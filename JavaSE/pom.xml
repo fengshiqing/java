@@ -9,6 +9,11 @@
     <artifactId>JavaSE</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <properties>
+        <!--可以自定义属性，project.build.sourceEncoding这个是maven本身就有的-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
         <dependency>
@@ -45,19 +50,6 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.2.4</version>
-        </dependency>
-
-        <!-- lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.6</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- 大数据 storm -->
