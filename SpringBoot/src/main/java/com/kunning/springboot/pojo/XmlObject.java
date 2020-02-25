@@ -1,13 +1,11 @@
 package com.kunning.springboot.pojo;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import lombok.ToString;
 
 /**
  *
  */
 @XStreamAlias("XmlObject")
-@ToString
 public class XmlObject {
 
     @XStreamAlias("param_1")
@@ -65,5 +63,15 @@ public class XmlObject {
 
     public void setParam_4(String param_4) {
         this.param_4 = param_4;
+    }
+
+    @Override
+    public String toString() {
+        return "XmlObject{" +
+                "param_1='" + param_1 + '\'' +
+                ", param_2='" + param_2 + '\'' +
+                ", param_3='" + param_3 + '\'' +
+                ", param_4='" + param_4 + '\'' +
+                '}';
     }
 }
