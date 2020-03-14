@@ -17,54 +17,46 @@ import com.kunning.web.pojo.User;
 @Controller
 public class HelloController {
 
-	/**
-	 * 日志
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private UserDao userDao;
-	
-	@RequestMapping(value = "/SpringMVC/hello", method = RequestMethod.GET)
-	public String printHello(ModelMap model) {
-		LOGGER.info("【printHello】【开始执行】");
-		LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource(""));
-		LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource("/"));
-		LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getClassLoader().getResource(""));
-		
-		model.addAttribute("message", "Hello Spring MVC Framework!!!");
-		return "hello";
-	}
-	
-	@RequestMapping(value = "/Var/{page}", method = RequestMethod.GET)
-	public String printPage(@PathVariable String page, ModelMap model) {
-	    LOGGER.info("【printHello】【开始执行】");
-	    LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource(""));
-	    LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource("/"));
-	    LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getClassLoader().getResource(""));
-	    
-	    model.addAttribute("message", page);
-	    return "hello";
-	}
-	
-	@RequestMapping(value = "/SpringMVC/ajax")
-	@ResponseBody
-	public String ajax() {
-		LOGGER.info("【ajax】【开始执行】");
-		return "testAJAX";
-	}
-	
-	
-	@RequestMapping(value = "/SpringMVC/saveUser")
-	@ResponseBody
-	public String saveUser(User user) {
-		LOGGER.info("【saveUser】【开始执行】【请求参数：user:{}】", user);
-		int num = userDao.saveUser(user);
-		LOGGER.info("【saveUser】【结束执行】【执行结果】【执行成功】【num:{}】", num);		
-		return "save success";
-	}
-	
+    @Autowired
+    private UserDao userDao;
+
+    @RequestMapping(value = "/SpringMVC/hello", method = RequestMethod.GET)
+    public String printHello(ModelMap model) {
+        LOGGER.info("【printHello】【开始执行】");
+        LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource(""));
+        LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource("/"));
+        LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getClassLoader().getResource(""));
+
+        model.addAttribute("message", "Hello Spring MVC Framework!!!");
+        return "hello";
+    }
+
+    @RequestMapping(value = "/Var/{page}", method = RequestMethod.GET)
+    public String printPage(@PathVariable String page, ModelMap model) {
+        LOGGER.info("【printHello】【开始执行】");
+        LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource(""));
+        LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getResource("/"));
+        LOGGER.info("【printHello】【开始执行】【路径：{}】", HelloController.class.getClassLoader().getResource(""));
+
+        model.addAttribute("message", page);
+        return "hello";
+    }
+
+    @RequestMapping(value = "/SpringMVC/saveUser")
+    @ResponseBody
+    public String saveUser(User user) {
+        LOGGER.info("【saveUser】【开始执行】【请求参数：user:{}】", user);
+        int num = userDao.saveUser(user);
+        LOGGER.info("【saveUser】【结束执行】【执行结果】【执行成功】【num:{}】", num);
+        return "save success";
+    }
+
 }

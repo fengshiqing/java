@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 /*
- * Collection接口
+ * 功能描述：学习 Map 接口
  *
  * Map接口
  * 		|-----HashMap:Map主要实现类

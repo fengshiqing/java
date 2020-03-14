@@ -2,12 +2,15 @@ package com.kunning.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * 功能描述：处理 Ajax 请求
+ *
+ * @author fengshiqing冯仕清
+ */
 @RestController
 public class AjaxController {
 
@@ -15,6 +18,12 @@ public class AjaxController {
      * 日志
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(AjaxController.class);
+
+    @RequestMapping(value = "/SpringMVC/testAjax")
+    public String testAjax() {
+        LOGGER.info("【ajax】【开始执行】");
+        return "testAJAX";
+    }
 
     /**
      * 功能描述：处理Ajax请求

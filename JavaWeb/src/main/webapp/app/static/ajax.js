@@ -9,7 +9,7 @@ $(document).ready(function () { // 可以简写：$(function(){
      *
      * 参考：https://blog.csdn.net/weixin_37580235/article/details/81459282
      */
-    function ajax() {
+    $("#testAjax").click(function () {
         debugger;
         let xmlhttp;
         if (window.XMLHttpRequest) {
@@ -21,7 +21,7 @@ $(document).ready(function () { // 可以简写：$(function(){
         }
 
         // 如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：
-        xmlhttp.open("GET", "/JavaWeb/SpringMVC/ajax", true);// 注意路径，要加上“/JavaWeb”
+        xmlhttp.open("GET", "/JavaWeb/SpringMVC/testAjax", true);// 注意路径，要加上“/JavaWeb”
         xmlhttp.send();
 
         // XMLHttpRequest 对象的三个常用的属性：1.onreadystatechange 属性，2.readyState 属性，3.responseText 属性
@@ -31,11 +31,12 @@ $(document).ready(function () { // 可以简写：$(function(){
                 document.getElementById("123").value = xmlhttp.responseText;
             }
         }
+    });
 
-    }
 
-
-    // ajax 调用后台接口
+    /**
+     * 功能描述：使用 Jquery 的 ajax 调用后台接口
+     */
     $("#invokeAjax").click(function () {
         // JSON.parse();//用于将一个 JSON 字符串转换为 JavaScript 对象。
         // JSON.stringify();// 用于将 JavaScript 值转换为 JSON 字符串。
