@@ -3,6 +3,15 @@
 
 <mapper namespace="com.kunning.web.dao.UserDao">
 
+	<insert id="addUser" parameterType="com.kunning.web.pojo.User">
+		INSERT INTO user
+		(
+			username, password
+		) VALUES(
+			#{username}, #{password}
+		)
+	</insert>
+
 	<select id="queryUser" parameterType="com.kunning.web.pojo.User" resultType="com.kunning.web.pojo.User">
 		SELECT	username, password
 		FROM 	user
@@ -11,14 +20,5 @@
 			AND username = #{username}
 		</if>
 	</select>
-
-	<insert id="saveUser" parameterType="com.kunning.web.pojo.User">
-		INSERT INTO user
-		(
-			username, password
-		) VALUES(
-			#{username}, #{password}
-		)
-	</insert>
 
 </mapper>

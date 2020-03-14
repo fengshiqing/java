@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Java8Tester {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         List<String> names1 = new ArrayList<>();
         names1.add("Google ");
@@ -32,7 +32,7 @@ public class Java8Tester {
         System.out.println(names2);
 
 
-        List<PersonModel> list = new ArrayList();
+        List<PersonModel> list = new ArrayList<>();
         list.add(new PersonModel("wu qi", 18, "男"));
         list.add(new PersonModel("zhang san", 19, "男"));
         list.add(new PersonModel("wang si", 20, "女"));

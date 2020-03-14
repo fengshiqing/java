@@ -12,13 +12,13 @@ public class JDBCUtils {
 
 	private static Properties prop = null;
 
-	/**
-	 * <只在加载类时执行一次>
+	/*
+	 * 功能描述：用类加载器加载配置文件。只在加载类时执行一次
 	 */
 	static {
 		try {
 			prop = new Properties();
-			prop.load(new FileReader(JDBCUtils.class.getClassLoader().getResource("db.properties").getPath()));// 用类加载器加载配置文件
+			prop.load(new FileReader(JDBCUtils.class.getClassLoader().getResource("jdbc.properties").getPath()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);// 往上抛异常
@@ -26,18 +26,18 @@ public class JDBCUtils {
 	}
 
 	/**
-	 * <私有化构造函数>
+	 * 私有化构造函数
 	 */
 	private JDBCUtils() {
 	}
 
 	/**
-	 * <获取连接>
+	 * 功能描述：获取连接
 	 */
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		String driver = prop.getProperty("driver");// 值：com.mysql.jdbc.Driver
 		String url = prop.getProperty("url");// 值：jdbc:mysql:///fengshiqing
-		String user = prop.getProperty("user");// 值：root
+		String user = prop.getProperty("username");// 值：root
 		String password = prop.getProperty("password");// 值：feng234800
 
 		Class.forName(driver);// 1、注册数据库驱动
@@ -47,7 +47,7 @@ public class JDBCUtils {
 	}
 
 	/**
-	 * <关闭连接>
+	 * 功能描述：关闭连接
 	 */
 	public static void close(ResultSet resultSet, Statement statement, Connection connection) {
 		if (resultSet != null) {
@@ -55,8 +55,6 @@ public class JDBCUtils {
 				resultSet.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				resultSet = null;
 			}
 		}
 		if (statement != null) {
@@ -64,8 +62,6 @@ public class JDBCUtils {
 				statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				statement = null;
 			}
 		}
 		if (connection != null) {
@@ -73,8 +69,6 @@ public class JDBCUtils {
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				connection = null;
 			}
 		}
 

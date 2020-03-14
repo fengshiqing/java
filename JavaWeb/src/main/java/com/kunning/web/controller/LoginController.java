@@ -1,9 +1,15 @@
 package com.kunning.web.controller;
 
+import com.kunning.web.pojo.User;
+import com.kunning.web.service.UserService;
 import com.kunning.web.utils.VerificationCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +18,14 @@ import java.io.IOException;
 
 @Controller
 public class LoginController {
+
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/getVerifiCode")
     @ResponseBody
@@ -27,6 +41,26 @@ public class LoginController {
         BufferedImage image = verCode.getImage();  //获取验证码
         request.getSession().setAttribute("text", verCode.getText()); //将验证码的文本存在session中
         verCode.output(image, response.getOutputStream());//将验证码图片响应给客户端
+    }
+
+    /**
+     * 功能描述：注册账号/创建账号
+     */
+    @RequestMapping(value = "/createAccount")
+    public ModelAndView createAccount(User user) {
+        LOGGER.info("【createAccount】【开始执行】");
+        userService.addUser(user);
+        LOGGER.info("【createAccount】【结束执行】");
+        ModelAndView mav = new ModelAndView("index");
+        return mav;
+    }
+
+
+    /**
+     * 功能描述：注销，退出登录
+     */
+    public void signout(){
+
     }
 
 }

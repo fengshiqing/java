@@ -32,14 +32,11 @@
     <!-- <import resource="classpath:spring-mybatis.xml" /> -->
 
 
-    <!-- Spring整合mybati
-    这里面也没多少行配置，主要的就是 自动扫描，自动注入，配置数据库 。注释也很详细，大家看看就明白了。
-    具体详情请参阅官网文档：http://www.mybatis.org/spring/zh/index.html -->
+    <!-- Spring整合mybatis。这里面也没多少行配置，主要的就是 自动扫描，自动注入，配置数据库。具体详情请参阅官网文档：http://www.mybatis.org/spring/zh/index.html -->
     <!-- 引入数据库配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/><!-- 引入jdbc.properties中的配置信息 -->
     </bean>
-
     <!-- 数据源：数据库连接信息 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <!-- 从数据库配置文件中读取配置 -->

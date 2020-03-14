@@ -1,7 +1,6 @@
 package com.kunning.web.dao;
 
 import com.kunning.web.pojo.User;
-import com.kunning.web.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -19,12 +18,21 @@ import java.util.List;
 public class UserDaoTest {
 
     /**
-     * <日志>
+     * 日志
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoTest.class);
 
     @Autowired
     private UserDao userDao;
+
+    @Test
+    public void addUser() {
+        User user = new User();
+        user.setUsername("1");
+        user.setPassword("1");
+        int num = userDao.addUser(user);
+        LOGGER.info("【addUser】【执行成功】【响应参数：】【num:{}】", num);
+    }
 
     @Test
     public void queryUser() {
@@ -33,13 +41,5 @@ public class UserDaoTest {
         user.setPassword("1");
         List<User> userList = userDao.queryUser(user);
         LOGGER.info("【查询的数据：】【userList:{}】", userList);
-    }
-
-    @Test
-    public void saveUser() {
-        User user = new User();
-        user.setUsername("1");
-        user.setPassword("1");
-        int num = userDao.saveUser(user);
     }
 }

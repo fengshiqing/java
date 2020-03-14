@@ -1,6 +1,5 @@
 package com.kunning.web.controller;
 
-import com.kunning.web.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,6 @@ public class HelloController {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserDao userDao;
-
     @RequestMapping(value = "/SpringMVC/hello", method = RequestMethod.GET)
     public String printHello(ModelMap model) {
         LOGGER.info("【printHello】【开始执行】");
@@ -48,15 +41,6 @@ public class HelloController {
 
         model.addAttribute("message", page);
         return "hello";
-    }
-
-    @RequestMapping(value = "/SpringMVC/saveUser")
-    @ResponseBody
-    public String saveUser(User user) {
-        LOGGER.info("【saveUser】【开始执行】【请求参数：user:{}】", user);
-        int num = userDao.saveUser(user);
-        LOGGER.info("【saveUser】【结束执行】【执行结果】【执行成功】【num:{}】", num);
-        return "save success";
     }
 
 }

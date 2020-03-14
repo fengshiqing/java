@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 功能描述：用户管理service
+ */
 @Service
 public class UserService {
 
@@ -28,6 +31,14 @@ public class UserService {
     private UserDao userDao;
 
     /**
+     * 功能描述：增加用户
+     */
+    public int addUser(User user) {
+        LOGGER.info("【addUser】【开始执行】【请求参数：】【user:{}】", user);
+        return userDao.addUser(user);
+    }
+
+    /**
      * 查询用户信息
      */
     // propagation 传播行为，默认的REQUIRED.REQUIRE的就行
@@ -41,16 +52,11 @@ public class UserService {
         return userDao.queryUser(user);
     }
 
-    public int saveUser(User user) {
-        LOGGER.info("【saveUser】【开始执行】【请求参数：】【user:{}】", user);
-        return userDao.saveUser(user);
-    }
-
     public User queryUser(String username) {
         String sql = "SELECT username, password FROM user WHERE username = ?";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         User user = jdbcTemplate.queryForObject(sql, rowMapper, username);
-        LOGGER.info("【查询到的用户数据：{}】", user);
+        LOGGER.info("【查询到的用户数据：】【user:{}】", user);
         return user;
     }
 
