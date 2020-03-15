@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
 	<title>login</title>
+	<script src="../3rdlib/jquery/jquery-3.4.1.js"></script>
     <script src="login.js?t=new Date().getTime()"></script>
 </head>
 <body>
 <fieldset>
-	<form action="/JavaWeb/createAccount" method="Post">
+	<form id="from" action="/JavaWeb/createAccount" method="Post">
 	<!--form action="/JavaWeb/app/static/index.html" method="get"--><!--这样子可以将此表单的数据放在url上带到下一个页面，但是没法提交到后台-->
 
 		<div>

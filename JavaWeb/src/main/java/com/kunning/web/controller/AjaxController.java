@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -23,6 +24,20 @@ public class AjaxController {
     public String testAjax() {
         LOGGER.info("【ajax】【开始执行】");
         return "testAJAX";
+    }
+
+    /**
+     * 功能描述：处理Ajax请求
+     */
+    @GetMapping(value="/SpringMVC/dealAjaxGetReq")
+    public Map<String, String> dealAjaxGetReq() {
+        LOGGER.info("【dealAjaxReq】【开始执行】【请求参数：】");
+        // 业务逻辑
+        Map<String, String> rtnMap = new HashMap<>(4);
+        rtnMap.put("rtnCode", "000000");
+        rtnMap.put("rtnMsg", "处理成功。");
+        LOGGER.info("【dealAjaxReq】【结束执行】");
+        return rtnMap;
     }
 
     /**

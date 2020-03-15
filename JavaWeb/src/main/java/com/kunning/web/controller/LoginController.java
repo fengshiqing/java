@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -47,14 +49,15 @@ public class LoginController {
      * 功能描述：注册账号/创建账号
      */
     @RequestMapping(value = "/createAccount")
-    public ModelAndView createAccount(User user) {
+    public Map<String, String> createAccount(User user) {
         LOGGER.info("【createAccount】【开始执行】");
-        userService.addUser(user);
+        int num = userService.addUser(user);
+        Map<String, String> map = new HashMap<>(4);
+        map.put("rtnCode", num+"");
+        map.put("rtnMsg", "创建账户成功。");
         LOGGER.info("【createAccount】【结束执行】");
-        ModelAndView mav = new ModelAndView("index");
-        return mav;
+        return map;
     }
-
 
     /**
      * 功能描述：注销，退出登录
