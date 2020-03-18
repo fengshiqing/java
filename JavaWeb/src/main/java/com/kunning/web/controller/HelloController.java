@@ -3,6 +3,7 @@ package com.kunning.web.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,9 @@ public class HelloController {
      * 日志
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
+
+    @Value("${env.name}")
+    private String envName;
 
     @RequestMapping(value = "/SpringMVC/hello", method = RequestMethod.GET)
     public String printHello(ModelMap model) {
@@ -41,6 +45,11 @@ public class HelloController {
 
         model.addAttribute("message", page);
         return "hello";
+    }
+
+    @RequestMapping(value = "/env/readProp")
+    public void readProp() {
+        System.out.println("【环境变量：{}】" + envName);
     }
 
 }

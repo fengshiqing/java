@@ -11,6 +11,9 @@
 						   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
                            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
+    <!--读取 properties 配置文件-->
+    <context:property-placeholder location="classpath:*.properties"/>
+
     <!-- 自动扫描该包，SpringMVC会将包下用了@controller、@Component等注解的类加入到IoC容器中。 -->
     <context:component-scan base-package="com.kunning.web.controller"/>
     <context:component-scan base-package="com.kunning.web.service"/>
