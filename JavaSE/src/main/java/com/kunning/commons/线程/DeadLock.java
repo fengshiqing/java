@@ -4,7 +4,8 @@ public class DeadLock {
 	
 	private static final Object o1 = new Object();// 创建模拟死锁的对象
 	private static final Object o2 = new Object();// 创建模拟死锁的对象
-	private class Run1 implements Runnable { //内部类
+
+	private static class Run1 implements Runnable { //内部类
 		@Override
 		public void run() {
 			String threadName = Thread.currentThread().getName();
@@ -22,7 +23,7 @@ public class DeadLock {
 		}
 	}
 	
-	private class Run2 implements Runnable { //内部类
+	private static class Run2 implements Runnable { //内部类
 		@Override
 		public void run() {
 			String threadName = Thread.currentThread().getName();
@@ -42,11 +43,11 @@ public class DeadLock {
 	
 	
 	public static void main(String[] args) {
-		Thread thread1 = new Thread(new DeadLock().new Run1());
-		Thread thread2 = new Thread(new DeadLock().new Run2());
+		Thread thread1 = new Thread(new Run1());
+		Thread thread2 = new Thread(new Run2());
 		thread1.start();
 		thread2.start();
-		/**
+		/*
 		 * 运行这个程序，打印结果为
 		 * Thread-1进入同步块o2，准备进入o1
 		 * Thread-0进入同步块o1，准备进入o2

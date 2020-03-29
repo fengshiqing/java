@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * <JDBC连接数据库>
+ * 功能描述：JDBC连接数据库
  * 
  * @author 冯仕清
+ * @since 2016/03/20 19:23
  */
 public class JDBC {
 

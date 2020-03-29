@@ -5,6 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 功能描述：配置Mybatis
+ *
+ * @author 冯仕清
+ * @since 2020/03/20 19:09
+ */
 @Configuration
 @MapperScan("com.kunning.springboot.dao")
 public class MyBatisConfig {
