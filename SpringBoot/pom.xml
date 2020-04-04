@@ -87,7 +87,7 @@
         <!-- mybatis starter -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <artifactId>mybatis-spring-boot-starter</artifactId><!-- 这里包含了mybatis依赖 -->
             <version>2.1.0</version>
         </dependency>
         <!-- 数据库 MySQL、MyBatis -->
@@ -95,12 +95,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency><!-- 添加mybatis依赖 -->
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.4.5</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- 邮件 starter -->
