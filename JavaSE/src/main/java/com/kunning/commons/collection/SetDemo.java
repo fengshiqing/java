@@ -38,6 +38,7 @@ public class SetDemo {
 		set.add(new Customer("GG", 1004));
 		set.add(new Customer("CC", 1001));
 		set.add(new Customer("DD", 1001));
+		set.add(null); // set允许null
 
 		for (Object str : set) {
 			System.out.println(str);
