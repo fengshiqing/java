@@ -32,32 +32,32 @@ public class TestClass {
 		System.out.println(System.class.getClassLoader());
 	}
 
-}
+	static class B {
+		//int x;
+		static {
+			System.out.println("Load B");
+		}
+		public B() {
+			System.out.println("Create B");
+		}
+		static {
+			System.out.println("Load B");
+		}
+	}
 
-class B {
-	//int x;
-	static {
-		System.out.println("Load B");
-	}
-	public B() {
-		System.out.println("Create B");
-	}
-	static {
-		System.out.println("Load B");
-	}
-}
+	static class A extends B {
+		static {
+			System.out.println("Load A");
+		}
+		public A() {
+			super();
+			System.out.println("Create A");
+			ClassLoader clApp = A.class.getClassLoader();
+			System.out.println(clApp);
+			System.out.println(clApp.getParent());
 
-class A extends B {
-	static {
-		System.out.println("Load A");
+			//System.out.println(x);
+		}
 	}
-	public A() {
-		super();
-		System.out.println("Create A");
-		ClassLoader clApp = A.class.getClassLoader();
-		System.out.println(clApp);
-		System.out.println(clApp.getParent());
-		
-		//System.out.println(x);
-	}
+
 }
