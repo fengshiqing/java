@@ -6,14 +6,14 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * <读取项目中的配置文件>
- * <看看这个：http://www.cnblogs.com/coder-wzr/p/8418236.html>
- * <http://www.cnblogs.com/yejg1212/p/3270152.html>
+ * 功能描述：读取项目中的配置文件
+ * 看这个：http://www.cnblogs.com/coder-wzr/p/8418236.html
+ * http://www.cnblogs.com/yejg1212/p/3270152.html
  */
 public class ReadPoperties {
 
 	/**
-	 * <读取项目中的配置文件>
+	 * 读取项目中的配置文件
 	 */
 	public static void main(String[] args) throws IOException {
 		// 1、读取项目中的配置文件
