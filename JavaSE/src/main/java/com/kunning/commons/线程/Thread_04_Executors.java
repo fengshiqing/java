@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  * @author 冯仕清
  * @since 2020/04/06
  */
-public class Thread_04_Pool {
+public class Thread_04_Executors {
 
     /**
      * 线程池数量
