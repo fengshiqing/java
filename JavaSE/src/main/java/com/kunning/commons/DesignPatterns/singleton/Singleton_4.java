@@ -6,23 +6,21 @@ package com.kunning.commons.DesignPatterns.singleton;
 // https://www.cnblogs.com/zhaoyan001/p/6365064.html
 public class Singleton_4 {
 
-	private volatile static Singleton_4 single;// 1、私有静态变量
+    private volatile static Singleton_4 single; // 1、私有静态变量
 
-	private Singleton_4() {// 2、私有构造器
-	}
+    private Singleton_4() { // 2、私有构造器
+    }
 
-	public static Singleton_4 getInstance() {// 3、公有静态方法
-		if (single == null) {
-			synchronized (Singleton_4.class) {// 双重检查加锁，Class clazz = Singleton.class;这是Class类的对象
-				if (single == null) {
-					single = new Singleton_4();
-				}
-			}
-		}
-		return single;
-	}
-	
+    public static Singleton_4 getInstance() { // 3、公有静态方法
+        if (single == null) {
+            synchronized (Singleton_4.class) { // 双重检查加锁，Class clazz = Singleton.class;这是Class类的对象
+                if (single == null) {
+                    single = new Singleton_4();
+                }
+            }
+        }
+        return single;
+    }
 }
-
-//到这里，延时加载单例模式才算完美，能大大减少getInstance()的时间耗费，提高性能。
-//注意：双重检查加锁不适用于1.4及更早版本的jdk
+// 到这里，延时加载单例模式才算完美，能大大减少getInstance()的时间耗费，提高性能。
+// 注意：双重检查加锁不适用于1.4及更早版本的jdk

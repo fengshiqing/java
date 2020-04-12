@@ -16,7 +16,7 @@ package com.kunning.commons.DesignPatterns.singleton;
 public class Singleton_1 {
 
     // 加载此类时就创建了对象，“急切”（饿汉式）。这种对性能有一定的影响，进阶版的见 Singleton_2.java
-    private static final Singleton_1 single = new Singleton_1();// 1、私有静态变量
+    private static final Singleton_1 single = new Singleton_1(); // 1、私有静态变量
 
     private Singleton_1() {// 2、私有构造器
     }
