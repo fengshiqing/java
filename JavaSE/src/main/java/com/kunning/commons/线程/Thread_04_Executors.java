@@ -13,15 +13,10 @@ import java.util.concurrent.Executors;
  */
 public class Thread_04_Executors {
 
-    /**
-     * 线程池数量
-     */
-    private static final int POOL_NUM = 10;
-
     @Test
     public void test() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(7);
-        for (int i = 0; i < POOL_NUM; i++) {
+        for (int i = 0; i < 15; i++) {
             MyThread thread = new MyThread();
             executorService.execute(thread);
             Thread.sleep(1000);
