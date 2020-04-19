@@ -8,7 +8,7 @@ public class TimerTask {
 
     @Scheduled(cron="0 0/1 * * * ?")
     public void schedule_1() {
-        System.out.println("【定时任务：使用Spring框架的@Scheduled配置定时任务】" + System.currentTimeMillis());
+//        System.out.println("【定时任务：使用Spring框架的@Scheduled配置定时任务】" + System.currentTimeMillis());
     }
 
 }
