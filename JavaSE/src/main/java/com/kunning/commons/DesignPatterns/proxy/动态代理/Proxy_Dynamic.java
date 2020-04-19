@@ -5,12 +5,59 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 动态代理
+ * 功能描述：动态代理。
+ * 看这里：http://www.gulixueyuan.com/course/39/task/538/show
  *
  * @author 冯仕清
+ * @since 2019/05/01
  */
-// http://www.gulixueyuan.com/course/39/task/538/show
 public class Proxy_Dynamic {
+
+    // 步骤一：和静态代理一样，需要一个接口
+    interface Subject {
+        void action();
+    }
+
+    // 步骤二：目标类、实现类、被代理类
+    static class RealSubject implements Subject {
+        @Override
+        public void action() {
+            System.out.println("我是目标类/被代理类，最终执行的代码是我。");
+        }
+    }
+
+    // 步骤三：代理类，必须实现 InvocationHandler 接口
+    static class MyProxy implements InvocationHandler {
+        private final Object target;// 实现了接口的被代理类的对象
+
+        /**
+         * 初始化时绑定目标类
+         */
+        MyProxy(Object target) {
+            this.target = target;
+        }
+
+        /**
+         * @param proxy  代理对象，一般情况下，在invoke方法中不能使用该对象，会造成死循环
+         * @param method 正在被调用的方法
+         * @param args   调用方法时，传入的参数
+         *
+         * @return 方法返回值
+         *
+         * @throws Exception 抛出异常
+         */
+        // 静态代理和动态代理的调用方法不一样，通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
+            // proxy.toString();// 造成内存溢出：java.lang.StackOverflowError
+            System.out.println("预处理操作——————");
+            Object returnVal = method.invoke(target, args);
+            System.out.println("调用后处理——————");
+            return returnVal;// 这个返回值就是被代理类的方法的返回值。
+        }
+    }
+
+
     public static void main(String[] args) {
         // 1、造一个被代理的对象
         RealSubject target = new RealSubject();
@@ -20,50 +67,6 @@ public class Proxy_Dynamic {
         Object obj = Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), myproxy);
         Subject sub = (Subject) obj;// 此时的sub就是代理类对象
         sub.action();// 转到对InvocationHandler 接口的实现类的invoke()方法的嗲用。
-    }
-}
-
-// 步骤一：和静态代理一样，需要一个接口
-interface Subject {
-    void action();
-}
-
-// 步骤二：目标类、实现类、被代理类
-class RealSubject implements Subject {
-    @Override
-    public void action() {
-        System.out.println("我是目标类/被代理类，最终执行的代码是我。");
-    }
-}
-
-// 步骤三：代理类，必须实现 InvocationHandler 接口
-class MyProxy implements InvocationHandler {
-    private Object target;// 实现了接口的被代理类的对象
-
-    /**
-     * 初始化时绑定目标类
-     */
-    MyProxy(Object target) {
-        this.target = target;
-    }
-
-    /**
-     * @param proxy  代理对象，一般情况下，在invoke方法中不能使用该对象，会造成死循环
-     * @param method 正在被调用的方法
-     * @param args   调用方法时，传入的参数
-     *
-     * @return 方法返回值
-     *
-     * @throws Exception 抛出异常
-     */
-    // 静态代理和动态代理的调用方法不一样，通过代理类的对象发起对被重写的方法的调用时，都会转化为对如下的方法的调用，就实现了代理。
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
-        // proxy.toString();// 造成内存溢出：java.lang.StackOverflowError
-        System.out.println("预处理操作——————");
-        Object returnVal = method.invoke(target, args);
-        System.out.println("调用后处理——————");
-        return returnVal;// 这个返回值就是被代理类的方法的返回值。
     }
 }
 

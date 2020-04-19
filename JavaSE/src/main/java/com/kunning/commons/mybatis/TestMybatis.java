@@ -28,14 +28,14 @@ public class TestMybatis {
         SqlSession sqlSession = SqlSessionFactoryUtil.openSession();// 获取sqlsession
 
         // 步骤二：组装数据
-//		User user = new User("fengshiqing", "feng.1029");
+//		User user = new User("fengshiqing", "feng.0905");
 
         // 步骤三：执行sql语句
         // 方式一：这种方式可以不写dao层接口，直接调用。但是必须将sqlMap的xml文件配置到mybatis-config.xml文件中。
 //        List<User> userList = sqlSession.selectList("UserDao.getAll");
 
         // 方式二：这种方式需要dao层接口。sql语句甚至可以写在dao层接口的方法上（这样就不必将sqlMap的xml文件配置到mybatis-config.xml文件中。）。
-        UserDao userDao = sqlSession.getMapper(UserDao.class);
+        UserDao userDao = sqlSession.getMapper(UserDao.class); // 这里创建的对象是：代理对象
         List<User> userList = userDao.getAll();
 
         // 步骤四：commit、close

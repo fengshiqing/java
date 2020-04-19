@@ -43,7 +43,7 @@ public class SqlSessionFactoryUtil {
     }
 
     public static SqlSession openSession() {
-        return getSqlSessionFactory().openSession();
+        return getSqlSessionFactory().openSession(); // 这里并没有创建真正的数据库连接，只是mybatis创建了一个表示连接的对象
     }
 
 }
