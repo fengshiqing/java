@@ -18,7 +18,7 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15t] [%file:%line] - %m%n</pattern>
             <charset>UTF-8</charset><!-- 设置日志的编码 -->
         </encoder>
-        <File>/workspace/log/springboot.log</File><!-- D盘，默认是代码所在盘的根目录 -->
+        <File>C:\Users\kunning\Documents\workspace/log/springboot.log</File><!-- D盘，默认是代码所在盘的根目录 -->
         <!-- rollingPolicy:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。 -->LoggerContext
         <!-- TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
