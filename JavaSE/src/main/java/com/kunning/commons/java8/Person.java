@@ -1,14 +1,14 @@
 package com.kunning.commons.java8;
 
-public class PersonModel {
+public class Person {
 
     private String name;
     private String sex;
     private int age;
 
-    public PersonModel() {
+    public Person() {
     }
-    public PersonModel(String name, int age, String sex) {
+    public Person(String name, int age, String sex) {
         this.name = name;
         this.age = age;
         this.sex = sex;

@@ -1,6 +1,7 @@
 package com.kunning.commons.java8;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Java8Tester {
@@ -32,19 +33,29 @@ public class Java8Tester {
         System.out.println(names2);
 
 
-        List<PersonModel> list = new ArrayList<>();
-        list.add(new PersonModel("wu qi", 18, "男"));
-        list.add(new PersonModel("zhang san", 19, "男"));
-        list.add(new PersonModel("wang si", 20, "女"));
-        list.add(new PersonModel("zhao wu", 23, "男"));
-        list.add(new PersonModel("chen liu", 18, "女"));
+        List<Person> list = new ArrayList<>();
+        list.add(new Person("wu qi", 18, "男"));
+        list.add(new Person("zhang san", 19, "男"));
+        list.add(new Person("wang si", 20, "女"));
+        list.add(new Person("zhao wu", 23, "男"));
+        list.add(new Person("chen liu", 18, "女"));
 
-//		System.out.println("【过滤所有男性】" + list.stream().filter(person -> "男".equals(person.getSex())));
+
+        System.out.println("=====");
+
+        list.parallelStream().map(new Function<Person, String>() {
+            @Override
+            public String apply(Person person) {
+                return person.getName();
+            }
+        }).forEach(System.out::println);
+
+
         System.out.println("【过滤出所有男性】" + list.stream().filter(person -> "男".equals(person.getSex())).collect(Collectors.toList()));
         System.out.println("【过滤出小于20岁的人】" + list.stream().filter(person -> person.getAge() < 20).collect(Collectors.toList()));
         System.out.println("【过滤出小于20岁的男人】" + list.stream().filter(person -> (person.getAge() < 20) && ("男".equals(person.getSex()))).collect(Collectors.toList()));
         System.out.println("【过滤出所有用户的名字，方式一】" + list.stream().map(person -> person.getName()).collect(Collectors.toList()));
-        System.out.println("【过滤出所有用户的名字，方式二】" + list.stream().map(PersonModel::getName).collect(Collectors.toList()));
+        System.out.println("【过滤出所有用户的名字，方式二】" + list.stream().map(Person::getName).collect(Collectors.toList()));
         System.out.println("【过滤出所有用户的名字，方式三】" + list.stream().map(person -> {
             // System.out.println(person.getName());
             return person.getName();
