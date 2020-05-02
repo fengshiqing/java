@@ -103,6 +103,19 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <!-- 健康检查、监控 starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- 引入自定义的starter-->
+        <dependency>
+            <groupId>com.kunning</groupId>
+            <artifactId>custom-spring-boot-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- 以下是非 starter 的依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

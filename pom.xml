@@ -19,6 +19,7 @@
         <module>JavaSE</module>
         <module>JavaWeb</module>
         <module>SpringBoot</module>
+        <module>SpringBootStarter</module>
     </modules>
 
 </project>
