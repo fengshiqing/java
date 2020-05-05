@@ -52,6 +52,13 @@
             <version>3.2.4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.9</version>
+        </dependency>
+
         <!-- 大数据 storm -->
         <!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
 <!--        <dependency>-->
