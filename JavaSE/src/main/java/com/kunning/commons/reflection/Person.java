@@ -7,6 +7,7 @@ public class Person {
 
 	public String name;
 	int age;
+	private String gender;
 
 	public Person() {
 		super();
@@ -21,6 +22,11 @@ public class Person {
 		super();
 		this.name = name;
 		this.age = age;
+	}
+
+	private Person(String name, String name2) {
+		super();
+		this.name = name;
 	}
 
 	public String getName() {
@@ -45,6 +51,10 @@ public class Person {
 
 	public void display(String nation){
 		System.out.println("我的国籍是：" + nation);
+	}
+
+	private void sayHello(){
+		System.out.println("Hello World");
 	}
 
 	@Override
