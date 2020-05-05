@@ -1,7 +1,7 @@
 package com.kunning.commons.DesignPatterns.singleton;
 
 /**
- * Singleton_2.java 在高并发环境下，会创建出多个对象。Singleton_3 进行加锁处理。
+ * 在高并发环境下，{@link Singleton_2} 会创建出多个对象。必须进行加锁处理。
  */
 public class Singleton_3 {
 
