@@ -18,7 +18,7 @@ public class Singleton_5 {
         if (single == null) {
             synchronized (Singleton_5.class) { // 双重检查加锁DCL（Double Check Lock）
                 if (single == null) { // 如果在A线程申请锁时，B线程已经创建了对象，volatile确保线程可见性，A线程就能知道，有别的线程已经创建了对象，就不会重复创建了
-                    single = new Singleton_5();
+                    single = new Singleton_5(); // volatile 修饰，不会指令重排序，导致并发时别的线程拿到半初始化的对象
                 }
             }
         }
