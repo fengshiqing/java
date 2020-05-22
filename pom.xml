@@ -16,7 +16,7 @@
     </properties>
 
     <modules>
-        <module>JavaSE</module>
+        <module>Commons</module>
         <module>JavaWeb</module>
         <module>SpringBoot</module>
         <module>SpringBootStarter</module>

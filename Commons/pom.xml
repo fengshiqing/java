@@ -5,9 +5,12 @@
     <!-- modelVersion是4.0.0，这是当前仅有的可以被Maven2&3同时支持的POM版本，是必须的 -->
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kun</groupId>
-    <artifactId>JavaSE</artifactId>
+    <groupId>com.kunning</groupId>
+    <artifactId>Commons</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Commons</name>
+    <description>JavaSE相关的、基本的、公共的模块</description>
 
     <properties>
         <!--可以自定义属性，project.build.sourceEncoding这个是maven本身就有的-->
