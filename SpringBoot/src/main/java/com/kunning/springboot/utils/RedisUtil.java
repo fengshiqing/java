@@ -128,7 +128,7 @@ public class RedisUtil {
                     return true;
                 } else {
                     byte[] value = redisConnection.get(lock.getBytes());
-                    if (Objects.nonNull(value) && value.length > 0) {
+                    if (value != null && value.length > 0) {
                         long expireTime = Long.parseLong(new String(value));
                         if (expireTime < System.currentTimeMillis()) {
                             // 如果锁已经过期

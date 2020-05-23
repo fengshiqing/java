@@ -1,18 +1,14 @@
 package com.kunning.springboot.utils;
 
-import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
@@ -75,28 +71,13 @@ public class CipherUtil {
 
     /**
      * 功能描述：base64编码
+     * 参考：https://www.cnblogs.com/alter888/p/9140732.html
      *
      * @param plaintext 明文
      */
-    public void base64(String plaintext) throws IOException {
-        // 参考：https://www.cnblogs.com/alter888/p/9140732.html
+    public static void base64(String plaintext) {
+        //
         String text = "字串文字";
-
-        // 1、早期在Java上做Base64的编码与解码，会使用到JDK里sun.misc套件下的BASE64Encoder和BASE64Decoder两个类，用法如下：
-        String encodedText = new BASE64Encoder().encode(text.getBytes()); // 编码
-        System.out.println("【base64编码后的值：】" + encodedText);
-        System.out.println("【base64解码后的值：】" + new String(new BASE64Decoder().decodeBuffer(encodedText))); // 解码
-        // 从以上代码可以发现，在Java用Base64一点都不难，几行代码就解决了！
-        // 只是这个 sun.misc 套件所提供的Base64功能，编码和解码的效率不太好，而且在以后的Java版本可能就不被支持了，所以完全不建议使用。
-
-        // 2、Apache.Commons。Codec有提供Base64的编码与解码功能，会使用到org.apache.commons.codec.binary套件下的Base64类别，用法如下：
-        final Base64 base64 = new Base64();
-
-        final String encodedText2 = base64.encodeToString(text.getBytes(StandardCharsets.UTF_8)); // 编码
-        System.out.println("【base64编码后的值：】" + encodedText2);
-        System.out.println("【base64解码后的值：】" + new String(base64.decode(encodedText2), StandardCharsets.UTF_8)); // 解码
-        // 以上的代码看起来又比早期用sun.mis c套件还要更精简，效能实际执行起来也快了不少。
-        // 缺点是需要引用 Apache.Commons.Codec，相对有点麻烦
 
         // 3、Java 8的java.util套件中，新增了Base64的类别，可以用来处理Base64的编码与解码，用法如下：
         java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();

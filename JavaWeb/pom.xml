@@ -26,8 +26,8 @@
     <dependencies>
         <!-- 引入 JavaSE 项目 -->
         <dependency>
-            <groupId>com.kun</groupId>
-            <artifactId>JavaSE</artifactId>
+            <groupId>com.kunning</groupId>
+            <artifactId>Commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
