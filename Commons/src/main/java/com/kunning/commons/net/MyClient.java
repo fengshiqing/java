@@ -3,7 +3,6 @@ package com.kunning.commons.net;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  * 客户端，与serverSocket通信。
@@ -18,8 +17,6 @@ public class MyClient {
 			outputStream = socket.getOutputStream();// 步骤二：获取OutputStream输出流对象
 			String requestBody = "吼吼";
 			outputStream.write(requestBody.getBytes());// 步骤三：发送数据，使用平台的默认字符集将此 String 编码为 byte 序列，并将结果存储到一个新的 byte 数组中。
-		} catch (UnknownHostException e1) {
-			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} finally {
@@ -29,7 +26,6 @@ public class MyClient {
 					outputStream.close();
 				} catch (IOException e) {
 					e.printStackTrace();
-					outputStream = null;
 				}
 			}
 			if (socket != null) {
@@ -37,7 +33,6 @@ public class MyClient {
 					socket.close();
 				} catch (IOException e) {
 					e.printStackTrace();
-					socket = null;
 				}
 			}
 		}

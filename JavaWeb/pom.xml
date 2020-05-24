@@ -24,7 +24,7 @@
 
 
     <dependencies>
-        <!-- 引入 JavaSE 项目 -->
+        <!-- 引入 Commons 项目 -->
         <dependency>
             <groupId>com.kunning</groupId>
             <artifactId>Commons</artifactId>
