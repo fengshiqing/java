@@ -12,14 +12,10 @@ import org.springframework.stereotype.Service;
  * 功能描述：邮件服务类
  *
  * @author 冯仕清
- * @since 2019年10月01日
+ * @since 2019-10-01
  */
 @Service
 public class SendMailService {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(SendMailService.class);
 
     /**
