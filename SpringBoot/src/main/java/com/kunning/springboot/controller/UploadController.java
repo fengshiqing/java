@@ -1,6 +1,6 @@
 package com.kunning.springboot.controller;
 
-import com.kunning.springboot.pojo.ResultData;
+import com.kunning.springboot.pojo.ResponseApi;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class UploadController {
      */
     @ResponseBody
     @PostMapping (value = "/uploadPhoto")
-    public ResultData<Object> uploadPhoto(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
+    public ResponseApi<Object> uploadPhoto(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
         LOGGER.info("【uploadPhoto】【开始执行】");
 
         if (file != null) {
@@ -61,7 +61,7 @@ public class UploadController {
         }
 
         LOGGER.info("【uploadPhoto】【开始执行】【执行成功】");
-        return new ResultData<>();
+        return new ResponseApi<>();
     }
 
 }

@@ -27,3 +27,32 @@ function ajax() {
 	}
 	
 }
+
+
+var loginApp = angular.module('loginApp', []); // ng-app指令指明的应
+loginApp.controller("loginAppController", function($scope, $rootScope, $location, $http){ // 参数必须小写，字母s不能大写
+	$scope.name = "kunning";
+
+	$scope.username= "";
+	$scope.email= "";
+	$scope.password= "";
+
+	console.log("当前页面的URL：" + $location.absUrl());
+
+	$scope.submit = function ($scope) {
+		debugger;
+		$http({
+			method: 'GET',
+			url: '/login'
+		}).then(function successCallback(response) {
+			alert("成功");
+			// 请求成功执行代码
+		}, function errorCallback(response) {
+			// 请求失败执行代码
+		});
+	}
+
+});
+
+
+
