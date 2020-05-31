@@ -1,6 +1,5 @@
 package com.kunning.springboot.service;
 
-import com.kunning.springboot.controller.LoginController;
 import com.kunning.springboot.dao.UserDao;
 import com.kunning.springboot.pojo.User;
 import org.slf4j.Logger;
@@ -11,17 +10,15 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Service
-public class LoginService {
+public class SignService {
 
     /**
      * 日志
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SignService.class);
 
     @Autowired
     private UserDao userDao;
-
-
 
     /**
      * 功能描述：登录

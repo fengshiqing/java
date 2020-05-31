@@ -4,24 +4,20 @@ package com.kunning.springboot.pojo;
 /**
  * 功能描述：响应数据。
  *
- * @param <T> 返回个客户端的具体数据
+ * @author 冯仕清
+ * @since 2020-05-31
  */
-public class ResponseApi<T> {
+public class ResponseApi {
 
     /**
      * 状态码
      */
-    private int code = 200;
+    private int rtnCode = 200;
 
     /**
      * 状态描述
      */
-    private String msg = "成功";
-
-    /**
-     * 返回给客户端的详情数据
-     */
-    private T data;
+    private String retMsg = "成功";
 
     /**
      * 构造函数
@@ -29,51 +25,32 @@ public class ResponseApi<T> {
     public ResponseApi() {
     }
 
-    public ResponseApi(T data) {
-        this.data = data;
+    public ResponseApi(int rtnCode, String retMsg) {
+        this.rtnCode = rtnCode;
+        this.retMsg = retMsg;
     }
 
-    public ResponseApi(int code, String msg) {
-        this.code = code;
-        this.msg = msg;
+    public int getRtnCode() {
+        return rtnCode;
     }
 
-    public ResponseApi(int code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    public void setRtnCode(int rtnCode) {
+        this.rtnCode = rtnCode;
     }
 
-    public int getCode() {
-        return code;
+    public String getRetMsg() {
+        return retMsg;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
+    public void setRetMsg(String retMsg) {
+        this.retMsg = retMsg;
     }
 
     @Override
     public String toString() {
         return "ResponseApi{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
+                "rtnCode=" + rtnCode +
+                ", retMsg='" + retMsg + '\'' +
                 '}';
     }
 }

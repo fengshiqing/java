@@ -33,22 +33,27 @@ var loginApp = angular.module('loginApp', []); // ng-app指令指明的应
 loginApp.controller("loginAppController", function($scope, $rootScope, $location, $http){ // 参数必须小写，字母s不能大写
 	$scope.name = "kunning";
 
-	$scope.username= "";
-	$scope.email= "";
-	$scope.password= "";
+	// $scope.username = "";
+	// $scope.email = "";
+	// $scope.password = "";
 
 	console.log("当前页面的URL：" + $location.absUrl());
 
 	$scope.submit = function ($scope) {
 		debugger;
 		$http({
-			method: 'GET',
-			url: '/login'
+			// method: 'GET',
+			// url: '/login'
+			method:'POST',
+			url:'/login',
+			data:{"telephone":$scope.telephone, "email":$scope.email, "password":$scope.password},
+			headers:{'Content-Type': 'application/x-www-form-urlencoded'}  //重点，不要忘记漏写
 		}).then(function successCallback(response) {
-			alert("成功");
 			// 请求成功执行代码
+			alert("请求成功");
 		}, function errorCallback(response) {
 			// 请求失败执行代码
+			alert("请求失败");
 		});
 	}
 
