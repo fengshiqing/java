@@ -28,9 +28,12 @@ function ajax() {
 	
 }
 
+define("signinApp",["angular"],function(angular){
+	return angular.module("signinApp",[]);
+});
 
-var loginApp = angular.module('loginApp', []); // ng-app指令指明的应
-loginApp.controller("loginAppController", function($scope, $rootScope, $location, $http){ // 参数必须小写，字母s不能大写
+var signinApp = angular.module('signinApp', []); // ng-app指令指明的应
+signinApp.controller("signinAppController", function($scope, $rootScope, $location, $http){ // 参数必须小写，字母s不能大写
 	$scope.name = "kunning";
 
 	// $scope.username = "";
@@ -41,19 +44,26 @@ loginApp.controller("loginAppController", function($scope, $rootScope, $location
 
 	$scope.submit = function ($scope) {
 		debugger;
+		var param = {"telephone": $scope.telephone, "email": $scope.email, "password": $scope.password};
 		$http({
 			// method: 'GET',
-			// url: '/login'
-			method:'POST',
-			url:'/login',
-			data:{"telephone":$scope.telephone, "email":$scope.email, "password":$scope.password},
-			headers:{'Content-Type': 'application/x-www-form-urlencoded'}  //重点，不要忘记漏写
+			// url: '/signin'
+			method: 'POST',
+			url: '/signin',
+			data: param,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  //重点，不要忘记漏写
 		}).then(function successCallback(response) {
+			debugger;
 			// 请求成功执行代码
-			alert("请求成功");
+			layer.msg("请求成功");
+			if (response.data.rtnCode === 200) {
+				window.location.href = "./bootstrap-4.5.0-examples/blog/index.html";
+			} else {
+				alert(response.data.rtnMsg);
+			}
 		}, function errorCallback(response) {
 			// 请求失败执行代码
-			alert("请求失败");
+			layer.msg("请求失败");
 		});
 	}
 
