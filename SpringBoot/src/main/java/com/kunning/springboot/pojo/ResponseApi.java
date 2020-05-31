@@ -17,7 +17,7 @@ public class ResponseApi {
     /**
      * 状态描述
      */
-    private String retMsg = "成功";
+    private String rtnMsg = "成功";
 
     /**
      * 构造函数
@@ -25,9 +25,9 @@ public class ResponseApi {
     public ResponseApi() {
     }
 
-    public ResponseApi(int rtnCode, String retMsg) {
+    public ResponseApi(int rtnCode, String rtnMsg) {
         this.rtnCode = rtnCode;
-        this.retMsg = retMsg;
+        this.rtnMsg = rtnMsg;
     }
 
     public int getRtnCode() {
@@ -38,19 +38,19 @@ public class ResponseApi {
         this.rtnCode = rtnCode;
     }
 
-    public String getRetMsg() {
-        return retMsg;
+    public String getRtnMsg() {
+        return rtnMsg;
     }
 
-    public void setRetMsg(String retMsg) {
-        this.retMsg = retMsg;
+    public void setRtnMsg(String rtnMsg) {
+        this.rtnMsg = rtnMsg;
     }
 
     @Override
     public String toString() {
         return "ResponseApi{" +
                 "rtnCode=" + rtnCode +
-                ", retMsg='" + retMsg + '\'' +
+                ", rtnMsg='" + rtnMsg + '\'' +
                 '}';
     }
 }
