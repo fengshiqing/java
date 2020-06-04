@@ -40,6 +40,12 @@ var vm = new Vue({
         hideCompletedTodos: false,
         todos: [],
         error: null
+    },
+    methods:{
+        signin: function () {
+            console.log(this.$data.email);
+            console.log(this.email);
+        }
     }
 });
 //
