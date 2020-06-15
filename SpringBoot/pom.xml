@@ -101,6 +101,12 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <!--访问权限控制 starter-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!-- 健康检查、监控 starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

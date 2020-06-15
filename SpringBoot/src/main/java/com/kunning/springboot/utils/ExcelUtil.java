@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -208,10 +209,10 @@ public class ExcelUtil<T> {
 
     // 本地测试方法，直接本地运行即可查看效果。注释掉测试代码 modify by 冯仕清 2017年11月6日 16:19:46
     public static void main(String[] args) {
-        ExcelUtil<Student> excelUtil1 = new ExcelUtil<Student>();// 测试学生
+        ExcelUtil<Student> excelUtil1 = new ExcelUtil<>();// 测试学生
         String[] thCodeArr = {"id", "name", "age", "sex", "birthday"};// 设置要导出的Excel的标题行的中文名字
         String[] thNameArr = {"学号", "姓名", "年龄", "性别", "出生日期"};// 设置要导出的Excel的标题行的中文名字
-        List<Student> studentDtoList = new ArrayList<Student>();
+        List<Student> studentDtoList = new ArrayList<>();
         studentDtoList.add(new Student(10000001, "张三", 20, true, new Date()));
         studentDtoList.add(new Student(20000002, "李四", 24, false, new Date()));
         studentDtoList.add(new Student(30000003, "王五", 22, true, new Date()));
@@ -220,7 +221,7 @@ public class ExcelUtil<T> {
 //		}
 
         try {
-            FileOutputStream fileOutStream1 = new FileOutputStream("E://a.xls");
+            FileOutputStream fileOutStream1 = new FileOutputStream("C://a.xls");
             Workbook wb = excelUtil1.exportExcel(thNameArr, thCodeArr, studentDtoList);
             wb.write(fileOutStream1);
             fileOutStream1.close();
@@ -382,67 +383,67 @@ public class ExcelUtil<T> {
         return hour + "小时" + minutes + "分";
     }
 
+    // 功能描述：此类用来测试，这是一个规范的javaBean。
+    static class Student {
+        private long id;
+        private String name;
+        private int age;
+        private boolean sex;// true表示男，false表示女
+        private Date birthday;
+
+        public Student() {
+            super();
+        }
+
+        public Student(long id, String name, int age, boolean sex, Date birthday) {
+            super();
+            this.id = id;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.birthday = birthday;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public void setId(long id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public boolean getSex() {
+            return sex;
+        }
+
+        public void setSex(boolean sex) {
+            this.sex = sex;
+        }
+
+        public Date getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(Date birthday) {
+            this.birthday = birthday;
+        }
+
 }
-
-// 功能描述：此类用来测试，这是一个规范的javaBean。
-class Student {
-    private long id;
-    private String name;
-    private int age;
-    private boolean sex;// true表示男，false表示女
-    private Date birthday;
-
-    public Student() {
-        super();
-    }
-
-    public Student(long id, String name, int age, boolean sex, Date birthday) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.birthday = birthday;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public boolean getSex() {
-        return sex;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 
 }
