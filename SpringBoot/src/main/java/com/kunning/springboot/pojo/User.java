@@ -1,9 +1,5 @@
 package com.kunning.springboot.pojo;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.List;
-
 public class User {
 
     /**
@@ -30,14 +26,6 @@ public class User {
      * 邮箱
      */
     private String email;
-
-    /**
-     * 构造函数
-     */
-    public User(String username, String password, List<GrantedAuthority> list){
-        this.username = username;
-        this.password = password;
-    }
 
     /**
      * 构造函数
