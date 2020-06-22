@@ -39,17 +39,17 @@ public class CommonIntercepter implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         LOGGER.info("【preHandle】【开始执行】");
 
-        // 验证是否登录
-        String username = (String) request.getSession().getAttribute("");
-        if (username == null) {
-            this.writeContent(response, "tips111:请先登录");
-            LOGGER.info("【请先登录】");
-            return true;
-        }
-        if  (!"某个特定值".equals(username)) {
-            this.writeContent(response, "没有权限");
-            return false;
-        }
+        // 验证是否登录。 使用了 Spring Security 这些代码就不用自己写了
+//        String username = (String) request.getSession().getAttribute("");
+//        if (username == null) {
+//            this.writeContent(response, "tips111:请先登录");
+//            LOGGER.info("【请先登录】");
+//            return true;
+//        }
+//        if  (!"某个特定值".equals(username)) {
+//            this.writeContent(response, "没有权限");
+//            return false;
+//        }
 
         //允许跨域，不能放在postHandle内
         response.setHeader("Access-Control-Allow-Origin", "*");

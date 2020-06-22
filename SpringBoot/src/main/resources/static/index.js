@@ -45,6 +45,7 @@ var vm = new Vue({
         signin: function () {
             console.log(this.$data.email);
             console.log(this.email);
+            window.location.href = "/hello/helloAdmin";
         }
     }
 });

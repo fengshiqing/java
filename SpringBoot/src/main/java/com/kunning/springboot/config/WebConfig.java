@@ -37,6 +37,6 @@ public class WebConfig implements WebMvcConfigurer {
         //SpringBoot已经做好了静态资源的映射，因此我们无需任何操作
         registry.addInterceptor(commonIntercepter)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/index.html", "/", "/user/login");
+                .excludePathPatterns("/index.html", "/index.css", "/index.js", "/", "/user/login");
     }
 }
