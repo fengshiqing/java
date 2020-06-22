@@ -4,9 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 功能描述：拦截器。添加请求头信息。
@@ -24,15 +27,29 @@ public class CommonIntercepter implements HandlerInterceptor {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonIntercepter.class);
 
     /**
+     * 功能描述：调用方法前拦截。
      *
-     * @param request 请求
+     * @param request  请求
      * @param response 相应
-     * @param handler handler对象
+     * @param handler  handler对象
+     *
      * @return true通过，false直接返回
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         LOGGER.info("【preHandle】【开始执行】");
+
+        // 验证是否登录
+        String username = (String) request.getSession().getAttribute("");
+        if (username == null) {
+            this.writeContent(response, "tips111:请先登录");
+            LOGGER.info("【请先登录】");
+            return true;
+        }
+        if  (!"某个特定值".equals(username)) {
+            this.writeContent(response, "没有权限");
+            return false;
+        }
 
         //允许跨域，不能放在postHandle内
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -43,4 +60,24 @@ public class CommonIntercepter implements HandlerInterceptor {
         LOGGER.info("【preHandle】【结束执行】");
         return true;
     }
+
+    /**
+     * 功能描述：调用方法后拦截。
+     *
+     * @param request  请求
+     * @param response 相应
+     * @param handler  handler对象
+     */
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+
+    }
+
+    private void writeContent(HttpServletResponse response, String msg) throws IOException {
+        PrintWriter writer = response.getWriter();
+        writer.print(msg);
+        writer.flush();
+        writer.close();
+    }
+
 }

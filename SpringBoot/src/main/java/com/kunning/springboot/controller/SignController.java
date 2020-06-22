@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 功能描述：登录、注册、退出登录
@@ -32,7 +33,7 @@ public class SignController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SignController.class);
 
     @Autowired
-    private SignService loginService;
+    private SignService signService;
 
     /**
      * 功能描述：登录
@@ -41,8 +42,10 @@ public class SignController {
      */
     @ApiOperation(value = "登录接口", notes = "登录账号")
     @PostMapping(value = "/signin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi signin(HttpServletRequest request) {
+    public ResponseApi signin(HttpServletRequest request, HttpSession session) {
         LOGGER.info("【登录成功...】");
+
+        session.setAttribute("_user", request.getHeaderNames());
 
         System.out.println(request.getAuthType());
         System.out.println(request.getHeaderNames());
@@ -58,7 +61,7 @@ public class SignController {
     @ApiOperation(value = "注册接口", notes = "注册账号")
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseApi signup(@RequestBody User user) {
-        int num = loginService.insert(user);
+        int num = signService.insert(user);
         LOGGER.info("【注册成功】{}", num);
         return new ResponseApi(200, "注册成功");
     }
@@ -70,9 +73,9 @@ public class SignController {
      */
     @ApiOperation(value = "退出登录", notes = "退出登录")
     @PostMapping(value = "/signout", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi signout(@RequestBody User user) {
-        int num = loginService.insert(user);
-        LOGGER.info("【注册成功】{}", num);
+    public ResponseApi signout(@RequestBody User user, HttpSession session) {
+        session.invalidate();
+        LOGGER.info("【退出登录】{}", user.getUsername());
         return new ResponseApi(200, "退出成功");
     }
 

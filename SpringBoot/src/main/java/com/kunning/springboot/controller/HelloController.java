@@ -4,12 +4,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class HelloController {
 
     @GetMapping("/hello")
     public String hello(){
-        return "hello";
+        return "hello 你好";
     }
 
     @GetMapping("/helloAdmin")
@@ -24,5 +26,10 @@ public class HelloController {
         return "helloUser";
     }
 
+    @GetMapping("/session")
+    public String session(HttpSession session){
+        String username = (String) session.getAttribute("_user");
+        return "helloUser," + username;
+    }
 
 }
