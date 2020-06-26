@@ -2,21 +2,14 @@ package com.kunning.springboot.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cglib.proxy.NoOp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
 
 /**
  * 功能描述：安全配置/访问权限配置。
@@ -93,39 +86,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .csrf().disable();
         http.authorizeRequests() // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/hello/**") // 这个路径的资源必须通过认证
+                .antMatchers("/") // 这个路径的资源必须通过认证
                 .authenticated()//其他路径认证之后就可以访问
                 .anyRequest().permitAll() // 其他的请求可以放行
                 .and()
                 .formLogin() // 允许表单登录
-                .successForwardUrl("/hello/helloUser"); // 表单登录成功后跳转的页面地址
+                .successForwardUrl("/hello/hello"); // 表单登录成功后跳转的页面地址
     }
-
-//    @Override
-//    public void configure(WebSecurity web) {
-//        web.ignoring().antMatchers("/index.html", "/static/**", "/loginPage", "/register");
-//    }
-
-    /**
-     * 功能描述：基于内存的方式，创建账户密码及其角色权限
-     *
-     * @param auth 权限
-     *
-     * @throws Exception 异常
-     */
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(new BCryptPasswordEncoder()) // 这种方式每次都要写重复代码
-//                .withUser("user")
-//                .password(new BCryptPasswordEncoder().encode("123456"))
-//                .roles("normal"); //normal表示一般通用的角色权限
-//
-//        // 这种方式注册一个 passwordEncoder bean，直接拿来使用就行了，方便很多
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(this.passwordEncoder().encode("123456"))
-//                .roles("admin"); // admin表示管理员权限
-//    }
 
 }
