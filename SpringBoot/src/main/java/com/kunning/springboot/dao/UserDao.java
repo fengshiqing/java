@@ -2,22 +2,21 @@ package com.kunning.springboot.dao;
 
 import java.util.List;
 
-import com.kunning.springboot.pojo.User;
-import org.apache.ibatis.annotations.*;
+import com.kunning.springboot.pojo.UserDto;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao {
 
-    int insert(User user);
+    int insert(UserDto userDto);
 
-    int update(User user);
+    int update(UserDto userDto);
 
     int delete(Long id);
 
-    User queryUserById(int id);
+    UserDto queryUserById(int id);
 
-    List<User> queryAllUser();
+    List<UserDto> queryAllUser();
 
 }

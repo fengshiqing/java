@@ -1,7 +1,7 @@
 package com.kunning.springboot.controller;
 
 import com.kunning.springboot.pojo.ResponseApi;
-import com.kunning.springboot.pojo.User;
+import com.kunning.springboot.pojo.UserDto;
 import com.kunning.springboot.service.SignService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -56,12 +56,12 @@ public class SignController {
     /**
      * 功能描述：注册账号
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      */
     @ApiOperation(value = "注册接口", notes = "注册账号")
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi signup(@RequestBody User user) {
-        int num = signService.insert(user);
+    public ResponseApi signup(@RequestBody UserDto userDto) {
+        int num = signService.insert(userDto);
         LOGGER.info("【注册成功】{}", num);
         return new ResponseApi(200, "注册成功");
     }
@@ -69,13 +69,13 @@ public class SignController {
     /**
      * 功能描述：退出登录
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      */
     @ApiOperation(value = "退出登录", notes = "退出登录")
     @PostMapping(value = "/signout", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi signout(@RequestBody User user, HttpSession session) {
+    public ResponseApi signout(@RequestBody UserDto userDto, HttpSession session) {
         session.invalidate();
-        LOGGER.info("【退出登录】{}", user.getUsername());
+        LOGGER.info("【退出登录】{}", userDto.getUsername());
         return new ResponseApi(200, "退出成功");
     }
 

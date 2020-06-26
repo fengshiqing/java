@@ -1,6 +1,6 @@
 package com.kunning.springboot.utils;
 
-import com.kunning.springboot.pojo.User;
+import com.kunning.springboot.pojo.UserDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,13 +12,13 @@ class JsonUtilTest {
 
     @Test
     void toJsonStr() {
-        User user = new User();
-        user.setId(123456789);
-        user.setNickname("fengshiqing");
-        user.setPassword("123456789");
-        user.setEmail("938481169@qq.com");
+        UserDto userDto = new UserDto();
+        userDto.setId(123456789);
+        userDto.setNickname("fengshiqing");
+        userDto.setPassword("123456789");
+        userDto.setEmail("938481169@qq.com");
 
-        String jsonStr = JsonUtil.toJsonStr(user);
+        String jsonStr = JsonUtil.toJsonStr(userDto);
         System.out.println(jsonStr);
     }
 
@@ -30,23 +30,23 @@ class JsonUtilTest {
                 "  \"nickname\" : \"fengshiqing\",\n" +
                 "  \"email\" : \"938481169@qq.com\"\n" +
                 "}";
-        User user = (User) JsonUtil.fromJson(jsonStr, User.class);
-        System.out.println(user);
+        UserDto userDto = (UserDto) JsonUtil.fromJson(jsonStr, UserDto.class);
+        System.out.println(userDto);
     }
 
     @Test
     void testJson(){
         List<Map<String, Object>> mapList = new ArrayList<>();
-        User user = new User();
-        user.setId(123456789);
-        user.setNickname("fengshiqing");
-        user.setPassword("123456789");
-        user.setEmail("938481169@qq.com");
+        UserDto userDto = new UserDto();
+        userDto.setId(123456789);
+        userDto.setNickname("fengshiqing");
+        userDto.setPassword("123456789");
+        userDto.setEmail("938481169@qq.com");
 
         Map<String, Object> map = new HashMap<>();
-        map.put("111", user);
-        map.put("222", user);
-        map.put("333", user);
+        map.put("111", userDto);
+        map.put("222", userDto);
+        map.put("333", userDto);
 
         mapList.add(map);
         mapList.add(map);

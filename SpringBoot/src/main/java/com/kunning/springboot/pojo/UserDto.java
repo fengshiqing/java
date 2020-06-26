@@ -1,6 +1,6 @@
 package com.kunning.springboot.pojo;
 
-public class User {
+public class UserDto {
 
     /**
      * ID
@@ -30,7 +30,7 @@ public class User {
     /**
      * 构造函数
      */
-    public User(){
+    public UserDto(){
     }
 
     public int getId() {

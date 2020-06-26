@@ -1,7 +1,7 @@
 package com.kunning.springboot.service;
 
 import com.kunning.springboot.dao.UserDao;
-import com.kunning.springboot.pojo.User;
+import com.kunning.springboot.pojo.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +23,21 @@ public class SignService {
     /**
      * 功能描述：登录
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      */
-    public int insert(User user) {
-        Objects.requireNonNull(user, "【user不能为null】");
-        return userDao.insert(user);
+    public int insert(UserDto userDto) {
+        Objects.requireNonNull(userDto, "【user不能为null】");
+        return userDao.insert(userDto);
     }
 
     /**
      * 功能描述：登录
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      */
-    public User register(User user) {
+    public UserDto register(UserDto userDto) {
         userDao.queryAllUser();
-        return new User();
+        return new UserDto();
 
     }
 

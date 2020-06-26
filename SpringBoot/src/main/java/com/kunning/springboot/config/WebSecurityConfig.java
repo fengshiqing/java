@@ -53,13 +53,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      *
      * @return userDetailsManager
      */
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-        userDetailsManager.createUser(User.withUsername("zhangsan").password("123").authorities("p1").build());
-        userDetailsManager.createUser(User.withUsername("lisi").password("456").authorities("p2").build());
-        return userDetailsManager;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
+//        userDetailsManager.createUser(User.withUsername("zhangsan").password("123").authorities("p1").build());
+//        userDetailsManager.createUser(User.withUsername("lisi").password("456").authorities("p2").build());
+//        return userDetailsManager;
+//    }
 
     /**
      * 功能描述：密码加密器
@@ -70,36 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
         return NoOpPasswordEncoder.getInstance(); // 暂时用明文进行密码验证
-    }
-
-//    @Override
-//    public void configure(WebSecurity web) {
-//        web.ignoring().antMatchers("/index.html", "/static/**", "/loginPage", "/register");
-//    }
-
-    //password为BCryptPasswordEncoder加密123后的值
-
-
-    /**
-     * 功能描述：基于内存的方式，创建账户密码及其角色权限
-     *
-     * @param auth 权限
-     *
-     * @throws Exception 异常
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(new BCryptPasswordEncoder()) // 这种方式每次都要写重复代码
-                .withUser("user")
-                .password(new BCryptPasswordEncoder().encode("123456"))
-                .roles("normal"); //normal表示一般通用的角色权限
-
-        // 这种方式注册一个 passwordEncoder bean，直接拿来使用就行了，方便很多
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password(this.passwordEncoder().encode("123456"))
-                .roles("admin"); // admin表示管理员权限
     }
 
     /**
@@ -130,5 +100,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() // 允许表单登录
                 .successForwardUrl("/hello/helloUser"); // 表单登录成功后跳转的页面地址
     }
+
+//    @Override
+//    public void configure(WebSecurity web) {
+//        web.ignoring().antMatchers("/index.html", "/static/**", "/loginPage", "/register");
+//    }
+
+    /**
+     * 功能描述：基于内存的方式，创建账户密码及其角色权限
+     *
+     * @param auth 权限
+     *
+     * @throws Exception 异常
+     */
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(new BCryptPasswordEncoder()) // 这种方式每次都要写重复代码
+//                .withUser("user")
+//                .password(new BCryptPasswordEncoder().encode("123456"))
+//                .roles("normal"); //normal表示一般通用的角色权限
+//
+//        // 这种方式注册一个 passwordEncoder bean，直接拿来使用就行了，方便很多
+//        auth.inMemoryAuthentication()
+//                .withUser("admin")
+//                .password(this.passwordEncoder().encode("123456"))
+//                .roles("admin"); // admin表示管理员权限
+//    }
 
 }
