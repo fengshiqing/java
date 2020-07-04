@@ -4,7 +4,7 @@
 <mapper namespace="com.kunning.springboot.dao.UserDao">
 
     <insert id="insert" parameterType="com.kunning.springboot.pojo.UserDto">
-        INSERT INTO user
+        INSERT INTO sys_user
             (username, password)
         VALUES
             (#{username}, #{password})
@@ -12,30 +12,40 @@
 
 
     <update id="update" parameterType="com.kunning.springboot.pojo.UserDto">
-        UPDATE user
+        UPDATE sys_user
            SET userName=#{username}, password=#{password}
         WHERE id = #{id}
     </update>
 
 
     <delete id="delete" parameterType="int">
-        DELETE FROM user
+        DELETE FROM sys_user
          WHERE id = #{id}
     </delete>
 
 
     <select id="queryAllUser" parameterType="com.kunning.springboot.pojo.UserDto" resultType="com.kunning.springboot.pojo.UserDto">
         SELECT *
-          FROM user
+          FROM sys_user
          WHERE 1 = 1
     </select>
 
 
     <select id="queryUserById" parameterType="int" resultType="com.kunning.springboot.pojo.UserDto">
         SELECT *
-          FROM user
+          FROM sys_user
          WHERE 1 = 1
            AND id = #{userId}
+    </select>
+
+
+    <select id="queryUserByUserName" resultType="com.kunning.springboot.pojo.UserDto">
+        SELECT
+                *
+        FROM
+                sys_user
+        WHERE 1 = 1
+        AND username = #{username}
     </select>
 
 </mapper>

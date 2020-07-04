@@ -17,6 +17,8 @@ public interface UserDao {
 
     UserDto queryUserById(int id);
 
+    UserDto queryUserByUserName(String username);
+
     List<UserDto> queryAllUser();
 
 }
