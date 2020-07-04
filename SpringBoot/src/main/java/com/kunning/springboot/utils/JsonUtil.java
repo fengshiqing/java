@@ -15,14 +15,17 @@ import java.util.Map;
 
 /**
  * 功能描述：Json工具类。
- * 一般用的只有3种：Jackson、FastJson、Gson，Spring MVC 的默认 json 解析器便是 Jackson，所以我们就使用Jackson吧。
+ * 一般用的只有3种：Jackson、FastJson、Gson。
+ * Spring MVC 的默认 json 解析器便是 Jackson，
+ * https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-json
+ * 所以我们也使用Jackson。
  * https://www.cnblogs.com/guanbin-529/p/11488869.html，此代码文件根据这篇博客来整理的。
  *
  * https://blog.csdn.net/tkwxty/article/details/34474501/
  * http://www.jb51.net/article/104993.htm
  *
  * @author 冯仕清
- * @since 2020/04/04
+ * @since 2020-04-04
  */
 public class JsonUtil {
 
