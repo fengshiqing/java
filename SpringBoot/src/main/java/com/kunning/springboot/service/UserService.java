@@ -8,7 +8,10 @@ import com.kunning.springboot.pojo.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,9 +27,6 @@ public class UserService implements UserDetailsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private UserDao userDao;
 
     /**
@@ -37,16 +37,6 @@ public class UserService implements UserDetailsService {
     public int insert(UserDto userDto) {
         Objects.requireNonNull(userDto, "【user不能为null】");
         return userDao.insert(userDto);
-    }
-
-    /**
-     * 功能描述：登录
-     *
-     * @param userDto 用户信息
-     */
-    public UserDto register(UserDto userDto) {
-        userDao.queryAllUser();
-        return new UserDto();
     }
 
     public List<UserDto> queryAllUser() {
@@ -79,7 +69,7 @@ public class UserService implements UserDetailsService {
             userDetails = User.withUsername("wangwu").password("123").authorities("p1").build(); // 模拟一个用户数据
         }
 
-        if(userDetails == null) {
+        if (userDetails == null) {
             LOGGER.warn("【loadUserByUsername】【账号信息不存在】【username:{}】", username);
             throw new UsernameNotFoundException("账号信息不存在");
         }
@@ -91,6 +81,25 @@ public class UserService implements UserDetailsService {
 
         LOGGER.info("【loadUserByUsername】【end】【userDetails:{}】", userDetails);
         return userDetails;
+    }
+
+    /**
+     * 功能描述：从SpringSecurity中获取用户名
+     *
+     * @return 用户名
+     */
+    public String getUsername() {
+        String username = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+        if (principal == null) {
+            username = "匿名";
+        }
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        }
+
+        return username;
     }
 
 }
