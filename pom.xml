@@ -15,4 +15,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <modules>
+        <module>JavaSE</module>
+        <module>JavaWeb</module>
+        <module>SpringBoot</module>
+        <module>SpringBootStarter</module>
+    </modules>
+
 </project>
