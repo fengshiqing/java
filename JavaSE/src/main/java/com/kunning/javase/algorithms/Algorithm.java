@@ -1,4 +1,10 @@
+/*
+ * Copyright (c) 2020. fengshiqing 冯仕清
+ */
+
 package com.kunning.javase.algorithms;
+
+import org.junit.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,7 +13,7 @@ import java.util.regex.Pattern;
  * 功能描述：整理常用的算法，具体看此类的单元测试类：AlgorithmTest.java
  *
  * @author 冯仕清
- * @since 2014/07/27
+ * @since 2014-07-27
  */
 public class Algorithm {
 
@@ -28,6 +34,11 @@ public class Algorithm {
             }
         }
         System.out.println("【素数的个数是】: " + count);
+    }
+
+    @Test
+    public void getPrimeNum() {
+        Algorithm.getPrimeNum(100);
     }
 
     /**
@@ -54,6 +65,12 @@ public class Algorithm {
         return true;
     }
 
+    @Test
+    public void isPrimeNum() {
+        boolean bool = Algorithm.isPrimeNum(100);
+        System.out.println("【是素数吗：】" + bool);
+    }
+
     // =====================================================斐波那契数列=====================================================
 
     /**
@@ -68,6 +85,12 @@ public class Algorithm {
             return 1;
         }
         return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    @Test
+    public void fibonacci() {
+        int fibonacciNum = Algorithm.fibonacci(10);
+        System.out.println("【斐波那契数字是：】" + fibonacciNum);
     }
 
     // =======================================================阶乘=======================================================
@@ -90,6 +113,13 @@ public class Algorithm {
         return sum;
     }
 
+    @Test
+    public void factorial() {
+        System.out.println("【阶乘结果：】" + Algorithm.factorial(10));
+        System.out.println("【阶乘结果：】" + Algorithm.factorial2(10));
+    }
+
+
     // ==================================================最大公约数、最小公倍数==================================================
 
     /**
@@ -104,6 +134,12 @@ public class Algorithm {
         return a % b == 0 ? b : GCD(b, a % b);// 递归，不错（辗转相除法）
     }
 
+    @Test
+    public void GCD() {// 最大公约数
+        int gcdNum = Algorithm.GCD(15, 6);
+        System.out.println("【最大公约数：】" + gcdNum);
+    }
+
     /**
      * 功能描述：求最小公倍数。 lowest common multiple (LCM)
      *
@@ -114,6 +150,12 @@ public class Algorithm {
      */
     public static int LCM(int a, int b) {// 最小公倍数
         return a * b / GCD(a, b);
+    }
+
+    @Test
+    public void LCM() {// 最小公倍数
+        int lcmNum = Algorithm.LCM(15, 6);
+        System.out.println("【最小公倍数：】" + lcmNum);
     }
 
     // ======================================================随机数======================================================
@@ -131,6 +173,12 @@ public class Algorithm {
         return (int) num;
     }
 
+    @Test
+    public void getRandomNum() {
+        int fibonacciNum = Algorithm.getRandomNum(1, 10);
+        System.out.println("【随机数：】" + fibonacciNum);
+    }
+
     /**
      * 功能描述：n位数字组成的随机字符串。 说明：可以用来做验证码。
      *
@@ -145,6 +193,12 @@ public class Algorithm {
             strBuilder.append(randomNum);// 将intValue强制转化成char类型后接到result后面
         }
         return strBuilder.toString();
+    }
+
+    @Test
+    public void getRandomStr() {
+        String randomStr = Algorithm.getRandomStr(6);
+        System.out.println("【随机数字字符串：】" + randomStr);
     }
 
     // =====================================================花样多边形=====================================================
@@ -264,6 +318,11 @@ public class Algorithm {
         }
     }
 
+    @Test
+    public void testPolygon() {
+        Algorithm.polygon();
+    }
+
     // =====================================================乘法口诀表=====================================================
 
     public static void multiplicationTable() {
@@ -290,12 +349,30 @@ public class Algorithm {
         }
     }
 
+    @Test
+    public void testMultiplicationTable() {
+        Algorithm.multiplicationTable();
+        Algorithm.multiplicationTable2();
+    }
+
     // =======================================================闰年=======================================================
 
     public static boolean judgeLeapYear(int year) {
         // 地球绕太阳一圈成为一年，所用时间为：365天5小时48分46秒，取365天为一年，这样4年后将多出23小时15分6秒，将近一天，
         // 所以每4年增加一个闰日（2月29日），该年成为闰年。
         return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    }
+
+    @Test
+    public void judgeLeapYear() {
+        boolean bool = Algorithm.judgeLeapYear(1900);
+        System.out.println("是否为闰年：】" + bool);
+    }
+
+    @Test
+    public void isHaveHanZi() {
+        System.out.println("【是否有汉字：】" + Algorithm.isHaveHanZi("我是冯仕清"));
+        System.out.println("【是否有汉字：】" + Algorithm.isHaveHanZi("abcdefg123"));
     }
 
     // ======================================================匹配汉字======================================================
