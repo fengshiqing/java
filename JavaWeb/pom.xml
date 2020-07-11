@@ -23,10 +23,10 @@
 
 
     <dependencies>
-        <!-- 引入 Commons 项目 -->
+        <!-- 引入 JavaSE 项目 -->
         <dependency>
             <groupId>com.kunning</groupId>
-            <artifactId>Commons</artifactId>
+            <artifactId>JavaSE</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
