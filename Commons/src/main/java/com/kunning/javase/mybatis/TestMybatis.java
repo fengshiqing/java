@@ -1,14 +1,14 @@
-package com.kunning.web.mybatis;
+package com.kunning.javase.mybatis;
 
-import java.util.List;
-
+import com.kunning.javase.mybatis.dao.UserDao;
+import com.kunning.javase.mybatis.util.SqlSessionFactoryUtil;
+import com.kunning.javase.pojo.User;
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kunning.javase.pojo.User;
-import com.kunning.web.mybatis.dao.UserDao;
-import com.kunning.web.mybatis.util.SqlSessionFactoryUtil;
+import java.util.List;
 
 /**
  * 功能描述：用 Mybatis 插入数据到数据库
@@ -20,7 +20,8 @@ public class TestMybatis {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(TestMybatis.class);
 
-    public static void main(String[] args) {
+    @Test
+    public void queryData() {
         LOGGER.info("【开始执行】");
 
         // 步骤一：获取Session

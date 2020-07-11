@@ -6,10 +6,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kunning</groupId>
-    <artifactId>Commons</artifactId>
+    <artifactId>JavaSE</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Commons</name>
+    <name>JavaSE</name>
     <description>JavaSE相关的、基本的、公共的模块</description>
 
     <properties>

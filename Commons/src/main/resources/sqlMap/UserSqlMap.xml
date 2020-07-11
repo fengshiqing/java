@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kunning.commons.mybatis.dao.UserDao">
+<mapper namespace="com.kunning.javase.mybatis.dao.UserDao">
 
-    <select id="getAll" resultType="com.kunning.commons.pojo.User">
+    <select id="getAll" resultType="com.kunning.javase.pojo.User">
         SELECT * FROM user;
     </select>
 

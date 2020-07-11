@@ -1,13 +1,10 @@
-package com.kunning.web.mybatis.dao;
+package com.kunning.javase.mybatis.dao;
+
+import com.kunning.javase.pojo.User;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.*;
-
-import com.kunning.javase.pojo.User;
-import org.springframework.stereotype.Repository;
-
-@Repository
 public interface UserDao {
 
     // 注解sql和xml的sql语句不能同时存在，否则会报错。
