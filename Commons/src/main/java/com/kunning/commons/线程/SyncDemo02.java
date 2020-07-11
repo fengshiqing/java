@@ -1,8 +1,6 @@
 package com.kunning.commons.线程;
 
-/**
- * @see https://blog.csdn.net/c10wtiybq1ye3/article/details/78212045
- */
+// https://blog.csdn.net/c10wtiybq1ye3/article/details/78212045
 public class SyncDemo02 {
 
 	class MyThread implements Runnable {

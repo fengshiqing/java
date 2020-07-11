@@ -5,7 +5,7 @@ package com.kunning.commons.线程;
  */
 public class Thread_Join {
 
-	class MyThread implements Runnable { // 实现Runnable接口
+	static class MyThread implements Runnable { // 实现Runnable接口
 		@Override
 		public void run() { // 覆写run()方法
 			for (int i = 0; i < 30; i++) {
@@ -17,8 +17,8 @@ public class Thread_Join {
 	/**
 	 * join() 方法让一个线程强制运行，线程强制运行期间，其他线程无法运行，必须等待此线程完成之后才可以继续执行。
 	 */
-	public static void main(String args[]) throws InterruptedException {
-		MyThread mt = new Thread_Join().new MyThread(); // 实例化Runnable子类对象
+	public static void main(String[] args) throws InterruptedException {
+		MyThread mt = new MyThread(); // 实例化Runnable子类对象
 		Thread t = new Thread(mt, "线程"); // 实例化Thread对象
 		t.start(); // 启动线程
 		for (int i = 0; i < 30; i++) {
