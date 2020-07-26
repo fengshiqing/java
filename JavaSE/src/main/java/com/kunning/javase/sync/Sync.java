@@ -4,6 +4,8 @@
 
 package com.kunning.javase.sync;
 
+import org.junit.Test;
+
 /**
  * 功能描述：synchronized是重入锁
  */
@@ -20,7 +22,8 @@ public class Sync {
         } // 方法执行完毕，减少重入次数。
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         Sync sync = new Sync();
         sync.sync1();
     }

@@ -1,4 +1,8 @@
-package com.kunning.javase.线程;
+/*
+ * Copyright (c) 2020. fengshiqing 冯仕清
+ */
+
+package com.kunning.javase.sync;
 
 public class DeadLock {
 	
@@ -34,9 +38,9 @@ public class DeadLock {
 					e.printStackTrace();
 				}
 				System.out.println(threadName + "进入同步块o2，准备进入o1");
-//				synchronized (o1) {
-//					System.out.println(threadName + "已经进入同步块o1");//注释调这一段代码就不会发生死锁
-//				}
+				synchronized (o1) {
+					System.out.println(threadName + "已经进入同步块o1");//注释调这一段代码就不会发生死锁
+				}
 			}
 		}
 	}

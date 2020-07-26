@@ -1,4 +1,8 @@
-package com.kunning.javase.线程;
+/*
+ * Copyright (c) 2020. fengshiqing 冯仕清
+ */
+
+package com.kunning.javase.sync;
 
 /**
  * 生产者/消费者问题
@@ -17,9 +21,9 @@ package com.kunning.javase.线程;
  */
 public class ProducerANDCustomer {
     public static void main(String[] args) {
-        Clerk clerk = new ProducerANDCustomer().new Clerk();// 共享数据
-        Producer p1 = new ProducerANDCustomer().new Producer(clerk);
-        Consumer c1 = new ProducerANDCustomer().new Consumer(clerk);
+        Clerk clerk = new Clerk();// 共享数据
+        Producer p1 = new Producer(clerk);
+        Consumer c1 = new Consumer(clerk);
 
         Thread t1 = new Thread(p1);
         Thread t3 = new Thread(p1);
@@ -34,7 +38,7 @@ public class ProducerANDCustomer {
     }
 
     // 店员
-    class Clerk {
+    static class Clerk {
         private int productNum;
 
         // 由店员控制继续生产、停止生产
@@ -69,8 +73,8 @@ public class ProducerANDCustomer {
     }
 
     // 生产者
-    class Producer implements Runnable {
-        private Clerk clerk;
+    static class Producer implements Runnable {
+        private final Clerk clerk;
 
         public Producer(Clerk clerk) {
             this.clerk = clerk;
@@ -91,8 +95,8 @@ public class ProducerANDCustomer {
     }
 
     // 消费者
-    class Consumer implements Runnable {
-        private Clerk clerk;
+    static class Consumer implements Runnable {
+        private final Clerk clerk;
 
         public Consumer(Clerk clerk) {
             this.clerk = clerk;
