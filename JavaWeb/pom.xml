@@ -71,14 +71,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- XML解析 dom4J -->
-        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-
         <!-- commons-beanutils -->
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
         <dependency>

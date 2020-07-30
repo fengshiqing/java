@@ -2,16 +2,9 @@ package com.kunning.springboot.utils;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import org.dom4j.Document;
-import org.dom4j.io.OutputFormat;
-import org.dom4j.io.SAXReader;
-import org.dom4j.io.XMLWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,30 +64,7 @@ public class XmlUtil {
      * @return 格式化后的XML字符串
      */
     public static String formatXmlStr(String xmlStr) {
-
-        XMLWriter writer = null;
-        String requestXML = null;
-
-        try {
-            Document document = new SAXReader().read(new StringReader(xmlStr));
-            StringWriter stringWriter = new StringWriter();
-            OutputFormat format = new OutputFormat("    ", true); // 缩进 4 个空格
-            writer = new XMLWriter(stringWriter, format);
-            writer.write(document);
-            writer.flush();
-            requestXML = stringWriter.getBuffer().toString();
-        } catch (Exception e) {
-            LOGGER.info("【formatXML】【发生异常】", e);
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    LOGGER.info("【formatXML】【发生异常】", e);
-                }
-            }
-        }
-        return requestXML;
+        return null;
     }
 
     /**
