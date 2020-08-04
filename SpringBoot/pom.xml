@@ -107,6 +107,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!--微服务-->
+        <dependency>
+            <groupId>org.apache.servicecomb</groupId>
+            <artifactId>spring-boot-starter-provider</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
         <!-- 健康检查、监控 starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
