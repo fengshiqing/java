@@ -27,12 +27,6 @@ public class TimedTask_2 implements SchedulingConfigurer {
 
     private final CronService cronService; // 可以从数据库获取cron表达式。
 
-    /**
-     * 从配置文件中读取配置项
-     */
-    @Value("${myqueue}")
-    private String cron;
-
     @Autowired
     public TimedTask_2(CronService cronService) {
         this.cronService = cronService;
