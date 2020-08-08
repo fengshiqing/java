@@ -20,13 +20,14 @@ package com.kunning.springboot.microservice;
 import org.apache.servicecomb.provider.rest.common.RestSchema;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestSchema(schemaId = "hello")
-@RequestMapping(path = "/")
+@RequestMapping(path = "/") // 这行代码是微服务必须的，且参数不能为空，否子微服务启动失败！
 public class HelloImpl {
 
-    @GetMapping(path = "/hello")
+    @GetMapping(path = "/microservice/hello")
     public String hello() {
-        return "Hello World!";
+        return "Hello microservice!";
     }
 }
