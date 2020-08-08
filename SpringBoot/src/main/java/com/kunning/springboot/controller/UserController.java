@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.kunning.springboot.service.UserService;
@@ -24,7 +25,8 @@ import javax.servlet.http.HttpSession;
  * @author 冯仕清
  * @since 2019-10-1
  */
-@RestController
+@Controller
+@ResponseBody
 @Api(tags = "用户账号服务")
 public class UserController {
 

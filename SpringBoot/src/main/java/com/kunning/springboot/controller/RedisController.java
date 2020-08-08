@@ -5,8 +5,9 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 功能描述：redis控制层
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 冯仕清
  * @since 2019年10月1日 19点16分
  */
-@RestController
+@Controller
+@ResponseBody
 @Api(tags = "redis接口")
 public class RedisController {
 
