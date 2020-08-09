@@ -24,6 +24,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <!-- <tomcat.version>8.5.40</tomcat.version>&lt;!&ndash; 自定义Tomcat版本 &ndash;&gt;-->
     </properties>
@@ -91,7 +92,7 @@
         </dependency>
         <!--引入 AOP 依赖 end-->
 
-        <!-- ActiveMQ starter -->
+        <!--ActiveMQ starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-activemq</artifactId>
@@ -103,14 +104,14 @@
             </exclusions>
         </dependency>
 
-        <!-- quartz starter -->
+        <!--quartz starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
-        <!-- redis starter -->
-        <!-- spring-boot-starter-data-redis 和 spring-boot-starter-redis 是一样的。
+        <!--redis starter-->
+        <!--spring-boot-starter-data-redis 和 spring-boot-starter-redis 是一样的。
         springBoot的版本为1.4.7 以上时，spring-boot-starter-redis 就空了。要想引入redis就只能选择有data的。
         -->
         <dependency>
@@ -121,13 +122,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <!--https://mvnrepository.com/artifact/redis.clients/jedis-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
 
-        <!-- jdbc starter -->
+        <!--jdbc starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -135,10 +136,10 @@
         <!-- mybatis starter -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId><!-- 这里包含了mybatis依赖 -->
+            <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
         </dependency>
-        <!-- 数据库 MySQL、MyBatis -->
+        <!--数据库 MySQL、MyBatis-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -160,14 +161,14 @@
         </dependency>
 
 
-        <!-- 引入自定义的starter-->
+        <!--引入自定义的starter-->
         <dependency>
             <groupId>com.kunning</groupId>
             <artifactId>custom-spring-boot-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <!--https://mvnrepository.com/artifact/com.google.guava/guava-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -175,7 +176,7 @@
         </dependency>
 
 
-        <!-- 以下是非 starter 的依赖 -->
+        <!--以下是非 starter 的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -183,7 +184,7 @@
         </dependency>
 
 
-        <!-- POI Excel -->
+        <!--POI Excel-->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -197,7 +198,7 @@
             <version>4.1.0</version>
         </dependency>
 
-        <!-- 解析XML -->
+        <!--解析XML-->
         <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
@@ -246,14 +247,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- swagger-ui -->
+        <!--swagger-ui-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
 
-        <!-- 热部署工具 -->
+        <!--热部署工具-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
