@@ -1,6 +1,6 @@
-APPLICATION_ID: start.servicecomb.io
+APPLICATION_ID: APP_fengshiqing
 service_description:
-  name: HelloServiceComb
+  name: ServiceComb_fengshiqing
   version: 0.0.1
 servicecomb:
   handler:

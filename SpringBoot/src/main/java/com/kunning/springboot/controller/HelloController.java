@@ -1,6 +1,8 @@
 package com.kunning.springboot.controller;
 
 import com.kunning.springboot.service.UserService;
+import com.kunning.springboot.servicecomb.HelloEndPoint;
+import org.apache.servicecomb.provider.pojo.RpcReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -58,6 +60,14 @@ public class HelloController {
     public String session(HttpSession session) {
         String username = (String) session.getAttribute("_user");
         return "helloUser," + username;
+    }
+
+    @RpcReference(microserviceName = "ServiceComb_fengshiqing", schemaId = "hello")
+    private HelloEndPoint helloEndPoint;
+
+    @RequestMapping("/servicecomb/invokehello")
+    public String invokeServiceComb() {
+        return helloEndPoint.hello();
     }
 
 }
