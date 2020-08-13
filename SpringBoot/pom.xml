@@ -206,6 +206,12 @@
             <version>1.4.11.1</version>
         </dependency>
 
+        <!--验证码-->
+        <dependency>
+            <groupId>com.ramostear</groupId>
+            <artifactId>Happy-Captcha</artifactId>
+            <version>1.0.1</version>
+        </dependency>
 
         <!-- httpclient -->
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
