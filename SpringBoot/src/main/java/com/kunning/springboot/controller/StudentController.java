@@ -15,25 +15,25 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "学生接口")
 public class StudentController {
 
-	/**
-	 * 日志
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
+    /**
+     * 日志
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-	@ApiOperation(value = "接口文档111", notes = "")
-	@RequestMapping(value = "/student/query", method = RequestMethod.GET)
-	public Object hello111() {
-		LOGGER.info("【hello】【开始执行】");
+    @ApiOperation(value = "接口文档111", notes = "")
+    @RequestMapping(value = "/student/query", method = RequestMethod.GET)
+    public Object hello111() {
+        LOGGER.info("【hello】【开始执行】");
 
-		return "Hello World!";
-	}
+        return "Hello World!";
+    }
 
-	@ApiOperation(value = "接口文档222", notes = "")
-	@RequestMapping(value = "/student/update", method = RequestMethod.POST)
-	public Object hello222() {
-		LOGGER.info("【hello】【开始执行】");
+    @ApiOperation(value = "接口文档222", notes = "")
+    @RequestMapping(value = "/student/update", method = RequestMethod.POST)
+    public Object hello222() {
+        LOGGER.info("【hello】【开始执行】");
 
-		return "Hello World!";
-	}
+        return "Hello World!";
+    }
 
 }
