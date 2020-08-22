@@ -1,4 +1,8 @@
-package com.kunning.springboot.activemq.producer;
+/*
+ * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
+ */
+
+package com.kunning.springboot.timerTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
