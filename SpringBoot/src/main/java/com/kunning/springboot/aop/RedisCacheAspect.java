@@ -12,6 +12,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -52,8 +53,16 @@ public class RedisCacheAspect {
      */
     private final RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * <a https://www.toutiao.com/i6833299139124527629/ />
+     * 为什么不推荐基于字段依赖注入？
+     * Spring 团队提倡使用基于构造方法的注入，因为这样
+     * 一方面可以将依赖注入到一个不可变的变量中 (注：final 修饰的变量)，
+     * 另一方面也可以保证这些变量的值不会是 null。此外，经过构造方法完成依赖注入的组件 (注：比如各个 service)，在被调用时可以保证它们都完全准备好了。
+     * 与此同时，从代码质量的角度来看，一个巨大的构造方法通常代表着出现了代码异味，这个类可能承担了过多的责任。
+     */
     @Autowired
-    public RedisCacheAspect(RedisTemplate<String, Object> redisTemplate) {
+    public RedisCacheAspect(@Lazy RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
