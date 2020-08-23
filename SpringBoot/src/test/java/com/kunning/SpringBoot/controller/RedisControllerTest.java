@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
+ */
+
 package com.kunning.springboot.controller;
 
 import com.kunning.springboot.Application;

@@ -80,6 +80,10 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
+    <logger name="com.kunning.springboot.aop" level="ERROR" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+
     <logger name="org.apache.servicecomb" level="ERROR" additivity="false">
         <!--appender-ref子标签可以有0或多个-->
         <appender-ref ref="micrservice"/>

@@ -25,15 +25,20 @@ public class RedisService {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
 
+    private final RedisTemplate redisTemplate;
+
     @Autowired
-    private RedisTemplate redisTemplate;
+    public RedisService(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
-     * 写入缓存
+     * 功能描述：写入缓存
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key   redisKey
+     * @param value redisValue
+     *
+     * @return true成功、false失败
      */
     public boolean set(final String key, Object value) {
         boolean result = false;
@@ -48,29 +53,28 @@ public class RedisService {
     }
 
     /**
-     * 写入缓存设置时效时间
+     * 功能描述：写入缓存设置时效时间
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key   redisKey
+     * @param value redisValue
+     *
+     * @return true成功、false失败
      */
     public boolean set(final String key, Object value, Long expireTime) {
-        boolean result = false;
         try {
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
             operations.set(key, value);
-            redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
-            result = true;
+            return redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return result;
     }
 
     /**
-     * 批量删除对应的value
+     * 功能描述：批量删除对应的value
      *
-     * @param keys
+     * @param keys redisKey
      */
     public void remove(final String... keys) {
         for (String key : keys) {
@@ -92,7 +96,7 @@ public class RedisService {
     /**
      * 删除对应的value
      *
-     * @param key
+     * @param key redisKey
      */
     public void remove(final String key) {
         if (exists(key)) {
@@ -103,7 +107,8 @@ public class RedisService {
     /**
      * 判断缓存中是否有对应的value
      *
-     * @param key
+     * @param key redisKey
+     *
      * @return
      */
     public boolean exists(final String key) {
@@ -113,7 +118,8 @@ public class RedisService {
     /**
      * 读取缓存
      *
-     * @param key
+     * @param key redisKey
+     *
      * @return
      */
     public Object get(final String key) {
@@ -126,9 +132,9 @@ public class RedisService {
     /**
      * 哈希 添加
      *
-     * @param key
+     * @param key     redisKey
      * @param hashKey
-     * @param value
+     * @param value   redisValue
      */
     public void hmSet(String key, Object hashKey, Object value) {
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
@@ -138,8 +144,9 @@ public class RedisService {
     /**
      * 哈希获取数据
      *
-     * @param key
+     * @param key     redisKey
      * @param hashKey
+     *
      * @return
      */
     public Object hmGet(String key, Object hashKey) {
@@ -164,6 +171,7 @@ public class RedisService {
      * @param k
      * @param l
      * @param l1
+     *
      * @return
      */
     public List<Object> lRange(String k, long l, long l1) {
@@ -174,8 +182,8 @@ public class RedisService {
     /**
      * 集合添加
      *
-     * @param key
-     * @param value
+     * @param key   redisKey
+     * @param value redisValue
      */
     public void add(String key, Object value) {
         SetOperations<String, Object> set = redisTemplate.opsForSet();
@@ -185,7 +193,8 @@ public class RedisService {
     /**
      * 集合获取
      *
-     * @param key
+     * @param key redisKey
+     *
      * @return
      */
     public Set<Object> setMembers(String key) {
@@ -196,8 +205,8 @@ public class RedisService {
     /**
      * 有序集合添加
      *
-     * @param key
-     * @param value
+     * @param key    redisKey
+     * @param value  redisValue
      * @param scoure
      */
     public void zAdd(String key, Object value, double scoure) {
@@ -208,9 +217,10 @@ public class RedisService {
     /**
      * 有序集合获取
      *
-     * @param key
+     * @param key     redisKey
      * @param scoure
      * @param scoure1
+     *
      * @return
      */
     public Set<Object> rangeByScore(String key, double scoure, double scoure1) {
