@@ -13,6 +13,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -36,11 +37,11 @@ public class RedisCacheAspect {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisCacheAspect.class);
 
-    private final RedisService redisService;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    public RedisCacheAspect(RedisService redisService) {
-        this.redisService = redisService;
+    public RedisCacheAspect(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
     /**
@@ -103,19 +104,24 @@ public class RedisCacheAspect {
         System.out.println("【方法名】：" + pjp.getSignature().getName());
 
         String redisKey = SpelParserUtil.getKey(key, parameterNames, pjp.getArgs());
-        String redisValue = (String) redisService.get(redisKey);
-        if (redisValue != null) {
-            System.out.println("【redisValue:{}】" + redisValue);
-            return redisValue;
-        } else {
-            Object object = pjp.proceed(); // 执行业务代码，并获取返回值
-            if (object != null) {
-                redisService.set(redisKey, object, 3600L); // 从数据库中查到数据就写入缓存
+        if (redisKey != null) {
+            String redisValue = (String) redisTemplate.opsForValue().get(redisKey);
+            if (redisValue != null) {
+                System.out.println("【redisValue:{}】" + redisValue);
+                return redisValue;
             } else {
-                // 数据库中也查不到数据，就就写入缓"null"字符串，防止DDOS攻击。
-                redisService.set(redisKey, "null", 30L);
+                Object object = pjp.proceed(); // 执行业务代码，并获取返回值
+                if (object != null) {
+                    redisTemplate.opsForValue().set(redisKey, object, 3600L); // 从数据库中查到数据就写入缓存
+                } else {
+                    // 数据库中也查不到数据，就就写入缓"null"字符串，防止DDOS攻击。
+                    redisTemplate.opsForValue().set(redisKey, "null", 30L);
+                }
+                return object;
             }
-            return object;
+        } else {
+            LOGGER.error("【获取redisKey时发生错误】【redisKey is null】");
+            return null;
         }
     }
 

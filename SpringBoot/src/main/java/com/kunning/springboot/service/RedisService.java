@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
+ */
+
 package com.kunning.springboot.service;
 
 import org.slf4j.Logger;
@@ -32,43 +36,26 @@ public class RedisService {
         this.redisTemplate = redisTemplate;
     }
 
+    // =================================================================================================================
+
     /**
-     * 功能描述：写入缓存
+     * 功能描述：判断是否存在
      *
-     * @param key   redisKey
-     * @param value redisValue
+     * @param key redisKey
      *
-     * @return true成功、false失败
+     * @return true存在，false不存在
      */
-    public boolean set(final String key, Object value) {
-        boolean result = false;
-        try {
-            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-            operations.set(key, value);
-            result = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    public boolean exists(final String key) {
+        return redisTemplate.hasKey(key);
     }
 
     /**
-     * 功能描述：写入缓存设置时效时间
+     * 功能描述：删除redis缓存
      *
-     * @param key   redisKey
-     * @param value redisValue
-     *
-     * @return true成功、false失败
+     * @param key redisKey
      */
-    public boolean set(final String key, Object value, Long expireTime) {
-        try {
-            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-            operations.set(key, value);
-            return redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public void delete(final String key) {
+        redisTemplate.delete(key);
     }
 
     /**
@@ -83,7 +70,7 @@ public class RedisService {
     }
 
     /**
-     * 批量删除key
+     * 功能描述：批量删除key
      *
      * @param pattern
      */
@@ -93,80 +80,79 @@ public class RedisService {
             redisTemplate.delete(keys);
     }
 
-    /**
-     * 删除对应的value
-     *
-     * @param key redisKey
-     */
-    public void remove(final String key) {
-        if (exists(key)) {
-            redisTemplate.delete(key);
-        }
-    }
+    // =================================================================================================================
 
     /**
-     * 判断缓存中是否有对应的value
+     * 功能描述：读取字符串类型缓存
      *
      * @param key redisKey
      *
-     * @return
-     */
-    public boolean exists(final String key) {
-        return redisTemplate.hasKey(key);
-    }
-
-    /**
-     * 读取缓存
-     *
-     * @param key redisKey
-     *
-     * @return
+     * @return redisValue
      */
     public Object get(final String key) {
-        Object result = null;
-        ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-        result = operations.get(key);
-        return result;
+        return redisTemplate.opsForValue().get(key);
     }
 
     /**
-     * 哈希 添加
+     * 功能描述：写入字符串类型缓存
+     *
+     * @param key   redisKey
+     * @param value redisValue
+     */
+    public void set(final String key, Object value) {
+        redisTemplate.opsForValue().set(key, value);
+    }
+
+    /**
+     * 功能描述：写入字符串类型缓存。可以设置过期时间
+     *
+     * @param key        redisKey
+     * @param value      redisValue
+     * @param expireTime 过期时间，单位/秒
+     */
+    public void set(final String key, Object value, Long expireTime) {
+        redisTemplate.opsForValue().set(key, value, expireTime, TimeUnit.SECONDS);
+    }
+
+    // =================================================================================================================
+
+    /**
+     * 功能描述：写入Map(哈希)类型的数据
      *
      * @param key     redisKey
-     * @param hashKey
+     * @param hashKey hashKey
      * @param value   redisValue
      */
     public void hmSet(String key, Object hashKey, Object value) {
-        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
-        hash.put(key, hashKey, value);
+        redisTemplate.opsForHash().put(key, hashKey, value);
     }
 
     /**
-     * 哈希获取数据
+     * 功能描述：获取Map(哈希)类型的数据
      *
      * @param key     redisKey
      * @param hashKey
      *
-     * @return
+     * @return Map(哈希)类型的数据
      */
     public Object hmGet(String key, Object hashKey) {
-        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
-        return hash.get(key, hashKey);
+        return redisTemplate.opsForHash().get(key, hashKey);
     }
 
+    // =================================================================================================================
+
     /**
-     * 列表添加
+     * 功能描述：写入List(列表)类型的数据
      *
      * @param k
      * @param v
      */
     public void lPush(String k, Object v) {
-        ListOperations<String, Object> list = redisTemplate.opsForList();
-        list.rightPush(k, v);
+        redisTemplate.opsForList().rightPush(k, v);
     }
 
     /**
-     * 列表获取
+     * 功能描述：读取List(列表)类型的数据
      *
      * @param k
      * @param l
@@ -175,12 +161,13 @@ public class RedisService {
      * @return
      */
     public List<Object> lRange(String k, long l, long l1) {
-        ListOperations<String, Object> list = redisTemplate.opsForList();
-        return list.range(k, l, l1);
+        return redisTemplate.opsForList().range(k, l, l1);
     }
 
+    // =================================================================================================================
+
     /**
-     * 集合添加
+     * 功能描述：集合添加
      *
      * @param key   redisKey
      * @param value redisValue
@@ -191,7 +178,7 @@ public class RedisService {
     }
 
     /**
-     * 集合获取
+     * 功能描述：集合获取
      *
      * @param key redisKey
      *
@@ -202,8 +189,10 @@ public class RedisService {
         return set.members(key);
     }
 
+    // =================================================================================================================
+
     /**
-     * 有序集合添加
+     * 功能描述：有序集合添加
      *
      * @param key    redisKey
      * @param value  redisValue
@@ -215,7 +204,7 @@ public class RedisService {
     }
 
     /**
-     * 有序集合获取
+     * 功能描述：有序集合获取
      *
      * @param key     redisKey
      * @param scoure
