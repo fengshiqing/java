@@ -4,7 +4,6 @@
 
 package com.kunning.springboot.aop;
 
-import com.kunning.springboot.service.RedisService;
 import com.kunning.springboot.utils.SpelParserUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -27,6 +26,17 @@ import java.util.Arrays;
  *
  * @author fengshiqing
  * @since 2020-08-08
+ *
+ * <a https://baijiahao.baidu.com/s?id=1666358028563141862&wfr=spider&for=pc />
+ * 最典型的横切关注点有日志记录、性能统计、安全控制、事务处理、异常处理、缓存等。
+ * AOP已经有了自己的一些术语。描述切面的常用术语有通知（advice）、切点（point)、和连接点。
+ *
+ * 5种类型的通知。
+ * 前置通知（Before):在目标方法被调用之前调用通知功能。
+ * 后置通知（After):在目标方法完成之后调用通知，此时不关心方法的输出是什么。
+ * 返回通知（After-returning)：在目标方法成功执行之后调用通知。
+ * 异常通知（After-throwing)：在目标方法抛出异常后调用。
+ * 环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。
  */
 @Aspect
 @Component
@@ -37,12 +47,17 @@ public class RedisCacheAspect {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisCacheAspect.class);
 
+    /**
+     * Spring提供的redis模板
+     */
     private final RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     public RedisCacheAspect(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
+
+    // =================================================================================================================
 
     /**
      * 功能描述：定义切入点，切入点为com.example.aop下的所有函数
@@ -92,7 +107,6 @@ public class RedisCacheAspect {
     // @Around("@annotation(com.kunning.springboot.aop.RedisCache)") 可以简写成如下形式
     @Around("@annotation(redisCache)")
     public Object doAround(ProceedingJoinPoint pjp, RedisCache redisCache) throws Throwable {
-        String key = redisCache.key(); // 获取key
 
         Parameter[] parameters = ((MethodSignature) pjp.getSignature()).getMethod().getParameters();
         String[] parameterNames = new String[parameters.length];
@@ -103,8 +117,9 @@ public class RedisCacheAspect {
         System.out.println("【类名】：" + pjp.getSourceLocation().getWithinType().getName());
         System.out.println("【方法名】：" + pjp.getSignature().getName());
 
-        String redisKey = SpelParserUtil.getKey(key, parameterNames, pjp.getArgs());
+        String redisKey = SpelParserUtil.getKey(redisCache.key(), parameterNames, pjp.getArgs());
         if (redisKey != null) {
+            LOGGER.info("【redisKey:{}】", redisKey);
             String redisValue = (String) redisTemplate.opsForValue().get(redisKey);
             if (redisValue != null) {
                 System.out.println("【redisValue:{}】" + redisValue);
