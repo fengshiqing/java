@@ -1,5 +1,6 @@
 package com.kunning.springboot.controller;
 
+import com.kunning.springboot.Handler.MyException;
 import com.kunning.springboot.service.UserService;
 import com.kunning.springboot.servicecomb.HelloEndPoint;
 import org.apache.servicecomb.provider.pojo.RpcReference;
@@ -25,8 +26,9 @@ public class HelloController {
     }
 
     @RequestMapping("/hello1")
-    public String hello1() {
-        return "hello1, " + userService.getUsername();
+    public String hello1() throws MyException  {
+        throw new MyException("发生错误2");
+//        return "hello1, " + userService.getUsername();
     }
 
     @RequestMapping("/hello2")
