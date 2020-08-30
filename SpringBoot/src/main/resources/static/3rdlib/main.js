@@ -1,25 +1,58 @@
-
+/**
+ * 功能描述：requirejs的入口配置文件，相关配置依赖在这里配置
+ */
 require.config({
-    paths : {
-        'jquery': 'jquery-3.4.1.min.js',
-        'bootstrap': 'bootstrap-3.3.7-dist/js/bootstrap.min',
-        'angular': 'angular.min.js',
-        'ui-router': 'node_modules/angular-ui-router/release/angular-ui-router.min',
-        'laydate': 'static/laydate/laydate',
-        'layer': 'layer.js'
+    // baseUrl: '3rdlib/', // 设置根路径
+
+    urlArgs: "bust=_" + new Date().toLocaleString().replace(/[^0-9]/g, ""), // 每次新加载js，为了避免缓存
+
+    paths: {
+        // 注意点：文件名不能带.js后缀，否则加载失败！！！
+        "jquery": "./jquery-3.5.1.min",
+        "angular": "./angular.min",
+        "angular-route": "./angular-route.min",
+        'domReady': 'https://cdnjs.cloudflare.com/ajax/libs/domready/1.0.8/ready.min.js',
+        // "layer": "./layer",
+        // "bootstrap": "./bootstrap.min",
+
+        "bmsloader": "../angular/bmsloader",
+    },
+
+    shim: {
+        "angular": {
+            deps: ["jquery"],
+            exports: "angular"
+        },
+        "angular-route": {
+            deps: ["angular"],   //依赖什么模块
+            exports: "angular-route"
+        }
     }
 })
 
-require(["jquery","a"], function($){
-    $(function(){
-        alert("load finished");
-    })
-})
+/**
+ * 功能描述：可以通过如下方式来检验下是否加载成功
+ */
+// requirejs(["jquery", "bmsloader", "angular"], function ($, bmsloader, angular) {
+//     console.log($);
+//     console.log(bmsloader);
+//     console.log(angular);
+//     console.log("【main.js 加载成功】");
+// });
 
-
-//注册一个controller
-require(["signinApp"], function(signinApp) {
-    signinApp.controller("signinAppController",function($scope){
-        $scope.text = "hello world!";
-    });
-});
+/**
+ * 立即执行函数
+ */
+// !(function () {
+//     console.log("【立即执行函数】")
+//     debugger;
+//     'use strict';
+//     //当然了这个scripts的数据完全可以从服务器上动态获取回来加载
+//
+//     //依赖脚本加载
+//     require(["bmsloader"], function () {
+//         //渲染
+//         debugger;
+//         // angular.bootstrap(document, ['app']);
+//     });
+// }());
