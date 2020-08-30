@@ -55,12 +55,16 @@
         }
         ul.tab li.li:last-child{border-right: 1px solid #C5D0DC;}
     </style>
-
+    <style>
+        /*用于防止ng还未加载完，显示双大括号的问题。ng-cloak指令，在ng执行完毕后自动移除*/
+        [ng-cloak]{display: none;}
+    </style>
 </head>
 
-<body ng-app="bmsApp">
+<body ng-app="bmsApp" ng-cloak>
     <h1>My Sample Project</h1>
     <h1>后台管理系统</h1>
+    <h1>{{'hello' + 'world'}}</h1>
 
     <div class="tabpage" ng-controller="bmsController">
         用户名：<input type="text" ng-model="userInfo.name">
