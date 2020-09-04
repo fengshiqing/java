@@ -6,6 +6,7 @@
     <title>backstage management system</title>
 <!--    <script data-main="../3rdlib/main" src="../3rdlib/require.js"></script>-->
     <script src="../3rdlib/angular.js"></script>
+    <script src="../3rdlib/angular-route.js"></script>
     <script src="./bmsloader.js"></script>
 
     <style type="text/css">
@@ -62,12 +63,11 @@
 </head>
 
 <body ng-app="bmsApp" ng-cloak>
-    <h1>My Sample Project</h1>
     <h1>后台管理系统</h1>
     <h1>{{'hello' + 'world'}}</h1>
 
     <div class="tabpage" ng-controller="bmsController">
-        用户名：<input type="text" ng-model="userInfo.name">
+        用户名：<label><input type="text" ng-model="userInfo.name" required></label>
         <h3>{{userInfo.name}}</h3>
 
         <ul class="tab">
