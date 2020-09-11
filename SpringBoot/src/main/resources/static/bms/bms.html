@@ -4,58 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>backstage management system</title>
+    <link rel="shortcut icon" href="./bms.png"/>
+    <link rel="stylesheet" href="./bms.css"/>
 <!--    <script data-main="../3rdlib/main" src="../3rdlib/require.js"></script>-->
     <script src="../3rdlib/angular.js"></script>
     <script src="../3rdlib/angular-route.js"></script>
+
     <script src="./bmsloader.js"></script>
 
-    <style type="text/css">
-        .tabpage {
-            width: 98%;
-            margin: 0 auto;
-            padding: 10px;
-        }
-        ul {
-            list-style: none;
-            margin: 0;
-            padding-left: 20px;
-        }
-        ul.tab {
-            border-bottom: 1px solid #ccc;
-            padding-bottom:1px;
-            height: 30px;
-            line-height: 30px;
-            color: #696969;
-        }
-        ul.tab li {
-            float: left;
-            font-family: "微软雅黑",serif;
-            cursor: pointer;
-            padding: 0;
-
-
-        }
-        ul.tab li.li {
-            padding: 0 50px 0; /*tab 宽度*/
-            font-size: 13px;
-            height: 30px;
-            line-height: 30px;
-            background:#F4F5F9;
-            border-top: 1px solid #C5D0DC;
-            border-left: 1px solid #C5D0DC;
-            border-bottom: 1px solid #C5D0DC;
-
-        }
-        ul.tab li.current {
-            border-bottom: 0;
-            border-top: 2px solid #7599DE;
-            font-size: 13px;
-            color: #343434;
-            background:#FFFFFF;
-
-        }
-        ul.tab li.li:last-child{border-right: 1px solid #C5D0DC;}
-    </style>
     <style>
         /*用于防止ng还未加载完，显示双大括号的问题。ng-cloak指令，在ng执行完毕后自动移除*/
         [ng-cloak]{display: none;}
@@ -67,23 +23,29 @@
     <h1>{{'hello' + 'world'}}</h1>
 
     <div class="tabpage" ng-controller="bmsController">
-        用户名：<label><input type="text" ng-model="userInfo.name" required></label>
-        <h3>{{userInfo.name}}</h3>
-
+        用户名：<label><input type="text" ng-model="Model.userInfo.name" required></label>
+        <h3>{{Model.userInfo.name}}</h3>
+        <!--3个Tab页-->
         <ul class="tab">
-            <li id="li_stage" class="li" ng-class="{'current':tabPageNum===1}" ng-click="changeTab(1)">
-                <span>tab1</span>
-
-            </li>
-            <li id="li_class" class="li" ng-class="{'current':tabPageNum===2}" ng-click="changeTab(2)">
-                <span>tab2</span>
-
-            </li>
-            <li id="li_photo" class="li" ng-class="{'current':tabPageNum===3}" ng-click="changeTab(3)">
-                <span>tab3</span>
-
-            </li>
+            <li class="li" ng-class="{'current':Model.tabPageNum===1}" ng-click="changeTab(1)"><span>tab1</span></li>
+            <li class="li" ng-class="{'current':Model.tabPageNum===2}" ng-click="changeTab(2)"><span>tab2</span></li>
+            <li class="li" ng-class="{'current':Model.tabPageNum===3}" ng-click="changeTab(3)"><span>tab3</span></li>
         </ul>
+        <!--Tab1-->
+        <div ng-if="Model.tabPageNum===1">
+            <h1>我是Tab1页面</h1>
+
+        </div>
+        <!--Tab2-->
+        <div ng-if="Model.tabPageNum===2">
+            <h1>我是Tab2页面</h1>
+
+        </div>
+        <!--Tab3-->
+        <div ng-if="Model.tabPageNum===3">
+            <h1>我是Tab3页面</h1>
+
+        </div>
     </div>
 
     <script>
@@ -93,9 +55,7 @@
                 console.log(e);
             })
         })(window);
-
     </script>
 
 </body>
-
 </html>
