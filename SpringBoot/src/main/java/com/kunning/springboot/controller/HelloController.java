@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @ResponseBody
@@ -23,6 +25,15 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(HttpServletRequest request) {
         return "hello 你好, " + request.getRemoteUser();
+    }
+
+    @RequestMapping("/angular/hello")
+    public Map<String, String> helloAngular(HttpServletRequest request) {
+        Map<String, String> map = new HashMap<>(16);
+        map.put("id", "1");
+        map.put("name", "冯仕清");
+        map.put("age", "29");
+        return map;
     }
 
     @RequestMapping("/hello1")
