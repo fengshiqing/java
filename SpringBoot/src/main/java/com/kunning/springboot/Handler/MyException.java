@@ -12,8 +12,18 @@ package com.kunning.springboot.Handler;
  */
 public class MyException extends Exception {
 
-    public MyException(String message) {
+    private int exceptionCode;
+
+    public MyException(int exceptionCode, String message) {
         super(message);
+        this.exceptionCode = exceptionCode;
     }
 
+    public int getExceptionCode() {
+        return exceptionCode;
+    }
+
+    public void setExceptionCode(int exceptionCode) {
+        this.exceptionCode = exceptionCode;
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,18 +39,20 @@ public class HelloController {
 
     @RequestMapping("/hello1")
     public String hello1() throws MyException  {
-        throw new MyException("发生错误2");
+        throw new MyException(500001, "发生错误500001");
 //        return "hello1, " + userService.getUsername();
     }
 
     @RequestMapping("/hello2")
-    public String hello2() {
-        return "hello2, " + userService.getUsername();
+    public String hello2() throws MyException {
+        throw new MyException(500002, "发生错误500002");
+//        return "hello2, " + userService.getUsername();
     }
 
     @RequestMapping("/hello3")
-    public String hello3() {
-        return "hello3, " + userService.getUsername();
+    public String hello3() throws IOException {
+        throw new IOException("发生错误500005");
+//        return "hello3, " + userService.getUsername();
     }
 
     @RequestMapping("hello/hello111")
