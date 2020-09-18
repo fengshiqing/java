@@ -20,7 +20,7 @@ function ajax() {
     xmlhttp.send();
 
     xmlhttp.onreadystatechange = function () {// 这个方法可以放在send()方法之后。
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 //			document.getElementById("123").innerHTML = xmlhttp.responseText;
             document.getElementById("123").value = xmlhttp.responseText;
         }
@@ -28,27 +28,6 @@ function ajax() {
 
 }
 
-var vm = new Vue({
-    el: '#app',
-    data: {
-        email:"",
-        telephone:"",
-        password:"",
-        message: 'Hello Vue.js!',
-        newTodoText: '',
-        visitCount: 0,
-        hideCompletedTodos: false,
-        todos: [],
-        error: null
-    },
-    methods:{
-        signin: function () {
-            console.log(this.$data.email);
-            console.log(this.email);
-            window.location.href = "/hello/helloAdmin";
-        }
-    }
-});
 //
 // console.log(vm.data.email)
 // console.log(vm.data.telephone)
