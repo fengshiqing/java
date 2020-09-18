@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. fengshiqing 冯仕清
+ * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
  */
 
 package com.kunning.springboot.config;
@@ -14,7 +14,7 @@ import org.springframework.jms.annotation.EnableJms;
 import javax.jms.Queue;
 
 /**
- * 功能：配置 ActiveMQ
+ * 功能描述：配置 ActiveMQ
  */
 @Configuration
 @EnableJms // 这个注解很重要，开启 JMS 的注解
