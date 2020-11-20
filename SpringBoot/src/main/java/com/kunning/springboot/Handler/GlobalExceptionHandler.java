@@ -37,17 +37,17 @@ public class GlobalExceptionHandler {
     /**
      * 功能描述：全局业务异常处理
      *
-     * @param e 异常信息
+     * @param exception 异常信息
      *
      * @return ResponseApi对象
      */
     @ExceptionHandler(value = MyException.class)
-    public ResponseApi dealMyException(MyException e) {
-        LOGGER.info("【统一处理业务异常】", e);
+    public ResponseApi dealMyException(MyException exception) {
+        LOGGER.info("【统一处理业务异常】", exception);
 
         ResponseApi response = new ResponseApi();
-        response.setRtnCode(e.getExceptionCode());
-        response.setRtnMsg(e.getMessage());
+        response.setRtnCode(exception.getExceptionCode());
+        response.setRtnMsg(exception.getMessage());
         return response;
     }
 
