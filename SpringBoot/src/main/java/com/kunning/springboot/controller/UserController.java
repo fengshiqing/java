@@ -2,7 +2,7 @@ package com.kunning.springboot.controller;
 
 import java.util.List;
 
-import com.kunning.springboot.pojo.ResponseApi;
+import com.kunning.springboot.controller.response.ResponseApi;
 import com.kunning.springboot.pojo.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

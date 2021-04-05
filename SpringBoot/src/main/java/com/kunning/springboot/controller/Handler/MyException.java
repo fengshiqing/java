@@ -2,7 +2,7 @@
  * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
  */
 
-package com.kunning.springboot.Handler;
+package com.kunning.springboot.controller.Handler;
 
 /**
  * 功能描述：自定义异常

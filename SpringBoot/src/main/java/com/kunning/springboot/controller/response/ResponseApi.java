@@ -1,8 +1,12 @@
 
-package com.kunning.springboot.pojo;
+/*
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
+ */
+
+package com.kunning.springboot.controller.response;
 
 /**
- * 功能描述：响应数据。
+ * 功能描述：响应状态码。
  *
  * @author 冯仕清
  * @since 2020-05-31

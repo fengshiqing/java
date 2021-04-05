@@ -2,9 +2,9 @@
  * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
  */
 
-package com.kunning.springboot.Handler;
+package com.kunning.springboot.controller.Handler;
 
-import com.kunning.springboot.pojo.ResponseApi;
+import com.kunning.springboot.controller.response.ResponseApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * 功能描述：统一异常处理。
+ * 功能描述：全局统一异常处理。
  *
  * ControllerAdvice 注解 可以把异常处理器应用到所有控制器，而不是单个控制器。借助该注解，我们可以实现：
  * 在独立的某个地方，比如单独一个类，定义一套对各种异常的处理机制，然后在类上使用注解@ControllerAdvice，统一对 不同阶段的、不同异常 进行处理。这就是统一异常处理的原理。

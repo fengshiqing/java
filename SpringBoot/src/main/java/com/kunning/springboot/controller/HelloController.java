@@ -1,6 +1,6 @@
 package com.kunning.springboot.controller;
 
-import com.kunning.springboot.Handler.MyException;
+import com.kunning.springboot.controller.Handler.MyException;
 import com.kunning.springboot.service.UserService;
 import com.kunning.springboot.servicecomb.HelloEndPoint;
 import org.apache.servicecomb.provider.pojo.RpcReference;

@@ -1,6 +1,6 @@
 package com.kunning.springboot.controller;
 
-import com.kunning.springboot.pojo.ResponseApi;
+import com.kunning.springboot.controller.response.ResponseApi;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

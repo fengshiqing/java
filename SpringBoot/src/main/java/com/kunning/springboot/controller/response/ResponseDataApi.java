@@ -1,7 +1,11 @@
-package com.kunning.springboot.pojo;
+/*
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
+ */
+
+package com.kunning.springboot.controller.response;
 
 /**
- * 功能描述：响应码。
+ * 功能描述：响应数据。
  *
  * @author 冯仕清
  * @since 2020-05-31
@@ -33,6 +37,6 @@ public class ResponseDataApi<T> extends ResponseApi {
     public String toString() {
         return "ResponseDataApi{" +
                 "rtnData=" + rtnData +
-                '}';
+                "} " + super.toString();
     }
 }
