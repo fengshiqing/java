@@ -19,11 +19,22 @@ public class SeriableSingleton implements Serializable {
     // 将持久化的字节码内容，通过IO输入流读到内存中来
     // 转化成一个Java对象
 
-    public final static SeriableSingleton INSTANCE = new SeriableSingleton();
+    /**
+     * 全局静态常量
+     */
+    public static final SeriableSingleton INSTANCE = new SeriableSingleton();
 
+    /**
+     * 私有构造器
+     */
     private SeriableSingleton() {
     }
 
+    /**
+     * 功能描述：公有方法
+     *
+     * @return 单例对象
+     */
     public static SeriableSingleton getInstance() {
         return INSTANCE;
     }
