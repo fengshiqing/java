@@ -1,7 +1,7 @@
 package com.kunning.javase.reflection;
 
 import com.kunning.javase.reflection.annotation.DoSomething;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.lang.reflect.Constructor;

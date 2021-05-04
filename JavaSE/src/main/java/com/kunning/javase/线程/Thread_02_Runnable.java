@@ -1,6 +1,6 @@
 package com.kunning.javase.线程;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 功能描述：创建多线程的第二种方式：实现java.lang.Runnable接口

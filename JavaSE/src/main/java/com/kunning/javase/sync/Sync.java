@@ -4,7 +4,7 @@
 
 package com.kunning.javase.sync;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 功能描述：synchronized是重入锁

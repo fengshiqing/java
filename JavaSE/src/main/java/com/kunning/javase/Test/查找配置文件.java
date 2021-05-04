@@ -1,6 +1,6 @@
 package com.kunning.javase.Test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;

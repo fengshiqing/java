@@ -1,6 +1,6 @@
 package com.kunning.javase.线程;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 功能描述：守护线程

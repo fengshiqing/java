@@ -1,6 +1,6 @@
 package com.kunning.javase.java8;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 

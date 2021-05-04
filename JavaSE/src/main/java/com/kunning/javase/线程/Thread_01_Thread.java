@@ -1,6 +1,6 @@
 package com.kunning.javase.线程;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 功能描述：创建多线程的第一种方式：继承java.lang.Thread类

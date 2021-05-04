@@ -1,6 +1,6 @@
 package com.kunning.javase.Test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 class Father {
     public static int m = 33;

@@ -1,6 +1,6 @@
 package com.kunning.javase.泛型;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 

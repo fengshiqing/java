@@ -4,7 +4,7 @@ import com.kunning.javase.mybatis.dao.UserDao;
 import com.kunning.javase.mybatis.util.SqlSessionFactoryUtil;
 import com.kunning.javase.pojo.User;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
