@@ -61,6 +61,12 @@
             <artifactId>jol-core</artifactId>
             <version>0.9</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.5.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- 大数据 storm -->
         <!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
