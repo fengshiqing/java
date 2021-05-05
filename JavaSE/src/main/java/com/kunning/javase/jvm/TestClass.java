@@ -1,7 +1,5 @@
 package com.kunning.javase.jvm;
 
-//import com.fengshiqing.B;
-
 public class TestClass {
 	
 	public static void main(String[] args) {
