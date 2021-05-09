@@ -1,8 +1,11 @@
 /*
- * Copyright (c) 2020. fengshiqing 冯仕清
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
  */
 
-package com.kunning.javase.sync;
+package com.kunning.javase.线程;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 生产者/消费者问题
@@ -20,18 +23,16 @@ package com.kunning.javase.sync;
  * 4、是否涉及到线程的通信？存在生产者和消费者的通信。
  */
 public class ProducerANDCustomer {
+
     public static void main(String[] args) {
         Clerk clerk = new Clerk();// 共享数据
         Producer p1 = new Producer(clerk);
         Consumer c1 = new Consumer(clerk);
 
-        Thread t1 = new Thread(p1);
-        Thread t3 = new Thread(p1);
-        Thread t2 = new Thread(c1);
+        Thread t1 = new Thread(p1, "生产者1");
+        Thread t3 = new Thread(p1, "生产者2");
+        Thread t2 = new Thread(c1, "消费者");
 
-        t1.setName("生产者1");
-        t3.setName("生产者2");
-        t2.setName("消费者");
         t1.start();
         t3.start();
         t2.start();
@@ -82,7 +83,7 @@ public class ProducerANDCustomer {
 
         @Override
         public void run() {
-            System.out.println("生产者开始生产产品");
+            System.out.println("生产者开始生产");
             while (true) {
                 try {
                     Thread.sleep(1000);
@@ -104,7 +105,7 @@ public class ProducerANDCustomer {
 
         @Override
         public void run() {
-            System.out.println("消费者开始消费产品");
+            System.out.println("消费者开始消费");
             while (true) {
                 try {
                     Thread.sleep(1000);
