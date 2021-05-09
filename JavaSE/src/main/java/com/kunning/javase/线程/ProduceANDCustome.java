@@ -7,8 +7,6 @@ package com.kunning.javase.线程;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.junit.jupiter.api.Test;
-
 /**
  * 功能描述：生产者/消费者
  *
