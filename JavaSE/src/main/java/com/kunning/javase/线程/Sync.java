@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2020. fengshiqing 冯仕清
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
  */
 
-package com.kunning.javase.sync;
+package com.kunning.javase.线程;
 
 import org.junit.jupiter.api.Test;
 
