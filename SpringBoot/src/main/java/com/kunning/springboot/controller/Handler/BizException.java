@@ -5,16 +5,16 @@
 package com.kunning.springboot.controller.Handler;
 
 /**
- * 功能描述：自定义异常
+ * 功能描述：自定义的业务异常，系统运行中的所有业务相关的异常。
  *
  * @author fengshiqing
  * @since 2020-08-23
  */
-public class MyException extends Exception {
+public class BizException extends Exception {
 
     private int exceptionCode;
 
-    public MyException(int exceptionCode, String message) {
+    public BizException(int exceptionCode, String message) {
         super(message);
         this.exceptionCode = exceptionCode;
     }

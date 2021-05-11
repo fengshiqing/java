@@ -41,8 +41,8 @@ public class GlobalExceptionHandler {
      *
      * @return ResponseApi对象
      */
-    @ExceptionHandler(value = MyException.class)
-    public ResponseApi dealMyException(MyException exception) {
+    @ExceptionHandler(value = BizException.class)
+    public ResponseApi dealMyException(BizException exception) {
         LOGGER.info("【统一处理业务异常】", exception);
 
         ResponseApi response = new ResponseApi();
