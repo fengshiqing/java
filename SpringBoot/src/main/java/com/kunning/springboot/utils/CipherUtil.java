@@ -5,25 +5,27 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
+import sun.misc.BASE64Decoder;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
+import java.security.Key;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Objects;
 
 /**
- * 功能简述：密码工具类。
- * MD5摘要、Base64编码。
+ * 功能简述：密码工具类。 MD5摘要、Base64编码。
  *
  * @author 冯仕清
  * @since 2019/12/19
  */
 public class CipherUtil {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(CipherUtil.class);
 
     /**
@@ -32,87 +34,153 @@ public class CipherUtil {
     private CipherUtil() {
     }
 
+    // =====================================================MD5摘要=====================================================
+
     /**
-     * 功能描述：获取 MD5 摘要。
+     * 功能描述：生成 MD5摘要。
      *
-     * @param plaintext 明文
-     * @param salt      盐值
+     * @param plainStr 明文
      *
-     * @return MD5摘要
+     * @return MD5摘要，是一个32个16进制的数字字母(小写)组成的字符串，每个十六进制位是4为二进制，所以MD5摘要是32*4=128位。
      */
-    public static String getMd5Digest(String plaintext, String salt) {
-        // plaintext可以为空字符串""，空字符串""的 MD5摘要 是：d41d8cd98f00b204e9800998ecf8427e
-        if (plaintext == null) {
-            LOGGER.error("【plaintext不能为空！】");
-            return null;
-        }
-        byte[] byteArr = StringUtils.isEmpty(salt) ? plaintext.getBytes() : (plaintext + salt).getBytes();
+    public static String getMd5Digest(String plainStr) {
+        // plainStr可以为空字符串""，空字符串""的 MD5摘要 是：d41d8cd98f00b204e9800998ecf8427e
+        Objects.requireNonNull(plainStr, "【plainStr 不能为空！】");
+        byte[] byteArr = plainStr.getBytes();
         return DigestUtils.md5DigestAsHex(byteArr);
     }
 
-    public static String encrypt(String dataStr, String slat) {
-        try {
-            MessageDigest m = MessageDigest.getInstance("MD5");
-            m.update((dataStr + slat).getBytes(StandardCharsets.UTF_8));
-            byte[] byteArr = m.digest();
-            StringBuilder result = new StringBuilder();
-            for (byte b : byteArr) {
-                result.append(Integer.toHexString((0x000000FF & b) | 0xFFFFFF00).substring(6));
-            }
-            return result.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "";
+    /**
+     * 功能描述：生成 MD5摘要。
+     *
+     * @param plainStr 明文
+     * @param salt 盐值
+     *
+     * @return MD5摘要
+     */
+    public static String getMd5Digest(String plainStr, String salt) {
+        Objects.requireNonNull(plainStr, "【plainStr 不能为空！】");
+        byte[] byteArr = StringUtils.isEmpty(salt) ? plainStr.getBytes() : (plainStr + salt).getBytes();
+        return DigestUtils.md5DigestAsHex(byteArr);
     }
 
-    // ======================================================分割线======================================================
+    // =================================================base64编码、解码=================================================
 
     /**
-     * 功能描述：base64编码
-     * 参考：https://www.cnblogs.com/alter888/p/9140732.html
+     * 功能描述：进行 base64编码。
      *
-     * @param plaintext 明文
+     * @param plainStr 明文
+     *
+     * @return base64编码后的字符串
      */
-    public static void base64(String plaintext) {
-        //
-        String text = "字串文字";
-
-        // 3、Java 8的java.util套件中，新增了Base64的类别，可以用来处理Base64的编码与解码，用法如下：
-        java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();
-        java.util.Base64.Decoder decoder = java.util.Base64.getDecoder();
-        final String encodedText3 = encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8)); // 编码
-        System.out.println(encodedText3);
-        System.out.println(new String(decoder.decode(encodedText3), StandardCharsets.UTF_8)); // 解码
-        // 与sun.misc套件和Apache Commons Codec所提供的Base64编解码器来比较的话，Java 8提供的Base64拥有更好的效能。
-        // 实际测试编码与解码速度的话，Java 8提供的Base64，要比sun.mis c套件提供的还要快至少11倍，比Apache Commons Codec提供的还要快至少3倍。
-        // 因此在Java上若要使用Base64，这个Java 8底下的java .util套件所提供的Base64类别绝对是首选！
-
-        // 4、现在spring封装了 base64 ，用这个
-        // spring-core-5.2.0.RELEASE.jar!   org.springframework.util.Base64Utils.class
+    public static String encodeBase64(String plainStr) {
+        byte[] byteArr = plainStr.getBytes(StandardCharsets.UTF_8);
+        return Base64Utils.encodeToString(byteArr);
     }
 
-    // ======================================================分割线======================================================
+    /**
+     * 功能描述：进行 base64解码。
+     *
+     * @param codeStr 编码后的字符串
+     *
+     * @return 解码后的原文
+     */
+    public static String decodeBase64(String codeStr) {
+        byte[] byteArr = Base64Utils.decodeFromString(codeStr); // Spring提供的方法默认的编码格式就是UTF-8
+        return new String(byteArr, StandardCharsets.UTF_8);
+    }
+
+    // ===================================================DES对称加解密===================================================
+
+    private static final Key key;
+    private static final String KEY_STR = "myKey";
+    private static final String ALGORITHM = "DES";
+
+    static {
+        try {
+            // 生成DES算法对象
+            KeyGenerator generator = KeyGenerator.getInstance(ALGORITHM);
+            // 运用SHA1安全策略
+            SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+            // 设置上密钥种子
+            secureRandom.setSeed(KEY_STR.getBytes());
+            // 初始化基于SHA1的算法对象
+            generator.init(secureRandom);
+            // 生成密钥对象
+            key = generator.generateKey();
+            generator = null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 功能描述：获取DES加密后的密文
+     *
+     * @param plainStr 明文
+     *
+     * @return 密文
+     */
+    public static String getEncryptString(String plainStr) {
+        // 基于BASE64编码，接收byte[]并转换成String
+        try {
+            // 按utf8编码
+            byte[] bytes = plainStr.getBytes(StandardCharsets.UTF_8);
+            // 获取加密对象
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            // 初始化密码信息
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            // 加密
+            byte[] doFinal = cipher.doFinal(bytes);
+            // byte[]to encode好的String 并返回
+            return Base64.getEncoder().encodeToString(doFinal);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 功能描述：获取DES解密后的明文
+     *
+     * @param secretStr 密文
+     *
+     * @return 明文
+     */
+    public static String getDecryptString(String secretStr) {
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            // 将字符串decode成byte[]
+            byte[] bytes = decoder.decodeBuffer(secretStr);
+            // 获取解密对象
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            // 初始化解密信息
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            // 解密
+            byte[] doFial = cipher.doFinal(bytes);
+
+            return new String(doFial, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // ====================================================AES非对称加解密====================================================
 
     /**
      * 功能描述：AES加密后，再进行base64编码。
+     * 参考：https://blog.csdn.net/TangHao_0226/article/details/80264572
      *
-     * @param plaintext 明文
+     * @param plainStr 明文
      * @param secretKey 密钥
      *
-     * @return 加密后的字符串
+     * @return 密文
      *
      * @throws Exception 异常
      */
-    public static String Encrypt(String plaintext, String secretKey) throws Exception {
+    public static String enCrypt(String plainStr, String secretKey) throws Exception {
+        Objects.requireNonNull(plainStr, "【plainStr 不能为空！】");
+        Objects.requireNonNull(plainStr, "【secretKey 不能为空！】");
 
-        // 参考：https://blog.csdn.net/TangHao_0226/article/details/80264572
-
-        if (secretKey == null) {
-            LOGGER.error("【Key不能为null】");
-            return null;
-        }
         // 判断Key是否为16位
         if (secretKey.length() != 16) {
             LOGGER.error("【Key长度必须是16位！】");
@@ -124,7 +192,7 @@ public class CipherUtil {
         IvParameterSpec ivParameterSpec = new IvParameterSpec("0102030405060708".getBytes()); // 使用CBC模式，需要一个向量iv，可增加加密算法的强度
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
 
-        byte[] encrypted = cipher.doFinal(plaintext.getBytes()); // 加密
+        byte[] encrypted = cipher.doFinal(plainStr.getBytes()); // 加密
 
         return Base64Utils.encodeToString(encrypted); // 此处使用BASE64做转码功能，同时能起到2次加密的作用。
     }
@@ -133,11 +201,11 @@ public class CipherUtil {
      * 功能描述：AES解密
      *
      * @param ciphertext 密文
-     * @param secretKey  密钥
+     * @param secretKey 密钥
      *
      * @return 解密后的字符串
      */
-    public static String Decrypt(String ciphertext, String secretKey) {
+    public static String deCrypt(String ciphertext, String secretKey) {
         try {
             // 判断Key是否正确
             if (secretKey == null) {
@@ -162,6 +230,38 @@ public class CipherUtil {
             System.out.println(e.toString());
             return null;
         }
+    }
+
+    // =================================================================================================================
+
+    public static final String HMAC_MD_5 = "HmacMD5";
+
+    /***
+     * 初始化HMAC密钥
+     * 
+     * @return
+     * @throws Exception
+     */
+    public static String initMacKey() throws Exception {
+
+        KeyGenerator keyGenerator = KeyGenerator.getInstance(HMAC_MD_5);
+        SecretKey secreKey = keyGenerator.generateKey();
+        return Base64Utils.encodeToString(secreKey.getEncoded());
+    }
+
+    /**
+     * HMAC加密
+     * 
+     * @param data
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    public static byte[] encryHMAC(byte[] data, String key) throws Exception {
+        SecretKey secreKey = new SecretKeySpec(Base64Utils.encode(key.getBytes()), HMAC_MD_5);
+        Mac mac = Mac.getInstance(HMAC_MD_5);
+        mac.init(secreKey);
+        return mac.doFinal();
     }
 
 }
