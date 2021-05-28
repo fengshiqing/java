@@ -1,11 +1,15 @@
+/*
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
+ */
+
 package com.kunning.springboot.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.Base64Utils;
-import org.springframework.util.DigestUtils;
-import org.springframework.util.StringUtils;
-import sun.misc.BASE64Decoder;
+import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
+import java.security.Key;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Objects;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -13,11 +17,15 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Objects;
+import javax.xml.bind.DatatypeConverter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Base64Utils;
+import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
+
+import sun.misc.BASE64Decoder;
 
 /**
  * 功能简述：密码工具类。 MD5摘要、Base64编码。
@@ -25,7 +33,7 @@ import java.util.Objects;
  * @author 冯仕清
  * @since 2019/12/19
  */
-public class CipherUtil {
+public final class CipherUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(CipherUtil.class);
 
     /**
@@ -167,8 +175,7 @@ public class CipherUtil {
     // ====================================================AES非对称加解密====================================================
 
     /**
-     * 功能描述：AES加密后，再进行base64编码。
-     * 参考：https://blog.csdn.net/TangHao_0226/article/details/80264572
+     * 功能描述：AES加密后，再进行base64编码。 参考：https://blog.csdn.net/TangHao_0226/article/details/80264572
      *
      * @param plainStr 明文
      * @param secretKey 密钥
@@ -227,17 +234,18 @@ public class CipherUtil {
             byte[] original = cipher.doFinal(encrypted); // 解密
             return new String(original);
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e);
             return null;
         }
     }
 
     // =================================================================================================================
 
-    public static final String HMAC_MD_5 = "HmacMD5";
+    private static final String HMAC_MD_5 = "HmacMD5";
+    private static final String HMAC_SHA_256 = "HmacSHA256";
 
-    /***
-     * 初始化HMAC密钥
+    /**
+     * 功能描述：初始化HMAC密钥
      * 
      * @return
      * @throws Exception
@@ -250,18 +258,19 @@ public class CipherUtil {
     }
 
     /**
-     * HMAC加密
-     * 
-     * @param data
-     * @param key
-     * @return
-     * @throws Exception
+     * 功能描述：生成明文的摘要信息
+     *
+     * @param plainStr 明文
+     * @param secretkey 密钥
+     *
+     * @return 密文字符串
      */
-    public static byte[] encryHMAC(byte[] data, String key) throws Exception {
-        SecretKey secreKey = new SecretKeySpec(Base64Utils.encode(key.getBytes()), HMAC_MD_5);
-        Mac mac = Mac.getInstance(HMAC_MD_5);
+    public static String getHmacSHA256(final String plainStr, final String secretkey) throws GeneralSecurityException {
+        Mac mac = Mac.getInstance(HMAC_SHA_256);
+        SecretKey secreKey = new SecretKeySpec(secretkey.getBytes(), HMAC_SHA_256);
         mac.init(secreKey);
-        return mac.doFinal();
+        byte[] byteArr = mac.doFinal(plainStr.getBytes(StandardCharsets.UTF_8)); // byte数组长度：32
+        return DatatypeConverter.printHexBinary(byteArr); // 将byte数组转换为16进制的字符产，字母都是大写的，总长度64
     }
 
 }

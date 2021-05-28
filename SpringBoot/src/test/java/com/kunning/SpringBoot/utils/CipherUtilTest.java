@@ -1,10 +1,11 @@
 package com.kunning.springboot.utils;
 
-import org.junit.Test;
-import org.springframework.util.Base64Utils;
-
 import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import org.junit.Test;
 
 public class CipherUtilTest {
 
@@ -28,6 +29,9 @@ public class CipherUtilTest {
         // 结论：字母数字等ASCII码表中有的字符，结果都是一样，汉字的话就需要注意编码格式！！！
     }
 
+    /**
+     * 功能描述L生成MD5摘要
+     */
     @Test
     public void getMD5() {
         System.out.println("【摘要：】" + CipherUtil.getMd5Digest("123456"));
@@ -37,12 +41,14 @@ public class CipherUtilTest {
         System.out.println("【摘要：】" + CipherUtil.getMd5Digest("123456", "abcdefg"));
     }
 
+    /**
+     * 功能描述：base64编码/解码
+     */
     @Test
     public void base64() {
         String plainStr = "123456冯仕清";
         String codeStr = CipherUtil.encodeBase64(plainStr);
         System.out.println("【Base64编码：】" + codeStr);
-        System.out.println("【Base64解码：】" + Arrays.toString(Base64Utils.decodeFromString(codeStr)));
         System.out.println("【Base64解码：】" + CipherUtil.decodeBase64(codeStr));
     }
 
@@ -55,4 +61,9 @@ public class CipherUtilTest {
         System.out.println("【解密后的明文：】" + CipherUtil.deCrypt(enCryptStr, secretKey));
     }
 
+    @Test
+    public void sha256_mac() throws GeneralSecurityException {
+        String outPut = CipherUtil.getHmacSHA256("abc123冯仕清", "abc");
+        System.out.println(outPut);
+    }
 }
