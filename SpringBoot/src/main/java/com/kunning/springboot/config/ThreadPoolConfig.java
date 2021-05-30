@@ -61,4 +61,8 @@ public class ThreadPoolConfig {
  * 也就是：处理任务的优先级为：核心线程corePoolSize、任务队列workQueue、最大线程 maximumPoolSize，如果三者都满了，使用handler处理被拒绝的任务。
  *
  * 当线程池中的线程数量大于corePoolSize时，如果某线程空闲时间超过keepAliveTime，线程将被终止。这样，线程池可以动态的调整池中的线程数。
+ * 池满时的拒绝策略
+ * AbortPolicy(默认)：抛异常
+ * DiscardPolicy/DiscardOldestPolicy：放弃该线程
+ * CallerRunsPolicy：通知该线程的创建者，让其不要提交新的线程。这句话的意思就是不启动线程的start() 方法吧？
  */
