@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.10.RELEASE</version>
+        <version>2.4.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -69,20 +69,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-        </dependency>
         <!--aspectjrt和aspectjweaver是与aspectj相关的包,用来支持切面编程的-->
         <!--aspectjrt包是aspectj的runtime包-->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-        </dependency>
         <!--aspectjweaver是aspectj的织入包-->
         <dependency>
             <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
+            <artifactId>aspectjrt</artifactId>
         </dependency>
         <!--cglib包是用来动态代理用的，基于类的代理-->
         <dependency>
@@ -121,16 +113,10 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
-        <!--jdbc starter-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <!-- mybatis starter -->
+        <!-- mybatis starter，包含了spring-boot-starter-jdbc -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.0</version>
         </dependency>
         <!--数据库 MySQL、MyBatis-->
         <dependency>
