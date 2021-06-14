@@ -2,8 +2,7 @@
 # 来源于 https://blog.csdn.net/I_am_Hutengfei/article/details/100561564
 
 create table sys_user (
-    id                   int auto_increment
-        primary key,
+    id                       int                   auto_increment        primary key,
     user_Id                  bigint(20)            not null comment '用户ID',
     user_name                varchar(32)           not null comment '用户名',
     password                 varchar(64)           null comment '用户密码',
