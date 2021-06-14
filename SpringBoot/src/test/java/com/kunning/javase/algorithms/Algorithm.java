@@ -20,9 +20,9 @@ public class Algorithm {
     // =======================================================素数=======================================================
 
     /**
-     * 功能描述：列出 {@code number} 以内的素数
+     * 功能描述：列出 指定数字 以内的素数
      *
-     * @param number 求 {@code number} 以内的素数
+     * @param number 指定数字
      */
     public static void getPrimeNum(int number) {
 
