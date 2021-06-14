@@ -2,7 +2,7 @@ package com.kunning.springboot;
 
 import com.mchange.v1.util.ArrayUtils;
 import org.apache.commons.collections4.CollectionUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

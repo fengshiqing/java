@@ -4,17 +4,17 @@
 
 package com.kunning.springboot.controller;
 
-import com.kunning.springboot.Application;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
-
 import java.util.Map;
 
-@RunWith(SpringRunner.class) //测试运行在spring环境下
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.web.client.RestTemplate;
+
+import com.kunning.springboot.Application;
+
+@SpringJUnitConfig
 @SpringBootTest(classes = Application.class) //加载springboot的测试环境配置
 class HelloControllerTest {
 

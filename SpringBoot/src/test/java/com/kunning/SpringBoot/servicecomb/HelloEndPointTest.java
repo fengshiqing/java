@@ -4,14 +4,14 @@
 
 package com.kunning.springboot.servicecomb;
 
-import com.kunning.springboot.Application;
 import org.apache.servicecomb.provider.pojo.RpcReference;
 import org.apache.servicecomb.provider.springmvc.reference.RestTemplateBuilder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.web.client.RestTemplate;
+
+import com.kunning.springboot.Application;
 
 /**
  * 功能描述：微服务单元测试
@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
  * @author fengshiqing
  * @since 2020-08-09
  */
-@RunWith(SpringRunner.class)
+@SpringJUnitConfig
 @SpringBootTest(classes = Application.class)
 public class HelloEndPointTest {
 

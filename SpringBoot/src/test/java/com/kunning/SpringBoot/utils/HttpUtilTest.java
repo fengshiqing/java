@@ -1,5 +1,8 @@
 package com.kunning.springboot.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -8,14 +11,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHttpRequest;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-@RunWith(SpringRunner.class) // junit提供的注解，表示该类是单元测试的执行类
+@SpringJUnitConfig
 public class HttpUtilTest {
 
     @Test
