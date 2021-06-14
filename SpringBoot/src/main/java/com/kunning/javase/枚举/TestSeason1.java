@@ -1,5 +1,15 @@
+/*
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
+ */
+
 package com.kunning.javase.枚举;
 
+/**
+ * 功能描述：enum关键字定义的枚举类。
+ *
+ * @author fengshiqing
+ * @since 2019-05-13
+ */
 public class TestSeason1 {
 
 	public static void main(String[] args) {
@@ -11,8 +21,8 @@ public class TestSeason1 {
 		
 		// 常用的枚举类的方法
 		Season1[] seasons = Season1.values();
-		for(int i=0; i<seasons.length; i++) {
-			System.out.println(seasons[i]);
+		for (Season1 season1 : seasons) {
+			System.out.println(season1);
 		}
 		
 		Season1 season = Season1.valueOf("SPRING");// "SPRING"是枚举类的名字

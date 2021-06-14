@@ -1,5 +1,15 @@
+/*
+ * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
+ */
+
 package com.kunning.javase.枚举;
 
+/**
+ * 功能描述：纯手写的枚举类。
+ *
+ * @author fengshiqing
+ * @since 2019-05-13
+ */
 public class TestSeason {
 
 	public static void main(String[] args) {
