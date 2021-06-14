@@ -4,7 +4,7 @@
 <mapper namespace="com.kunning.javase.mybatis.dao.UserDao">
 
     <select id="getAll" resultType="com.kunning.javase.pojo.User">
-        SELECT * FROM user;
+        SELECT * FROM t_user;
     </select>
 
 </mapper>
