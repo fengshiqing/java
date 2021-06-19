@@ -19,10 +19,6 @@ import javax.jms.Queue;
 @Configuration
 @EnableJms // 这个注解很重要，开启 JMS 的注解
 public class ActiveMqConfig {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ActiveMqConfig.class);
 
     /**

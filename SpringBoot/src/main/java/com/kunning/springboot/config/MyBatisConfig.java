@@ -13,12 +13,8 @@ import org.springframework.context.annotation.Configuration;
  * @since 2020/03/20 19:09
  */
 @Configuration
-@MapperScan("com.kunning.springboot.dao")
+@MapperScan("com.kunning.springboot.dao") // 和 @ComponentScan 注解功能类似
 public class MyBatisConfig {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(MyBatisConfig.class);
 
     /**

@@ -19,10 +19,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class RestClientConfig {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisConfig.class);
 
     /**
@@ -38,7 +34,11 @@ public class RestClientConfig {
         this.restTemplateBuilder = restTemplateBuilder;
     }
 
-
+    /**
+     * 功能描述：配置 RestTemplate
+     *
+     * @return RestTemplate
+     */
     @Bean
     public RestTemplate springRestTemplate() { // restTemplate名字被servicecomb占用了，因此换个名字
         return restTemplateBuilder.build();

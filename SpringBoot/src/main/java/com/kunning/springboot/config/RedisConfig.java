@@ -32,10 +32,6 @@ import java.util.Set;
 @EnableCaching//开启注解式缓存
 //继承CachingConfigurerSupport，为了自定义生成KEY的策略。可以不继承。
 public class RedisConfig extends CachingConfigurerSupport {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisConfig.class);
 
     /**

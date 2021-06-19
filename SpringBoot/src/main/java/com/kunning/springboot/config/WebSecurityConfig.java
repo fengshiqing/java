@@ -31,10 +31,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启方法级别的安全控制。prePostEnabled =true会拦截@PreAuthorize修饰的方法
 //@EnableGlobalMethodSecurity(prePostEnabled =true, securedEnabled =true, jsr250Enabled =true) // 开启方法级别的安全控制
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     /**

@@ -15,10 +15,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @Configuration
 public class TestConfiguration {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(TestConfiguration.class);
 
     public TestConfiguration() {

@@ -12,12 +12,8 @@ import org.springframework.context.annotation.Configuration;
  * @since 2101/12/25
  */
 // https://www.w3cschool.cn/wkspring/tlbk1icp.html
-@Configuration
+@Configuration // 取代 application.xml配置文件
 public class AppConfig {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
     /**
