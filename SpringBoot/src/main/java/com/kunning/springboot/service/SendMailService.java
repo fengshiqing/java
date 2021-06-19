@@ -2,7 +2,6 @@ package com.kunning.springboot.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -21,8 +20,14 @@ public class SendMailService {
     /**
      * Spring 自带的邮件Sender，会自动读取 application.properties 中的配置
      */
-    @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
+
+    /**
+     * 构造器
+     */
+    public SendMailService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     /**
      * 功能描述：发送电子邮件。
