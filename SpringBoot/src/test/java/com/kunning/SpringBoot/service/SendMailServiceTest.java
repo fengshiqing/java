@@ -16,6 +16,6 @@ class SendMailServiceTest {
 
     @Test
     void sendSimpleMail() {
-        sendMailService.sendSimpleMail("938481169@qq.com", "938481169@qq.com", "【邮件主题】", "【邮件内容】");
+        sendMailService.sendSimpleMail("2785315212@qq.com", "938481169@qq.com", "【邮件主题】", "【邮件内容】");
     }
 }
