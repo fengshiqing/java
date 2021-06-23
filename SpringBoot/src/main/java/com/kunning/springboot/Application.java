@@ -1,37 +1,20 @@
 package com.kunning.springboot;
 
-import com.kunning.springbootstarter.CustomStarter;
-import org.apache.servicecomb.springboot.starter.provider.EnableServiceComb;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * 应用程序入口
+ * 功能描述：应用程序入口
  *
  * @author 冯仕清
  */
 @SpringBootApplication // 标注主程序类，表明这是一个Spring Boot应用
 @EnableScheduling
-@EnableServiceComb
-public class Application implements CommandLineRunner {
+// @EnableServiceComb
+public class Application {
 
-//    public static void main(String[] args) {
-//        SpringApplication.run(Application.class, args);
-//    }
-
-    @Autowired
-    private CustomStarter customStarter;
-
-    // 自定义运行 其他代码
     public static void main(String[] args) {
-        new SpringApplication(Application.class).run(args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        customStarter.welcome();
+        SpringApplication.run(Application.class, args);
     }
 }
