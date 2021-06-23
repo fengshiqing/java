@@ -20,10 +20,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UserDetailsService {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     @Autowired

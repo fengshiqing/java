@@ -23,10 +23,6 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class RedisService {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
 
     private final RedisTemplate redisTemplate;

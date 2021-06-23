@@ -17,10 +17,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ActivityService {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ActivityService.class);
 
     /**

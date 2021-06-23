@@ -21,10 +21,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class WeatherService {
-
-    /**
-     * 日志
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(WeatherService.class);
 
     private final RestTemplate restTemplate;
