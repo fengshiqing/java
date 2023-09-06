@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!-- https://www.cnblogs.com/zeng1994/p/c0977ec63618ac1cb6be9f6575908e08.html -->
+    <!-- https://blog.csdn.net/xybz1993/article/details/80775593 -->
+    <!-- https://www.cnblogs.com/fightingcoding/p/component-scan.html -->
+
+
+</beans>

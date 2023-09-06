@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration><!-- mybatis配置的根标签 -->
+
+	<!-- 步骤一：读取或配置数据库必须的信息 -->
+	<!-- properties resource="jdbc.properties"/--><!-- 方式一：引入单独的jdbc的配置文件 -->
+	<properties><!-- 方式二：直接配置，这种方式没上面这种单独一个文件的配置那么的清晰 -->
+		<property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbc.url" value="jdbc:mysql://192.168.1.100:3306/JavaWeb"/>
+		<property name="jdbc.username" value="root"/>
+		<property name="jdbc.password" value="feng234800"/>
+	</properties>
+
+	<!-- 可选步骤：一些配置信息 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J"/><!-- 使用Log4J日志框架 -->
+	</settings>
+
+	<!-- 可选步骤：给pojo对象设置别名 -->
+	<typeAliases><!-- 类的别名，给类的完成限定名取别名，方便使用，但是实际项目中不会用别名的。这个属性必须放在<environments>标签之前，
+			放在后面的话会报错：Caused by: org.xml.sax.SAXParseException; -->
+		<!--typeAlias alias="Student" type="com.java1234.model.Student"/-->
+		<package name="com.java1234.model"/><!-- 这种方式好，一次搞定好多 -->
+	</typeAliases>
+
+	<!-- 步骤二：配置数据源 -->
+	<environments default="development"><!-- MyBatis 支持多个环境，可以任意配置。包含多个环境<environment id="XXX"> -->
+		<environment id="development">
+			<!-- MyBatis 支持两种类型的事务管理器：JDBC 和 MANAGED(托管)。
+					JDBC：应用程序负责管理数据库连接的生命周期；
+					MANAGED：由应用服务器负责管理数据库连接的生命周期；(一般商业服务器才有此功能，如:JBOSS,WebLogic) -->
+			<transactionManager type="JDBC" />
+			<!-- UNPOOLED，没有连接池，每次数据库操作，MyBatis 都会创建一个新的连接，用完后，关闭；适合小并发项目；
+					POOLED，用上了连接池；
+					JNDI，使用应用服务器配置 JNDI 数据源获取数据库连接； -->
+			<dataSource type="POOLED"><!-- 数据源，"POOLED"表示连接池；类型有：UNPOOLED，POOLED，JNDI -->
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 步骤三：映射器 -->
+	<!-- 详细说明请看：http://www.mybatis.org/mybatis-3/zh/configuration.html#mappers -->
+	<mappers><!-- 映射器，引入映射文件，所有的ORM框架都有映射 -->
+		<mapper resource="sqlMap/UserSqlMap.xml" /><!-- 直接扫描sqlmap的xml文件。这种方式不是很好，可以用下面这种方式 -->
+		<!-- mapper class="com.kunning.mybatis.dao.StudentMapper"/--><!-- 这种方式也不算很好，如果有100个1000个文件需要导入，能累死你。因此介绍下面这种方法 -->
+		<!-- package name="com.kunning.mybatis.dao"/--><!-- 这种直接扫描包下的所有文件 -->
+	</mappers>
+
+</configuration>

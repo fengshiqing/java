@@ -1,0 +1,2 @@
+# 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
+debug: false

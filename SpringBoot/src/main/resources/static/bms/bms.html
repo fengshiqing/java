@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>backstage management system</title>
+    <link rel="shortcut icon" href="./bms.png"/>
+    <link rel="stylesheet" href="./bms.css"/>
+    <!--    <script data-main="../3rdlib/main" src="../3rdlib/require.js"></script>-->
+    <script src="../3rdlib/angular.js"></script>
+    <script src="../3rdlib/angular-route.js"></script>
+
+    <script src="./bmsloader.js"></script>
+
+    <style>
+        /*用于防止ng还未加载完，显示双大括号的问题。ng-cloak指令，在ng执行完毕后自动移除*/
+        [ng-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body ng-app="bmsApp" ng-cloak>
+<h1>后台管理系统</h1>
+<h1>{{'hello' + 'world'}}</h1>
+
+<div class="tabpage" ng-controller="bmsController">
+    用户名：<label><input type="text" ng-model="Model.userInfo.name" required></label>
+    <h3>{{Model.userInfo.name}}</h3>
+    <!--3个Tab页-->
+    <ul class="tab">
+        <li class="li" ng-class="{'current':Model.tabPageNum===1}" ng-click="changeTab(1)"><span>tab1</span></li>
+        <li class="li" ng-class="{'current':Model.tabPageNum===2}" ng-click="changeTab(2)"><span>tab2</span></li>
+        <li class="li" ng-class="{'current':Model.tabPageNum===3}" ng-click="changeTab(3)"><span>tab3</span></li>
+    </ul>
+    <!--Tab1-->
+    <div ng-if="Model.tabPageNum===1">
+        <h1>我是Tab1页面</h1>
+        <table style="border:0; width: 100%">
+            <thead back>
+            <tr>
+                <th style="width:20%">列1</th>
+                <th style="width:20%">列2</th>
+                <th style="width:20%">列3</th>
+                <th style="width:20%">列3</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in Model.tableDate">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>
+                    <input type="button" value="查询数据" ng-click="queryDate()" />
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--Tab2-->
+    <div ng-if="Model.tabPageNum===2">
+        <h1>我是Tab2页面</h1>
+
+    </div>
+    <!--Tab3-->
+    <div ng-if="Model.tabPageNum===3">
+        <h1>我是Tab3页面</h1>
+    </div>
+</div>
+
+<script>
+    (function (window) {
+        window.addEventListener("hashchange", function (e) {
+            console.log(11111);
+            console.log(e);
+        })
+    })(window);
+</script>
+
+</body>
+</html>

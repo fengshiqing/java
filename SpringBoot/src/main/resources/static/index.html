@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Signin Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="./bootstrap-4.5.0-examples/assets/dist/css/bootstrap.css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="index.css"/>
+</head>
+
+<body class="text-center">
+<div class="form-signin" id="app">
+    <form action="/signin" method="post">
+        <img class="mb-4" src="bootstrap-4.5.0-examples/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+
+        <label for="inputEmail" class="sr-only">邮箱</label>
+        <input id="inputEmail" class="form-control" type="email" placeholder="请输入邮箱地址" required autofocus v-model="email">
+
+        <label for="inputTelephone" class="sr-only">手机号</label>
+        <input id="inputTelephone" class="form-control" type="tel" placeholder="请输入手机号" required v-model="telephone">
+
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input id="inputPassword" class="form-control" type="password" placeholder="请输入密码" required v-model="password">
+
+        <div class="checkbox mb-3">
+            <label><input type="checkbox" value="remember-me"> Remember me</label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" v-on:click="signin()">Sign in 登录</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
+    </form>
+</div>
+</body>
+
+<script src="./3rdlib/vue.js"></script>
+<script src="./index.js"></script>
+
+</html>

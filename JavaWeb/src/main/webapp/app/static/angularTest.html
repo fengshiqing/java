@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular</title>
+    <!--https://www.runoob.com/angularjs/angularjs-tutorial.html-->
+    <script src="../3rdlib/angular.min.js"></script>
+    <script src="angularTest.js"></script>
+</head>
+<!--
+    ng-app 指令告诉 AngularJS，<div> 元素是 AngularJS 应用程序 的"所有者"。
+    AngularJS 模块（Module） 定义了 AngularJS 应用。
+    AngularJS 控制器（Controller） 用于控制 AngularJS 应用。
+    ng-app指令指明了应用, ng-controller 指明了控制器。
+-->
+<body ng-app="myAngularApp" ng-controller="myAngularAppController"><!--这个ng-app如果配置了及你必须有对应的js-->
+
+<div>
+    <label for="name">名字 :</label>
+    <input id="name" type="text" ng-model="name" ng-init="name='fengshiqing'">
+    <h1>Hello {{name}}</h1>
+
+    <p>我的第一个表达式，计算 5 + 5 = {{ 5 + 5 }}</p>
+</div>
+
+<div>
+    <label for="firstName">firstName</label>
+    <input id="firstName" type="text" ng-model="firstName"><br>
+    <label for="lastName">lastName</label>
+    <input id="lastName" type="text" ng-model="lastName"><br>
+    姓名: {{firstName + " " + lastName}}
+</div>
+
+<div ng-init="quantity=3;cost=5">
+    <p>总价： {{ quantity * cost }}</p>
+
+    <h2>价格计算器</h2>
+    数量： <input type="number" ng-model="quantity">
+    价格： <input type="number" ng-model="price">
+    <p><b>总价：</b> {{ quantity * price }}</p>
+</div>
+<div ng-init="firstName='John11';lastName='Doe11';person={firstName:'John22',lastName:'Doe22'}"><!--这里的初始化逼js中的赋值要早，且不会被js中初始化的赋值覆盖-->
+    <p>姓名： {{ firstName + " " + lastName }}</p>
+    <p>姓为 {{ person.lastName }}</p>
+</div>
+
+<div ng-init=" names=['Jani','Hege','Kai']">
+    <p>使用 ng-repeat 来循环数组</p>
+    <ul>
+        <li ng-repeat="x in names">
+            {{ x }}
+        </li>
+    </ul>
+</div>
+
+<form name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="myText" required></p>
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+    <h1>状态</h1>
+    {{myForm.myAddress.$valid}}
+    {{myForm.myAddress.$dirty}}
+    {{myForm.myAddress.$touched}}
+</form>
+
+</body>
+</html>

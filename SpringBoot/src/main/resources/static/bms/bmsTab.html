@@ -1,0 +1,22 @@
+<h1>My Sample Project</h1>
+<h1>后台管理系统</h1>
+
+<input type="text" ng-model="user.name">
+<h3>{{user.name}}</h3>
+
+<div class="tabpage" ng-controller="bmsController">
+    <ul class="tab">
+        <li id="li_stage" class="li" ng-class="{'current':Model.tabPageNum===1}" onclick="changeTab(1)">
+            <span>tab1</span>
+
+        </li>
+        <li id="li_class" class="li" ng-class="{'current':Model.tabPageNum===2}" onclick="changeTab(2)">
+            <span>tab2</span>
+
+        </li>
+        <li id="li_photo" class="li" ng-class="{'current':Model.tabPageNum===3}" onclick="changeTab(3)">
+            <span>tab3</span>
+
+        </li>
+    </ul>
+</div>

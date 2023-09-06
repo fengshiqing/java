@@ -1,0 +1,38 @@
+<!--
+  ~ Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="text-center">
+<div id="app">
+    <p>{{ message }}</p>
+
+    <form class="form-signin">
+        <img class="mb-4" src="../bootstrap-4.5.0-examples/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+
+        <label for="inputEmail" class="sr-only">邮箱</label>
+        <input id="inputEmail" class="form-control" placeholder="请输入邮箱地址" required autofocus v-model="email">
+
+        <label for="inputTelephone" class="sr-only">手机号</label>
+        <input id="inputTelephone" class="form-control" placeholder="请输入手机号" required v-model="telephone">
+
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required v-model="password">
+
+        <div class="checkbox mb-3">
+            <label><input type="checkbox" value="remember-me"> Remember me</label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" ng-click="submit($scope)">Sign in 登录</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
+    </form>
+</div>
+<script src="../3rdlib/vue.js"></script>
+<script src="bms-vue.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <display-name>Spring MVC Application</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/spring.xml</param-value>
+    </context-param>
+    <listener>
+        <!-- 这个是 Spring 自带的监听器，用来在 java容器 加载应用时，启动 Spring IOC容器。 -->
+        <!-- 默认查找“[/WEB-INF/applicationContext.xml]”，当然也可以通过配置全局属性 contextConfigLocation 来改变查找的路径 -->
+        <!-- \org\springframework\web\context\ContextLoader.java configureAndRefreshWebApplicationContext()429行 -->
+        <!-- 注意：Spring容器 和 SpringMVC容器 是两个容器，Spring容器是父容器，SpringMVC容器是子容器。父容器不可以访问子容器，子容器可以访问父容器。 -->
+        <!-- 如果只用SpringMVC。就可以不用配置 Spring容器了。如果都配置，并且都加载了相同的bean，就会有重复的bean了。 -->
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- 此Servlet用来整合SpringMVC框架 -->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <!-- 这个初始化标签可以不写，因为默认值就是“/WEB-INF/<servlet-name>-servlet.xml” -->
+            <param-name>contextConfigLocation</param-name>
+            <!-- <param-value>classpath:spring-mvc.xml , /WEB-INF/springmvc-servlet.xml</param-value> -->
+            <param-value>classpath:spring/spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 过滤器执行的先后顺序是，在web.xml中配置的先后顺序 -->
+    <!-- 编码过滤器 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- 典型的 Listener监听器 配置 -->
+    <listener>
+        <listener-class>com.kunning.web.servlet.listener.MyServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.kunning.web.servlet.listener.MyHttpSessionListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.kunning.web.servlet.listener.MyServletRequestListener</listener-class>
+    </listener>
+
+    <!-- 配置过滤器 -->
+    <filter>
+        <filter-name>Filter_01</filter-name>
+        <filter-class>com.kunning.web.servlet.filter.Filter_01</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Filter_01</filter-name>
+        <url-pattern>/*</url-pattern>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher><!-- 如果一个都不配置，默认是 REQUEST -->
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <!-- 典型的 Servlet 配置 -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.kunning.web.servlet.FirstServlet</servlet-class>
+        <!--		<init-param>-->
+        <!--			<param-name></param-name>-->
+        <!--			<param-value></param-value>-->
+        <!--			<description></description>-->
+        <!--		</init-param>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/servlet/LoginServlet</url-pattern>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 当前整个应用内，所有的报错都会重定向到此处，如果Jsp页面内配置了errorPage，以errorPage为准。 -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.jsp</location>
+        <!--exception-type></exception-type 这个元素不能和 <error-code> 一起使用，否则就没有效果 -->
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.jsp</location>
+    </error-page>
+    <!-- 或者用这种方式： <error-page> <exception-type>java.lang.Throwable</exception-type>
+        <location>/error/500.jsp</location> </error-page> -->
+
+    <welcome-file-list>
+        <welcome-file>/app/index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

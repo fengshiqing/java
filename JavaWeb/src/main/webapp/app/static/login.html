@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>login</title>
+	<script src="../3rdlib/jquery-3.4.1.js"></script>
+    <script src="login.js?t=new Date().getTime()"></script>
+</head>
+<body>
+<fieldset>
+	<form id="from" action="/JavaWeb/createAccount" method="Post">
+	<!--form action="/JavaWeb/app/static/index.html" method="get"--><!--这样子可以将此表单的数据放在url上带到下一个页面，但是没法提交到后台-->
+
+		<div>
+            <label class="" for="username">账号</label>
+		    <input id="username" type="text" name="username" value="" placeholder="请输入邮箱/手机/用户名">
+		</div>
+
+		<div>
+            <label class="" for="password">密码</label>
+		    <input id="password" type="password" name="password" value="" placeholder="请输入密码">
+		</div>
+
+		<input type="submit" value="注册">
+	</form>
+</fieldset>
+</body>
+</html>
