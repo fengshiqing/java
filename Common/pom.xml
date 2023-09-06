@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fengshiqing</groupId>
+        <artifactId>Java</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>Common</artifactId>
+    <packaging>jar</packaging>
+    <name>Common</name>
+    <description>公共模块，定义POJO对象、基本的工具类</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <!--compile，可以不写，默认的范围，适用于所有阶段，会随着项目一起发布。意思就是引入当前jar包，也就同时引入了lombok包。
+                provided，类似compile，期望JDK、容器或使用者会提供这个依赖。如servlet.jar。意思就是引入当前jar包，但是不会引入lombok包。
+                runtime，只在运行时使用，如JDBC驱动，适用运行和测试阶段。
+                test，只在测试时使用，用于编译和运行测试代码。不会随项目发布。
+                system，类似provided，需要显式提供包含依赖的jar，Maven不会在Repository中查找它。
+            -->
+            <scope>compile</scope>
+        </dependency>
+
+        <!--对接上海银行时，引入次jar包。add by fengshiqing 2023年6月14日15:29:47-->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
