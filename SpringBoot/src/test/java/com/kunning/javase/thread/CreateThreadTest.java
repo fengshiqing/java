@@ -1,4 +1,4 @@
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 import org.junit.jupiter.api.Test;
 

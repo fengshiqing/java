@@ -2,7 +2,7 @@
  * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
  */
 
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 /**
  * 生产者/消费者问题

@@ -2,7 +2,7 @@
  * Copyright (c) 2022. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 import java.util.LinkedList;
 import java.util.Queue;

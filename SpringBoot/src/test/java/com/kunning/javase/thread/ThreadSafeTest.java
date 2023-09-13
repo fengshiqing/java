@@ -1,4 +1,4 @@
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 //线程加锁。
 public class ThreadSafeTest implements Runnable {

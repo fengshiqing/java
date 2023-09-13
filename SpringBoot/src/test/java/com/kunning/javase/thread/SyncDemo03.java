@@ -1,4 +1,4 @@
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 /**
  * @see https://blog.csdn.net/c10wtiybq1ye3/article/details/78212045

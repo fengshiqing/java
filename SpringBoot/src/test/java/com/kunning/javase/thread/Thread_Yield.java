@@ -1,4 +1,4 @@
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 /**
  * Java线程中的Thread.yield()方法，译为线程让步。就是说当一个线程执行这个方法后，就会把自己的CPU执行权让出来，

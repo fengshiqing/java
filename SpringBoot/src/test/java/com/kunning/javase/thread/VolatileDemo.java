@@ -2,7 +2,7 @@
  * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
  */
 
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 /**
  * 功能描述：volatile内存可见性的分析。

@@ -1,30 +1,33 @@
-package com.kunning.javase.线程;
+package com.kunning.javase.thread;
 
 import org.junit.jupiter.api.Test;
 
 /**
- * <线程的休眠>
+ * 功能描述：守护线程
+ *
+ * @author 冯仕清
+ * @since 2019/12/24
  */
-public class ThreadSleepDemo {
+public class Thread_Daemon {
 
     @Test
     public void test() {
         MyThread mt = new MyThread(); // 实例化Runnable子类对象
         Thread t = new Thread(mt, "线程"); // 实例化Thread对象
+        t.setDaemon(true); // 此线程在后台运行
         t.start(); // 启动线程
+        System.out.println("主线程执行完毕");
     }
 
     static class MyThread implements Runnable { // 实现Runnable接口
         @Override
         public void run() { // 覆写run()方法
-            for (int i = 0; i < 30; i++) {
-                try {
-                    Thread.sleep(1000); // 线程休眠，毫秒
-                } catch (InterruptedException e) {
-                }
-                System.out.println(Thread.currentThread().getName() + "运行，i = " + i); // 取得当前线程的名字
+            while (true) {
+                System.out.println(Thread.currentThread().getName() + "在运行。");
             }
+//			System.out.println("守护进程结束");
         }
     }
+
 
 }
