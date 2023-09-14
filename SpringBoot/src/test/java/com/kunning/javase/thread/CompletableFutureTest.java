@@ -96,6 +96,25 @@ public class CompletableFutureTest {
     }
 
     @Test
+    public void testCompose() {
+        System.out.println("小白进入餐厅");
+        System.out.println("小白点了 番茄炒蛋 + 一碗米饭");
+
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("厨师炒菜");
+            sleep(200);
+            return "番茄炒蛋";
+        }).thenCompose(dish -> CompletableFuture.supplyAsync(() -> { // dish 是上一个任务的输出，即：任务有先后顺序，第一个执行完了，出参作为第二个任务的入参。
+            System.out.println("服务员打饭");
+            sleep(100);
+            return dish + " + 米饭";
+        }));
+
+        System.out.println("小白在打王者");
+        System.out.println(String.format("%s 好了,小白开吃", cf1.join()));
+    }
+
+    @Test
     public void testComb() throws ExecutionException, InterruptedException {
         long startT = System.currentTimeMillis();
 
@@ -124,6 +143,30 @@ public class CompletableFutureTest {
 
         System.out.println("主线程结束：" + result.get());
     }
+
+    @Test
+    public void testCombine() {
+        System.out.println("小白进入餐厅");
+        System.out.println("小白点了 番茄炒蛋 + 一碗米饭");
+
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("厨师炒菜");
+            sleep(200);
+            return "番茄炒蛋";
+        }).thenCombine(CompletableFuture.supplyAsync(() -> { // 针对上一个方法的不同的写法
+            System.out.println("服务员蒸饭");
+            sleep(300);
+            return "米饭";
+        }), (dish, rice) -> {
+            System.out.println("服务员打饭");
+            sleep(100);
+            return String.format("%s + %s 好了", dish, rice);
+        });
+
+        System.out.println("小白在打王者");
+        System.out.printf("%s ,小白开吃%n", cf1.join());
+    }
+
 
     //for循环执行异步操作 业务场景需要循环调用同一个接口 例如调用第三方接口，第三方接口每次只能返回100条数据，需调用10次才能拿到需要的数据还要求速度
     @Test
