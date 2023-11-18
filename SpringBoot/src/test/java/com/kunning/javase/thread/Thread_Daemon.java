@@ -1,6 +1,6 @@
 package com.kunning.javase.thread;
 
-import org.junit.jupiter.api.Test;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 功能描述：守护线程
@@ -10,24 +10,22 @@ import org.junit.jupiter.api.Test;
  */
 public class Thread_Daemon {
 
-    @Test
-    public void test() {
-        MyThread mt = new MyThread(); // 实例化Runnable子类对象
-        Thread t = new Thread(mt, "线程"); // 实例化Thread对象
-        t.setDaemon(true); // 此线程在后台运行
-        t.start(); // 启动线程
-        System.out.println("主线程执行完毕");
-    }
-
-    static class MyThread implements Runnable { // 实现Runnable接口
-        @Override
-        public void run() { // 覆写run()方法
-            while (true) {
-                System.out.println(Thread.currentThread().getName() + "在运行。");
+    public static void main(String[] args) throws InterruptedException {
+        Thread t1 = new Thread(() -> {
+            for(int i = 0; i<100; i++) {
+                try {
+                    Thread.sleep(1000);
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-//			System.out.println("守护进程结束");
-        }
+        });
+        // 此线程为守护线程，此行代码注释的话，会等到子线程执行完，加上这行代码，会立即结束。
+        t1.setDaemon(true); // 应用场景：1、JDK的垃圾回收器；2、tomcat接收处理外部请求的线程也是守护线程。
+        t1.start();
+
+        System.out.println("【线程是否存活】" + t1.isAlive());
+        System.out.println("【主线程结束】");
     }
-
-
 }

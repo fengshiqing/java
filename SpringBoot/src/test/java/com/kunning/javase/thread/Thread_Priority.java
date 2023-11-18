@@ -26,7 +26,7 @@ public class Thread_Priority {
 		Thread t2 = new Thread(new Thread_Priority().new MyThread(), "线程 2 "); // 实例化线程对象
 		Thread t3 = new Thread(new Thread_Priority().new MyThread(), "线程 3 "); // 实例化线程对象
 		t1.setPriority(Thread.MIN_PRIORITY); // 设置最低优先级
-		t2.setPriority(Thread.NORM_PRIORITY); // 设置中等优先级
+		t2.setPriority(Thread.NORM_PRIORITY); // 设置中等优先级，默认就是这个级别的
 		t3.setPriority(Thread.MAX_PRIORITY); // 设置最高优先级
 		t1.start(); // 启动线程
 		t2.start(); // 启动线程
