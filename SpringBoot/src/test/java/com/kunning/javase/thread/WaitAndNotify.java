@@ -1,12 +1,13 @@
-package com.kunning.javase.线程_练习;
+package com.kunning.javase.thread;
 
 
-public class ThreadWait {
+public class WaitAndNotify {
 
     public static void main(String[] args) {
         PrintNumThread printNum = new PrintNumThread();
         Thread t1 = new Thread(printNum, "线程1");
         Thread t2 = new Thread(printNum, "线程2");
+
         t1.start();
         t2.start();
     }
