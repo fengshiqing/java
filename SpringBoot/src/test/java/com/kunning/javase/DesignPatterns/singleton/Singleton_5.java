@@ -6,7 +6,7 @@ package com.kunning.javase.DesignPatterns.singleton;
 
 /**
  * 解决Singleton_4的 并发问题。要注意 volatile。
- *
+ * <p>
  * 终极版本，这个会了可以吹牛逼了。
  */
 // 可以再看看这个博客：

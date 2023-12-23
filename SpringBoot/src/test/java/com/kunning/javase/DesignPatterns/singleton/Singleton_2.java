@@ -6,7 +6,7 @@ package com.kunning.javase.DesignPatterns.singleton;
 
 /**
  * 对性能有点要求的，可以将 改进型见 {@link Singleton_1} 改进成“延时加载”（懒汉式）。
- *
+ * <p>
  * 这种在高并发环境下，会创建出多个对象，改进型见 {@link Singleton_3}
  */
 public class Singleton_2 {

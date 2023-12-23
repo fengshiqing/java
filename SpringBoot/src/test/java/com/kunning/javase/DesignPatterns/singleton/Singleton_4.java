@@ -8,7 +8,7 @@ package com.kunning.javase.DesignPatterns.singleton;
  * Singleton_3的方式创建单例是没有并发问题的，不过有个缺点：
  * 问题1：整个方法都加锁，有些业务代码不需要加锁；
  * 问题2：每一次调用都需要同步，实际上只有第一次创建对象时才需要同步，以后每次都是获取对象，不需要加锁，此时同步都是一种累赘，降低效率
- *
+ * <p>
  * 优化方式：同步方法 改为 同步代码块。
  */
 public class Singleton_4 {
