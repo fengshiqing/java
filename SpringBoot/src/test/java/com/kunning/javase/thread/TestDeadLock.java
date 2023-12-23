@@ -1,4 +1,4 @@
-package com.kunning.javase.线程_练习;
+package com.kunning.javase.thread;
 
 //死锁的问题：处理线程同步时容易出现。
 //不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的同步资源，就形成了线程的死锁

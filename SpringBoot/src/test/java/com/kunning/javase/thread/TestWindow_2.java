@@ -1,4 +1,4 @@
-package com.kunning.javase.线程_练习;
+package com.kunning.javase.thread;
 
 public class TestWindow_2 {
 
