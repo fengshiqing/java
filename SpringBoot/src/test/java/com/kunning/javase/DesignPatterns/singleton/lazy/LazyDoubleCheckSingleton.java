@@ -6,7 +6,7 @@ package com.kunning.javase.DesignPatterns.singleton.lazy;
 
 /**
  * 功能描述：懒汉式单例，双重检查加锁。
- *
+ * <p>
  * 优点:性能高了，线程安全了
  * 缺点：可读性难度加大，不够优雅————这个不算缺点吧
  */
