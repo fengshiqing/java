@@ -51,7 +51,6 @@ public class CompletableFutureTest {
 
     @Test
     public void testSupplyAsync() throws ExecutionException, InterruptedException {
-        long startT = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
@@ -69,8 +68,7 @@ public class CompletableFutureTest {
      * 参考：<a href="https://www.bilibili.com/video/BV1AN411S72m/?spm_id_from=333.337.search-card.all.click&vd_source=f2fb919142ce62e6571426a12817634e" />
      */
     @Test
-    public void testSupplyAsyncOrder() throws ExecutionException, InterruptedException {
-        long startT = System.currentTimeMillis();
+    public void testSupplyAsyncOrder() {
 
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
@@ -111,12 +109,11 @@ public class CompletableFutureTest {
         }));
 
         System.out.println("小白在打王者");
-        System.out.println(String.format("%s 好了,小白开吃", cf1.join()));
+        System.out.printf("%s 好了,小白开吃%n", cf1.join());
     }
 
     @Test
     public void testComb() throws ExecutionException, InterruptedException {
-        long startT = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
