@@ -40,13 +40,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!--对接上海银行时，引入次jar包。add by fengshiqing 2023年6月14日15:29:47-->
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-        </dependency>
-
     </dependencies>
 
 </project>
