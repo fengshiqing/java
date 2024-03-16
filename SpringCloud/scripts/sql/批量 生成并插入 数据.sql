@@ -1,7 +1,7 @@
 # 批量插入数据
-DROP PROCEDURE IF EXISTS `fengshiqing`.fsqBatchInsert;
+DROP PROCEDURE IF EXISTS `fengshiqing`.batchInsert;
 DELIMITER $$
-CREATE PROCEDURE `fengshiqing`.fsqBatchInsert(IN max_num INT)
+CREATE PROCEDURE `fengshiqing`.batchInsert(IN max_num INT)
 BEGIN
     DECLARE i INT DEFAULT 0;
     START TRANSACTION; -- 避免每次都生成一个新的事务，浪费性能
@@ -22,5 +22,5 @@ DELIMITER $$
 # 执行耗时   : 57.409 sec
 # 传送时间   : 0.001 sec
 # 总耗时      : 57.411 sec
-CALL fsqBatchInsert(10);
+CALL batchInsert(10);
 
