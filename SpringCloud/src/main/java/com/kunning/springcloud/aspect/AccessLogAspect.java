@@ -5,16 +5,10 @@
 package com.kunning.springcloud.aspect;
 
 import com.fengshiqing.common.bean.Resp;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -36,10 +30,10 @@ import java.util.Arrays;
  * 异常通知（After-throwing)：在目标方法抛出异常后调用。
  * 环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。
  */
+@Slf4j
 @Aspect
 @Component
 public class AccessLogAspect {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AccessLogAspect.class);
 
     /**
      * 定义切点，切入点为控制层的所有函数
@@ -55,8 +49,8 @@ public class AccessLogAspect {
      */
     @Before(value = "accessLog()")
     public void doBefore(JoinPoint joinPoint) {
-        LOGGER.info("【前置通知】【类名 # 方法名:{}】", joinPoint.getSignature().getDeclaringTypeName() + " # " + joinPoint.getSignature().getName());
-        LOGGER.info("【前置通知】【请求参数:{}】", Arrays.toString(joinPoint.getArgs()));
+        log.info("【前置通知】【类名 # 方法名:{}】", joinPoint.getSignature().getDeclaringTypeName() + " # " + joinPoint.getSignature().getName());
+        log.info("【前置通知】【请求参数:{}】", Arrays.toString(joinPoint.getArgs()));
         System.out.println();
     }
 
@@ -67,8 +61,8 @@ public class AccessLogAspect {
      */
     @After(value = "accessLog()")
     public void doAfterReturning(JoinPoint joinPoint) {
-        LOGGER.info("【后置通知】【类名 # 方法名:{}】", joinPoint.getSignature().getDeclaringTypeName() + " # " + joinPoint.getSignature().getName());
-        LOGGER.info("【后置通知】【请求参数:{}】", Arrays.toString(joinPoint.getArgs()));
+        log.info("【后置通知】【类名 # 方法名:{}】", joinPoint.getSignature().getDeclaringTypeName() + " # " + joinPoint.getSignature().getName());
+        log.info("【后置通知】【请求参数:{}】", Arrays.toString(joinPoint.getArgs()));
     }
 
     /**
@@ -79,7 +73,7 @@ public class AccessLogAspect {
     @AfterReturning(returning = "result", pointcut = "accessLog()")
     public void doAfterReturning(Object result) {
         // 处理完请求，返回内容
-        LOGGER.info("【返回通知】【result:{}】", result);
+        log.info("【返回通知】【result:{}】", result);
     }
 
     /**
@@ -95,13 +89,13 @@ public class AccessLogAspect {
             long start = System.currentTimeMillis();
             Object result = pjp.proceed(); // 进入业务逻辑
             // 异步记录日志/发送MQ消息记录日志等
-            LOGGER.info("【环绕通知】【类名#方法名:{}】", pjp.getSignature().getDeclaringTypeName() + "#" + pjp.getSignature().getName());
-            LOGGER.info("【环绕通知】【请求参数:{}】", Arrays.toString(pjp.getArgs()));
-            LOGGER.info("【环绕通知】【响应参数:{}】", result);
-            LOGGER.info("【环绕通知】【响应时间:{}ms】", System.currentTimeMillis() - start);
+            log.info("【环绕通知】【类名#方法名:{}】", pjp.getSignature().getDeclaringTypeName() + "#" + pjp.getSignature().getName());
+            log.info("【环绕通知】【请求参数:{}】", Arrays.toString(pjp.getArgs()));
+            log.info("【环绕通知】【响应参数:{}】", result);
+            log.info("【环绕通知】【响应时间:{}ms】", System.currentTimeMillis() - start);
             return result;
         } catch (Throwable e) {
-            LOGGER.error("【AccessLogAspect】【环绕通知】【发生异常】", e);
+            log.error("【AccessLogAspect】【环绕通知】【发生异常】", e);
             return new Resp(500, "系统异常");
         }
     }
