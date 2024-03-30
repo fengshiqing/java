@@ -4,14 +4,12 @@
 
 package com.kunning.springcloud.controller;
 
-import javax.validation.constraints.NotNull;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fengshiqing.common.bean.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fengshiqing.common.bean.User;
+import javax.validation.constraints.NotNull;
 
 /**
  * 功能描述：
@@ -19,9 +17,9 @@ import com.fengshiqing.common.bean.User;
  * @author kunning
  * @since 2022-04-23
  */
+@Slf4j
 @RestController
 public class MicroServiceController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(MicroServiceController.class);
 
 
     /**
@@ -29,7 +27,7 @@ public class MicroServiceController {
      */
     @RequestMapping("/provider")
     public String provider() {
-        LOGGER.info("【进入微服务生产者】【start】");
+        log.info("【进入微服务生产者】【start】");
         return "成功调用到了微服务";
     }
 
@@ -38,7 +36,7 @@ public class MicroServiceController {
      */
     @RequestMapping("/queryUserInfo")
     public User queryUserInfo(@NotNull long id) {
-        LOGGER.info("【进入微服务生产者】【start】【id:{}】", id);
+        log.info("【进入微服务生产者】【start】【id:{}】", id);
         return new User().setUsername("冯仕清").setPassword("fengshiqing");
     }
 
