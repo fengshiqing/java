@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.jms.*;
+import javax.jms.TextMessage;
 
 @Service
 public class Spring_JmsProducer {
