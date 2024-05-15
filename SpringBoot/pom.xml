@@ -109,9 +109,8 @@
         </dependency>
         <!--数据库 MySQL、MyBatis-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
         </dependency>
 
         <dependency>
@@ -132,13 +131,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--引入自定义的starter-->
-        <dependency>
-            <groupId>com.fengshiqing</groupId>
-            <artifactId>SpringBootStarter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!--https://mvnrepository.com/artifact/com.google.guava/guava-->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -147,50 +139,6 @@
         </dependency>
 
         <!--以下是非 starter 的依赖-->
-        <!--nacos-->
-        <!-- 服务注册与发现 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba.nacos/nacos-spring-context -->
-        <!--        <dependency>-->
-        <!--            <groupId>com.alibaba.nacos</groupId>-->
-        <!--            <artifactId>nacos-spring-context</artifactId>-->
-        <!--            <version>0.2.3-RC1</version>-->
-        <!--        </dependency>-->
-        <!--官方给的example中引入了这个jar包-->
-        <!-- https://mvnrepository.com/artifact/com.alibaba.boot/nacos-discovery-spring-boot-starter -->
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-discovery-spring-boot-starter</artifactId>
-            <version>0.2.12</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-config-spring-boot-starter</artifactId>
-            <version>0.2.12</version>
-        </dependency>
-
-        <!--没有此jar包就无法读取bootstrap.properties文件-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-
-        <!--openfeign-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-loadbalancer</artifactId>
-        </dependency>
 
         <!--POI Excel-->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -251,6 +199,25 @@
             <artifactId>commons-io</artifactId>
             <version>2.7</version>
         </dependency>
+
+        <!--工作流 start。需要3个maven依赖，分别是对应 流程引擎、Web管理平台、提供rest api操作接口包-->
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter</artifactId>
+            <version>7.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+            <version>7.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+            <version>7.18.0</version>
+        </dependency>
+        <!--工作流 ent-->
+
     </dependencies>
 
     <build>

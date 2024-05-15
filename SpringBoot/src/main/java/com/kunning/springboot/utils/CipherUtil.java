@@ -4,12 +4,11 @@
 
 package com.kunning.springboot.utils;
 
-import java.nio.charset.StandardCharsets;
-import java.security.GeneralSecurityException;
-import java.security.Key;
-import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Base64Utils;
+import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -18,12 +17,13 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
+import java.security.Key;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Objects;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.Base64Utils;
-import org.springframework.util.DigestUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * 功能简述：密码工具类。 MD5摘要、Base64编码。
