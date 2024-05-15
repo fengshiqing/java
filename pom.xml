@@ -18,7 +18,6 @@
         <module>SpringBoot</module>
         <module>SpringCloud</module>
         <module>SpringCloudGateway</module>
-        <module>SpringBootStarter</module>
     </modules>
 
     <properties>
