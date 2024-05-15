@@ -46,7 +46,7 @@ public class TimedTask_2 implements SchedulingConfigurer {
                 triggerContext -> {
                     String cron = cronService.queryCron(); // 可以从数据库、配置项中获取执行周期，这样就可以动态的改变定时任务的执行周期
                     LOGGER.info("【Cron表达式为】【cron:{}】", cron);
-                    return new CronTrigger(cron).nextExecutionTime(triggerContext); // 返回执行周期(Date)
+                    return new CronTrigger(cron).nextExecutionTime(triggerContext).toInstant(); // 返回执行周期(Date)
                 }
         );
     }

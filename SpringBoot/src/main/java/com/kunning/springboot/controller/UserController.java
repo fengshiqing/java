@@ -1,12 +1,12 @@
 package com.kunning.springboot.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
 import com.fengshiqing.common.bean.RespData;
+import com.kunning.springboot.controller.response.ResponseApi;
+import com.kunning.springboot.pojo.UserDto;
+import com.kunning.springboot.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kunning.springboot.controller.response.ResponseApi;
-import com.kunning.springboot.pojo.UserDto;
-import com.kunning.springboot.service.UserService;
+import java.util.List;
 
 /**
  * 功能描述：用户登录、注册、退出服务；增删改查用户信息
