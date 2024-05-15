@@ -41,7 +41,7 @@ public class KafkaClient {
         log.info("【准备发送消息为：{}】", obj);
 
         //发送消息
-        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(TOPIC_NAME, obj);
+        ListenableFuture<SendResult<String, Object>> future = (ListenableFuture<SendResult<String, Object>>) kafkaTemplate.send(TOPIC_NAME, obj);
         future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             @Override
             public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
@@ -66,7 +66,7 @@ public class KafkaClient {
         log.info("【准备发送消息为：{}，msgKey: {}】", obj, msgKey);
 
         //发送消息
-        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(TOPIC_NAME, msgKey, obj);
+        ListenableFuture<SendResult<String, Object>> future = (ListenableFuture<SendResult<String, Object>>) kafkaTemplate.send(TOPIC_NAME, msgKey, obj);
         future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             @Override
             public void onSuccess(SendResult<String, Object> stringObjectSendResult) {

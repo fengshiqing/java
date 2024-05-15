@@ -5,11 +5,10 @@
 package com.kunning.springcloud.controller;
 
 import com.fengshiqing.common.bean.User;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * 功能描述：
