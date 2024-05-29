@@ -8,18 +8,20 @@
 
 # 新建 t_user 表
 CREATE TABLE IF NOT EXISTS `t_user` (
-    `id`                 BIGINT UNSIGNED                 AUTO_INCREMENT    PRIMARY KEY       COMMENT '自增主键ID',
-    `userId`             BIGINT UNSIGNED     NOT NULL                                        COMMENT '用户ID',
-    `username`           VARCHAR(32)         NOT NULL                                        COMMENT '用户名称',
-    `password`           VARCHAR(128)        NOT NULL                                        COMMENT '用户登录密码',
-    `gender`             TINYINT             NOT NULL    DEFAULT 0                           COMMENT '性别：0保密、1男性、2女性',
-    `telephone`          VARCHAR(20)             NULL    DEFAULT NULL                        COMMENT '手机号码',
-    `email`              VARCHAR(32)             NULL    DEFAULT NULL                        COMMENT '邮箱',
-    `last_login_time`    DATETIME                NULL    DEFAULT NULL                        COMMENT '上一次登录时间',
+    `id`                       BIGINT UNSIGNED                 AUTO_INCREMENT    PRIMARY KEY       COMMENT '自增主键ID',
+    `userId`                   BIGINT UNSIGNED     NOT NULL                                        COMMENT '用户ID',
+    `password`                 VARCHAR(128)        NOT NULL                                        COMMENT '用户登录密码',
+    `username`                 VARCHAR(32)         NOT NULL                                        COMMENT '用户名称',
+    `personalized_signature`   VARCHAR(256)            NULL    DEFAULT NULL                        COMMENT '个性签名',
+    `gender`                   TINYINT             NOT NULL    DEFAULT 0                           COMMENT '性别：0保密、1男性、2女性',
+    `telephone`                VARCHAR(20)             NULL    DEFAULT NULL                        COMMENT '手机号码',
+    `email`                    VARCHAR(32)             NULL    DEFAULT NULL                        COMMENT '邮箱',
+    `last_login_time`          DATETIME                NULL    DEFAULT NULL                        COMMENT '上一次登录时间',
 
-    `create_time`        DATETIME            NOT NULL    DEFAULT NOW()                       COMMENT '创建时间',
-    `update_time`        DATETIME            NOT NULL    DEFAULT NOW()    ON UPDATE NOW()    COMMENT '修改时间',
-    `del_flag`           TINYINT             NOT NULL    DEFAULT 0                           COMMENT '删除标记：0未删除、1已删除'
+    `create_time`              DATETIME            NOT NULL    DEFAULT NOW()                       COMMENT '创建时间',
+    `update_time`              DATETIME            NOT NULL    DEFAULT NOW()    ON UPDATE NOW()    COMMENT '修改时间',
+    `del_flag`                 TINYINT             NOT NULL    DEFAULT 0                           COMMENT '删除标记：0未删除、1已删除',
+    UNIQUE INDEX t_user_index_userId (userId)
 ) COMMENT '用户表';
 
 # 新建 t_product 表
