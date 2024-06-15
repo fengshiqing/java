@@ -1,12 +1,6 @@
 package com.kunning.springboot.utils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
+import com.kunning.springboot.controller.Handler.BizException;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
@@ -16,13 +10,18 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kunning.springboot.controller.Handler.BizErrorCode;
-import com.kunning.springboot.controller.Handler.BizException;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * 功能描述：压缩包工具类。
- *
- * 参考：https://blog.csdn.net/u013066244/article/details/72783575
+ * <p>
+ * 参考：<a href="https://blog.csdn.net/u013066244/article/details/72783575" />
  *
  * @author fengshiqing
  * @since 2019-11-17
@@ -101,7 +100,7 @@ public class ZipUtil {
 
         tos.putArchiveEntry(tEntry);
 
-        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(fi));
+        BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(fi.toPath()));
 
         byte[] buffer = new byte[1024];
         int read;
@@ -183,7 +182,7 @@ public class ZipUtil {
                 singleFileSize += len;
                 if (singleFileSize > singFileSizeLimit * numLinit) { // 校验所有文件大小
                     LOGGER.error("【压缩包过大，超过上限:{}】", singFileSizeLimit * numLinit);
-                    throw new BizException(BizErrorCode.ERROR_CODE_500, "【压缩包过大!】");
+                    throw new BizException(500, "【压缩包过大!】");
                 }
                 bufferedOutStream.write(byteArr, 0, len);
             }
@@ -238,7 +237,7 @@ public class ZipUtil {
             for (int i = 0; (tarArchiveEntry = tarArchiveInStream.getNextTarEntry()) != null; i++) {
                 if (i > numLinit) { // 校验文件数量
                     LOGGER.error("【压缩包中的文件数量过多，超过上限:{}】", numLinit);
-                    throw new BizException(BizErrorCode.ERROR_CODE_500, "【压缩包中的文件数量过多!】");
+                    throw new BizException(500, "【压缩包中的文件数量过多!】");
                 }
 
                 String name = tarArchiveEntry.getName();
@@ -254,13 +253,13 @@ public class ZipUtil {
                     singleFileSize += len;
                     if (singleFileSize > singFileSizeLimit) { // 校验单个文件大小
                         LOGGER.error("【压缩包中单个子文件过大，超过上限:{}】", singFileSizeLimit);
-                        throw new BizException(BizErrorCode.ERROR_CODE_500, "【压缩包中单个子文件过大!】");
+                        throw new BizException(500, "【压缩包中单个子文件过大!】");
                     }
                     bufferedOutStream.write(buffer, 0, len);
                 }
                 if (singleFileSize > singFileSizeLimit * numLinit) { // 校验所有文件大小
                     LOGGER.error("【压缩包过大，超过上限:{}】", numLinit);
-                    throw new BizException(BizErrorCode.ERROR_CODE_500, "【压缩包过大!】");
+                    throw new BizException(500, "【压缩包过大!】");
                 }
             }
             tarArchiveInStream.close();

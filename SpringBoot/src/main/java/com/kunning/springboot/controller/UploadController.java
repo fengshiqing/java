@@ -1,6 +1,6 @@
 package com.kunning.springboot.controller;
 
-import com.kunning.springboot.controller.response.ResponseApi;
+import com.fengshiqing.common.bean.Resp;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class UploadController {
      */
     @ResponseBody
     @PostMapping (value = "/uploadPhoto")
-    public ResponseApi uploadPhoto(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
+    public Resp uploadPhoto(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
         LOGGER.info("【uploadPhoto】【开始执行】");
 
         if (file != null) {
@@ -52,19 +52,19 @@ public class UploadController {
                     LOGGER.info("【文件成功上传到指定目录下】");
                 } else {
                     LOGGER.error("【上传文件的名称或者类型不正确，请重新上传】");
-                    return new ResponseApi(400, "【上传文件的名称或者类型不正确，请重新上传】");
+                    return new Resp(400, "【上传文件的名称或者类型不正确，请重新上传】");
                 }
             } else {
                 LOGGER.error("【上传的文件名为空】");
-                return new ResponseApi(400, "【上传的文件名为空】");
+                return new Resp(400, "【上传的文件名为空】");
             }
         } else {
             LOGGER.error("【上传的文件为空】");
-            return new ResponseApi(400, "【上传的文件为空】");
+            return new Resp(400, "【上传的文件为空】");
         }
 
         LOGGER.info("【uploadPhoto】【开始执行】【执行成功】");
-        return new ResponseApi(200, "上传成功");
+        return new Resp(200, "上传成功");
     }
 
 }

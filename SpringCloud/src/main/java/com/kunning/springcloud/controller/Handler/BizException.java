@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
+ *  Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.kunning.springboot.controller.Handler;
+package com.kunning.springcloud.controller.Handler;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -63,6 +63,7 @@ public class User {
 
     public static void main(String[] args) {
         // 手机号脱敏：176****9843，说明：https://blog.csdn.net/BjarneCpp/article/details/79107873
-        System.out.println((new User().getTelephone().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")));
+
+        System.out.println(("17602509843".replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")));
     }
 }

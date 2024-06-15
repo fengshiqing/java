@@ -1,7 +1,7 @@
 package com.kunning.springboot.controller;
 
+import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.common.bean.RespData;
-import com.kunning.springboot.controller.response.ResponseApi;
 import com.kunning.springboot.pojo.UserDto;
 import com.kunning.springboot.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,7 +45,7 @@ public class UserController {
      * @param request request对象
      */
     @RequestMapping(value = "/signin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi signin(HttpServletRequest request, HttpSession session) {
+    public Resp signin(HttpServletRequest request, HttpSession session) {
         LOGGER.info("【signin】【start】");
 
         session.setAttribute("_user", request.getHeaderNames());
@@ -54,7 +54,7 @@ public class UserController {
         System.out.println(request.getHeaderNames());
 
         LOGGER.info("【signin】【end】");
-        return new ResponseApi(200, "登录成功");
+        return new Resp(200, "登录成功");
     }
 
     /**
@@ -63,11 +63,11 @@ public class UserController {
      * @param userDto 用户信息
      */
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi register(@RequestBody @Valid UserDto userDto) {
+    public Resp register(@RequestBody @Valid UserDto userDto) {
         LOGGER.info("【register】【start】");
         userService.register(userDto);
         LOGGER.info("【register】【end】");
-        return new ResponseApi(200, "注册成功");
+        return new Resp(200, "注册成功");
     }
 
     /**
@@ -76,10 +76,10 @@ public class UserController {
      * @param userDto 用户信息
      */
     @PostMapping(value = "/signout", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseApi signout(@RequestBody UserDto userDto, HttpSession session) {
+    public Resp signout(@RequestBody UserDto userDto, HttpSession session) {
         session.invalidate();
         LOGGER.info("【signout】【start】【username:{}】", userDto.getUsername());
-        return new ResponseApi(200, "退出成功");
+        return new Resp(200, "退出成功");
     }
 
     @GetMapping(value = "/allUser")
