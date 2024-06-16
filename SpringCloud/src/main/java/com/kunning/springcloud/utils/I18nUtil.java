@@ -27,7 +27,18 @@ public class I18nUtil implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        I18nUtil.messageSource = applicationContext.getBean(MessageSource.class);
+        messageSource = applicationContext.getBean(MessageSource.class);
+    }
+
+    /**
+     * 功能描述：获取国际化message
+     *
+     * @param code           code
+     *
+     * @return 国际化文本
+     */
+    public static String getMessage(String code) {
+        return messageSource.getMessage(code, null, null, LocaleContextHolder.getLocale());
     }
 
     /**
