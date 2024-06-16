@@ -2,9 +2,9 @@
  *  Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.kunning.springcloud.controller.Handler;
+package com.kunning.springcloud.controller.handler;
 
-import com.fengshiqing.common.bean.Resp;
+import com.kunning.springcloud.controller.response.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;

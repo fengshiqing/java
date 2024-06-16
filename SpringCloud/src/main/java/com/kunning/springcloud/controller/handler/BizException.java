@@ -2,7 +2,7 @@
  *  Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.kunning.springcloud.controller.Handler;
+package com.kunning.springcloud.controller.handler;
 
 import lombok.Getter;
 import lombok.Setter;
