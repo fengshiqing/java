@@ -4,8 +4,8 @@
 
 package com.kunning.springcloud.controller;
 
-import com.fengshiqing.common.bean.Resp;
 import com.kunning.springcloud.client.KafkaClient;
+import com.kunning.springcloud.controller.response.Resp;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
