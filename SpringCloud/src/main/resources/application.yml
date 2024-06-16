@@ -5,6 +5,18 @@ server:
   port: 8080
 
 spring:
+  # note: ---------------- 国际化配置 ----------------
+  messages:
+    # basename：基名，多个基名以逗号分隔（实质上是完全限定的类路径位置），
+    # 每个基名都遵循 ResourceBundle 约定，对基于斜杠的位置提供了宽松的支持。如果它不包含包限定符（例如“org.mypackage”），则将从类路径根目录解析它。
+    #基名可以理解为前缀，默认是从classpath根路径下找，配置的路径可以用斜杠/，也可以用.，
+    # 即i18n/messages或i18n.messages，然后messages就是国际化文件的前缀，messages.properties就是默认国际化文件。
+    basename: i18n/messages
+    # fallback-to-system-locale：如果未找到特定区域设置的文件，是否回退到系统区域设置。
+    # 如果关闭此功能，则唯一的回退将是默认文件。就是我想要的区域语言文件没有的时候，
+    # 就从系统中解析系统的区域，以系统的区域再找一次文件，找到就返回系统区域文件，如果找不到，就返回默认的文件。
+    fallback-to-system-locale: false
+
   # 数据库配置
   datasource:
     url: jdbc:mysql://192.168.0.100:3306/fengshiqing?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
