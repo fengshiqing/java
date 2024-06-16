@@ -4,7 +4,8 @@
 
 package com.kunning.springcloud.aspect;
 
-import com.fengshiqing.common.bean.Resp;
+
+import com.kunning.springcloud.controller.response.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -56,7 +57,6 @@ public class AccessLogAspect {
     public void doBefore(JoinPoint joinPoint) {
         log.info("【前置通知】【类名 # 方法名:{}】", joinPoint.getSignature().getDeclaringTypeName() + " # " + joinPoint.getSignature().getName());
         log.info("【前置通知】【请求参数:{}】", Arrays.toString(joinPoint.getArgs()));
-        System.out.println();
     }
 
     /**

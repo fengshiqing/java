@@ -41,7 +41,7 @@ public class RedisCacheAspect {
 
     /**
      * Spring提供的 redisTemplate。
-     * 必须用 Resource 注解，Springboot自动注入的redisTemplate类型为 RedisTemplate<Object, Object>，如果用 Autowired也必须是同样的类型。
+     * 必须用 Resource 注解，SpringBoot自动注入的redisTemplate类型为 RedisTemplate<Object, Object>，如果用 Autowired也必须是同样的类型。
      */
     @Resource
     private RedisTemplate<Object, Object> redisTemplate;
