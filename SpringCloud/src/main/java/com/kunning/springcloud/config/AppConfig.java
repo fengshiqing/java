@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestTemplate;
@@ -31,25 +32,13 @@ public class AppConfig {
     }
 
     /**
-     * 功能描述：配置 RestTemplate。
-     *
-     * @return RestTemplate
-     */
-    @Bean
-    @Lazy // 没有这个注解的话，启动时会报错：RestTemplateBuilder找不到。原因是RestTemplateBuilder是懒加载的，所以这里也应该是懒加载。
-    public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
-        LOGGER.info("【配置Bean】【restTemplate】");
-        return restTemplateBuilder.build();
-    }
-
-    /**
      * 功能描述：配置线程池。
      *
      * @return 线程池
      */
     @Bean
     public Executor commonThreadPool() {
-        LOGGER.info("【配置Bean】【线程池】");
+        LOGGER.info("【init config】【Thread Pool】");
         /*
          * 如果此时线程池中的数量小于corePoolSize，即使线程池中的线程都处于空闲状态，也要创建新的线程来处理被添加的任务。
          *
@@ -79,17 +68,30 @@ public class AppConfig {
         return executor;
     }
 
+
     /**
-     * 功能描述：配置 redisTemplate
+     * 功能描述：配置 RestTemplate。这个不实用，可以删掉。
+     *
+     * @return RestTemplate
+     */
+    @Bean
+    @Lazy // 没有这个注解的话，启动时会报错：RestTemplateBuilder找不到。原因是RestTemplateBuilder是懒加载的，所以这里也应该是懒加载。
+    public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
+        LOGGER.info("【init config】【restTemplate】");
+        return restTemplateBuilder.build();
+    }
+
+
+    /**
+     * 功能描述：配置 redisTemplate。注意这个泛型。
      *
      * @param redisConnectionFactory 参数
      * @return redisTemplate
      */
     @Bean
-    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        LOGGER.info("【初始化 redis 配置】");
-
-        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        LOGGER.info("【init config】【RedisTemplate<String, String>】");
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringRedisSerializer); // 设置key和value的序列化规则
@@ -97,6 +99,27 @@ public class AppConfig {
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
         redisTemplate.setHashValueSerializer(stringRedisSerializer);
         return redisTemplate;
+    }
+
+
+    /**
+     * 功能描述：配置 redisTemplate。注意这个泛型。上面哪个方法是我验证过的，没问题的，这个方法用的json解析的方法不一样，还么有验证过
+     *
+     * @param redisConnectionFactory 参数
+     * @return redisTemplate
+     */
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate11(RedisConnectionFactory redisConnectionFactory) {
+        LOGGER.info("【init config】【RedisTemplate<String, Object>】");
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+        // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        template.setValueSerializer(serializer);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(serializer);
+        return template;
     }
 
 }
