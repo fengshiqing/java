@@ -16,7 +16,7 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 public class RespDataList<T> extends Resp {
 
     private T data;

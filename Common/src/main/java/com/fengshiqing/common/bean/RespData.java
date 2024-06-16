@@ -16,10 +16,15 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 public class RespData<T> extends Resp {
 
     private T data;
+
+    public RespData(T data) {
+        super(200, "操作成功");
+        this.data = data;
+    }
 
     public RespData(int rtnCode, String rtnDesc, T data) {
         super(rtnCode, rtnDesc);
