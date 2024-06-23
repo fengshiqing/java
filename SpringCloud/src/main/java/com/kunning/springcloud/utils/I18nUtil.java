@@ -18,6 +18,9 @@ import java.util.Locale;
 /**
  * 功能描述：国际化的工具类。
  * 封装国际化文本的读取接口，主要方便在代码中使用，不需要每次 @Autowired 注入 MessageSource 来使用。
+ *
+ * @author fengshiqing 冯仕清
+ * @since 2024-06-01
  */
 @Slf4j
 @Component
@@ -33,48 +36,22 @@ public class I18nUtil implements ApplicationContextAware {
     /**
      * 功能描述：获取国际化message
      *
-     * @param code           code
-     *
+     * @param msgKey 配置的key
      * @return 国际化文本
      */
-    public static String getMessage(String code) {
-        return messageSource.getMessage(code, null, null, LocaleContextHolder.getLocale());
+    public static String getMessage(String msgKey) {
+        return messageSource.getMessage(msgKey, null, null, LocaleContextHolder.getLocale());
     }
 
     /**
      * 功能描述：获取国际化message
      *
-     * @param code           code
-     * @param args           占位参数
-     * @param defaultMessage 默认值
+     * @param msgKey 配置的key
+     * @param args   占位参数
      * @return 国际化文本
      */
-    public static String getMessage(String code, @Nullable Object[] args, @Nullable String defaultMessage) {
-        return messageSource.getMessage(code, args, defaultMessage, LocaleContextHolder.getLocale());
-    }
-
-    /**
-     * 功能描述：获取国际化message
-     *
-     * @param code           code
-     * @param args           占位参数
-     * @param defaultMessage 默认值
-     * @param locale         地区
-     * @return 国际化文本
-     */
-    public static String getMessage(String code, @Nullable Object[] args, @Nullable String defaultMessage, Locale locale) {
-        return messageSource.getMessage(code, args, defaultMessage, locale);
-    }
-
-    /**
-     * 功能描述：获取国际化message
-     *
-     * @param code           code
-     * @param defaultMessage 默认值
-     * @return 国际化文本
-     */
-    public static String getMessage(String code, @Nullable String defaultMessage) {
-        return messageSource.getMessage(code, null, defaultMessage, LocaleContextHolder.getLocale());
+    public static String getMessage(String msgKey, @Nullable Object[] args) {
+        return messageSource.getMessage(msgKey, args, LocaleContextHolder.getLocale());
     }
 
 }

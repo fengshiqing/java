@@ -4,7 +4,6 @@
 
 package com.kunning.springcloud.controller.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,12 +19,12 @@ import lombok.ToString;
 @ToString
 public class Resp {
 
-    private int rtnCode;
+    private int code;
 
-    private String rtnDesc;
+    private String message;
 
-    public Resp(int rtnCode, String rtnDesc) {
-        this.rtnCode = rtnCode;
-        this.rtnDesc = rtnDesc;
+    public Resp(int code, String message) {
+        this.code = code;
+        this.message = message;
     }
 }
