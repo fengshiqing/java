@@ -6,6 +6,7 @@ package com.kunning.springcloud.controller.handler;
 
 import com.kunning.springcloud.controller.response.Resp;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,14 +32,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Resp handleException(Exception exception) {
         log.error("【统一处理Exception】", exception);
-        // TODO 管理员是谁，需要留一个联系方式
-        return new Resp(500, "【系统发生异常，请稍后再试，或者直接联系管理员】");
+        return new Resp(500, "【系统发生异常，请稍后再试，或者直接联系管理员：fengshiqing】");
     }
 
     @ExceptionHandler(value = BizException.class)
-    public Resp handleBizException(BizException exception) {
-        log.error("【统一处理BizException】", exception);
-        return new Resp(exception.getExceptionCode(), exception.getMessage());
+    public Resp handleBizException(BizException e) {
+        log.error("【统一处理BizException】", e);
+        return new Resp(e.getExceptionCode(), e.getMessage());
     }
 
     @ExceptionHandler(value = IOException.class)
@@ -56,7 +56,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BadSqlGrammarException.class)
     public Resp handleSqlException(BadSqlGrammarException e) {
         log.error("【统一处理BadSqlGrammarException】", e);
-        return new Resp(500015, "【系统发生异常，请稍后再试，或者直接联系管理员】");
+        return new Resp(500025, "【系统发生异常，请稍后再试，或者直接联系管理员】");
+    }
+
+    @ExceptionHandler(value = NoSuchMessageException.class)
+    public Resp handleNoSuchMessageException(NoSuchMessageException e) {
+        log.error("【统一处理NoSuchMessageException】", e);
+        return new Resp(500035, "【没有配置国家化文本】");
     }
 
 }
