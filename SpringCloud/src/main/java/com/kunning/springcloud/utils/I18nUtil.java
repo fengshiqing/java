@@ -13,8 +13,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.Locale;
-
 /**
  * 功能描述：国际化的工具类。
  * 封装国际化文本的读取接口，主要方便在代码中使用，不需要每次 @Autowired 注入 MessageSource 来使用。
