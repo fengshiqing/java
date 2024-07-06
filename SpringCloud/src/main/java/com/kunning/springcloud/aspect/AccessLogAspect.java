@@ -6,6 +6,7 @@ package com.kunning.springcloud.aspect;
 
 
 import com.kunning.springcloud.controller.response.Resp;
+import com.kunning.springcloud.utils.I18nUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -101,7 +102,7 @@ public class AccessLogAspect {
             return result;
         } catch (Throwable e) {
             log.error("【AccessLogAspect】【环绕通知】【发生异常】", e);
-            return new Resp(500, "系统异常");
+            return new Resp(500, I18nUtil.getMessage("system.error"));
         }
     }
 
