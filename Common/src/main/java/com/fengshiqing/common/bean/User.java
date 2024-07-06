@@ -7,7 +7,6 @@ package com.fengshiqing.common.bean;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 
 /**
  * 功能描述：用户信息
@@ -18,7 +17,6 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @ToString
-@Accessors(chain=true)
 public class User {
 
     /**
