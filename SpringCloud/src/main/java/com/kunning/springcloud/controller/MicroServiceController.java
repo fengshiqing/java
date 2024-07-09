@@ -36,7 +36,10 @@ public class MicroServiceController {
     @RequestMapping("/queryUserInfo")
     public User queryUserInfo(@NotNull long id) {
         log.info("【进入微服务生产者】【start】【id:{}】", id);
-        return new User().setUsername("冯仕清").setPassword("fengshiqing");
+        User user = new User();
+        user.setUsername("冯仕清");
+        user.setPassword("fengshiqing");
+        return user;
     }
 
 }
