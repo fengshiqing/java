@@ -70,28 +70,16 @@ public class AppConfig {
 
 
     /**
-     * 功能描述：配置 RestTemplate。这个不实用，可以删掉。
-     *
-     * @return RestTemplate
-     */
-    @Bean
-    @Lazy // 没有这个注解的话，启动时会报错：RestTemplateBuilder找不到。原因是RestTemplateBuilder是懒加载的，所以这里也应该是懒加载。
-    public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
-        LOGGER.info("【init config】【restTemplate】");
-        return restTemplateBuilder.build();
-    }
-
-
-    /**
      * 功能描述：配置 redisTemplate。注意这个泛型。
      *
      * @param redisConnectionFactory 参数
      * @return redisTemplate
      */
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        LOGGER.info("【init config】【RedisTemplate<String, String>】");
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        LOGGER.info("【init config】【redisTemplate】");
+
+        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringRedisSerializer); // 设置key和value的序列化规则
@@ -99,27 +87,16 @@ public class AppConfig {
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
         redisTemplate.setHashValueSerializer(stringRedisSerializer);
         return redisTemplate;
-    }
 
+//        RedisTemplate<String, Object> template = new RedisTemplate<>();
+//        template.setConnectionFactory(redisConnectionFactory);
+//        // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
+//        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+//        template.setValueSerializer(serializer);
+//        template.setKeySerializer(new StringRedisSerializer());
+//        template.setHashKeySerializer(new StringRedisSerializer());
+//        template.setHashValueSerializer(serializer);
 
-    /**
-     * 功能描述：配置 redisTemplate。注意这个泛型。上面哪个方法是我验证过的，没问题的，这个方法用的json解析的方法不一样，还么有验证过
-     *
-     * @param redisConnectionFactory 参数
-     * @return redisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate11(RedisConnectionFactory redisConnectionFactory) {
-        LOGGER.info("【init config】【RedisTemplate<String, Object>】");
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(redisConnectionFactory);
-        // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
-        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        template.setValueSerializer(serializer);
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(serializer);
-        return template;
     }
 
 }
