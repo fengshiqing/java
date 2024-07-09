@@ -5,16 +5,15 @@
 package com.kunning.springcloud.aspect;
 
 import com.kunning.springcloud.utils.JsonUtil;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Parameter;
 
 /**
@@ -34,17 +33,17 @@ import java.lang.reflect.Parameter;
  * 异常通知（After-throwing)：在目标方法抛出异常后调用。
  * 环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。
  */
+@AllArgsConstructor
+@Slf4j
 @Aspect
 @Component
 public class RedisCacheAspect {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisCacheAspect.class);
 
     /**
      * Spring提供的 redisTemplate。
      * 必须用 Resource 注解，SpringBoot自动注入的redisTemplate类型为 RedisTemplate<Object, Object>，如果用 Autowired也必须是同样的类型。
      */
-    @Resource
-    private RedisTemplate<Object, Object> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
     /**
      * 功能描述：redis缓存数据注解。
@@ -66,8 +65,8 @@ public class RedisCacheAspect {
         System.out.println("【类名】：" + pjp.getSourceLocation().getWithinType().getName());
         System.out.println("【方法名】：" + pjp.getSignature().getName());
 
-        LOGGER.info("【RedisCacheAspect】【redisKey:{}】", redisKey);
-        String redisValue = (String) redisTemplate.opsForValue().get(redisKey);
+        log.info("【RedisCacheAspect】【redisKey:{}】", redisKey);
+        String redisValue = redisTemplate.opsForValue().get(redisKey);
         if (redisValue != null) {
             Class<?> clazz = ((MethodSignature) pjp.getSignature()).getReturnType();
             return JsonUtil.fromJson(redisValue, clazz);
@@ -82,7 +81,7 @@ public class RedisCacheAspect {
                 }
                 return result;
             } catch (Throwable e) {
-                LOGGER.error("【RedisCacheAspect】【环绕通知】【发生异常】", e);
+                log.error("【RedisCacheAspect】【环绕通知】【发生异常】", e);
                 throw new RuntimeException(e);
             }
         }
