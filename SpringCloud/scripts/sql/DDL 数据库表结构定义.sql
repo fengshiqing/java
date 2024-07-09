@@ -1,3 +1,7 @@
+# 新建数据库， DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+CREATE DATABASE IF NOT EXISTS vonsiking; -- 默认就是 utf8mb4 编码，utf8mb4_0900_ai_ci 排序规则
+
+
 # 建表原则：
 # 使用满足需求的最小长度/大小的字段
 # 能用数字类型，就用数字类型，能用 UNSIGNED 就用 UNSIGNED，参考：https://deepinout.com/mysql/mysql-questions/t_what-is-unsigned-in-mysql.html
@@ -7,13 +11,15 @@
 
 
 # 新建 t_user 表
+# DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE IF NOT EXISTS `t_user` (
     `id`                       BIGINT UNSIGNED                 AUTO_INCREMENT    PRIMARY KEY       COMMENT '自增主键ID',
     `userId`                   BIGINT UNSIGNED     NOT NULL                                        COMMENT '用户ID',
     `password`                 VARCHAR(128)        NOT NULL                                        COMMENT '用户登录密码',
-    `username`                 VARCHAR(32)         NOT NULL                                        COMMENT '用户名称',
-    `personalized_signature`   VARCHAR(256)            NULL    DEFAULT NULL                        COMMENT '个性签名',
+    `username`                 VARCHAR(32)         NOT NULL                                        COMMENT '用户名',
     `gender`                   TINYINT             NOT NULL    DEFAULT 0                           COMMENT '性别：0保密、1男性、2女性',
+    `age`                      TINYINT                 NULL    DEFAULT NULL                        COMMENT '年龄',
+    `personalized_signature`   VARCHAR(256)            NULL    DEFAULT NULL                        COMMENT '个性签名',
     `telephone`                VARCHAR(20)             NULL    DEFAULT NULL                        COMMENT '手机号码',
     `email`                    VARCHAR(32)             NULL    DEFAULT NULL                        COMMENT '邮箱',
     `last_login_time`          DATETIME                NULL    DEFAULT NULL                        COMMENT '上一次登录时间',
