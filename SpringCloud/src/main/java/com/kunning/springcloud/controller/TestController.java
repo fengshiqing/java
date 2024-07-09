@@ -36,7 +36,7 @@ public class TestController {
     public String setValue(String keyName, String value) {
         redisTemplate.opsForValue().set(keyName, value);
         String a = redisTemplate.opsForValue().get(keyName);
-        LOGGER.info("【读取redis的值：{}】", a);
+        LOGGER.info("【设置redis的值：{}】", a);
         return a;
     }
 

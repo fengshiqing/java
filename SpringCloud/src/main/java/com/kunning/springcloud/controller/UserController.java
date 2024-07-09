@@ -5,8 +5,10 @@
 package com.kunning.springcloud.controller;
 
 import com.kunning.springcloud.controller.response.Resp;
+import com.kunning.springcloud.mapper.entity.UserEntity;
 import com.kunning.springcloud.service.Product;
 import com.kunning.springcloud.service.ProductService;
+import com.kunning.springcloud.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +28,10 @@ public class UserController {
 
     private final ProductService productService;
 
+    private final UserService userService;
+
     @RequestMapping("/user/save")
-    public Resp save() {
+    public Resp save(UserEntity userEntity) {
         Product product = new Product();
         product.setCode("iphone 11");
         product.setName("iphone 11");
