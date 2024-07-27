@@ -53,7 +53,7 @@ public class UploadController {
         }
 
         LOGGER.info("【uploadPhoto】【开始执行】【执行成功】");
-        return new Resp(0, "success");
+        return new Resp(200, "success");
     }
 
 }
