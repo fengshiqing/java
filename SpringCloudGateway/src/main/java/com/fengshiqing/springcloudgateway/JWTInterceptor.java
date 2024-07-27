@@ -8,19 +8,20 @@ import com.auth0.jwt.exceptions.AlgorithmMismatchException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Nonnull;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 @Slf4j
 public class JWTInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, @Nonnull HttpServletResponse response, @Nonnull Object handler) throws Exception {
         HashMap<String, Object> respMap = new HashMap<>();
 
         // 推荐前端发送请求将 token 放在 header
@@ -41,7 +42,7 @@ public class JWTInterceptor implements HandlerInterceptor {
                 log.error("【算法异常！】");
                 respMap.put("msg", "算法异常！");
             } catch (Exception e) {
-                log.error("【无效签名！】");
+                log.error("【【happened exception】】", e);
                 respMap.put("msg", "无效签名!");
             }
         } else {
