@@ -4,9 +4,8 @@
 
 package com.kunning.springcloud.config;
 
-import jakarta.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.MessageSource;
@@ -27,15 +26,15 @@ import java.util.Locale;
  * <p>
  * 原文链接：<a href="https://blog.csdn.net/qq_47768542/article/details/137081939">...</a>
  */
+@AllArgsConstructor
+@Slf4j
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
 public class I18nConfig {
-    public static final Logger LOGGER = LoggerFactory.getLogger(I18nConfig.class);
 
     /**
      * 国际化消息源
      * 用于解析消息的策略接口，支持此类消息的参数化和国际化。根据Locale区域读取不同的properties国际化文件
      */
-    @Resource
     private MessageSource messageSource;
 
 
@@ -46,7 +45,7 @@ public class I18nConfig {
      */
     @Bean
     public LocaleResolver localeResolver() {
-        LOGGER.info("【init config】【localeResolver】");
+        log.info("【init config】【localeResolver】");
         // AcceptHeaderLocaleResolver作用：通过请求头Accept-Language的值（zh-CN、en-US等）来改变当前的区域设置
         AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
         // 设置默认区域：简体中文。Locale对象表示特定的地理、政治或文化区域，用以区分区域
@@ -61,7 +60,7 @@ public class I18nConfig {
      */
     @Bean
     public Validator getValidator() {
-        LOGGER.info("【init config】【getValidator】");
+        log.info("【init config】【getValidator】");
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageSource);
         return bean;

@@ -4,7 +4,7 @@
 
 package com.kunning.springcloud.controller;
 
-import com.kunning.springcloud.controller.response.Resp;
+import com.fengshiqing.common.bean.Resp;
 import com.kunning.springcloud.mapper.entity.UserEntity;
 import com.kunning.springcloud.service.Product;
 import com.kunning.springcloud.service.ProductService;

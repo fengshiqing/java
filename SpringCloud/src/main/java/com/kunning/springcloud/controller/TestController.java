@@ -4,7 +4,7 @@
 
 package com.kunning.springcloud.controller;
 
-import com.kunning.springcloud.controller.response.RespData;
+import com.fengshiqing.common.bean.RespData;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

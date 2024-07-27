@@ -4,8 +4,8 @@
 
 package com.kunning.springcloud.controller;
 
-import com.kunning.springcloud.controller.response.Resp;
-import com.kunning.springcloud.controller.response.RespData;
+import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.bean.RespData;
 import com.kunning.springcloud.service.Product;
 import com.kunning.springcloud.service.ProductService;
 import com.kunning.springcloud.service.Req;
@@ -75,7 +75,7 @@ public class ProductController {
     public RespData<Product> queryProductInfo(long id) {
         LOGGER.info("【queryProductInfo】【start】【id:{}】", id);
         Product product = productService.queryProductInfo(id);
-        return new RespData<>(200, "查询成功", product);
+        return new RespData<>(product);
     }
 
     /**
@@ -94,6 +94,6 @@ public class ProductController {
         // { "pageSize": 10, "pageNo": 100000 } 表里存了100w数据，这样查询需要 300+ms时间
         // 一般查询1000条数据，不会有啥影响的，大分页也得1w以后的页才会受点影响。
         LOGGER.info("【queryProductByPage】【花费时间：{}】", System.currentTimeMillis() - start);
-        return new RespData<>(200, "查询成功", productList);
+        return new RespData<>(productList);
     }
 }

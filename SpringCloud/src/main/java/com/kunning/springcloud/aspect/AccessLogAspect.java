@@ -5,7 +5,7 @@
 package com.kunning.springcloud.aspect;
 
 
-import com.kunning.springcloud.controller.response.Resp;
+import com.fengshiqing.common.bean.Resp;
 import com.kunning.springcloud.utils.I18nUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

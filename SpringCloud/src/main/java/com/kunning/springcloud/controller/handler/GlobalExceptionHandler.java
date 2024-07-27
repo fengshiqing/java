@@ -4,7 +4,8 @@
 
 package com.kunning.springcloud.controller.handler;
 
-import com.kunning.springcloud.controller.response.Resp;
+import com.fengshiqing.common.bean.Resp;
+import com.kunning.springcloud.utils.I18nUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -32,7 +33,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Resp handleException(Exception exception) {
         log.error("【统一处理Exception】", exception);
-        return new Resp(500, "【系统发生异常，请稍后再试，或者直接联系管理员：fengshiqing】");
+        return new Resp(500, I18nUtil.getMessage("system.error"));
     }
 
     @ExceptionHandler(value = BizException.class)
@@ -62,7 +63,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = NoSuchMessageException.class)
     public Resp handleNoSuchMessageException(NoSuchMessageException e) {
         log.error("【统一处理NoSuchMessageException】", e);
-        return new Resp(500035, "【没有配置国家化文本】");
+        return new Resp(500035, "【没有配置国际化文本】");
     }
 
 }

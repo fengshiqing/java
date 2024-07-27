@@ -5,8 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,12 +26,8 @@ import java.util.Map;
  * @author 冯仕清
  * @since 2020-04-04
  */
+@Slf4j
 public class JsonUtil {
-
-    /**
-     * 日志
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);
 
     /**
      * 私有化构造函数...
@@ -74,7 +69,7 @@ public class JsonUtil {
         try {
             jsonString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
         } catch (JsonProcessingException e) {
-            LOGGER.error("【toJsonStr】【序列化时发生异常：】", e);
+            log.error("【toJsonStr】【序列化时发生异常：】", e);
         }
         return jsonString;
     }
@@ -92,7 +87,7 @@ public class JsonUtil {
         try {
             object = objectMapper.readValue(jsonStr, clazz);
         } catch (IOException e) {
-            LOGGER.error("【fromJson】【反序列化时发生异常：】", e);
+            log.error("【fromJson】【反序列化时发生异常：】", e);
         }
         return object;
     }
@@ -109,7 +104,7 @@ public class JsonUtil {
         try {
             mapList = objectMapper.readValue(listJsonStr, objectMapper.getTypeFactory().constructCollectionType(List.class, HashMap.class));
         } catch (IOException e) {
-            LOGGER.error("【fromJson】【反序列化时发生异常：】", e);
+            log.error("【fromJson】【反序列化时发生异常：】", e);
         }
         return mapList;
     }
