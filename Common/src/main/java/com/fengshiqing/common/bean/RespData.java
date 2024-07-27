@@ -22,12 +22,8 @@ public class RespData<T> extends Resp {
     private T data;
 
     public RespData(T data) {
-        super(200, "操作成功");
+        super(200, null); // 响应成功，就不需要给message说明了
         this.data = data;
     }
 
-    public RespData(int rtnCode, String rtnDesc, T data) {
-        super(rtnCode, rtnDesc);
-        this.data = data;
-    }
 }

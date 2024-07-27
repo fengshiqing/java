@@ -21,7 +21,8 @@ import lombok.ToString;
 @ToString
 public class Resp {
 
-    private int rtnCode;
+    private int code;
 
-    private String rtnDesc;
+    private String message;
+
 }

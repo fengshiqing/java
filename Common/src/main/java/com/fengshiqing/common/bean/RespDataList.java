@@ -23,8 +23,8 @@ public class RespDataList<T> extends Resp {
 
     private int totalCount;
 
-    public RespDataList(int rtnCode, String rtnDesc, T data, int totalCount) {
-        super(rtnCode, rtnDesc);
+    public RespDataList(T data, int totalCount) {
+        super(200, null);
         this.data = data;
         this.totalCount = totalCount;
     }
