@@ -90,7 +90,7 @@ public class UserController {
         LOGGER.info("【参数：】【userList:{}】", userDtoList);
 
         LOGGER.info("【signout】【end】");
-        return new RespData<>(200, "查询成功", userDtoList);
+        return new RespData<>(userDtoList);
     }
 
     @GetMapping(value = "/user")
