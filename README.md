@@ -23,4 +23,11 @@ https://www.bilibili.com/video/BV12A4y197sa/?spm_id_from=333.788&vd_source=f2fb9
 ### elasticsearch
 
 
+### 整合 Camunda流程引擎
+创建账户
+http://127.0.0.1:8080/camunda/app/admin/default/setup/#/setup
+
+登录
+http://127.0.0.1:8080/camunda/app/admin/default/#/login
+
 
