@@ -71,6 +71,7 @@
                 <scope>import</scope>
             </dependency>
 
+            <!--camunda 组件的版本管理者-->
             <dependency>
                 <groupId>org.camunda.bpm</groupId>
                 <artifactId>camunda-bom</artifactId>
