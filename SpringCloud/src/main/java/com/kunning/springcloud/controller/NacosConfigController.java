@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NacosConfigController {
 
-    @Value(value="${user.id}")
+    @Value(value="${user.id:默认值}")
     private String id;
-    @Value(value="${user.name}")
+    @Value(value="${user.name:默认值}")
     private String name;
-    @Value(value="${user.age}")
+    @Value(value="${user.age:默认值}")
     private String age;
 
     @GetMapping("/provider/getNacosConfig")
