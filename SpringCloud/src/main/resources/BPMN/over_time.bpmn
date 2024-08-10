@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1rrprgw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.25.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="over_time_flow" name="员工加班流程" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="over_time_flow_start" name="加班流程开始">
+      <bpmn:outgoing>Flow_0mn08ai</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="over_time_flow_end" name="加班流程结束">
+      <bpmn:incoming>Flow_04jdsa4</bpmn:incoming>
+      <bpmn:incoming>over_time_flow_workday</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0mn08ai" sourceRef="over_time_flow_start" targetRef="Activity_072oagr" />
+    <bpmn:userTask id="Activity_072oagr" name="员工发起&#10;加班流程">
+      <bpmn:incoming>Flow_0mn08ai</bpmn:incoming>
+      <bpmn:outgoing>Flow_0526azf</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="over_time_flow_approve_1" name="直属领导审批">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="com.kunning.springcloud.service.camunda.DirectSupervisorApprove" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0526azf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0in9szv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="over_time_flow_approve_2" name="直属领导&#10;和上上级领导审批">
+      <bpmn:incoming>over_time_flow_holiday</bpmn:incoming>
+      <bpmn:outgoing>Flow_04jdsa4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0526azf" sourceRef="Activity_072oagr" targetRef="over_time_flow_approve_1" />
+    <bpmn:exclusiveGateway id="over_time_flow_gateway_1" name="加班流程判断加班类型">
+      <bpmn:incoming>Flow_0in9szv</bpmn:incoming>
+      <bpmn:outgoing>over_time_flow_holiday</bpmn:outgoing>
+      <bpmn:outgoing>over_time_flow_workday</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="over_time_flow_holiday" name="周末&#10;节假日&#10;加班" sourceRef="over_time_flow_gateway_1" targetRef="over_time_flow_approve_2">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${overTimeType==2 || overTimeType==3}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_04jdsa4" sourceRef="over_time_flow_approve_2" targetRef="over_time_flow_end" />
+    <bpmn:sequenceFlow id="Flow_0in9szv" sourceRef="over_time_flow_approve_1" targetRef="over_time_flow_gateway_1" />
+    <bpmn:sequenceFlow id="over_time_flow_workday" name="工作日加班" sourceRef="over_time_flow_gateway_1" targetRef="over_time_flow_end">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${overTimeType==1}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="over_time_flow">
+      <bpmndi:BPMNShape id="Event_0nypsjq_di" bpmnElement="over_time_flow_start">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="137" y="83" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0xuoh84_di" bpmnElement="over_time_flow_end">
+        <dc:Bounds x="832" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="817" y="83" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_072oagr_di" bpmnElement="Activity_072oagr">
+        <dc:Bounds x="240" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i3xznj_di" bpmnElement="over_time_flow_approve_1">
+        <dc:Bounds x="410" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1e5ct69_di" bpmnElement="over_time_flow_approve_2">
+        <dc:Bounds x="690" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0x3gea6_di" bpmnElement="over_time_flow_gateway_1" isMarkerVisible="true">
+        <dc:Bounds x="575" y="95" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="562" y="65.5" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0mn08ai_di" bpmnElement="Flow_0mn08ai">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="240" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0526azf_di" bpmnElement="Flow_0526azf">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="410" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zxsmec_di" bpmnElement="over_time_flow_holiday">
+        <di:waypoint x="600" y="145" />
+        <di:waypoint x="600" y="210" />
+        <di:waypoint x="690" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="604" y="165" width="32" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04jdsa4_di" bpmnElement="Flow_04jdsa4">
+        <di:waypoint x="790" y="210" />
+        <di:waypoint x="850" y="210" />
+        <di:waypoint x="850" y="138" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0in9szv_di" bpmnElement="Flow_0in9szv">
+        <di:waypoint x="510" y="120" />
+        <di:waypoint x="575" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_156yzvf_di" bpmnElement="over_time_flow_workday">
+        <di:waypoint x="625" y="120" />
+        <di:waypoint x="832" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="644" y="101" width="56" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
