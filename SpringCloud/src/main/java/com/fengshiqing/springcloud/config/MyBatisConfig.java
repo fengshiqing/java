@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2020/03/20 19:09
  */
 @Configuration
-@MapperScan(basePackages = "com.kunning.springcloud.mapper") // 和 @ComponentScan 注解功能类似
+@MapperScan(basePackages = "com.fengshiqing.springcloud.mapper") // 和 @ComponentScan 注解功能类似
 public class MyBatisConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyBatisConfig.class);
 

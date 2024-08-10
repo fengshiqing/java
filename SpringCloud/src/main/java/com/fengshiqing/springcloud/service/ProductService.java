@@ -7,8 +7,8 @@ package com.fengshiqing.springcloud.service;
 import com.fengshiqing.common.Constant.RedisKey;
 import com.fengshiqing.springcloud.aspect.RedisCache;
 import com.fengshiqing.springcloud.mapper.ProductMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +20,15 @@ import java.util.List;
  * @author 冯仕清
  * @since 2022-07-20
  */
+@AllArgsConstructor
+@Slf4j
 @Service
 public class ProductService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
 
     private final JdbcTemplate jdbcTemplate;
 
     private final ProductMapper productMapper;
 
-    public ProductService(JdbcTemplate jdbcTemplate, ProductMapper productMapper) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.productMapper = productMapper;
-    }
 
     public int save(Product product) {
         return jdbcTemplate.update("INSERT INTO products(name, code, price) values(?, ? , ?)", product.getName(), product.getCode(), product.getPrice());
@@ -55,7 +52,7 @@ public class ProductService {
      */
     @RedisCache(key = RedisKey.PRODUCT_KEY)
     public Product queryProductInfo(long id) {
-        LOGGER.info("【queryProductInfo】【start】【id:{}】", id);
+        log.info("【queryProductInfo】【start】【id:{}】", id);
         return productMapper.selectByPrimaryKey(id);
     }
 

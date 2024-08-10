@@ -45,7 +45,7 @@ public class AccessLogAspect {
     /**
      * 定义切点，切入点为控制层的所有函数
      */
-    @Pointcut("execution(* com.kunning.springcloud.controller..*.*(..))")
+    @Pointcut("execution(* com.fengshiqing.springcloud.controller..*.*(..))")
     public void accessLog() {
     }
 
