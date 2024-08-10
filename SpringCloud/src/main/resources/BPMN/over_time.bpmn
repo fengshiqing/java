@@ -15,7 +15,7 @@
     </bpmn:userTask>
     <bpmn:userTask id="over_time_flow_approve_1" name="直属领导审批">
       <bpmn:extensionElements>
-        <camunda:executionListener class="com.kunning.springcloud.service.camunda.DirectSupervisorApprove" event="start" />
+        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.DirectSupervisorApprove" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0526azf</bpmn:incoming>
       <bpmn:outgoing>Flow_0in9szv</bpmn:outgoing>
