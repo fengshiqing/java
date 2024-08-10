@@ -45,18 +45,41 @@ public class CamundaController {
      * 创建流程实例
      * processDefKey：这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
      * businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
-     * initiator：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
+     * assignee：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
      */
     @GetMapping("/startProcessInstanceByDefKey")
     public String startProcessInstanceByDefKey(@RequestParam(value = "processDefKey") String processDefKey,
                                                @RequestParam(value = "business") String business,
-                                               @RequestParam(value = "applicantName") String applicantName) {
+                                               @RequestParam(value = "assignee") String assignee) {
+        log.info("【请假流程，开始】【processDefKey：{}，business：{}，assignee：{}】", processDefKey, business, assignee);
+
+        HashMap<String, Object> variable = new HashMap<>();
+        //流程启动初始化数据
+        variable.put("initiator", assignee);
+        variable.put("isFree", true);
+        identityService.setAuthenticatedUserId(assignee); // ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey(processDefKey, business, variable);
+        String processInstanceId = instance.getProcessInstanceId(); // ACT_HI_ACTINST 表的 PROC_INST_ID_
+        log.info("【请假流程，开始】【processInstanceId：{}】", processInstanceId);
+        return processInstanceId;
+    }
+
+
+    /**
+     * 创建流程实例
+     * processDefKey：这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
+     * businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
+     * initiator：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
+     */
+    @GetMapping("/over_time_flow")
+    public String overTimeFlow(@RequestParam(value = "business") String business,
+                               @RequestParam(value = "applicantName") String applicantName) {
         HashMap<String, Object> variable = new HashMap<>();
         //流程启动初始化数据
         variable.put("initiator", applicantName);
         variable.put("isFree", true);
         identityService.setAuthenticatedUserId(applicantName); //ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey(processDefKey, business, variable);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("over_time_flow");
 //        PROCINST procinst = procinst = new PROCINST(instance.getProcessDefinitionId(), instance.getProcessInstanceId(), instance.getBusinessKey(), instance.isSuspended(), instance.isEnded());
         return "流程创建成功";
     }
@@ -72,9 +95,10 @@ public class CamundaController {
     public String submitApplication(@RequestParam(value = "leaveDays") Long leaveDays,
                                     @RequestParam(value = "business") String business,
                                     @RequestParam(value = "applicantName") String applicantName) {
-        String resultString = "";
+        String resultString;
         Task task = queryTaskByBusinessKey(business, applicantName);
         if (task == null) {
+            log.info("【没有查询到对应的单据流程】");
             resultString = "没有查询到对应的单据流程";
         } else if (!task.getAssignee().equalsIgnoreCase(applicantName)) {
             resultString = "没有审核权限！";
@@ -102,6 +126,7 @@ public class CamundaController {
         }
         return resultString;
     }
+
 
     /**
      * 审核操作
@@ -161,22 +186,15 @@ public class CamundaController {
      */
     private Task queryTaskByBusinessKey(String businessKey, String initiator) {
         Task task;
-        ProcessInstance instance = runtimeService.createProcessInstanceQuery()
-                .processInstanceBusinessKey(businessKey)
-                .singleResult();
+        ProcessInstance instance = runtimeService.createProcessInstanceQuery().processInstanceBusinessKey(businessKey).singleResult();
         if (instance == null) return null;
-        List<Task> list = taskService.createTaskQuery()
-                .processInstanceId(instance.getProcessInstanceId())
-                .active() //正在运行时的节点？
-                .list();
+        List<Task> list = taskService.createTaskQuery().processInstanceId(instance.getProcessInstanceId()).active().list(); //正在运行时的节点？
+
         if (list.size() == 1) {
             task = list.get(0);
         } else {
-            task = taskService.createTaskQuery()
-                    .processInstanceId(instance.getProcessInstanceId())
-                    .active()
-                    .taskAssignee(initiator)
-                    .singleResult();
+            task = taskService.createTaskQuery().processInstanceId(instance.getProcessInstanceId()).active()
+                    .taskAssignee(initiator).singleResult();
         }
         return task;
     }
