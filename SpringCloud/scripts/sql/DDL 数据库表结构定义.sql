@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
 # 新建 t_user_flow 表
 CREATE TABLE IF NOT EXISTS `t_user_flow` (
     `user_id`          VARCHAR(20)      NOT NULL                                        COMMENT '用户ID',
-    `flow_id`          VARCHAR(32)      NOT NULL                                        COMMENT '流程ID',
+    `flow_id`          VARCHAR(64)      NOT NULL                                        COMMENT '流程ID，对应 ACT_HI_ACTINST 表的 PROC_INST_ID_ 字段',
     `flow_type`        VARCHAR(32)      NOT NULL                                        COMMENT '流程类型',
     `current_approver` VARCHAR(32)      NOT NULL                                        COMMENT '当前审批人',
     `remark`           VARCHAR(1024)    NOT NULL                                        COMMENT '申请原因/备注',
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `t_user_flow` (
 # 新建 t_user_flow_detail 表
 CREATE TABLE IF NOT EXISTS `t_user_flow_detail` (
     `user_id`        VARCHAR(20)        NOT NULL                                        COMMENT '用户ID',
-    `flow_id`        VARCHAR(32)        NOT NULL                                        COMMENT '流程ID',
+    `flow_id`        VARCHAR(64)        NOT NULL                                        COMMENT '流程ID，对应 ACT_HI_ACTINST 表的 PROC_INST_ID_ 字段',
     `detail_info`    VARCHAR(1024)      NOT NULL                                        COMMENT '详细信息',
 
     `create_user`    VARCHAR(20)        NOT NULL                                        COMMENT '创建人',
