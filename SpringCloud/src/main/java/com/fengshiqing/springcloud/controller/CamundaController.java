@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.camunda.bpm.engine.HistoryService;
 import org.camunda.bpm.engine.IdentityService;
+import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.history.HistoricActivityInstance;
@@ -35,30 +36,68 @@ import java.util.Map;
 @RestController
 public class CamundaController {
 
+    private final RepositoryService repositoryService;
+
     private final IdentityService identityService;
 
     private final RuntimeService runtimeService;
 
     private final TaskService taskService;
 
+
     /**
-     * 创建流程实例
-     * processDefKey：这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
-     * businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
-     * assignee：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
+     * 功能描述：删除流程部署。
+     *
+     * @param deploymentId 这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
+     * @return String
+     */
+    @GetMapping("/deleteDeployment")
+    public String deleteDeployment(@RequestParam(value = "deploymentId") String deploymentId) {
+        log.info("【deleteDeployment】【start】【deploymentId：{}】", deploymentId);
+        // 这将删除与特定部署关联的所有流程定义，即使其中一些可能还在运行。
+        repositoryService.deleteDeployment(deploymentId);
+        log.info("【deleteDeployment】【end】");
+        return "删除成功";
+    }
+
+
+    /**
+     * 功能描述：删除流程定义。
+     *
+     * @param processDefinitionId 这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
+     * @return String
+     */
+    @GetMapping("/deleteProcessDefinition")
+    public String deleteProcessDefinition(@RequestParam(value = "processDefinitionId") String processDefinitionId) {
+        log.info("【deleteProcessDefinitions】【start】【processDefinitionId：{}】", processDefinitionId);
+        // 这将删除与特定部署关联的所有流程定义，即使其中一些可能还在运行。
+        repositoryService.deleteProcessDefinition(processDefinitionId);
+        log.info("【deleteProcessDefinition】【end】");
+        return "删除成功";
+    }
+
+
+    /**
+     * 功能描述：创建流程实例
+     *
+     * @param processDefKey：这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
+     * @param businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
+     * @param assignee：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
+     *
+     * @return String
      */
     @GetMapping("/startProcessInstanceByDefKey")
     public String startProcessInstanceByDefKey(@RequestParam(value = "processDefKey") String processDefKey,
-                                               @RequestParam(value = "business") String business,
+                                               @RequestParam(value = "businessKey") String businessKey,
                                                @RequestParam(value = "assignee") String assignee) {
-        log.info("【请假流程，开始】【processDefKey：{}，business：{}，assignee：{}】", processDefKey, business, assignee);
+        log.info("【请假流程，开始】【processDefKey：{}，business：{}，assignee：{}】", processDefKey, businessKey, assignee);
 
         HashMap<String, Object> variable = new HashMap<>();
         //流程启动初始化数据
         variable.put("initiator", assignee);
         variable.put("isFree", true);
         identityService.setAuthenticatedUserId(assignee); // ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey(processDefKey, business, variable);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ask_for_leave_flow", businessKey, variable);
         String processInstanceId = instance.getProcessInstanceId(); // ACT_HI_ACTINST 表的 PROC_INST_ID_
         log.info("【请假流程，开始】【processInstanceId：{}】", processInstanceId);
         return processInstanceId;
@@ -66,19 +105,19 @@ public class CamundaController {
 
 
     /**
-     * 创建流程实例
-     * processDefKey：这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
-     * businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
-     * initiator：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
+     * 功能描述：创建流程实例
+     *
+     * @param businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
+     * @param assignee：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
      */
     @GetMapping("/over_time_flow")
-    public String overTimeFlow(@RequestParam(value = "business") String business,
-                               @RequestParam(value = "applicantName") String applicantName) {
+    public String overTimeFlow(@RequestParam(value = "businessKey") String businessKey,
+                               @RequestParam(value = "assignee") String assignee) {
         HashMap<String, Object> variable = new HashMap<>();
         //流程启动初始化数据
-        variable.put("initiator", applicantName);
+        variable.put("initiator", assignee);
         variable.put("isFree", true);
-        identityService.setAuthenticatedUserId(applicantName); //ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
+        identityService.setAuthenticatedUserId(assignee); //ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("over_time_flow");
 //        PROCINST procinst = procinst = new PROCINST(instance.getProcessDefinitionId(), instance.getProcessInstanceId(), instance.getBusinessKey(), instance.isSuspended(), instance.isEnded());
         return "流程创建成功";
@@ -86,21 +125,22 @@ public class CamundaController {
 
 
     /**
-     * 提交申请
-     * leaveDays：模板中定义的数据变量。
-     * business：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
-     * applicantName：单据送审人，也就是申请人
+     * 功能描述：提交申请
+     *
+     * @param leaveDays：模板中定义的数据变量。
+     * @param businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
+     * @param assignee：单据送审人，也就是申请人
      */
     @GetMapping("/submitApplication")
     public String submitApplication(@RequestParam(value = "leaveDays") Long leaveDays,
-                                    @RequestParam(value = "business") String business,
-                                    @RequestParam(value = "applicantName") String applicantName) {
+                                    @RequestParam(value = "businessKey") String businessKey,
+                                    @RequestParam(value = "assignee") String assignee) {
         String resultString;
-        Task task = queryTaskByBusinessKey(business, applicantName);
+        Task task = queryTaskByBusinessKey(businessKey, assignee);
         if (task == null) {
             log.info("【没有查询到对应的单据流程】");
             resultString = "没有查询到对应的单据流程";
-        } else if (!task.getAssignee().equalsIgnoreCase(applicantName)) {
+        } else if (!task.getAssignee().equalsIgnoreCase(assignee)) {
             resultString = "没有审核权限！";
         } else {
             //设置审核人
@@ -129,7 +169,7 @@ public class CamundaController {
 
 
     /**
-     * 审核操作
+     * 功能描述：审核操作
      *
      * @param businessKey 业务id
      * @param initiator   流程处理人
@@ -179,7 +219,7 @@ public class CamundaController {
     }
 
     /**
-     * 根据业务标识代码获取当前节点
+     * 功能描述：根据业务标识代码获取当前节点
      *
      * @param businessKey 业务id
      * @param initiator   流程处理人或者流程制作人
@@ -203,7 +243,7 @@ public class CamundaController {
     private final HistoryService historyService;
 
     /**
-     * 查询我创建的流程
+     * 功能描述：查询我创建的流程
      *
      * @param userId 创建流程人的用户ID
      * @return List<String>
@@ -225,7 +265,7 @@ public class CamundaController {
 
 
     /**
-     * 查询已办/未办 单据
+     * 功能描述：查询已办/未办 单据
      *
      * @param userId 用户id
      * @param type   数据类型
@@ -280,7 +320,7 @@ public class CamundaController {
     }
 
     /**
-     * 驳回操作
+     * 功能描述：驳回操作
      */
     @GetMapping("/turnTask")
     public String turnTask(@RequestParam(value = "userId") String userId,
@@ -421,9 +461,8 @@ public class CamundaController {
     }
 
 
-
-    //审核日志查询
     /**
+     * 功能描述：审核日志查询
      * [注:日志顺序  1开始时间 相同顺延 2排列结束时间]
      * activityType：节点类型 null就不显示
      * taskId：taskId相同的为会签节点
@@ -484,6 +523,8 @@ public class CamundaController {
         System.out.println("result = " + result);
         return result;
     }
+
+
     /** 时间差计算 */
     public  String getDatePoor(Date endDate, Date nowDate) {
         long nd = 1000 * 24 * 60 * 60;
