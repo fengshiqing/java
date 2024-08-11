@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BadSqlGrammarException.class)
     public Resp handleSqlException(BadSqlGrammarException e) {
         log.error("【统一处理BadSqlGrammarException】", e);
-        return new Resp(500025, "【系统发生异常，请稍后再试，或者直接联系管理员】");
+        return new Resp(500025, I18nUtil.getMessage("system.error"));
     }
 
     @ExceptionHandler(value = NoSuchMessageException.class)
