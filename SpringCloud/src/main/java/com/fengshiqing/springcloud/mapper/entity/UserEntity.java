@@ -27,7 +27,7 @@ public class UserEntity {
     /**
      * ID
      */
-    private long userId;
+    private String userId;
 
     /**
      * 密码

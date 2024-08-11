@@ -26,13 +26,13 @@ public class UserFlowEntity {
     /**
      * 用户ID
      */
-    private long userId;
+    private String userId;
 
 
     /**
      * 流程的流水号ID
      */
-    private long flowId;
+    private String flowId;
 
 
     /**
@@ -77,5 +77,15 @@ public class UserFlowEntity {
      * 有效/是否被删除标记
      */
     private Date delFlag;
+
+    public UserFlowEntity(String userId, String flowId, String flowType, String currentApprover, String remark) {
+        this.userId = userId;
+        this.flowId = flowId;
+        this.flowType = flowType;
+        this.currentApprover = currentApprover;
+        this.remark = remark;
+        this.createUser = userId;
+        this.updateUser = userId;
+    }
 
 }
