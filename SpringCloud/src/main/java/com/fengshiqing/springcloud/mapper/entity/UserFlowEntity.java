@@ -73,4 +73,9 @@ public class UserFlowEntity {
      */
     private Date updateTime;
 
+    /**
+     * 有效/是否被删除标记
+     */
+    private Date delFlag;
+
 }
