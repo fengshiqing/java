@@ -4,6 +4,12 @@
 
 package com.fengshiqing.springcloud.controller;
 
+import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.bean.RespData;
+import com.fengshiqing.springcloud.mapper.UserFlowMapper;
+import com.fengshiqing.springcloud.mapper.entity.UserFlowEntity;
+import com.fengshiqing.springcloud.utils.I18nUtil;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -18,6 +24,7 @@ import org.camunda.bpm.engine.history.HistoricTaskInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Comment;
 import org.camunda.bpm.engine.task.Task;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,36 +51,40 @@ public class CamundaController {
 
     private final TaskService taskService;
 
+    private final UserFlowMapper userFlowMapper;
+
 
     /**
      * 功能描述：删除流程部署。
+     * 说明：如果有运行中的实例，必须调用 deleteDeploymentCascade 方法，或者调用 带有 cascade 参数的重载方法
      *
-     * @param deploymentId 这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
-     * @return String
+     * @param deploymentId 对应管理台的流程定义中的 "Deployment ID" 字段，示例：4c01058a-58a8-11ef-be97-f8b46aafbdd4
+     * @return Resp
      */
     @GetMapping("/deleteDeployment")
-    public String deleteDeployment(@RequestParam(value = "deploymentId") String deploymentId) {
+    public Resp deleteDeployment(@RequestParam(value = "deploymentId") String deploymentId) {
         log.info("【deleteDeployment】【start】【deploymentId：{}】", deploymentId);
         // 这将删除与特定部署关联的所有流程定义，即使其中一些可能还在运行。
         repositoryService.deleteDeployment(deploymentId);
         log.info("【deleteDeployment】【end】");
-        return "删除成功";
+        return new Resp(200, I18nUtil.getMessage("biz.operate.success"));
     }
 
 
     /**
      * 功能描述：删除流程定义。
+     * 注意：不能有运行中的实例，否则会删除失败
      *
-     * @param processDefinitionId 这里首先需要传入的是流程定义模板的key，前提是我们之前已经部署了相应的流程模板。(Process_0bhiqm1)
-     * @return String
+     * @param definitionId 对应管理台的流程定义中的 "Definition ID" 字段，示例：over_time_flow:3:4c2d45ad-58a8-11ef-be97-f8b46aafbdd4
+     * @return Resp
      */
-    @GetMapping("/deleteProcessDefinition")
-    public String deleteProcessDefinition(@RequestParam(value = "processDefinitionId") String processDefinitionId) {
-        log.info("【deleteProcessDefinitions】【start】【processDefinitionId：{}】", processDefinitionId);
+    @GetMapping("/deleteDefinition")
+    public Resp deleteProcessDefinition(@RequestParam(value = "definitionId") String definitionId) {
+        log.info("【deleteProcessDefinitions】【start】【definitionId：{}】", definitionId);
         // 这将删除与特定部署关联的所有流程定义，即使其中一些可能还在运行。
-        repositoryService.deleteProcessDefinition(processDefinitionId);
+        repositoryService.deleteProcessDefinition(definitionId);
         log.info("【deleteProcessDefinition】【end】");
-        return "删除成功";
+        return new Resp(200, I18nUtil.getMessage("biz.operate.success"));
     }
 
 
@@ -86,21 +97,29 @@ public class CamundaController {
      *
      * @return String
      */
-    @GetMapping("/startProcessInstanceByDefKey")
-    public String startProcessInstanceByDefKey(@RequestParam(value = "processDefKey") String processDefKey,
-                                               @RequestParam(value = "businessKey") String businessKey,
-                                               @RequestParam(value = "assignee") String assignee) {
-        log.info("【请假流程，开始】【processDefKey：{}，business：{}，assignee：{}】", processDefKey, businessKey, assignee);
+    @GetMapping("/ask_for_leave_flow_start")
+    // rollbackFor 属性不写时，代码中出现了空指针等异常，会被回滚，文件读写，网络出问题，spring就没法回滚了。
+    // java里面将派生于Error或者RuntimeException（比如空指针，1/0）的异常称为unchecked异常，其他继承自java.lang.Exception得异常统称为Checked Exception，如IOException、TimeoutException等。
+    // 然后我教大家怎么记这个，因为很多同学容易弄混：你写代码的时候有些IOException我们的编译器是能够检测到的，说以叫checked异常，你写代码的时候空指针等死检测不到的，所以叫unchecked异常
+    @Transactional(rollbackFor = Exception.class)
+    public RespData<String> askForLeaveFlowStart(
+            @NotBlank @RequestParam(value = "processDefKey") String processDefKey,
+            @NotBlank @RequestParam(value = "businessKey") String businessKey,
+            @NotBlank @RequestParam(value = "assignee") String assignee
+    ) {
+        log.info("【请假流程】【start】【processDefKey：{}，business：{}，assignee：{}】", processDefKey, businessKey, assignee);
 
-        HashMap<String, Object> variable = new HashMap<>();
+        HashMap<String, Object> varMap = new HashMap<>();
         //流程启动初始化数据
-        variable.put("initiator", assignee);
-        variable.put("isFree", true);
+        varMap.put("assignee", assignee);
         identityService.setAuthenticatedUserId(assignee); // ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ask_for_leave_flow", businessKey, variable);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ask_for_leave_flow", businessKey, varMap);
         String processInstanceId = instance.getProcessInstanceId(); // ACT_HI_ACTINST 表的 PROC_INST_ID_
-        log.info("【请假流程，开始】【processInstanceId：{}】", processInstanceId);
-        return processInstanceId;
+        log.info("【请假流程】【end】【processInstanceId：{}】", processInstanceId);
+
+        userFlowMapper.insert(new UserFlowEntity("fengshiqing", processInstanceId, "ask_for_leave_flow", assignee, "结婚办酒席"));
+
+        return new RespData<>(processInstanceId);
     }
 
 
@@ -111,16 +130,15 @@ public class CamundaController {
      * @param assignee：启动流程实例时的操作人，这里可以理解为制单人，或者是送审人，但是需要注意，在实际应用场景中，我们的制单人不一定就是单据送审人。
      */
     @GetMapping("/over_time_flow")
-    public String overTimeFlow(@RequestParam(value = "businessKey") String businessKey,
-                               @RequestParam(value = "assignee") String assignee) {
-        HashMap<String, Object> variable = new HashMap<>();
+    public RespData<String> overTimeFlow(@NotBlank @RequestParam(value = "businessKey") String businessKey,
+                                         @NotBlank @RequestParam(value = "assignee") String assignee) {
+        HashMap<String, Object> varMap = new HashMap<>();
         //流程启动初始化数据
-        variable.put("initiator", assignee);
-        variable.put("isFree", true);
+        varMap.put("assignee", assignee);
         identityService.setAuthenticatedUserId(assignee); //ACT_HI_PROCINST.START_USER_ID字段的赋值-开始节点人
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("over_time_flow");
-//        PROCINST procinst = procinst = new PROCINST(instance.getProcessDefinitionId(), instance.getProcessInstanceId(), instance.getBusinessKey(), instance.isSuspended(), instance.isEnded());
-        return "流程创建成功";
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("over_time_flow", varMap);
+        String processInstanceId = instance.getProcessInstanceId(); // ACT_HI_ACTINST 表的 PROC_INST_ID_
+        return new RespData<>(processInstanceId);
     }
 
 
@@ -131,10 +149,10 @@ public class CamundaController {
      * @param businessKey：这是流程实例的业务标识Key，需要用该字段与我们的业务单据进行绑定。
      * @param assignee：单据送审人，也就是申请人
      */
-    @GetMapping("/submitApplication")
-    public String submitApplication(@RequestParam(value = "leaveDays") Long leaveDays,
-                                    @RequestParam(value = "businessKey") String businessKey,
-                                    @RequestParam(value = "assignee") String assignee) {
+    @GetMapping("/ask_for_leave_flow_user_apply")
+    public String submitApplication(@NotBlank @RequestParam(value = "leaveDays") Long leaveDays,
+                                    @NotBlank @RequestParam(value = "businessKey") String businessKey,
+                                    @NotBlank @RequestParam(value = "assignee") String assignee) {
         String resultString;
         Task task = queryTaskByBusinessKey(businessKey, assignee);
         if (task == null) {
@@ -149,10 +167,12 @@ public class CamundaController {
             map.put("leaveDays", leaveDays);
 
             List<String> leaders = new ArrayList<>();
-            if (leaveDays > 3 && leaveDays <= 5) {
+            if (leaveDays < 5) {
+                leaders.add("zhangsan");
+            } else if (leaveDays > 5 && leaveDays <= 10) {
                 leaders.add("zhangsan");
                 leaders.add("lisi");
-            } else if (leaveDays > 5) {
+            } else if (leaveDays > 10) {
                 leaders.add("zhangsan");
                 leaders.add("lisi");
                 leaders.add("wangwu");
@@ -172,46 +192,46 @@ public class CamundaController {
      * 功能描述：审核操作
      *
      * @param businessKey 业务id
-     * @param initiator   流程处理人
-     * @param comment     处理意见
+     * @param assignee 流程处理人
+     * @param remark 备注/处理意见
      */
-    @GetMapping("/submitProcessInstance")
-    public String submitProcessInstance(@RequestParam(value = "businessKey") String businessKey,
-                                        @RequestParam(value = "initiator") String initiator,
-                                        @RequestParam(value = "comment") String comment) {
+    @GetMapping("/approveOne")
+    public String approveOne(
+            @NotBlank @RequestParam(value = "businessKey") String businessKey,
+            @NotBlank @RequestParam(value = "assignee") String assignee,
+            @NotBlank @RequestParam(value = "result") String result,
+            @RequestParam(value = "remark") String remark
+    ) {
         String resultString = "";
-        Task task = queryTaskByBusinessKey(businessKey, initiator);
+        Task task = queryTaskByBusinessKey(businessKey, assignee);
         if (task == null) {
             resultString = "没有查询到对应的单据流程";
-        } else if (!task.getAssignee().equalsIgnoreCase(initiator)) {
+        } else if (!task.getAssignee().equalsIgnoreCase(assignee)) {
             resultString = "没有审核权限！";
         } else {
             if (task.getAssignee().equals("zhangsan")) {
                 Map<String, Object> variables = taskService.getVariables(task.getId());
                 System.out.println("variables" + variables.toString());
-                String flag = "true";
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("flag", flag);
-                map.put("comment", comment);
-                taskService.createComment(task.getId(), task.getProcessInstanceId(), "审核原因：" + comment);
+                map.put("flag", result);
+                map.put("remark", remark);
+                taskService.createComment(task.getId(), task.getProcessInstanceId(), "审核原因：" + remark);
                 taskService.complete(task.getId(), map);
-                return "zhangsan" + (flag.equals("true") ? "同意" : "不同意");
+                return "zhangsan" + (result.equals("true") ? "同意" : "不同意");
             } else if (task.getAssignee().equals("lisi")) {
-                String flag = "true";
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("flag", flag);
-                map.put("comment", comment);
-                taskService.createComment(task.getId(), task.getProcessInstanceId(), "审核原因：" + comment);
+                map.put("flag", result);
+                map.put("remark", remark);
+                taskService.createComment(task.getId(), task.getProcessInstanceId(), "审核原因：" + remark);
                 taskService.complete(task.getId(), map);
-                return "lisi" + (flag.equals("true") ? "同意" : "不同意");
+                return "lisi" + (result.equals("true") ? "同意" : "不同意");
             } else if (task.getAssignee().equals("wangwu")) {
-                String flag = "true";
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("flag", flag);
-                map.put("comment", comment);
-                taskService.createComment(task.getId(), task.getProcessInstanceId(), "审核原因：" + comment);
+                map.put("flag", result);
+                map.put("remark", remark);
+                taskService.createComment(task.getId(), task.getProcessInstanceId(), "审核原因：" + remark);
                 taskService.complete(task.getId(), map);
-                return "wangwu" + (flag.equals("true") ? "同意" : "不同意");
+                return "wangwu" + (result.equals("true") ? "同意" : "不同意");
             }
 
         }
@@ -222,19 +242,20 @@ public class CamundaController {
      * 功能描述：根据业务标识代码获取当前节点
      *
      * @param businessKey 业务id
-     * @param initiator   流程处理人或者流程制作人
+     * @param assignee 流程处理人或者流程制作人
      */
-    private Task queryTaskByBusinessKey(String businessKey, String initiator) {
+    private Task queryTaskByBusinessKey(String businessKey, String assignee) {
         Task task;
+        // 冯仕清：我跟了下源码：org.camunda.bpm.engine.impl.persistence.entity.ExecutionManager#findProcessInstancesByQueryCriteria，发现查询的是 ACT_RU_EXECUTION 表
         ProcessInstance instance = runtimeService.createProcessInstanceQuery().processInstanceBusinessKey(businessKey).singleResult();
         if (instance == null) return null;
-        List<Task> list = taskService.createTaskQuery().processInstanceId(instance.getProcessInstanceId()).active().list(); //正在运行时的节点？
+        List<Task> list = taskService.createTaskQuery().processInstanceId(instance.getProcessInstanceId()).active().list(); // 查询正在运行时的流程实例ID，我这边存储到了 t_user_flow 表中，可以直接查询出来的
 
         if (list.size() == 1) {
             task = list.get(0);
         } else {
             task = taskService.createTaskQuery().processInstanceId(instance.getProcessInstanceId()).active()
-                    .taskAssignee(initiator).singleResult();
+                    .taskAssignee(assignee).singleResult();
         }
         return task;
     }
@@ -326,7 +347,7 @@ public class CamundaController {
     public String turnTask(@RequestParam(value = "userId") String userId,
                            @RequestParam(value = "businessKey") String businessKey,
                            @RequestParam(value = "type") String type,
-                           @RequestParam(value = "comment") String comment) {
+                           @RequestParam(value = "remark") String remark) {
         Task task = queryTaskByBusinessKey(businessKey, userId);
         if (task == null) {
             return "未查询到对应的审核单据！";
@@ -364,7 +385,7 @@ public class CamundaController {
                 taskVariable.put("assignee", assignee);
                 //流程审核+驳回
                 //任务流程创建了提交模板Comment 但是没有提交 taskService.complete(taskId)。--所有节点也不会提交到后台去
-                taskService.createComment(task.getId(), task.getProcessInstanceId(), "驳回原因：" + comment);
+                taskService.createComment(task.getId(), task.getProcessInstanceId(), "驳回原因：" + remark);
                 //任务流程实例修改位置
                 runtimeService.createProcessInstanceModification(task.getProcessInstanceId())
 //                        .cancelActivityInstance(getInstanceIdForActivity(tree,task.getTaskDefinitionKey())) //关闭当前节点相关的任务
@@ -396,7 +417,7 @@ public class CamundaController {
                 HashMap<String, Object> taskVariable = new HashMap<>(2);
                 taskVariable.put("leader", assignee);
                 //进行驳回操作
-                taskService.createComment(task.getId(), task.getProcessInstanceId(), "驳回：" + comment);
+                taskService.createComment(task.getId(), task.getProcessInstanceId(), "驳回：" + remark);
                 runtimeService.createProcessInstanceModification(task.getProcessInstanceId())
                         //.cancelActivityInstance(getInstanceIdForActivity(tree,task.getTaskDefinitionKey())) //关闭相关任务！(当前节点就会被删除。但是之前审核过的节点还是会存在！)
                         //该方式关闭所有activityId相同的activity活动都会被取消暂停（会签节点）

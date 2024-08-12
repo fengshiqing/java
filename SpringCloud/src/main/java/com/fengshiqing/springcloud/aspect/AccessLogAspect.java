@@ -22,6 +22,8 @@ import java.util.Arrays;
 
 /**
  * 功能描述：记录"请求-响应"日志。
+ * 这个建议不要用，万一事务性的操作发生了异常，如果被这个切面处理时也发生了错误。。那么事物的一致性就被破坏了。
+ * 比如我之前写的 camunda 流程发起了，但是后续的保存业务逻辑发生了异常，但是这里的切面也发生了异常，导致 camunda执行成功，但是业务逻辑执行失败。
  *
  * @author fengshiqing
  * @since 2022-09-25
@@ -38,7 +40,7 @@ import java.util.Arrays;
  * 环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。
  */
 @Slf4j
-@Aspect
+//@Aspect
 @Component
 public class AccessLogAspect {
 

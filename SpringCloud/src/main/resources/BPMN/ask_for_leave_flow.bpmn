@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1rrprgw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.25.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
-  <bpmn:process id="ask_for_leave_flow" name="员工请假流程" isExecutable="true" camunda:historyTimeToLive="180">
+  <bpmn:process id="ask_for_leave_flow" name="员工请假流程" isExecutable="true" camunda:historyTimeToLive="30">
+    <bpmn:documentation>员工请假时，需要发起此流程。</bpmn:documentation>
     <bpmn:startEvent id="ask_for_leave_flow_start" name="请假流程开始" camunda:initiator="starter">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.AutoApproveListener" event="start" />
+        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.AutoApproveListener" event="end" />
+      </bpmn:extensionElements>
       <bpmn:outgoing>Flow_1pgd9ua</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1pgd9ua" sourceRef="ask_for_leave_flow_start" targetRef="ask_for_leave_flow_user_apply" />
