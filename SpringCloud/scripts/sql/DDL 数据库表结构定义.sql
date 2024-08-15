@@ -103,3 +103,28 @@ CREATE TABLE IF NOT EXISTS `t_user_flow_detail` (
     `del_flag`       BIGINT             NOT NULL    DEFAULT 0                           COMMENT '删除标记：0未删除、1已删除',
     PRIMARY KEY (user_id, flow_id)
 ) COMMENT '用户流程的详细信息，请假流程中的请假时间、加班流程中的加班时间、费用报销流程中的费用信息等等';
+
+
+
+# 新建 t_score 表
+CREATE TABLE IF NOT EXISTS `t_score` (
+    `grade`    INT            NOT NULL    COMMENT '年级',
+    `class`    VARCHAR(10)    NOT NULL    COMMENT '班级',
+    `score`    INT            NOT NULL    COMMENT '分数'
+) COMMENT '分数表（年级根据、班级划分）';
+
+INSERT INTO t_score  VALUES
+        (1, 'A', 90),
+        (1, 'B', 87),
+        (2, 'A', 93),
+        (1, 'C', 100);
+
+SELECT
+	`grade`,
+	SUM( IF(class='A', score, NULL)) AS 'classA',
+	SUM( IF(class='B', score, NULL)) AS 'classB',
+	SUM( IF(class='C', score, NULL)) AS 'classC' -- 班级增加的话，在这里新增一行就行
+  FROM t_score
+ WHERE 1 = 1
+ GROUP BY `grade`
+;
