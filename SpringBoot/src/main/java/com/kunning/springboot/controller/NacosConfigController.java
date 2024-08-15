@@ -6,7 +6,6 @@ package com.kunning.springboot.controller;
 
 import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
-// import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -14,15 +13,12 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 //配置发布之后，动态刷新配置
-// @RefreshScope
-// @RestController
-// @NacosPropertySource(dataId = "example", autoRefreshed = true)
-// @NacosPropertySource(dataId = "CloudApplication.properties", autoRefreshed = true)
-// @NacosConfigurationProperties(dataId = "CloudApplication.properties", autoRefreshed = true)
+ @RefreshScope
+ @RestController
+ @NacosConfigurationProperties(dataId = "CloudApplication.properties", autoRefreshed = true)
 public class NacosConfigController {
 
     @NacosValue(value="${user.id}", autoRefreshed=true)
@@ -32,7 +28,7 @@ public class NacosConfigController {
     @NacosValue(value="${user.age}", autoRefreshed=true)
     private String age;
 
-    @Resource
+    @Autowired
     private DiscoveryClient discoveryClient;
 
     /**

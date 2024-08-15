@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1rrprgw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.25.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="ask_for_leave_flow" name="员工请假流程" isExecutable="true" camunda:historyTimeToLive="30">
+    <bpmn:documentation>员工请假时，需要发起此流程。</bpmn:documentation>
+    <bpmn:startEvent id="ask_for_leave_flow_start" name="请假流程开始" camunda:initiator="starter">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.AutoApproveListener" event="start" />
+        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.AutoApproveListener" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1pgd9ua</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1pgd9ua" sourceRef="ask_for_leave_flow_start" targetRef="ask_for_leave_flow_user_apply" />
+    <bpmn:userTask id="ask_for_leave_flow_user_apply" name="员工发起请假" camunda:assignee="${starter}">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="reason" label="请假理由" type="string" />
+          <camunda:formField id="leaveDays" label="请假天数" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1pgd9ua</bpmn:incoming>
+      <bpmn:outgoing>Flow_05ygtrp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1tbcq0a">
+      <bpmn:incoming>Flow_0wcgflq</bpmn:incoming>
+      <bpmn:outgoing>ask_for_leave_flow_more_than_five_days</bpmn:outgoing>
+      <bpmn:outgoing>ask_for_leave_flow_less_than_five_days</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_05ygtrp" sourceRef="ask_for_leave_flow_user_apply" targetRef="ask_for_leave_flow_approve_1" />
+    <bpmn:userTask id="ask_for_leave_flow_approve_1" name="直接领导审批" camunda:assignee="zhangsan">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="comment" label="评论" type="string" defaultValue="同意" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_05ygtrp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wcgflq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:intermediateThrowEvent id="ask_for_leave_flow_end" name="请假流程结束">
+      <bpmn:incoming>Flow_1ouaja5</bpmn:incoming>
+      <bpmn:incoming>ask_for_leave_flow_less_than_five_days</bpmn:incoming>
+      <bpmn:incoming>ask_for_leave_flow_less_than_ten_days</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:userTask id="ask_for_leave_flow_approve_2" name="直接领导和经理审批" camunda:assignee="${leader}">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="comment" label="评论" type="string" defaultValue="同意" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>ask_for_leave_flow_more_than_five_days</bpmn:incoming>
+      <bpmn:outgoing>Flow_15zic2y</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="${leaders}" camunda:elementVariable="leader" />
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="ask_for_leave_flow_more_than_five_days" name="大于5天" sourceRef="Gateway_1tbcq0a" targetRef="ask_for_leave_flow_approve_2">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${addLeaders}" event="take" />
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${leaveDays&gt;5}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="ask_for_leave_flow_approve_3" name="直接领导、经理和总监审批" camunda:assignee="${leader}">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="comment" label="评论" type="string" defaultValue="同意" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>ask_for_leave_flow_more_than_ten_days</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ouaja5</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="${leaders}" camunda:elementVariable="leader" />
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1ouaja5" sourceRef="ask_for_leave_flow_approve_3" targetRef="ask_for_leave_flow_end" />
+    <bpmn:sequenceFlow id="Flow_0wcgflq" sourceRef="ask_for_leave_flow_approve_1" targetRef="Gateway_1tbcq0a" />
+    <bpmn:sequenceFlow id="ask_for_leave_flow_less_than_five_days" name="小于等于5天" sourceRef="Gateway_1tbcq0a" targetRef="ask_for_leave_flow_end">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${leaveDays&lt;=5}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_0cdvu60">
+      <bpmn:incoming>Flow_15zic2y</bpmn:incoming>
+      <bpmn:outgoing>ask_for_leave_flow_less_than_ten_days</bpmn:outgoing>
+      <bpmn:outgoing>ask_for_leave_flow_more_than_ten_days</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_15zic2y" sourceRef="ask_for_leave_flow_approve_2" targetRef="Gateway_0cdvu60" />
+    <bpmn:sequenceFlow id="ask_for_leave_flow_less_than_ten_days" name="小于等于10天" sourceRef="Gateway_0cdvu60" targetRef="ask_for_leave_flow_end" />
+    <bpmn:sequenceFlow id="ask_for_leave_flow_more_than_ten_days" name="大于10天" sourceRef="Gateway_0cdvu60" targetRef="ask_for_leave_flow_approve_3">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${leaveDays&gt;10}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ask_for_leave_flow">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="ask_for_leave_flow_start">
+        <dc:Bounds x="172" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="83" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e8erbr_di" bpmnElement="ask_for_leave_flow_user_apply">
+        <dc:Bounds x="270" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1tbcq0a_di" bpmnElement="Gateway_1tbcq0a" isMarkerVisible="true">
+        <dc:Bounds x="585" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p55xr1_di" bpmnElement="ask_for_leave_flow_approve_1">
+        <dc:Bounds x="430" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1pl4d8u_di" bpmnElement="ask_for_leave_flow_end">
+        <dc:Bounds x="1072" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1057" y="83" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1tadrud_di" bpmnElement="ask_for_leave_flow_approve_2">
+        <dc:Bounds x="689" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ourst1_di" bpmnElement="ask_for_leave_flow_approve_3">
+        <dc:Bounds x="940" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0cdvu60_di" bpmnElement="Gateway_0cdvu60" isMarkerVisible="true">
+        <dc:Bounds x="835" y="185" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1pgd9ua_di" bpmnElement="Flow_1pgd9ua">
+        <di:waypoint x="208" y="120" />
+        <di:waypoint x="270" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="493" y="191" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05ygtrp_di" bpmnElement="Flow_05ygtrp">
+        <di:waypoint x="370" y="120" />
+        <di:waypoint x="430" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gdtha1_di" bpmnElement="ask_for_leave_flow_more_than_five_days">
+        <di:waypoint x="610" y="145" />
+        <di:waypoint x="610" y="210" />
+        <di:waypoint x="689" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="615" y="191" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ouaja5_di" bpmnElement="Flow_1ouaja5">
+        <di:waypoint x="1040" y="280" />
+        <di:waypoint x="1100" y="280" />
+        <di:waypoint x="1100" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wcgflq_di" bpmnElement="Flow_0wcgflq">
+        <di:waypoint x="530" y="120" />
+        <di:waypoint x="585" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00r69ki_di" bpmnElement="ask_for_leave_flow_less_than_five_days">
+        <di:waypoint x="635" y="120" />
+        <di:waypoint x="1072" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="640" y="101" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15zic2y_di" bpmnElement="Flow_15zic2y">
+        <di:waypoint x="789" y="210" />
+        <di:waypoint x="835" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03himn1_di" bpmnElement="ask_for_leave_flow_less_than_ten_days">
+        <di:waypoint x="885" y="210" />
+        <di:waypoint x="1080" y="210" />
+        <di:waypoint x="1080" y="135" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="891" y="191" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0my6j7v_di" bpmnElement="ask_for_leave_flow_more_than_ten_days">
+        <di:waypoint x="860" y="235" />
+        <di:waypoint x="860" y="280" />
+        <di:waypoint x="940" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="865" y="261" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
