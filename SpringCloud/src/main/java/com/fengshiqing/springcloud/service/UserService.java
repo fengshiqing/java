@@ -5,7 +5,9 @@
 package com.fengshiqing.springcloud.service;
 
 import com.fengshiqing.springcloud.mapper.ProductMapper;
+import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +21,7 @@ import java.util.List;
  * @author 冯仕清
  * @since 2022-07-20
  */
+@Slf4j
 @AllArgsConstructor
 @Service
 public class UserService {
@@ -28,12 +31,12 @@ public class UserService {
 
     private final ProductMapper productMapper;
 
-    public int save(Product product) {
-        return jdbcTemplate.update("INSERT INTO products(name, code, price) values(?, ? , ?)", product.getName(), product.getCode(), product.getPrice());
+    public int save(ProductEntity productEntity) {
+        return jdbcTemplate.update("INSERT INTO products(name, code, price) values(?, ? , ?)", productEntity.getProductName(), productEntity.getProductCode(), productEntity.getOriginalPrice());
     }
 
-    public int update(Product product) {
-        return jdbcTemplate.update("UPDATE products SET name = ? , code = ? , price = ? WHERE id=?", product.getName(), product.getCode(), product.getPrice(), product.getId());
+    public int update(ProductEntity productEntity) {
+        return jdbcTemplate.update("UPDATE products SET name = ? , code = ? , price = ? WHERE id=?", productEntity.getProductName(), productEntity.getProductCode(), productEntity.getOriginalPrice(), productEntity.getId());
     }
 
     public int delete(long id) {
@@ -48,12 +51,12 @@ public class UserService {
      *
      * @return 产品详情信息
      */
-    public Product queryUserInfo(long id) {
+    public ProductEntity queryUserInfo(long id) {
         LOGGER.info("【queryProductInfo】【start】【id:{}】", id);
         return productMapper.selectByPrimaryKey(id);
     }
 
-    public List<Product> queryUserByPage(int pageNo, int pageSize) {
+    public List<ProductEntity> queryUserByPage(int pageNo, int pageSize) {
         int offset  = (pageNo - 1) * pageSize;
         return productMapper.selectProductByPage(offset, pageSize);
     }

@@ -2,7 +2,7 @@
  * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.client;
+package com.fengshiqing.springcloud.service.client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;

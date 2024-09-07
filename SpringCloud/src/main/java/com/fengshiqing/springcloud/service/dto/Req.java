@@ -2,7 +2,7 @@
  * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.service;
+package com.fengshiqing.springcloud.service.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -3,7 +3,7 @@
 
 <mapper namespace="com.fengshiqing.springcloud.mapper.UserFlowMapper">
 
-    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.service.Product">
+    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.mapper.entity.ProductEntity">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
