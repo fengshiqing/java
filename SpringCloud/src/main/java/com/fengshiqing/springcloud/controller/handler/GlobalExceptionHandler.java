@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -30,39 +31,45 @@ import java.sql.SQLException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = Exception.class)
-    public Resp handleException(Exception exception) {
-        log.error("【统一处理Exception】", exception);
+    @ExceptionHandler(Exception.class)
+    public Resp handleException(Exception e) {
+        log.error("【统一异常处理 Exception】", e);
         return new Resp(500, I18nUtil.getMessage("system.error"));
     }
 
-    @ExceptionHandler(value = BizException.class)
+    @ExceptionHandler(BizException.class)
     public Resp handleBizException(BizException e) {
-        log.error("【统一处理BizException】", e);
+        log.error("【统一异常处理 BizException】", e);
         return new Resp(e.getExceptionCode(), e.getMessage());
     }
 
-    @ExceptionHandler(value = IOException.class)
+    @ExceptionHandler(IOException.class)
     public Resp handleIOException(IOException e) {
-        log.error("【统一处理IOException】", e);
+        log.error("【统一异常处理 IOException】", e);
         return new Resp(500005, e.getMessage());
     }
 
-    @ExceptionHandler(value = SQLException.class)
+    @ExceptionHandler(SQLException.class)
     public Resp handleSqlException(SQLException e) {
-        log.error("【统一处理SQLException】", e);
+        log.error("【统一异常处理 SQLException】", e);
         return new Resp(500015, e.getMessage());
     }
 
-    @ExceptionHandler(value = BadSqlGrammarException.class)
+    @ExceptionHandler(BadSqlGrammarException.class)
     public Resp handleSqlException(BadSqlGrammarException e) {
-        log.error("【统一处理BadSqlGrammarException】", e);
+        log.error("【统一异常处理 BadSqlGrammarException】", e);
         return new Resp(500025, I18nUtil.getMessage("system.error"));
     }
 
-    @ExceptionHandler(value = NoSuchMessageException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Resp handleNoSuchMessageException(MethodArgumentNotValidException e) {
+        log.error("【统一异常处理 MethodArgumentNotValidException】", e);
+        return new Resp(500035, "【没有配置国际化文本】");
+    }
+
+    @ExceptionHandler(NoSuchMessageException.class)
     public Resp handleNoSuchMessageException(NoSuchMessageException e) {
-        log.error("【统一处理NoSuchMessageException】", e);
+        log.error("【统一异常处理 NoSuchMessageException】", e);
         return new Resp(500035, "【没有配置国际化文本】");
     }
 
