@@ -40,7 +40,7 @@
       <bpmn:incoming>ask_for_leave_flow_less_than_five_days</bpmn:incoming>
       <bpmn:incoming>ask_for_leave_flow_less_than_ten_days</bpmn:incoming>
     </bpmn:intermediateThrowEvent>
-    <bpmn:userTask id="ask_for_leave_flow_approve_2" name="直接领导和经理审批" camunda:assignee="${leader}">
+    <bpmn:userTask id="ask_for_leave_flow_approve_2" name="经理审批" camunda:assignee="${leader}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="comment" label="评论" type="string" defaultValue="同意" />
@@ -56,7 +56,7 @@
       </bpmn:extensionElements>
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${leaveDays&gt;5}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:userTask id="ask_for_leave_flow_approve_3" name="直接领导、经理和总监审批" camunda:assignee="${leader}">
+    <bpmn:userTask id="ask_for_leave_flow_approve_3" name="总监审批" camunda:assignee="${leader}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="comment" label="评论" type="string" defaultValue="同意" />

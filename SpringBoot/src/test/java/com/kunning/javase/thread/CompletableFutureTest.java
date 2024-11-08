@@ -188,9 +188,9 @@ public class CompletableFutureTest {
             ));
         }
         // 等待全部完成
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()])).join(); // join()必须写上，才有效果
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join(); // join()必须写上，才有效果
         // 只要任何一个执行完了，就能往下执行
-        CompletableFuture.anyOf(futures.toArray(new CompletableFuture[futures.size()])).join(); // join()必须写上，才有效果
+        CompletableFuture.anyOf(futures.toArray(new CompletableFuture[0])).join(); // join()必须写上，才有效果
         long costTime = System.currentTimeMillis() - startT;
         System.out.println("costTime = " + costTime);
         System.out.println("objects = " + objects);

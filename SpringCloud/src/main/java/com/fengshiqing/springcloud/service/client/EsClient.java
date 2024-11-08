@@ -2,7 +2,7 @@
  * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.client;
+package com.fengshiqing.springcloud.service.client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
@@ -47,7 +47,7 @@ public class EsClient {
      */
     @PostConstruct
     private void initClient() {
-        String hostname = "192.168.10.100";
+        String hostname = "192.168.0.100";
 
         // 基本的用户名密码认证
         String username = "elastic";

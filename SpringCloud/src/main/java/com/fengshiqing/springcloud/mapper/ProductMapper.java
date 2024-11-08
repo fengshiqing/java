@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springcloud.mapper;
 
-import com.fengshiqing.springcloud.service.Product;
+import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,15 +15,15 @@ public interface ProductMapper {
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(Product record);
+    int insert(ProductEntity record);
 
-    int insertSelective(Product record);
+    int insertSelective(ProductEntity record);
 
-    Product selectByPrimaryKey(Long id);
+    ProductEntity selectByPrimaryKey(Long id);
 
-    List<Product> selectProductByPage(@Param("offset") int offset, @Param("pageSize") int pageSize);
+    List<ProductEntity> selectProductByPage(@Param("offset") int offset, @Param("pageSize") int pageSize);
 
-    int updateByPrimaryKeySelective(Product record);
+    int updateByPrimaryKeySelective(ProductEntity record);
 
-    int updateByPrimaryKey(Product record);
+    int updateByPrimaryKey(ProductEntity record);
 }

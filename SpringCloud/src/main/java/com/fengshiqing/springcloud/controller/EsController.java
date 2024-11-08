@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springcloud.controller;
 
-import com.fengshiqing.springcloud.client.EsClient;
+import com.fengshiqing.springcloud.service.client.EsClient;
 import com.fengshiqing.springcloud.utils.I18nUtil;
 import com.fengshiqing.common.bean.Resp;
 import lombok.AllArgsConstructor;

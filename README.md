@@ -1,6 +1,9 @@
 # java
 JavaSE、JavaEE学习汇总
 
+## swagger文档地址
+http://localhost:8080/swagger-ui.html
+
 各种后端技术、平时看到的知识贴、视频教程，都在这里验证下。
 
 JUC教程
@@ -19,23 +22,29 @@ https://www.bilibili.com/video/BV12A4y197sa/?spm_id_from=333.788&vd_source=f2fb9
 
 
 ## nacos
-启动：bash /opt/nacos-2.3.0/bin/startup.sh -m standalone
 
-停止：bash /opt/nacos-2.3.0/bin/shutdown.sh
+https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
+这里面有对应的版本，我用的最新的SpringCloud版本，对应的nacos推荐使用2.2.1版本。
 
-管理台页面：http://192.168.10.100:8848/nacos
+##### 启动：
+bash /opt/nacos-2.3.0/bin/startup.sh -m standalone
+
+##### 停止：
+bash /opt/nacos-2.3.0/bin/shutdown.sh
+
+管理台页面：http://192.168.0.100:8848/nacos
 
 
 
 ## kafka（包含zookeeper）
-1、启动 zookeeper
+##### 1、启动 zookeeper
 bash /opt/kafka_2.13-3.6.1/bin/zookeeper-server-start.sh -daemon  /opt/kafka_2.13-3.6.1/config/zookeeper.properties
-2、启动 kafka
+##### 2、启动 kafka
 bash /opt/kafka_2.13-3.6.1/bin/kafka-server-start.sh     -daemon  /opt/kafka_2.13-3.6.1/config/server.properties
 
-1、停止 kafka
+##### 1、停止 kafka
 bash /opt/kafka_2.13-3.6.1/bin/kafka-server-stop.sh
-2、停止 zookeeper
+##### 2、停止 zookeeper
 bash /opt/kafka_2.13-3.6.1/bin/zookeeper-server-stop.sh
 
 
@@ -113,3 +122,28 @@ ACT_RU_TASK
 
 ACT_RU_EXECUTION
 
+
+
+
+
+
+
+
+# Docker
+构建镜像，镜像的名字为"springcloud"，注意命令最后有个"."符号：
+sudo docker build   --build-arg build_timeout=10m     -t springcloud  .
+
+构建成功后（很不容易才成功，镜像源很多被封了），查看已经构建好的镜像：
+sudo docker images
+
+
+docker  run  -d  -p 8080:8080  --name  springcloud-8080 springcloud
+
+
+
+
+查看容器(运行中)：
+sudo  docker ps
+
+查看所有的容器：
+sudo  docker ps  -a
