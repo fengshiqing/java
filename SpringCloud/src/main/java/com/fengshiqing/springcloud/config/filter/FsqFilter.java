@@ -2,7 +2,7 @@
  * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.filter;
+package com.fengshiqing.springcloud.config.filter;
 
 import java.io.IOException;
 
