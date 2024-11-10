@@ -33,6 +33,20 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 
 
 
+# 新建 t_user_daily_sign_in 表
+CREATE TABLE IF NOT EXISTS `t_user_daily_sign_in` (
+    `user_id`           VARCHAR(20)    NOT NULL                                        COMMENT '用户ID',
+    `month`             int            NOT NULL                                        COMMENT '签到月份，例如：202309，202310',
+    `detail`            BIT(31)        NOT NULL                                        COMMENT '当月的签到记录详情',
+    `continuous_num`    int            NOT NULL                                        COMMENT '当月最大连续签到次数',
+    `total_num`         int            NOT NULL                                        COMMENT '当月签到总次数',
+    `create_time`       DATETIME       NOT NULL    DEFAULT NOW()                       COMMENT '创建时间',
+    `update_time`       DATETIME       NOT NULL    DEFAULT NOW()    ON UPDATE NOW()    COMMENT '修改时间',
+    PRIMARY KEY (`userId`, `month`)
+) COMMENT '用户签到表';
+
+
+
 # 新建 t_product 表
 CREATE TABLE IF NOT EXISTS `t_product` (
     `id`              BIGINT           NOT NULL    AUTO_INCREMENT    PRIMARY KEY       COMMENT '自增主键ID',
