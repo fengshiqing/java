@@ -26,10 +26,12 @@ public class I18nUtil implements ApplicationContextAware {
 
     private static MessageSource messageSource;
 
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         messageSource = applicationContext.getBean(MessageSource.class);
     }
+
 
     /**
      * 功能描述：获取国际化message
@@ -38,17 +40,18 @@ public class I18nUtil implements ApplicationContextAware {
      * @return 国际化文本
      */
     public static String getMessage(String msgKey) {
-        return messageSource.getMessage(msgKey, null, null, LocaleContextHolder.getLocale());
+        return messageSource.getMessage(msgKey, null, LocaleContextHolder.getLocale());
     }
+
 
     /**
      * 功能描述：获取国际化message
      *
      * @param msgKey 配置的key
-     * @param args   占位参数
+     * @param args 占位参数
      * @return 国际化文本
      */
-    public static String getMessage(String msgKey, @Nullable Object[] args) {
+    public static String getMessage(String msgKey, @Nullable Object... args) {
         return messageSource.getMessage(msgKey, args, LocaleContextHolder.getLocale());
     }
 
