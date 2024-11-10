@@ -8,6 +8,7 @@ import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.springcloud.utils.I18nUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.NoSuchMessageException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
@@ -86,6 +87,12 @@ public class GlobalExceptionHandler {
     public Resp handleDateTimeParseException(DateTimeParseException e) {
         log.error("【统一异常处理 DateTimeParseException】", e);
         return new Resp(400004, I18nUtil.getMessage("system.error"));
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public Resp handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        log.error("【统一异常处理 HttpMessageNotReadableException】", e);
+        return new Resp(400005, I18nUtil.getMessage("biz.request.param.error"));
     }
 
     @ExceptionHandler(IOException.class)
