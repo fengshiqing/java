@@ -49,7 +49,11 @@ public class AppConfig {
         reqLogFilter.setIncludeClientInfo(true);
         reqLogFilter.setIncludeHeaders(true);
         reqLogFilter.setIncludePayload(true);
-        reqLogFilter.setAfterMessagePrefix("【请求参数】【HTTP】【REQUEST】");
+        reqLogFilter.setMaxPayloadLength(1024); // 默认是 50 个字符，很多参数打印不全的。
+        reqLogFilter.setBeforeMessagePrefix("【请求前】【打印日志】【开始】");
+        reqLogFilter.setBeforeMessageSuffix("【请求前】【打印日志】【结束】");
+        reqLogFilter.setAfterMessagePrefix("【请求后】【打印日志】【开始】");
+        reqLogFilter.setAfterMessageSuffix("【请求后】【打印日志】【结束】");
         return reqLogFilter;
     }
 
