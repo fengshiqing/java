@@ -5,12 +5,15 @@
 package com.fengshiqing.springcloud.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import java.util.concurrent.Executor;
@@ -93,6 +96,14 @@ public class AppConfig {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();// 执行初始化
         return executor;
+    }
+
+
+    @Bean
+    @LoadBalanced // @LoadBalanced是服务发现和负载均衡的一个标识标签不可以省略
+    public RestTemplate restTemplate(RestTemplateBuilder builder){
+        RestTemplate restTemplate = builder.build();
+        return restTemplate;
     }
 
 
