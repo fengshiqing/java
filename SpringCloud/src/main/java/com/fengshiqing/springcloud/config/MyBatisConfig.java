@@ -4,9 +4,8 @@
 
 package com.fengshiqing.springcloud.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,10 +15,10 @@ import org.springframework.context.annotation.Configuration;
  * @author 冯仕清
  * @since 2020/03/20 19:09
  */
+@Slf4j
 @Configuration
 @MapperScan(basePackages = "com.fengshiqing.springcloud.**.mapper") // 和 @ComponentScan 注解功能类似
 public class MyBatisConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MyBatisConfig.class);
 
     /**
      * 当在构造方法上使用 @Autowired注解 的时候，需要注意的一点就是一个类中只允许有一个构造方法使用此注解。
@@ -27,6 +26,6 @@ public class MyBatisConfig {
      */
     @Autowired
     public MyBatisConfig() {
-        LOGGER.info("【初始化 Mybatis 配置】");
+        log.info("【初始化 Mybatis 配置】");
     }
 }

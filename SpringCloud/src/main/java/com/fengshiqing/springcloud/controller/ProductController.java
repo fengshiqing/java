@@ -8,10 +8,11 @@ import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.common.bean.RespData;
 import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
 import com.fengshiqing.springcloud.service.ProductService;
-import com.fengshiqing.springcloud.service.dto.Req;
+import com.fengshiqing.springcloud.service.dto.ReqPaged;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 @AllArgsConstructor
 @RestController
+@Validated
 public class ProductController {
     public static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
@@ -81,16 +83,16 @@ public class ProductController {
 
     /**
      * 功能描述：分页查询产品列表数据。
-     * @param req 请求参数
+     * @param reqPaged 请求参数
      *
      * @return 产品列表数据
      */
     @PostMapping("/product/queryProductByPage")
-    public RespData<List<ProductEntity>> queryProductByPage(@RequestBody Req req) {
-        LOGGER.info("【queryProductByPage】【start】【req:{}】", req);
+    public RespData<List<ProductEntity>> queryProductByPage(@RequestBody  ReqPaged reqPaged) {
+        LOGGER.info("【queryProductByPage】【start】【req:{}】", reqPaged);
 
         long start = System.currentTimeMillis();
-        List<ProductEntity> productEntityList = productService.queryProductByPage(req.getPageNo(), req.getPageSize());
+        List<ProductEntity> productEntityList = productService.queryProductByPage(reqPaged.getPageNo(), reqPaged.getPageSize());
         // { "pageSize": 10, "pageNo": 10000 } 表里存了100w数据，这样查询需要 50ms左右的时间
         // { "pageSize": 10, "pageNo": 100000 } 表里存了100w数据，这样查询需要 300+ms时间
         // 一般查询1000条数据，不会有啥影响的，大分页也得1w以后的页才会受点影响。

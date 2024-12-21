@@ -4,28 +4,62 @@
 
 package com.fengshiqing.springcloud.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
+@Slf4j
 @Configuration
 public class AppConfig {
-    public static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
     /**
      * 构造函数
      */
     public AppConfig() {
-        LOGGER.info("【AppConfig】【初始化配置】");
+        log.info("【AppConfig】【初始化配置】");
     }
+
+
+    /**
+     * 功能描述：记录请求日志。
+     * Spring Boot有一个内置的日志记录解决方案，比自己写切面要优雅的多。
+     * <p>
+     * 1、通过 AbstractRequestLoggingFilter 可以记录请求的详细信息。
+     * AbstractRequestLoggingFilter 有两个不同的实现类，我们常用的是 CommonsRequestLoggingFilter。
+     * 通过 CommonsRequestLoggingFilter 开发者可以自定义记录请求的参数、请求体、请求头和客户端信息。
+     * 启用方式很简单，加个如下的配置就行了：
+     * <p>
+     * 2、然后在 application.properties 中配置日志级别为 DEBUG，就可以详细记录请求信息：
+     * logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter=DEBUG
+     *
+     * @return CommonsRequestLoggingFilter
+     */
+    @Bean
+    public CommonsRequestLoggingFilter logFilter() {
+        CommonsRequestLoggingFilter reqLogFilter = new CommonsRequestLoggingFilter();
+        reqLogFilter.setIncludeQueryString(true);
+        reqLogFilter.setIncludeClientInfo(true);
+        reqLogFilter.setIncludeHeaders(true);
+        reqLogFilter.setIncludePayload(true);
+        reqLogFilter.setMaxPayloadLength(1024); // 默认是 50 个字符，很多参数打印不全的。
+        reqLogFilter.setBeforeMessagePrefix("【请求前】【打印日志】【开始】");
+        reqLogFilter.setBeforeMessageSuffix("【请求前】【打印日志】【结束】");
+        reqLogFilter.setAfterMessagePrefix("【请求后】【打印日志】【开始】");
+        reqLogFilter.setAfterMessageSuffix("【请求后】【打印日志】【结束】");
+        return reqLogFilter;
+    }
+
 
     /**
      * 功能描述：配置线程池。
@@ -34,7 +68,7 @@ public class AppConfig {
      */
     @Bean
     public Executor commonThreadPool() {
-        LOGGER.info("【init config】【Thread Pool】");
+        log.info("【init config】【Thread Pool】");
         /*
          * 如果此时线程池中的数量小于corePoolSize，即使线程池中的线程都处于空闲状态，也要创建新的线程来处理被添加的任务。
          *
@@ -65,6 +99,14 @@ public class AppConfig {
     }
 
 
+    @Bean
+    @LoadBalanced // @LoadBalanced是服务发现和负载均衡的一个标识标签不可以省略
+    public RestTemplate restTemplate(RestTemplateBuilder builder){
+        RestTemplate restTemplate = builder.build();
+        return restTemplate;
+    }
+
+
     /**
      * 功能描述：配置 redisTemplate。注意这个泛型。
      *
@@ -73,7 +115,7 @@ public class AppConfig {
      */
     @Bean
     public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        LOGGER.info("【init config】【redisTemplate】");
+        log.info("【init config】【redisTemplate】");
 
         RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
