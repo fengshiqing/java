@@ -19,13 +19,13 @@ spring:
 
   # 数据库配置
   datasource:
-    url: jdbc:mysql://192.168.0.100:3306/vonsiking?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://192.168.2.100:3306/vonsiking?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
-    password: root
+    password: feng234800
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   kafka:
-    bootstrap-servers: 192.168.0.100:9092
+    bootstrap-servers: 192.168.2.100:9092
     producer:
       # 发生错误后，消息重发的次数。
       retries: 0
@@ -65,7 +65,7 @@ spring:
 
   data:
     redis:
-      host: 192.168.0.100
+      host: 192.168.2.100
       port: 6379 # Redis服务器连接密码（默认为空）
       password:  # Redis服务器连接密码（默认为空）
       database: 0 # Redis数据库索引（默认为0）
@@ -81,7 +81,7 @@ spring:
   # low level低级别的已过期的操作方式。
   elasticsearch:
     rest:
-      uris: 192.168.0.100:9200
+      uris: 192.168.2.100:9200
       connection-timeout: 1s
       read-timeout: 30s
 
@@ -94,7 +94,7 @@ elasticsearch:
   open: true
   # es集群名称,如果下载es设置了集群名称,则使用配置的集群名称
   clusterName: es
-  hosts: 192.168.0.100:9200
+  hosts: 192.168.2.100:9200
   # es 请求方式
   scheme: http
   # es 连接超时时间

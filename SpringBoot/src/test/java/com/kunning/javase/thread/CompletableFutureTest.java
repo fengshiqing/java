@@ -15,6 +15,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class CompletableFutureTest {
+
     //执行2个不相关的业务（两个业务没有依赖关系）
     @Test
     public void testRunAsync() throws ExecutionException, InterruptedException {
