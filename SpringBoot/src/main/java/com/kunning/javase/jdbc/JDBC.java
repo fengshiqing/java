@@ -20,7 +20,7 @@ public class JDBC {
         Class.forName("com.mysql.jdbc.Driver");// 第一步的进阶版
         // 2、获取数据库连接
         Connection con = DriverManager
-                .getConnection("jdbc:mysql://192.168.0.100:3306/fengshiqing?user='root'&password=feng234800");
+                .getConnection("jdbc:mysql://192.168.2.100:3306/fengshiqing?user='root'&password=feng234800");
         // 3、创建传输器对象
         Statement stat = con.createStatement();
         // 4、利用传输器对象传输sql语句到数据库中执行
