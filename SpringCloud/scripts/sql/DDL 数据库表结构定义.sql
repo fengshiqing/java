@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `t_user_daily_sign_in` (
     `total_num`         int            NOT NULL                                        COMMENT '当月签到总次数',
     `create_time`       DATETIME       NOT NULL    DEFAULT NOW()                       COMMENT '创建时间',
     `update_time`       DATETIME       NOT NULL    DEFAULT NOW()    ON UPDATE NOW()    COMMENT '修改时间',
-    PRIMARY KEY (`userId`, `month`)
+    PRIMARY KEY (`user_id`, `month`)
 ) COMMENT '用户签到表';
 
 
@@ -142,3 +142,38 @@ SELECT
  WHERE 1 = 1
  GROUP BY `grade`
 ;
+
+
+
+# 排行榜操作历史表，可以使用 此表的数据来统计出 最终的排行榜： select sum(quantity), biz_id  FROM t_ranking  GROUP BY  biz_id; -- 这样会比较慢，因此直接再新建一张结果表
+CREATE TABLE IF NOT EXISTS t_ranking_history (
+    id           BIGINT         PRIMARY KEY  AUTO_INCREMENT  COMMENT '自增主键',
+    rank_type    VARCHAR(20)    NOT NULL  DEFAULT ''      COMMENT '榜单类型，比如：like(点赞)、collect(收藏)、transmit(转发)、comment(评论)、score(得分)',
+    biz_id       VARCHAR(20)    NOT NULL  DEFAULT ''      COMMENT '排行榜中的业务对象的ID，例如 帖子的ID、文章的ID',
+    quantity     INT            NOT NULL  DEFAULT 0       COMMENT '数量变化 (点赞+1, 取消点赞-1, 评分+10)',
+    opt_time     DATETIME(3)    NOT NULL  DEFAULT NOW(3)  COMMENT '操作时间',
+#     这里本来想使用 联合主键的，deepseek了下 联合主键的 优缺点：
+#     优点
+#         查询性能：当查询条件完全匹配联合主键的所有字段时，性能非常好（等同于单列主键）
+#         天然索引：联合主键本身就是一个复合索引，可以避免额外创建索引
+#         数据唯一性：确保多个字段组合的唯一性
+#     缺点
+#         写入性能：比单列自增主键稍差，特别是当联合主键包含非顺序字段时
+#         索引膨胀：联合主键会占用更多存储空间（InnoDB的二级索引会包含主键值）————这个要尤其注意，索引多的情况下，要避免使用联合主键。
+#         页分裂风险：非顺序的主键可能导致更多的页分裂操作————这一点和 第一点 是一样的问题，也分裂就会导致写入速度变慢。
+    unique key index_key_union(rank_type, biz_id, quantity, opt_time) -- 创建主键(多字段联合主键)
+) COMMENT='排行榜操作历史表';
+
+
+
+# 排行榜结果表，直接可以查询出某个排行榜的清单列表： select biz_id, total_quantity  FROM t_ranking  WHERE rank_type='like'  ORDER BY  total_quantity DESC; -- 这样会比较慢，因此直接再新建一张结果表
+CREATE TABLE IF NOT EXISTS t_ranking_Result (
+    id                BIGINT         PRIMARY KEY             AUTO_INCREMENT       COMMENT '自增主键',
+    rank_type         VARCHAR(20)    NOT NULL  DEFAULT ''                         COMMENT '榜单类型，比如：like(点赞)、collect(收藏)、transmit(转发)、comment(评论)',
+    biz_id            VARCHAR(20)    NOT NULL  DEFAULT ''                         COMMENT '排行榜中的业务对象的ID，例如 帖子的ID、文章的ID',
+    total_quantity    INT            NOT NULL  DEFAULT 0                          COMMENT '总数量 (点赞数, 评分)',
+    last_update_time  DATETIME(3)    NOT NULL  DEFAULT NOW(3)  ON UPDATE  NOW(3)  COMMENT '操作时间',
+    unique key unique_key_union(rank_type, biz_id) -- 创建主键(多字段联合主键)
+) COMMENT='排行榜结果表';
+
+

@@ -90,7 +90,7 @@ public class AppConfig {
         executor.setMaxPoolSize(100); // 最大线程数
         executor.setKeepAliveSeconds(300); // 允许的空闲时间，默认是60秒，超过次空闲时间，除了核心线程以外的空闲的线程会被销毁
         executor.setQueueCapacity(999); // 配置缓冲队列大小，最大线程都不够用时，先存在这个队列里等待
-        executor.setThreadNamePrefix("commonTP--"); // 配置线程池中的线程的名称前缀
+        executor.setThreadNamePrefix("common-Async-TP--"); // 配置线程池中的线程的名称前缀
         // rejection-policy：当pool已经达到max size时，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
@@ -103,37 +103,6 @@ public class AppConfig {
     @LoadBalanced // @LoadBalanced是服务发现和负载均衡的一个标识标签不可以省略
     public RestTemplate restTemplate(RestTemplateBuilder builder){
         return builder.build();
-    }
-
-
-    /**
-     * 功能描述：配置 redisTemplate。注意这个泛型。
-     *
-     * @param redisConnectionFactory 参数
-     * @return redisTemplate
-     */
-    @Bean
-    public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        log.info("【init config】【redisTemplate】");
-
-        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(stringRedisSerializer); // 设置key和value的序列化规则
-        redisTemplate.setValueSerializer(stringRedisSerializer); // 设置key和value的序列化规则
-        redisTemplate.setHashKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashValueSerializer(stringRedisSerializer);
-        return redisTemplate;
-
-//        RedisTemplate<String, Object> template = new RedisTemplate<>();
-//        template.setConnectionFactory(redisConnectionFactory);
-//        // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
-//        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
-//        template.setValueSerializer(serializer);
-//        template.setKeySerializer(new StringRedisSerializer());
-//        template.setHashKeySerializer(new StringRedisSerializer());
-//        template.setHashValueSerializer(serializer);
-
     }
 
 }
