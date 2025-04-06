@@ -10,9 +10,9 @@ BEGIN
     WHILE(i < max_num)
         DO
             INSERT INTO `vonsiking`.`t_user` (
-                `userId`, `username`, `password`, `personalized_signature`
+                `user_id`, `user_name`, `password`, `personalized_signature`
             ) VALUES (
-		        UUID_SHORT(), //
+		        UUID_SHORT(),
                 CONCAT('冯仕清', ROUND(RAND()*1000, 0)),
                 CONCAT('password', ROUND(RAND()*1000, 0)),
                 CONCAT('fengshiqing', ROUND(RAND()*1000, 0))
@@ -35,12 +35,15 @@ BEGIN
     WHILE(i < max_num)
         DO
             INSERT INTO `vonsiking`.`t_product` (
-                `name`, `code`, `description`, `price`
+                `product_code`, `product_name`, `description`, `original_price`, `discount_price`, `create_user`, `update_user`
             ) VALUES (
-                CONCAT('冯仕清', ROUND(RAND()*1000, 0)),
                 CONCAT('fengshiqing', ROUND(RAND()*1000, 0)),
+                CONCAT('冯仕清', ROUND(RAND()*1000, 0)),
                 CONCAT('描述信息', ROUND(RAND()*1000, 0)),
-                ROUND(RAND()*1000, 0)
+                ROUND(RAND()*1000, 0),
+                ROUND(RAND()*1000, 0),
+                ROUND(RAND()*100000, 0),
+                ROUND(RAND()*100000, 0)
             );
             SET i = i + 1;
     END WHILE;
