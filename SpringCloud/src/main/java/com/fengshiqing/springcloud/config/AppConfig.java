@@ -102,8 +102,7 @@ public class AppConfig {
     @Bean
     @LoadBalanced // @LoadBalanced是服务发现和负载均衡的一个标识标签不可以省略
     public RestTemplate restTemplate(RestTemplateBuilder builder){
-        RestTemplate restTemplate = builder.build();
-        return restTemplate;
+        return builder.build();
     }
 
 
