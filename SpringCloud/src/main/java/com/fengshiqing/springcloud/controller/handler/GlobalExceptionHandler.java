@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -58,7 +59,7 @@ public class GlobalExceptionHandler {
 
 
     /**
-     * 这个是处理 方法参数为 实体类 的校验的异常
+     * 这个是处理 方法参数为 实体类 的校验的异常（@RequestBody注解修饰的参数）
      * @param e MethodArgumentNotValidException
      * @return Resp
      */
@@ -81,6 +82,17 @@ public class GlobalExceptionHandler {
     public Resp handleNoSuchMessageException(NoSuchMessageException e) {
         log.error("【统一异常处理 NoSuchMessageException】", e);
         return new Resp(400003, e.getMessage());
+    }
+
+    /**
+     * 这个是处理 URL 上的问号后的参数为空(null 或者 空字符串) 的异常。（@RequestParam 注解修饰的字段）
+     * @param e MethodArgumentNotValidException
+     * @return Resp
+     */
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public Resp handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
+        log.error("【统一异常处理 MissingServletRequestParameterException】", e);
+        return new Resp(400004, e.getMessage());
     }
 
     @ExceptionHandler(DateTimeParseException.class)
