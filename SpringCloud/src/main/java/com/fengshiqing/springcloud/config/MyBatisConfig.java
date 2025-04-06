@@ -24,8 +24,8 @@ public class MyBatisConfig {
      * 当在构造方法上使用 @Autowired注解 的时候，需要注意的一点就是一个类中只允许有一个构造方法使用此注解。
      * 此外，在Spring4.3后，如果一个类仅仅只有一个构造方法，那么即使不使用此注解，那么Spring也会自动注入相关的bean。
      */
-    @Autowired
     public MyBatisConfig() {
         log.info("【初始化 Mybatis 配置】");
     }
+
 }
