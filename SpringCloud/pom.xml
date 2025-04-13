@@ -153,24 +153,6 @@
             <version>3.0.5</version>
         </dependency>
 
-        <!--camunda start-->
-        <!-- https://mvnrepository.com/artifact/org.camunda.bpm.springboot/camunda-bpm-spring-boot-starter -->
-        <dependency>
-            <groupId>org.camunda.bpm.springboot</groupId>
-            <artifactId>camunda-bpm-spring-boot-starter</artifactId>
-        </dependency>
-<!--        &lt;!&ndash;这个好像用不上&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.camunda.bpm.springboot</groupId>-->
-<!--            <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>-->
-<!--        </dependency>-->
-        <!--这个提供了一个管理台页面-->
-        <dependency>
-            <groupId>org.camunda.bpm.springboot</groupId>
-            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
-        </dependency>
-        <!--camunda end-->
-
     </dependencies>
 
     <build>
