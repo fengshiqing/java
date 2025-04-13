@@ -1,10 +1,11 @@
 /*
- * Copyright (c) 2020. fengshiqing 冯仕清. All right reserved.
+ * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.service.redis;
+package com.fengshiqing.springcloud.service.client;
 
 import lombok.AllArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -25,6 +26,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisService {
 
+    private final Environment env;
+
     private final RedisTemplate<Object, Object> redisTemplate;
 
     private final StringRedisTemplate stringRedisTemplate;
@@ -40,7 +43,7 @@ public class RedisService {
      * @return true存在，false不存在
      */
     public Boolean exists(final String key) {
-        return stringRedisTemplate.hasKey(key);
+        return stringRedisTemplate.hasKey(env.getProperty("spring.application.name") + ":" + key);
     }
 
     /**
@@ -49,7 +52,7 @@ public class RedisService {
      * @param key redisKey
      */
     public void delete(final String key) {
-        stringRedisTemplate.delete(key);
+        stringRedisTemplate.delete(env.getProperty("spring.application.name") + ":" + key);
     }
 
     /**
@@ -59,7 +62,7 @@ public class RedisService {
      */
     public void remove(final String... keys) {
         for (String key : keys) {
-            remove(key);
+            remove(env.getProperty("spring.application.name") + ":" + key);
         }
     }
 
@@ -70,8 +73,9 @@ public class RedisService {
      */
     public final void removePattern(final String pattern) {
         Set<Object> keys = redisTemplate.keys(pattern);
-        if (!keys.isEmpty())
+        if (!keys.isEmpty()) {
             redisTemplate.delete(keys);
+        }
     }
 
     // ======================================================String=====================================================
@@ -84,7 +88,7 @@ public class RedisService {
      * @return redisValue
      */
     public final Object get(final String key) {
-        return stringRedisTemplate.opsForValue().get(key);
+        return stringRedisTemplate.opsForValue().get(env.getProperty("spring.application.name") + ":" + key);
     }
 
     /**
@@ -94,7 +98,7 @@ public class RedisService {
      * @param value redisValue
      */
     public final void set(final String key, String value) {
-        stringRedisTemplate.opsForValue().set(key, value);
+        stringRedisTemplate.opsForValue().set(env.getProperty("spring.application.name") + ":" + key, value);
     }
 
     /**
@@ -105,7 +109,7 @@ public class RedisService {
      * @param expireTime 过期时间，单位/秒
      */
     public final void set(final String key, String value, Long expireTime) {
-        stringRedisTemplate.opsForValue().set(key, value, expireTime, TimeUnit.SECONDS);
+        stringRedisTemplate.opsForValue().set(env.getProperty("spring.application.name") + ":" + key, value, expireTime, TimeUnit.SECONDS);
     }
 
     // ======================================================Map========================================================
@@ -118,7 +122,7 @@ public class RedisService {
      * @param value redisValue
      */
     public final void hmSet(String key, Object hashKey, Object value) {
-        redisTemplate.opsForHash().put(key, hashKey, value);
+        redisTemplate.opsForHash().put(env.getProperty("spring.application.name") + ":" + key, hashKey, value);
     }
 
     /**
@@ -130,7 +134,7 @@ public class RedisService {
      * @return Map(哈希)类型的数据
      */
     public final Object hmGet(String key, Object hashKey) {
-        return redisTemplate.opsForHash().get(key, hashKey);
+        return redisTemplate.opsForHash().get(env.getProperty("spring.application.name") + ":" + key, hashKey);
     }
 
     // ======================================================List=======================================================
@@ -142,7 +146,7 @@ public class RedisService {
      * @param v value
      */
     public final void lPush(String k, Object v) {
-        redisTemplate.opsForList().rightPush(k, v);
+        redisTemplate.opsForList().rightPush(env.getProperty("spring.application.name") + ":" + k, v);
     }
 
     /**
@@ -155,7 +159,7 @@ public class RedisService {
      * @return List
      */
     public final List<Object> lRange(String key, long start, long end) {
-        return redisTemplate.opsForList().range(key, start, end);
+        return redisTemplate.opsForList().range(env.getProperty("spring.application.name") + ":" + key, start, end);
     }
 
     // ======================================================Set========================================================
@@ -168,7 +172,7 @@ public class RedisService {
      */
     public final void add(String key, Object value) {
         SetOperations<Object, Object> set = redisTemplate.opsForSet();
-        set.add(key, value);
+        set.add(env.getProperty("spring.application.name") + ":" + key, value);
     }
 
     /**
@@ -180,7 +184,7 @@ public class RedisService {
      */
     public final Set<Object> setMembers(String key) {
         SetOperations<Object, Object> set = redisTemplate.opsForSet();
-        return set.members(key);
+        return set.members(env.getProperty("spring.application.name") + ":" + key);
     }
 
 
@@ -196,7 +200,7 @@ public class RedisService {
      */
     public final void zAdd(String key, Object value, double score) {
         ZSetOperations<Object, Object> zSet = redisTemplate.opsForZSet();
-        zSet.add(key, value, score);
+        zSet.add(env.getProperty("spring.application.name") + ":" + key, value, score);
     }
 
     /**
@@ -209,42 +213,42 @@ public class RedisService {
      * @return Set
      */
     public final Set<Object> rangeByScore(String key, double min, double max) {
-        return redisTemplate.opsForZSet().rangeByScore(key, min, max);
+        return redisTemplate.opsForZSet().rangeByScore(env.getProperty("spring.application.name") + ":" + key, min, max);
     }
 
     // 添加或更新用户分数
-    public void addOrUpdate(String redisKey, String userId, double score) {
-        redisTemplate.opsForZSet().add(redisKey, userId, score);
+    public void addOrUpdate(String key, String userId, double score) {
+        redisTemplate.opsForZSet().add(env.getProperty("spring.application.name") + ":" + key, userId, score);
     }
 
     // 增加用户分数(适用于积分累加场景)
-    public void incrementScore(String redisKey, String userId, double delta) {
-        redisTemplate.opsForZSet().incrementScore(redisKey, userId, delta);
+    public void incrementScore(String key, String userId, double delta) {
+        redisTemplate.opsForZSet().incrementScore(env.getProperty("spring.application.name") + ":" + key, userId, delta);
     }
 
     // 获取用户排名(从高到低)
-    public Long getRank(String redisKey, String userId) {
+    public Long getRank(String key, String userId) {
         // 注意: ZSet排名是从0开始，所以+1得到常规排名
-        return redisTemplate.opsForZSet().reverseRank(redisKey, userId);
+        return redisTemplate.opsForZSet().reverseRank(env.getProperty("spring.application.name") + ":" + key, userId);
     }
 
     // 获取用户分数
-    public Double getScore(String redisKey, String userId) {
-        return redisTemplate.opsForZSet().score(redisKey, userId);
+    public Double getScore(String key, String userId) {
+        return redisTemplate.opsForZSet().score(env.getProperty("spring.application.name") + ":" + key, userId);
     }
 
     // 获取排行榜前N名(从高到低)
-    public Set<ZSetOperations.TypedTuple<Object>> getTopN(String redisKey, int n) {
-        return redisTemplate.opsForZSet().reverseRangeWithScores(redisKey, 0, n - 1);
+    public Set<ZSetOperations.TypedTuple<Object>> getTopN(String key, int n) {
+        return redisTemplate.opsForZSet().reverseRangeWithScores(env.getProperty("spring.application.name") + ":" + key, 0, n - 1);
     }
 
     // 获取排行榜片段(从start到end排名)
-    public Set<ZSetOperations.TypedTuple<Object>> getRankingRange(String redisKey, long start, long end) {
-        return redisTemplate.opsForZSet().reverseRangeWithScores(redisKey, start, end);
+    public Set<ZSetOperations.TypedTuple<Object>> getRankingRange(String key, long start, long end) {
+        return redisTemplate.opsForZSet().reverseRangeWithScores(env.getProperty("spring.application.name") + ":" + key, start, end);
     }
 
     // 获取排行榜总人数
-    public Long getTotalCount(String redisKey) {
-        return redisTemplate.opsForZSet().zCard(redisKey);
+    public Long getTotalCount(String key) {
+        return redisTemplate.opsForZSet().zCard(env.getProperty("spring.application.name") + ":" + key);
     }
 }

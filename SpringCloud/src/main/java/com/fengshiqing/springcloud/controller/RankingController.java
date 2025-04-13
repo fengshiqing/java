@@ -43,7 +43,7 @@ public class RankingController {
      */
     @Operation(summary = "刷新榜单", description = "刷新榜单")
     @PutMapping(value = "/ranking/v1/update/{rankType}")
-    public Resp dailySignIn(@PathVariable("rankType") String rankType, @RequestParam @Valid @NotBlank String bizId) {
+    public Resp updateRanking(@PathVariable("rankType") String rankType, @RequestParam @Valid @NotBlank String bizId) {
         // 1、刷新榜单
         rankingService.updateRanking(rankType, bizId);
 

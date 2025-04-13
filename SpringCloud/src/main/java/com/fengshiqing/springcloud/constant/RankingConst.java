@@ -26,7 +26,7 @@ public interface RankingConst {
         /**
          * 评论
          */
-        String comment = "comment";
+        String discuss = "discuss";
 
     }
 

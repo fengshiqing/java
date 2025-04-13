@@ -57,7 +57,7 @@ public class RankingService {
             case RankingConst.RankingType.transmit:
                 break;
 
-            case RankingConst.RankingType.comment:
+            case RankingConst.RankingType.discuss:
                 break;
 
             default:

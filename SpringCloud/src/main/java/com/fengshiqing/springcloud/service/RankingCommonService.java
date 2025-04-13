@@ -6,7 +6,7 @@ package com.fengshiqing.springcloud.service;
 
 import com.fengshiqing.springcloud.mapper.RankingMapper;
 import com.fengshiqing.springcloud.mapper.entity.RankingEntity;
-import com.fengshiqing.springcloud.service.redis.RedisZSetService;
+import com.fengshiqing.springcloud.service.client.RedisZSetService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -30,7 +30,7 @@ public class RankingCommonService {
 
     private final RankingMapper rankingMapper;
 
-    private static final String Ranking_Key = "cloud-application:ranking:";
+    private static final String REDIS_TYPE = "ranking:";
 
 
     /**
@@ -47,20 +47,19 @@ public class RankingCommonService {
         RankingEntity rankingEntity = rankingMapper.selectRankingByBizId(rankType, bizId);
 
         // 2、更新到redis中的榜单
-        redisZSetService.zAdd(Ranking_Key + rankType, bizId, rankingEntity.getTotalQuantity());
-//        redisZSetService.incrementScore(Ranking_Key + rankType, bizId, 1);
+        redisZSetService.incrementScore(REDIS_TYPE + rankType, bizId, 1);
 
         log.info("【updateRankingToRedis】【end】");
     }
 
 
     /**
-     * 功能描述：查询榜单。
+     * 功能描述：查询榜单的 TopN。
      *
      * @param rankType 榜单类型
      */
     public Set<ZSetOperations.TypedTuple<Object>> getTopN(String rankType, int n) {
-        return redisZSetService.getTopN(Ranking_Key + rankType, n);
+        return redisZSetService.getTopN(REDIS_TYPE + rankType, n);
     }
 
 }
