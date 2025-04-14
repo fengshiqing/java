@@ -11,6 +11,11 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
@@ -26,7 +31,7 @@ public final class RedisZSetService {
 
     private final Environment env;
 
-    private final RedisTemplate<Object, Object> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
 
 
     // =================================================================================================================
@@ -94,7 +99,7 @@ public final class RedisZSetService {
      * @param max max
      * @return Set
      */
-    public Set<Object> rangeByScore(String key, double min, double max) {
+    public Set<String> rangeByScore(String key, double min, double max) {
 
         return redisTemplate
                 .opsForZSet()
@@ -110,7 +115,7 @@ public final class RedisZSetService {
      * @param max max
      * @return Set<ZSetOperations.TypedTuple<Object>> 每个元素包含了分数属性
      */
-    public Set<ZSetOperations.TypedTuple<Object>> rangeByScoreWithScores(String key, double min, double max) {
+    public Set<ZSetOperations.TypedTuple<String>> rangeByScoreWithScores(String key, double min, double max) {
 
         return redisTemplate
                 .opsForZSet()
@@ -118,7 +123,7 @@ public final class RedisZSetService {
     }
 
 
-    // 获取用户排名(从高到低)
+    // 获取用户排名(从高到低)，注意这个是获取排名的名次，不是 score
     public Long getRank(String key, String elementKey) {
 
         // 注意: ZSet排名是从0开始，所以+1得到常规排名
@@ -131,7 +136,7 @@ public final class RedisZSetService {
     /**
      * 功能描述：获取 指定范围内的 排行榜的分数。
      */
-    public Set<Object> getRankingScore(String key, long start, long end) {
+    public Set<String> getRankingScore(String key, long start, long end) {
 
         return redisTemplate
                 .opsForZSet()
@@ -148,7 +153,7 @@ public final class RedisZSetService {
      * @param end   到第 end
      * @return 排行榜 （从start到end排名）
      */
-    public Set<ZSetOperations.TypedTuple<Object>> getRankingRange(String key, long start, long end) {
+    public Set<ZSetOperations.TypedTuple<String>> getRankingRange(String key, long start, long end) {
 
         return redisTemplate
                 .opsForZSet()
@@ -163,7 +168,7 @@ public final class RedisZSetService {
      * @param n        参数N
      * @return 排行榜前N名（score从高到低排列的）
      */
-    public Set<ZSetOperations.TypedTuple<Object>> getTopN(String key, int n) {
+    public Set<ZSetOperations.TypedTuple<String>> getTopN(String key, int n) {
 
         return this.getRankingRange(key, 0, n - 1);
     }
@@ -176,5 +181,82 @@ public final class RedisZSetService {
                 .opsForZSet()
                 .zCard(env.getProperty("spring.application.name") + ":" + key);
     }
+
+
+
+
+//    private final StringRedisTemplate redisTemplate;
+    private static final int BUCKET_COUNT = 16; // 分桶数量，可根据数据量调整
+
+
+    // 获取分桶key
+    private String getBucketKey(String member) {
+        int bucket = Math.abs(member.hashCode()) % BUCKET_COUNT;
+        return "leaderboard" + ":" + bucket;
+    }
+
+    // 添加/更新分数
+    public void addScore(String member, double score) {
+        String bucketKey = getBucketKey(member);
+        redisTemplate.opsForZSet().add(bucketKey, member, score);
+    }
+
+    // 获取单个用户排名(从高到低)
+    public Long getRank(String member) {
+        String bucketKey = getBucketKey(member);
+
+        Long bucketRank = redisTemplate.opsForZSet().reverseRank(bucketKey, member); // 获取用户在桶内的排名
+        if (bucketRank == null) return null;
+        Double score = redisTemplate.opsForZSet().score(bucketKey, member); // 获取用户的score
+        if (score == null) return null;
+
+        // 计算全局排名需要汇总所有更高分数桶的成员数
+        long globalRank = bucketRank;
+        for (int i = 0; i < BUCKET_COUNT; i++) {
+            String currentBucket = "leaderboard:" + i;
+            if (!currentBucket.equals(bucketKey)) {
+                Long count = redisTemplate.opsForZSet().count(currentBucket, score, Double.MAX_VALUE);
+                if (count == null) {
+                    continue;
+                }
+                globalRank += count;
+            }
+        }
+
+        return globalRank;
+    }
+
+    // 获取前N名排行榜
+    public List<Map<String, Object>> getTopN(int n) {
+        // 使用优先队列合并所有桶的顶部元素
+        PriorityQueue<ZSetOperations.TypedTuple<String>> maxHeap = new PriorityQueue<>(
+                (o1, o2) -> Double.compare(o2.getScore(), o1.getScore())
+        );
+
+        // 从每个桶获取可能的候选者（这里简单获取每个桶前n名）
+        for (int i = 0; i < BUCKET_COUNT; i++) {
+            String bucketKey = "leaderboard:" + i;
+            Set<ZSetOperations.TypedTuple<String>> topEntries =
+                    redisTemplate.opsForZSet().reverseRangeWithScores(bucketKey, 0, n - 1);
+            if (topEntries != null) {
+                maxHeap.addAll(topEntries);
+            }
+        }
+
+        // 取出全局前n名
+        List<Map<String, Object>> result = new ArrayList<>();
+        int count = 0;
+        while (!maxHeap.isEmpty() && count < n) {
+            ZSetOperations.TypedTuple<String> entry = maxHeap.poll();
+            Map<String, Object> item = new HashMap<>();
+            item.put("member", entry.getValue());
+            item.put("score", entry.getScore());
+            result.add(item);
+            count++;
+        }
+
+        return result;
+    }
+
 
 }

@@ -58,7 +58,7 @@ public class RankingCommonService {
      *
      * @param rankType 榜单类型
      */
-    public Set<ZSetOperations.TypedTuple<Object>> getTopN(String rankType, int n) {
+    public Set<ZSetOperations.TypedTuple<String>> getTopN(String rankType, int n) {
         return redisZSetService.getTopN(REDIS_TYPE + rankType, n);
     }
 

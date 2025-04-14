@@ -77,12 +77,12 @@ public class RankingService {
      */
     public List<RankingDto> selectAndCalcRanking(String rankType) {
 
-        Set<ZSetOperations.TypedTuple<Object>> topN = rankingCommonService.getTopN(rankType, 100);
+        Set<ZSetOperations.TypedTuple<String>> topN = rankingCommonService.getTopN(rankType, 100);
 
         List<RankingDto> rankingDtoList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(topN)) {
-            for (ZSetOperations.TypedTuple<Object> typedTuple : topN) {
-                RankingDto rankingEntity = new RankingDto((String) typedTuple.getValue(), String.valueOf(typedTuple.getScore()));
+            for (ZSetOperations.TypedTuple<String> typedTuple : topN) {
+                RankingDto rankingEntity = new RankingDto(typedTuple.getValue(), String.valueOf(typedTuple.getScore()));
                 rankingDtoList.add(rankingEntity);
             }
             return rankingDtoList;
