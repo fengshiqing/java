@@ -1,2 +1,20 @@
 # 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
 debug: false
+
+server:
+  port: 9090
+
+spring:
+  application:
+    name: fsq-gateway-service
+
+
+  # Spring Cloud Gateway 是基于 Spring WebFlux（响应式编程模型）构建的，要求应用类型为 REACTIVE。
+  # Spring MVC（spring-boot-starter-web）是基于 Servlet 的阻塞式模型，与 WebFlux 冲突。
+  # 解决方案
+  # 方法 1：强制设置应用为响应式（推荐）
+  # 在 application.properties 或 application.yml 中显式声明应用类型：
+  # spring.main.web-application-type=reactive
+  # 这会告诉 Spring Boot 使用 WebFlux 而不是 Spring MVC。
+  main:
+    web-application-type: reactive

@@ -1,0 +1,49 @@
+
+# 踩坑记录：
+# 报错1：Client not connected, current status:STARTING
+# 是因为服务器的防火墙没有打开 9848、9849 这两个端口
+# 报错2：读取不到配置中心的配置
+# 是因为 配置中心的 Data Id 必须带文件类型后缀，比如：cloud-application.properties
+
+
+# 详解Nacos和Eureka的区别：https://blog.csdn.net/weixin_43776652/article/details/120874245
+
+
+# 这个配置在这里没起作用，还是 application 中的配置起作用了。
+server:
+  port: 10000
+
+spring:
+
+  application:
+    name: cloud-application-gateway  #  本应用的名称
+
+  cloud:
+    nacos:
+      server-addr: 192.168.2.100:8848
+
+      # 发现中心
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+        group: SpringCloud_fsq
+        service: ${spring.application.name}
+        ephemeral: false # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
+
+      # 配置中心
+      config:
+        server-addr: ${spring.cloud.nacos.server-addr}
+        group: SpringCloud_fsq
+        file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
+
+    gateway:
+      routes:
+        #唯一识别号 ，例：请求 http://localhost:6001/cloud-application/test/get 会转发到CloudApplication服务的test/get 接口
+        - id: cloud-application
+          #在服务注册中心找服务名为 cloud-application 的服务
+          uri: lb://cloud-application #
+          #设置路由断言,代理servicerId为 CloudApplication 的   /cloud-application/* 路径
+          predicates:
+            - Path=/cloud-application/**
+          #前缀， 在当前路径匹配中表示去掉第一个前缀 /cloud-application 即请求从/cloud-application/test/get 变成 /test/get
+          filters:
+            - StripPrefix=1
