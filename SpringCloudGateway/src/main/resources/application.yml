@@ -5,9 +5,6 @@ server:
   port: 9090
 
 spring:
-  application:
-    name: fsq-gateway-service
-
 
   # Spring Cloud Gateway 是基于 Spring WebFlux（响应式编程模型）构建的，要求应用类型为 REACTIVE。
   # Spring MVC（spring-boot-starter-web）是基于 Servlet 的阻塞式模型，与 WebFlux 冲突。
