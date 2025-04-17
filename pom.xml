@@ -17,6 +17,7 @@
         <module>JavaWeb</module>
         <module>SpringBoot</module>
         <module>SpringCloud</module>
+        <module>spring-cloud-camunda</module>
         <module>SpringCloudGateway</module>
     </modules>
 
