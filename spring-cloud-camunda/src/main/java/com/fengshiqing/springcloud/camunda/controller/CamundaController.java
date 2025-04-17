@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.controller;
+package com.fengshiqing.springcloud.camunda.controller;
 
 import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.common.bean.RespData;
-import com.fengshiqing.springcloud.mapper.UserFlowMapper;
-import com.fengshiqing.springcloud.mapper.entity.UserFlowEntity;
-import com.fengshiqing.springcloud.utils.I18nUtil;
+import com.fengshiqing.springcloud.camunda.mapper.UserFlowMapper;
+import com.fengshiqing.springcloud.camunda.mapper.entity.UserFlowEntity;
+import com.fengshiqing.springcloud.camunda.utils.I18nUtil;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.service.camunda;
+package com.fengshiqing.springcloud.camunda.service.camunda;
 
-import com.fengshiqing.springcloud.utils.JsonUtil;
+import com.fengshiqing.springcloud.camunda.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateTask;
 import org.camunda.bpm.engine.delegate.TaskListener;

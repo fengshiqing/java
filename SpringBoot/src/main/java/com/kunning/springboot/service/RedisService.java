@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -20,19 +21,14 @@ import org.springframework.stereotype.Service;
  * @author 冯仕清
  * @since 2019年10月01日
  */
+@AllArgsConstructor
 @Service
 public class RedisService {
 
     private final RedisTemplate<Object, Object> redisTemplate;
+
     private final StringRedisTemplate stringRedisTemplate;
 
-    /**
-     * 构造函数
-     */
-    public RedisService(RedisTemplate<Object, Object> redisTemplate, StringRedisTemplate stringRedisTemplate) {
-        this.redisTemplate = redisTemplate;
-        this.stringRedisTemplate = stringRedisTemplate;
-    }
 
     // =================================================================================================================
 

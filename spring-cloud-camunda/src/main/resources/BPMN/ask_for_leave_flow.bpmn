@@ -4,8 +4,8 @@
     <bpmn:documentation>员工请假时，需要发起此流程。</bpmn:documentation>
     <bpmn:startEvent id="ask_for_leave_flow_start" name="请假流程开始" camunda:initiator="starter">
       <bpmn:extensionElements>
-        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.AutoApproveListener" event="start" />
-        <camunda:executionListener class="com.fengshiqing.springcloud.service.camunda.AutoApproveListener" event="end" />
+        <camunda:executionListener class="com.fengshiqing.springcloud.camunda.service.camunda.AutoApproveListener" event="start" />
+        <camunda:executionListener class="com.fengshiqing.springcloud.camunda.service.camunda.AutoApproveListener" event="end" />
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_1pgd9ua</bpmn:outgoing>
     </bpmn:startEvent>

@@ -27,8 +27,7 @@ public class CompletableFutureTest {
             System.out.println("线程名称：" + Thread.currentThread().getName());
             try {
                 Thread.sleep(6000);
-                String roleName = "admin";
-                myRole.setRoleName(roleName);
+                myRole.setRoleName("admin");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -44,7 +43,7 @@ public class CompletableFutureTest {
             }
         });
         //等待 roleNameC, myTasksC 这两个异步任务完成
-        CompletableFuture.allOf(roleNameC, myTasksC).get();
+        CompletableFuture.allOf(roleNameC, myTasksC).get(); // get()方法抛出 (InterruptedException, ExecutionException) 两个异常。  join方法抛出 运行时异常，程序可以不处理
         long costTime = System.currentTimeMillis() - startT;
         System.out.println("costTime = " + costTime);
         System.out.println(myRole);
@@ -166,17 +165,17 @@ public class CompletableFutureTest {
     }
 
 
-    //for循环执行异步操作 业务场景需要循环调用同一个接口 例如调用第三方接口，第三方接口每次只能返回100条数据，需调用10次才能拿到需要的数据还要求速度
+    // for循环执行异步操作 业务场景需要循环调用同一个接口 例如调用第三方接口，第三方接口每次只能返回100条数据，需调用10次才能拿到需要的数据还要求速度
     @Test
     public void testForRelation() {
         long startT = System.currentTimeMillis();
 
-        List<CompletableFuture<?>> futures = new ArrayList<>();
-        ArrayList<Object> objects = Lists.newArrayList();
+        List<CompletableFuture<?>> futureList = new ArrayList<>();
+        ArrayList<Object> objects = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             int j = i;
-            futures.add(CompletableFuture.runAsync(() ->
+            futureList.add(CompletableFuture.runAsync(() ->
                     {
                         try {
                             Thread.sleep(1000);
@@ -189,9 +188,9 @@ public class CompletableFutureTest {
             ));
         }
         // 等待全部完成
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join(); // join()必须写上，才有效果
-        // 只要任何一个执行完了，就能往下执行
-        CompletableFuture.anyOf(futures.toArray(new CompletableFuture[0])).join(); // join()必须写上，才有效果
+        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[0])).join(); // join()必须写上，才有效果
+        // anyOf 只要任何一个执行完了，就能往下执行。返回 跑的最快的那个 future。 需要注意： 最快的那个如果异常了，整个异步组合都玩完
+        CompletableFuture.anyOf(futureList.toArray(new CompletableFuture[0])).join(); // join()必须写上，才有效果
         long costTime = System.currentTimeMillis() - startT;
         System.out.println("costTime = " + costTime);
         System.out.println("objects = " + objects);
