@@ -72,6 +72,13 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+
             <!--camunda 组件的版本管理者-->
             <dependency>
                 <groupId>org.camunda.bpm</groupId>
