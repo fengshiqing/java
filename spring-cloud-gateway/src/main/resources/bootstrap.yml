@@ -18,6 +18,18 @@ spring:
   application:
     name: cloud-application-gateway  #  本应用的名称
 
+
+  # Spring Cloud Gateway 是基于 Spring WebFlux（响应式编程模型）构建的，要求应用类型为 REACTIVE。
+  # Spring MVC（spring-boot-starter-web）是基于 Servlet 的阻塞式模型，与 WebFlux 冲突。
+  # 解决方案
+  # 方法 1：强制设置应用为响应式（推荐）
+  # 在 application.properties 或 application.yml 中显式声明应用类型：
+  # spring.main.web-application-type=reactive
+  # 这会告诉 Spring Boot 使用 WebFlux 而不是 Spring MVC。
+  main:
+    web-application-type: reactive
+
+
   cloud:
     nacos:
       server-addr: 192.168.2.100:8848
@@ -35,15 +47,3 @@ spring:
         group: SpringCloud_fsq
         file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
 
-    gateway:
-      routes:
-        #唯一识别号 ，例：请求 http://localhost:6001/cloud-application/test/get 会转发到CloudApplication服务的test/get 接口
-        - id: cloud-application
-          #在服务注册中心找服务名为 cloud-application 的服务
-          uri: lb://cloud-application #
-          #设置路由断言,代理servicerId为 CloudApplication 的   /cloud-application/* 路径
-          predicates:
-            - Path=/cloud-application/**
-          #前缀， 在当前路径匹配中表示去掉第一个前缀 /cloud-application 即请求从/cloud-application/test/get 变成 /test/get
-          filters:
-            - StripPrefix=1
