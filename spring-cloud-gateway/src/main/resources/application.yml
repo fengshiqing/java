@@ -1,0 +1,80 @@
+# 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
+debug: false
+
+
+spring:
+
+  cloud:
+
+    # 配置 Spring Cloud Gateway 相关属性
+    gateway:
+      discovery:
+        locator: # 配置网关发现机制
+          # 网关自动映射处理逻辑，只要请求地址符合规则：http://gatewayIP:gatewayPort/微服务名称/微服务请求地址
+          # 网关会自动映射，把请求转发到 http://微服务名称/微服务请求地址
+          # 例如：http://localhost:10000/cloud-application/getArgs?name=aaa  转发到  http://cloud-application/getArgs?name=aaa
+          # 商业开发中，enabled 一般设置为false，避免不必要的自动转发规则。
+          enabled: false # true开启网关自动映射处理逻辑
+          lower-case-service-id: true # 服务名小写转换，有的注册中心(Eureka) 对服务命名管理是默认全部大写的
+
+      # 配置网关中的一个完整路由，包括命名、地址、谓词、过滤器
+      routes:
+        # 唯一识别号 ，例：请求 http://localhost:6001/cloud-application/test/get 会转发到 cloud-application 服务的test/get 接口
+        - id: cloud-application
+          # lb指的是 loadbalance 在服务注册中心找服务名为 cloud-application 的服务
+          uri: lb://cloud-application #
+          # 谓词，设置路由断言,代理servicerId为 cloud-application 的   /cloud-application/* 路径
+          # 谓词的命名是有套路的，是 GatewayPredicate 接口的实现类的类名的前缀：XxxRoutePredicateFactory
+          predicates:
+            - Path=/api/**
+
+          # 网关过滤器官方文档： https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc/filters/ratelimiter.html
+          # 前缀，过滤一截URL， 在当前路径匹配中表示去掉第一个前缀 /cloud-application 即请求从http://cloud-application/test/get 变成 http://test/get
+          filters: # 配置过滤器集合
+            # 过滤转发地址前缀， 过滤1节
+            # 如： 请求地址 - http://localhost:9999/api/getArgs?name=admin&age=20
+            # 对应的谓词， 规则是 /api，符合
+            # 对应的uri是 lb://ribbon-app-service  转换成 http://ribbon-app-service 且包含负载均衡
+            # 转发地址是： http://ribbon-app-service/api/getArgs?name=admin&age=20
+            # 过滤器是 过滤转发地址前缀， 过滤1节， 即删除 /api -> http://ribbon-app-service/getArgs?name=admin&age=20
+#            - StripPrefix=1 # 定义一个过滤器。格式： 过滤器名字=参数  或者  name: 名字   args: 参数
+            - AddRequestHeader=a,b
+            - name: AddRequestHeader
+              args:
+                name: newHeader
+                value: newValue
+
+            # 配置限流
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@myKeyResolver}'  # 使用Spring的EL表达式，从Spring容器中找对象，并赋值。 '#{@beanName}'
+                redis-rate-limiter:
+                  # 快速刷新接口（每秒超过1次请求），会触发限流，返回 HTTP 429 Too Many Requests。
+                  replenishRate: 1  # 生产令牌速度，每秒多少个令牌
+                  burstCapacity: 5  # 令牌桶容量的上限
+                  requestedTokens: 1  # 每次请求消耗1个令牌（默认值就是1）
+
+
+#            - name: Hystrix
+#              args:
+#                name: fallbackcmd  # 名字分组
+#                fallbackUri: forward:/downgrade  # 远程服务错误的时候，Gateway工程中的哪一个控制器逻辑，返回降级结果
+#            - RequestPath=admin,testPath
+
+
+  # redis 相关配置
+  data:
+    redis:
+      host: 192.168.2.100
+      port: 6379 # Redis服务器连接密码（默认为空）
+      password:  # Redis服务器连接密码（默认为空）
+      database: 0 # Redis数据库索引（默认为0）
+      client-type: lettuce
+      lettuce:
+        pool:
+          max-active: 8  # 连接池最大连接数（使用负值表示没有限制），默认 8
+          max-wait: -1ms  # 连接池最大阻塞等待时间（使用负值表示没有限制），默认 -1
+          max-idle: 8  # 连接池中的最大空闲连接，默认 8
+          min-idle: 1  # 连接池中的最小空闲连接，默认 0
+      timeout: 3000ms  # 连接超时时间（毫秒）
+

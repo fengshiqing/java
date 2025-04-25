@@ -97,7 +97,4 @@ public class RankingService {
         return rankingDtoList;
     }
 
-
-
-
 }
