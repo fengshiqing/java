@@ -15,10 +15,12 @@
         <module>Common</module>
         <module>JavaSE</module>
         <module>JavaWeb</module>
-        <module>SpringBoot</module>
-        <module>SpringCloud</module>
+        <module>spring-boot</module>
+        <module>spring-cloud</module>
         <module>spring-cloud-camunda</module>
-        <module>SpringCloudGateway</module>
+        <module>spring-cloud-gateway</module>
+        <module>AI_langchain4j</module>
+        <module>langchain4j_springboot</module>
     </modules>
 
     <properties>

@@ -14,8 +14,8 @@
 
     <artifactId>spring-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SpringCloud</name>
-    <description>SpringCloud</description>
+    <name>spring-cloud</name>
+    <description>spring-cloud</description>
     <packaging>jar</packaging>
 
     <properties>

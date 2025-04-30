@@ -8,7 +8,7 @@
 <!--debug:设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
 <configuration scan="true" scanPeriod="30 seconds" debug="false">
 
-    <contextName>SpringBoot</contextName>
+    <contextName>spring-boot</contextName>
     <timestamp key="bySecond" datePattern="yyyyMMddHHmm" timeReference="contextBirth"/>
     <property name="LOG_HOME" value="/workspace/logs/SpringBoot"/>
     <!--日志格式：日期时间、日志级别、线程名、%日志名称、行号，输出的日志消息。详细参数看这里：http://logback.qos.ch/manual/layouts.html -->

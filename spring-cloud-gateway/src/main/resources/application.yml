@@ -20,9 +20,9 @@ spring:
       # 配置网关中的一个完整路由，包括命名、地址、谓词、过滤器
       routes:
         # 唯一识别号 ，例：请求 http://localhost:6001/cloud-application/test/get 会转发到 cloud-application 服务的test/get 接口
-        - id: cloud-application
-          # lb指的是 loadbalance 在服务注册中心找服务名为 cloud-application 的服务
-          uri: lb://cloud-application #
+        - id: cloud-application-route
+          # lb指的是 loadbalance负载均衡。
+          uri: lb://cloud-application
           # 谓词，设置路由断言,代理servicerId为 cloud-application 的   /cloud-application/* 路径
           # 谓词的命名是有套路的，是 GatewayPredicate 接口的实现类的类名的前缀：XxxRoutePredicateFactory
           predicates:
@@ -37,7 +37,7 @@ spring:
             # 对应的uri是 lb://ribbon-app-service  转换成 http://ribbon-app-service 且包含负载均衡
             # 转发地址是： http://ribbon-app-service/api/getArgs?name=admin&age=20
             # 过滤器是 过滤转发地址前缀， 过滤1节， 即删除 /api -> http://ribbon-app-service/getArgs?name=admin&age=20
-#            - StripPrefix=1 # 定义一个过滤器。格式： 过滤器名字=参数  或者  name: 名字   args: 参数
+            - StripPrefix=1 # 定义一个过滤器。格式： 过滤器名字=参数  或者  name: 名字   args: 参数
             - AddRequestHeader=a,b
             - name: AddRequestHeader
               args:
