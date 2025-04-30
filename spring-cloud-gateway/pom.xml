@@ -12,19 +12,22 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+
     <artifactId>spring-cloud-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-gateway</name>
     <description>spring-cloud-gateway</description>
     <packaging>jar</packaging>
 
+
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -46,22 +49,11 @@
         </dependency>
 
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-function-context</artifactId>-->
-<!--        </dependency>-->
-
         <!--没有此jar包就无法读取bootstrap.properties文件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        <!--openfeign-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-<!--        </dependency>-->
-
 
 
         <!--nacos-->
@@ -89,6 +81,7 @@
         </dependency>
 
     </dependencies>
+
 
     <build>
         <plugins>
