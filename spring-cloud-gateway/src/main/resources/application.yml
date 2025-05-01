@@ -88,17 +88,17 @@ spring:
           # 谓词的命名是有套路的，是 GatewayPredicate 接口的实现类的类名的前缀：XxxRoutePredicateFactory
           # 将 http://192.168.2.102:10000/api/product/queryProductByPage 转发到 http://192.168.2.102:8080/product/queryProductByPage
           predicates:
-            - Path=/api/**
+            - Path=/api/cloud-application/**
 
           # 网关过滤器官方文档： https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc/filters/ratelimiter.html
           # 前缀，过滤一截URL， 在当前路径匹配中表示去掉第一个前缀 /cloud-application 即请求从http://cloud-application/test/get 变成 http://test/get
           filters: # 配置过滤器集合
             # 过滤转发地址前缀， 过滤1节
-            # 如： 请求地址 - http://localhost:9999/api/getArgs?name=admin&age=20
+            # 如： 请求地址：http://192.168.2.102:10000/api/cloud-application/product/queryProductByPage
             # 对应的谓词， 规则是 /api，符合
-            # 对应的uri是 lb://ribbon-app-service  转换成 http://ribbon-app-service 且包含负载均衡
-            # 转发地址是： http://ribbon-app-service/api/getArgs?name=admin&age=20
-            # 过滤器是 过滤转发地址前缀， 过滤1节， 即删除 /api -> http://ribbon-app-service/getArgs?name=admin&age=20
+            # 对应的uri是 lb://cloud-application  转换成  cloud-application 且包含负载均衡
+            # 转发地址是： http://cloud-application/api/cloud-application/product/queryProductByPage
+            # 过滤器是 过滤转发地址前缀， 过滤1节， 即删除 /api -> http://cloud-application/product/queryProductByPage
             - StripPrefix=1 # 定义一个过滤器。格式： 过滤器名字=参数  或者  name: 名字   args: 参数
 #            - AddRequestHeader=a,b
 #            - name: AddRequestHeader

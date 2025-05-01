@@ -6,8 +6,8 @@ debug: false
 server:
   port: 8080
   # URL路径前缀
-#  servlet:
-#    context-path: /cloud-application
+  servlet:
+    context-path: /cloud-application
 
 
 
