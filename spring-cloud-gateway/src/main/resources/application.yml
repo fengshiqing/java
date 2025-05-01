@@ -90,6 +90,8 @@ spring:
           predicates:
             - Path=/api/cloud-application/**
 
+            - CheckAuth=xushu21
+
           # 网关过滤器官方文档： https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc/filters/ratelimiter.html
           # 前缀，过滤一截URL， 在当前路径匹配中表示去掉第一个前缀 /cloud-application 即请求从http://cloud-application/test/get 变成 http://test/get
           filters: # 配置过滤器集合
