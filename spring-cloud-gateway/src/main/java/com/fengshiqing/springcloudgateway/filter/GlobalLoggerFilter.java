@@ -4,6 +4,7 @@
 
 package com.fengshiqing.springcloudgateway.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.stereotype.Component;
@@ -13,24 +14,29 @@ import reactor.core.publisher.Mono;
 import java.util.Date;
 
 /**
- * 全局过滤器。
+ * 功能描述：全局过滤器：统计耗时。
+ *
+ * @author fengshiqing
+ * @since 2025-01-01
  */
+@Slf4j
 @Component
 public class GlobalLoggerFilter implements GlobalFilter {
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         // 前置过滤
-        Date begin = new Date();
-        System.out.println("全局过滤器执行，当前时刻是：" + begin.getTime());
+        long beginTimestamp = new Date().getTime();
+        log.info("【全局过滤器：统计耗时】【当前时刻：{}】", beginTimestamp);
 
-        // 执行后续逻辑
+        // 执行 业务逻辑
         Mono<Void> result = chain.filter(exchange);
 
         // 后置过滤
-        Date end = new Date();
-        System.out.println("全局过滤器执行，当前时刻是：" + end.getTime() + " ; 本次执行时长是 ： "
-                + (end.getTime()-begin.getTime()) + "毫秒");
+        long endTimestamp = new Date().getTime();
+        log.info("【全局过滤器：统计耗时】【当前时刻：{} ; 本次执行时长：{} 毫秒】", endTimestamp, endTimestamp - beginTimestamp);
 
         return result;
     }
+
 }

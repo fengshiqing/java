@@ -20,7 +20,8 @@ public class GatewayApplication {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(GatewayApplication.class, args);
         String userName = applicationContext.getEnvironment().getProperty("user.name");
         String userAge = applicationContext.getEnvironment().getProperty("user.age");
-        System.err.println("user name :" + userName + "; age: " + userAge);
+        System.err.println("【user name :】" + userName);
+        System.err.println("【user age : 】" + userAge);
     }
 
 }
