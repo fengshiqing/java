@@ -11,7 +11,7 @@
 
 
 # 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
-debug: true
+debug: false
 
 
 # 打印 某些功能 的 某个级别的 日志
@@ -84,7 +84,7 @@ spring:
           # lb指的是 loadbalance负载均衡。
 #          uri: http://192.168.2.102:8080
           uri: lb://cloud-application # 负载均衡 必须 引入 spring-cloud-starter-loadbalancer 包
-          # 谓词，设置路由断言,代理servicerId为 cloud-application 的   /cloud-application/* 路径
+          # 谓词（设置路由断言）代理servicerId为 cloud-application 的   /cloud-application/* 路径
           # 谓词的命名是有套路的，是 GatewayPredicate 接口的实现类的类名的前缀：XxxRoutePredicateFactory
           # 将 http://192.168.2.102:10000/api/product/queryProductByPage 转发到 http://192.168.2.102:8080/product/queryProductByPage
           predicates:
