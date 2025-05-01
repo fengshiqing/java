@@ -1,10 +1,70 @@
+
+# 踩坑记录：
+# 报错1：Client not connected, current status:STARTING
+# 是因为服务器的防火墙没有打开 9848、9849 这两个端口
+# 报错2：读取不到配置中心的配置
+# 是因为 配置中心的 Data Id 必须带文件类型后缀，比如：cloud-application.properties
+
+
+# 详解Nacos和Eureka的区别：https://blog.csdn.net/weixin_43776652/article/details/120874245
+
+
+
 # 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
-debug: false
+debug: true
+
+
+# 打印 某些功能 的 某个级别的 日志
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    reactor.netty.http.client: debug
+    org.springframework.cloud.loadbalancer: DEBUG
+
+
+server:
+  port: 10000
 
 
 spring:
+  application:
+    name: cloud-application-gateway  #  本应用的名称
+
+  # Spring Cloud Gateway 是基于 Spring WebFlux（响应式编程模型）构建的，要求应用类型为 REACTIVE。
+  # Spring MVC（spring-boot-starter-web）是基于 Servlet 的阻塞式模型，与 WebFlux 冲突。
+  # 解决方案
+  # 方法 1：强制设置应用为响应式（推荐）
+  # 在 application.properties 或 application.yml 中显式声明应用类型：
+  # spring.main.web-application-type=reactive
+  # 这会告诉 Spring Boot 使用 WebFlux 而不是 Spring MVC。
+  main:
+    web-application-type: reactive
+
+
+  # 配置中心
+  config:
+    import:
+      # 支持从多个地方导入
+      # 使用 optional: 前缀避免配置源不可用时应用无法启动
+      - optional:nacos:${spring.application.name}.properties?group=SpringCloud_fsq
+
 
   cloud:
+    nacos:
+      # 注册中心
+      discovery:
+        server-addr: 192.168.2.100:8848
+        group: SpringCloud_fsq
+        service: ${spring.application.name}
+        ephemeral: true # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
+
+      # 配置中心
+      config:
+        server-addr: 192.168.2.100:8848
+        group: SpringCloud_fsq
+        file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
+
+
 
     # 配置 Spring Cloud Gateway 相关属性
     gateway:
@@ -13,7 +73,7 @@ spring:
           # 网关自动映射处理逻辑，只要请求地址符合规则：http://gatewayIP:gatewayPort/微服务名称/微服务请求地址
           # 网关会自动映射，把请求转发到 http://微服务名称/微服务请求地址
           # 例如：http://localhost:10000/cloud-application/getArgs?name=aaa  转发到  http://cloud-application/getArgs?name=aaa
-          # 商业开发中，enabled 一般设置为false，避免不必要的自动转发规则。
+          # 商业开发中，enabled 一般设置为false，避免不必要的自动转发规则。更重要的是，自动转发无法自定义过滤器！
           enabled: false # true开启网关自动映射处理逻辑
           lower-case-service-id: true # 服务名小写转换，有的注册中心(Eureka) 对服务命名管理是默认全部大写的
 
@@ -22,9 +82,11 @@ spring:
         # 唯一识别号 ，例：请求 http://localhost:6001/cloud-application/test/get 会转发到 cloud-application 服务的test/get 接口
         - id: cloud-application-route
           # lb指的是 loadbalance负载均衡。
-          uri: lb://cloud-application
+#          uri: http://192.168.2.102:8080
+          uri: lb://cloud-application # 负载均衡 必须 引入 spring-cloud-starter-loadbalancer 包
           # 谓词，设置路由断言,代理servicerId为 cloud-application 的   /cloud-application/* 路径
           # 谓词的命名是有套路的，是 GatewayPredicate 接口的实现类的类名的前缀：XxxRoutePredicateFactory
+          # 将 http://192.168.2.102:10000/api/product/queryProductByPage 转发到 http://192.168.2.102:8080/product/queryProductByPage
           predicates:
             - Path=/api/**
 
@@ -38,21 +100,21 @@ spring:
             # 转发地址是： http://ribbon-app-service/api/getArgs?name=admin&age=20
             # 过滤器是 过滤转发地址前缀， 过滤1节， 即删除 /api -> http://ribbon-app-service/getArgs?name=admin&age=20
             - StripPrefix=1 # 定义一个过滤器。格式： 过滤器名字=参数  或者  name: 名字   args: 参数
-            - AddRequestHeader=a,b
-            - name: AddRequestHeader
-              args:
-                name: newHeader
-                value: newValue
-
-            # 配置限流
-            - name: RequestRateLimiter
-              args:
-                key-resolver: '#{@myKeyResolver}'  # 使用Spring的EL表达式，从Spring容器中找对象，并赋值。 '#{@beanName}'
-                redis-rate-limiter:
-                  # 快速刷新接口（每秒超过1次请求），会触发限流，返回 HTTP 429 Too Many Requests。
-                  replenishRate: 1  # 生产令牌速度，每秒多少个令牌
-                  burstCapacity: 5  # 令牌桶容量的上限
-                  requestedTokens: 1  # 每次请求消耗1个令牌（默认值就是1）
+#            - AddRequestHeader=a,b
+#            - name: AddRequestHeader
+#              args:
+#                name: newHeader
+#                value: newValue
+#
+#            # 配置限流
+#            - name: RequestRateLimiter
+#              args:
+#                key-resolver: '#{@myKeyResolver}'  # 使用Spring的EL表达式，从Spring容器中找对象，并赋值。 '#{@beanName}'
+#                redis-rate-limiter:
+#                  # 快速刷新接口（每秒超过1次请求），会触发限流，返回 HTTP 429 Too Many Requests。
+#                  replenishRate: 1  # 生产令牌速度，每秒多少个令牌
+#                  burstCapacity: 5  # 令牌桶容量的上限
+#                  requestedTokens: 1  # 每次请求消耗1个令牌（默认值就是1）
 
 
 #            - name: Hystrix
@@ -60,7 +122,6 @@ spring:
 #                name: fallbackcmd  # 名字分组
 #                fallbackUri: forward:/downgrade  # 远程服务错误的时候，Gateway工程中的哪一个控制器逻辑，返回降级结果
 #            - RequestPath=admin,testPath
-
 
   # redis 相关配置
   data:

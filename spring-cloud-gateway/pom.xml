@@ -42,18 +42,24 @@
         </dependency>
 
 
-        <!--网关最简单应该只需要这个依赖吧-->
+        <!--网关依赖 start-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
-
-        <!--没有此jar包就无法读取bootstrap.properties文件-->
+        <!--路由时，使用 "uri: lb://cloud-application" 时，必须引入这个依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+        <!--网关依赖 end-->
+
+
+        <!--没有此jar包就无法读取bootstrap.properties文件，使用  pring.config.import 就不是再导入这个包了 -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-bootstrap</artifactId>-->
+<!--        </dependency>-->
 
 
         <!--nacos-->

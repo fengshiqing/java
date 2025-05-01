@@ -7,12 +7,14 @@ package com.fengshiqing.springcloudgateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.handler.predicate.GatewayPredicate;
+import org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class GatewayApplication {
 
     public static void main(String[] args) {
+//        PathRoutePredicateFactory
 //        GatewayPredicate
 
         ConfigurableApplicationContext applicationContext = SpringApplication.run(GatewayApplication.class, args);
