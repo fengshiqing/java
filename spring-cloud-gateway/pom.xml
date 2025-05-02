@@ -62,7 +62,7 @@
 <!--        </dependency>-->
 
 
-        <!--nacos-->
+        <!--nacos start-->
         <!--注册中心：服务注册与发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -73,6 +73,8 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+        <!--nacos end-->
+
 
         <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
         <dependency>
@@ -80,6 +82,7 @@
             <artifactId>java-jwt</artifactId>
             <version>3.19.2</version>
         </dependency>
+
 
         <!--令牌桶限流，用到 redis -->
         <dependency>
