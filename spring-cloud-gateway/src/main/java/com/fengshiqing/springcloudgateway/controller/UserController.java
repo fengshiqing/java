@@ -9,8 +9,8 @@ import com.fengshiqing.springcloudgateway.JWTUitls;
 import com.fengshiqing.springcloudgateway.User;
 import com.fengshiqing.springcloudgateway.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+@AllArgsConstructor
 @Slf4j
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
 
     @GetMapping("/user/login")
     public Map<String, Object> login(@RequestParam("name") String username, @RequestParam("pwd") String password) {
@@ -35,7 +36,7 @@ public class UserController {
         try {
             User userDB = userService.login(user); // 在数据库中查询是否用户名存在
 
-            HashMap<String, String> payload = new HashMap<>();
+            Map<String, String> payload = new HashMap<>();
             payload.put("id", userDB.getId().toString());
             payload.put("username", userDB.getUsername());
 
@@ -46,7 +47,7 @@ public class UserController {
             result.put("msg", "登陆成功!");
             result.put("token", token);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("【login】【happened Exception：】", e);
             result.put("state", false);
             result.put("msg", "登陆异常!");
         }
@@ -57,8 +58,8 @@ public class UserController {
     /**
      * 一个token用户授权的功能接口
      *
-     * @param request
-     * @return
+     * @param request 请求
+     * @return 响应
      */
     @RequestMapping("/user/test")
     public Map<String, Object> test(HttpServletRequest request) {
