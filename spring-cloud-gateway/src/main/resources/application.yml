@@ -165,6 +165,20 @@ spring:
 #              - OPTION
 
 
+    # sentinel 配置
+    sentinel:
+      enabled: true  # 开启对 Gateway 的支持
+      eager: true  # 立即加载 Sentinel 控制台规则
+      transport:
+        dashboard: 192.168.2.100:8858  # Sentinel 控制台地址
+      scg:  #  平替 com.fengshiqing.springcloudgateway.config.SentinelConfig 里面的配置
+        fallback:
+          mode: response
+          response-body: "{code:'429', msg:'流量爆啦 '}"
+
+
+
+
   # redis 相关配置
   data:
     redis:

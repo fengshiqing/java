@@ -52,6 +52,21 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+        <!--sentinel 限流组件 start-->
+<!--        <dependency>--><!--这个是早期版本需要引入的包，当时整合 sentinel 是相当麻烦的，需要修改很多配置，现在只需要引入下面的那两个包，然后简单配置下就行了-->
+<!--            <groupId>com.alibaba.csp</groupId>-->
+<!--            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>-->
+<!--            <version>x.y.z</version>  &lt;!&ndash; 替换为实际版本，如 1.8.6 &ndash;&gt;-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId><!--这个是 sentinel 整合 gateway 的依赖-->
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId><!--这个是 sentinel 本身功能的依赖-->
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!--sentinel 限流组件 end-->
         <!--网关依赖 end-->
 
 
