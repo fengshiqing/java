@@ -6,10 +6,13 @@
 
     <modelVersion>4.0.0</modelVersion><!-- modelVersion是4.0.0，这是当前仅有的可以被Maven2&3同时支持的POM版本，是必须的 -->
 
+
     <groupId>com.fengshiqing</groupId>
     <artifactId>Java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging><!--父项目必须是 pom 类型-->
+
+
 
     <modules>
         <module>Common</module>
@@ -22,6 +25,8 @@
         <module>AI_langchain4j</module>
         <module>langchain4j_springboot</module>
     </modules>
+
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +42,8 @@
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version>
         <mybatis.spring.version>3.0.2</mybatis.spring.version>
     </properties>
+
+
 
     <dependencyManagement>
         <dependencies>
