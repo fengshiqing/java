@@ -42,30 +42,54 @@
         </dependency>
 
 
-        <!--网关最简单应该只需要这个依赖吧-->
+        <!--网关依赖 start-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
-
-        <!--没有此jar包就无法读取bootstrap.properties文件-->
+        <!--路由时，使用 "uri: lb://cloud-application" 时，必须引入这个依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+        <!--sentinel 限流组件 start-->
+<!--        <dependency>--><!--这个是早期版本需要引入的包，当时整合 sentinel 是相当麻烦的，需要修改很多配置，现在只需要引入下面的那两个包，然后简单配置下就行了-->
+<!--            <groupId>com.alibaba.csp</groupId>-->
+<!--            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>-->
+<!--            <version>x.y.z</version>  &lt;!&ndash; 替换为实际版本，如 1.8.6 &ndash;&gt;-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId><!--这个是 sentinel 整合 gateway 的依赖-->
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId><!--这个是 sentinel 本身功能的依赖-->
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!--sentinel 限流组件 end-->
+        <!--网关依赖 end-->
 
 
-        <!--nacos-->
-        <!-- 服务注册与发现 -->
+        <!--没有此jar包就无法读取bootstrap.properties文件，使用  pring.config.import 就不是再导入这个包了 -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-bootstrap</artifactId>-->
+<!--        </dependency>-->
+
+
+        <!--nacos start-->
+        <!--注册中心：服务注册与发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+        <!--配置中心-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+        <!--nacos end-->
+
 
         <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
         <dependency>
@@ -73,6 +97,7 @@
             <artifactId>java-jwt</artifactId>
             <version>3.19.2</version>
         </dependency>
+
 
         <!--令牌桶限流，用到 redis -->
         <dependency>
