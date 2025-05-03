@@ -123,16 +123,7 @@ spring:
 #              args:
 #                name: newHeader
 #                value: newValue
-#
-#            # 配置限流
-#            - name: RequestRateLimiter
-#              args:
-#                key-resolver: '#{@myKeyResolver}'  # 使用Spring的EL表达式，从Spring容器中找对象，并赋值。 '#{@beanName}'
-#                redis-rate-limiter:
-#                  # 快速刷新接口（每秒超过1次请求），会触发限流，返回 HTTP 429 Too Many Requests。
-#                  replenishRate: 1  # 生产令牌速度，每秒多少个令牌
-#                  burstCapacity: 5  # 令牌桶容量的上限
-#                  requestedTokens: 1  # 每次请求消耗1个令牌（默认值就是1）
+
 
             # 配置网关过滤器，作用：请求网关时，不必加服务名了，这里会在 路由转发的目标地址上加上 目标地址的context-path，我自己觉得不好，因为会有很多服务，不自己手动加的话，会冲重复的可能
             # - PrefixPath=/cloud-application
@@ -141,11 +132,6 @@ spring:
             # - RedirectTo=302,https://www.baidu.com
             # 重定向，所有请求都设置为 404状态
             # - SetStatus=404
-
-#            - name: Hystrix
-#              args:
-#                name: fallbackcmd  # 名字分组
-#                fallbackUri: forward:/downgrade  # 远程服务错误的时候，Gateway工程中的哪一个控制器逻辑，返回降级结果
 
             # 自定义的 过滤器
 #            - CheckAuth=xushu
