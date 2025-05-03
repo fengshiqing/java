@@ -7,11 +7,9 @@ package com.fengshiqing.springcloudgateway.filter;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,9 +19,9 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class RequestPathGatewayFilterFactory extends AbstractGatewayFilterFactory<RequestPathGatewayFilterFactory.Config> {
+public class CheckAuthGatewayFilterFactory extends AbstractGatewayFilterFactory<CheckAuthGatewayFilterFactory.Config> {
 
-    public RequestPathGatewayFilterFactory() {
+    public CheckAuthGatewayFilterFactory() {
         super(Config.class);
     }
 
@@ -32,22 +30,31 @@ public class RequestPathGatewayFilterFactory extends AbstractGatewayFilterFactor
     // RequestPath=nameValue,pathValue
     @Override
     public List<String> shortcutFieldOrder() {
-        return Arrays.asList("name", "path");
+        return Arrays.asList("name");
     }
 
 
     // 过滤逻辑
     @Override
     public GatewayFilter apply(Config config) {
-        return new GatewayFilter() {
-            // 过滤方法
-            @Override
-            public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-                String path = exchange.getRequest().getPath().toString();
-                log.info("【RequestPathGatewayFilterFactory】【本次请求地址是={}; 配置的参数是：name={}, path={}】", path, config.getName(), config.getPath());
-                return chain.filter(exchange);
+        // 过滤方法
+        return (exchange, chain) -> {
+            String path = exchange.getRequest().getPath().toString();
+            log.info("【CheckAuthGatewayFilterFactory】【本次请求地址是：{} ; 配置的参数是：name={}】", path, config.getName());
+
+            String name = exchange.getRequest().getQueryParams().getFirst("name");
+            if (name != null) {
+                if (name.equals(config.getName())) {
+                    return chain.filter(exchange);
+                } else {
+                    // 返回 404 然后结束
+                    exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.NOT_FOUND);
+                    return exchange.getResponse().setComplete();
+                }
             }
+            return chain.filter(exchange);
         };
+
     }
 
 
@@ -57,16 +64,11 @@ public class RequestPathGatewayFilterFactory extends AbstractGatewayFilterFactor
 
         private String name;
 
-        private String path;
-
         public Config setName(String name) {
             this.name = name;
             return this;
         }
 
-        public void setPath(String path) {
-            this.path = path;
-        }
     }
 
 }
