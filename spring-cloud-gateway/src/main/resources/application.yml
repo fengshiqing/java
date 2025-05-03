@@ -1,9 +1,12 @@
+# 官方文档：https://docs.spring.io/spring-cloud-gateway/docs/4.0.0/reference/html/
+#         https://docs.spring.io/spring-boot/docs/3.0.2/reference/html/features.html#features.external-config
+
 
 # 踩坑记录：
 # 报错1：Client not connected, current status:STARTING
 # 是因为服务器的防火墙没有打开 9848、9849 这两个端口
 # 报错2：读取不到配置中心的配置
-# 是因为 配置中心的 Data Id 必须带文件类型后缀，比如：cloud-application.properties
+# 是因为 配置中心的 "Data Id" 的值，必须带文件类型后缀，比如：cloud-application-gateway.properties
 
 
 # 详解Nacos和Eureka的区别：https://blog.csdn.net/weixin_43776652/article/details/120874245
@@ -14,16 +17,24 @@
 debug: false
 
 
+
 # 打印 某些功能 的 某个级别的 日志
 logging:
   level:
-    org.springframework.cloud.gateway: debug
-    reactor.netty.http.client: debug
-    org.springframework.cloud.loadbalancer: DEBUG
+#    org.springframework.cloud.gateway: debug
+    org.springframework.cloud.gateway: TRACE
+    reactor.netty.http.client.ContextAwareHttpClientMetricsRecorder: debug
+#    org.springframework.cloud.loadbalancer: DEBUG
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
+
 
 
 server:
   port: 10000
+
 
 
 spring:
@@ -47,7 +58,12 @@ spring:
       # 支持从多个地方导入
       # 使用 optional: 前缀避免配置源不可用时应用无法启动
       - optional:nacos:${spring.application.name}.properties?group=SpringCloud_fsq
-
+      # 导入 classpath 下 default 目录下的 default.properties 配置文件
+      # - classpath:/default/default.properties
+      # 导入classpath下service目录下的service.yml配置文件
+      # - classpath:/service/service.yml
+      # 导入系统目录/Users/yuqiyu/Downloads下的system.properties配置文件
+      #- optional:/Users/yuqiyu/Downloads/system.properties
 
   cloud:
     nacos:
@@ -63,7 +79,6 @@ spring:
         server-addr: 192.168.2.100:8848
         group: SpringCloud_fsq
         file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
-
 
 
     # 配置 Spring Cloud Gateway 相关属性
@@ -90,7 +105,8 @@ spring:
           predicates:
             - Path=/api/cloud-application/**
 
-            - CheckAuth=xushu21
+            # 自定义网关断言，不符合条件就返回  404  错误
+            # - CheckAuth=xushu21
 
           # 网关过滤器官方文档： https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc/filters/ratelimiter.html
           # 前缀，过滤一截URL， 在当前路径匹配中表示去掉第一个前缀 /cloud-application 即请求从http://cloud-application/test/get 变成 http://test/get
@@ -118,12 +134,36 @@ spring:
 #                  burstCapacity: 5  # 令牌桶容量的上限
 #                  requestedTokens: 1  # 每次请求消耗1个令牌（默认值就是1）
 
+            # 配置网关过滤器，作用：请求网关时，不必加服务名了，这里会在 路由转发的目标地址上加上 目标地址的context-path，我自己觉得不好，因为会有很多服务，不自己手动加的话，会冲重复的可能
+            # - PrefixPath=/cloud-application
+
+            # 重定向，所有请求都重定向到 百度 首页
+            # - RedirectTo=302,https://www.baidu.com
+            # 重定向，所有请求都设置为 404状态
+            # - SetStatus=404
 
 #            - name: Hystrix
 #              args:
 #                name: fallbackcmd  # 名字分组
 #                fallbackUri: forward:/downgrade  # 远程服务错误的时候，Gateway工程中的哪一个控制器逻辑，返回降级结果
-#            - RequestPath=admin,testPath
+
+            # 自定义的 过滤器
+#            - CheckAuth=xushu
+            #- RequestPath=admin,testPath
+
+      # 开启 CORS 跨域，参考官方文档：https://docs.spring.io/spring-cloud-gateway/docs/4.0.0/reference/html/#cors-configuration
+      # 可以使用java代码来配置 com.fengshiqing.springcloudgateway.config.CorsConfig
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':  # 允许访问的资源，匹配所有路径
+#            allowedOrigins: "*"  # 允许所有来源（或替换为具体域名）
+#            allowedMethods:      # 允许的 HTTP 方法
+#              - GET
+#              - POST
+#              - DELETE
+#              - PUT
+#              - OPTION
+
 
   # redis 相关配置
   data:
