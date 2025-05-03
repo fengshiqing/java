@@ -28,10 +28,12 @@ public class GatewayApplication {
         }
 
 
-        String userName = applicationContext.getEnvironment().getProperty("user.name");
-        String userAge = applicationContext.getEnvironment().getProperty("user.age");
-        System.err.println("【user name :】" + userName);
-        System.err.println("【user age : 】" + userAge);
+        String userId = applicationContext.getEnvironment().getProperty("biz.user.id");
+        String userName = applicationContext.getEnvironment().getProperty("biz.user.name");
+        String userAge = applicationContext.getEnvironment().getProperty("biz.user.age");
+        System.err.println("【userId:】" + userId);
+        System.err.println("【userName:】" + userName);
+        System.err.println("【userAge:】" + userAge);
     }
 
 }
