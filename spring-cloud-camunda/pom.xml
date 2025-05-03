@@ -12,11 +12,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+
     <artifactId>spring-cloud-camunda</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-camunda</name>
     <description>spring-cloud-camunda</description>
     <packaging>jar</packaging>
+
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +28,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+
 
     <dependencies>
         <dependency>
@@ -119,12 +124,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <!--RocketMQ-->
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-        </dependency>
-
 
         <!--camunda start-->
         <!-- https://mvnrepository.com/artifact/org.camunda.bpm.springboot/camunda-bpm-spring-boot-starter -->
@@ -145,6 +144,8 @@
         <!--camunda end-->
 
     </dependencies>
+
+
 
     <build>
         <plugins>
