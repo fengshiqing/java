@@ -10,6 +10,8 @@ import org.springframework.cloud.gateway.handler.predicate.GatewayPredicate;
 import org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.Map;
+
 @SpringBootApplication
 public class GatewayApplication {
 
@@ -18,6 +20,14 @@ public class GatewayApplication {
 //        GatewayPredicate
 
         ConfigurableApplicationContext applicationContext = SpringApplication.run(GatewayApplication.class, args);
+
+        Map<String, Object> systemEnvironment = applicationContext.getEnvironment().getSystemEnvironment();
+        // 遍历 systemEnvironment
+        for (String key : systemEnvironment.keySet()) {
+            System.err.println("【systemEnvironment】【遍历 systemEnvironment】【key：{}，value：{}】" + key + " ---- " + systemEnvironment.get(key));
+        }
+
+
         String userName = applicationContext.getEnvironment().getProperty("user.name");
         String userAge = applicationContext.getEnvironment().getProperty("user.age");
         System.err.println("【user name :】" + userName);
