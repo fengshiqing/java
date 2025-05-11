@@ -12,7 +12,17 @@
 <div>
     <input id="testAjax" type="button" value="手写ajax">
     <input id="invokeAjax" type="button" value="JqueryAjax">
+    <input id="corsAjax" type="button" value="corsAjax">
+    <input id="corsAjax11" type="button" value="产品详情" onclick="getData()">
 </div>
+
+<script>
+    function getData() {
+        $.get("http://192.168.2.102:10000/api/cloud-application/product/v1/query-product-info?id=12345", function(data) {
+            alert(data)
+        });
+    }
+</script>
 
 
 </body>
