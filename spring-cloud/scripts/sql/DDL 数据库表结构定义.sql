@@ -48,13 +48,15 @@ CREATE TABLE IF NOT EXISTS `t_user_daily_sign_in` (
 
 
 # 新建 t_product 表
+DROP TABLE IF EXISTS `t_product`;
 CREATE TABLE IF NOT EXISTS `t_product` (
     `id`              BIGINT           NOT NULL    AUTO_INCREMENT    PRIMARY KEY       COMMENT '自增主键ID',
     `product_code`    VARCHAR(32)      NOT NULL                                        COMMENT '商品编码',
     `product_name`    VARCHAR(32)      NOT NULL                                        COMMENT '商品名称',
     `description`     VARCHAR(1024)        NULL    DEFAULT NULL                        COMMENT '商品描述',
-    `original_price`  DECIMAL(16,4)    NOT NULL                                        COMMENT '商品价格（原价），整数位12位（千亿级别），小数位4位，总共16位有效数据',
+    `original_price`  DECIMAL(16,4)    NOT NULL                                        COMMENT '商品价格（原价），整数12位（千亿级别），小数4位，总共16位',
     `discount_price`  DECIMAL(16,4)    NOT NULL                                        COMMENT '商品价格（打折后的折扣价）',
+    `currency`        CHAR(3)          NOT NULL    DEFAULT 'CNY'                       COMMENT '币种，默认为人民币CNY',
 
     `create_user`     VARCHAR(20)      NOT NULL                                        COMMENT '创建人',
     `create_time`     DATETIME         NOT NULL    DEFAULT NOW()                       COMMENT '创建时间',
@@ -63,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `t_product` (
     `del_flag`        BIGINT           NOT NULL    DEFAULT 0                           COMMENT '删除标记：0未删除、1已删除',
     UNIQUE INDEX t_product_index_productCode (product_code, del_flag)
 ) COMMENT '商品表';
+
 
 
 # 新建 t_order 表

@@ -23,7 +23,5 @@ public interface ProductMapper {
 
     List<ProductEntity> selectProductByPage(@Param("offset") int offset, @Param("pageSize") int pageSize);
 
-    int updateByPrimaryKeySelective(ProductEntity record);
-
     int updateByPrimaryKey(ProductEntity record);
 }
