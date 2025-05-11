@@ -10,12 +10,12 @@ import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
 import com.fengshiqing.springcloud.service.ProductService;
 import com.fengshiqing.springcloud.service.dto.ReqPaged;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,12 +29,13 @@ import java.util.List;
  * @since 2022-07-20
  */
 @AllArgsConstructor
+@Slf4j
 @RestController
 @Validated
 public class ProductController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     private final ProductService productService;
+
 
     @RequestMapping("/product/save")
     public Resp save() {
@@ -43,7 +44,7 @@ public class ProductController {
         productEntity.setProductName("iphone 11");
         productEntity.setOriginalPrice(BigDecimal.valueOf(100L));
         int num = productService.save(productEntity);
-        LOGGER.info("【save】【success】【num:{}】", num);
+        log.info("【save】【success】【num:{}】", num);
         return new Resp(200, "保存成功");
     }
 
@@ -56,14 +57,14 @@ public class ProductController {
         productEntity.setOriginalPrice(BigDecimal.valueOf(200L));
         productEntity.setId(pid);
         int num = productService.update(productEntity);
-        LOGGER.info("【update】【success】【num:{}】", num);
+        log.info("【update】【success】【num:{}】", num);
         return new Resp(200, "修改成功");
     }
 
     @RequestMapping("/product/delete")
     public Resp delete(long pid) {
         int num = productService.delete(pid);
-        LOGGER.info("【delete】【success】【num:{}】", num);
+        log.info("【delete】【success】【num:{}】", num);
         return new Resp(200, "删除成功");
     }
 
@@ -74,9 +75,9 @@ public class ProductController {
      *
      * @return 产品列表数据
      */
-    @GetMapping("/product/queryProductInfo")
+    @GetMapping("/product/v1/query-product-info")
     public RespData<ProductEntity> queryProductInfo(long id) {
-        LOGGER.info("【queryProductInfo】【start】【id:{}】", id);
+        log.info("【queryProductInfo】【start】【id:{}】", id);
         ProductEntity productEntity = productService.queryProductInfo(id);
         return new RespData<>(productEntity);
     }
@@ -88,15 +89,19 @@ public class ProductController {
      * @return 产品列表数据
      */
     @PostMapping("/product/queryProductByPage")
-    public RespData<List<ProductEntity>> queryProductByPage(@RequestBody  ReqPaged reqPaged) {
-        LOGGER.info("【queryProductByPage】【start】【req:{}】", reqPaged);
+    public RespData<List<ProductEntity>> queryProductByPage(@RequestBody  ReqPaged reqPaged,
+                                                            @RequestHeader("a") String header,
+                                                            @RequestHeader("newHeader") String newHeader) {
+        log.info("【queryProductByPage】【start】【req:{}】", reqPaged);
 
         long start = System.currentTimeMillis();
         List<ProductEntity> productEntityList = productService.queryProductByPage(reqPaged.getPageNo(), reqPaged.getPageSize());
         // { "pageSize": 10, "pageNo": 10000 } 表里存了100w数据，这样查询需要 50ms左右的时间
         // { "pageSize": 10, "pageNo": 100000 } 表里存了100w数据，这样查询需要 300+ms时间
         // 一般查询1000条数据，不会有啥影响的，大分页也得1w以后的页才会受点影响。
-        LOGGER.info("【queryProductByPage】【花费时间：{}】", System.currentTimeMillis() - start);
+        log.info("【queryProductByPage】【花费时间：{}】", System.currentTimeMillis() - start);
+        log.info("【queryProductByPage】【end】【header：{}, newHeader:{}】", header, newHeader);
         return new RespData<>(productEntityList);
     }
+
 }

@@ -36,6 +36,11 @@ public class ProductEntity {
     private String productName;
 
     /**
+     * 商品描述
+     */
+    private String description;
+
+    /**
      * 商品价格（原价），整数位12位（千亿级别），小数位4位，总共16位有效数据
      */
     private BigDecimal originalPrice;
@@ -64,5 +69,10 @@ public class ProductEntity {
      * 修改时间
      */
     private Date updateTime;
+
+    /**
+     * 修改时间
+     */
+    private long delFlag;
 
 }
