@@ -64,7 +64,7 @@ public class AppConfig {
      * @return 线程池
      */
     @Bean
-    public Executor commonThreadPool() {
+    public ThreadPoolTaskExecutor commonThreadPool() {
         log.info("【init config】【Thread Pool】");
         /*
          * 如果此时线程池中的数量小于corePoolSize，即使线程池中的线程都处于空闲状态，也要创建新的线程来处理被添加的任务。

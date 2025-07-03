@@ -9,9 +9,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
@@ -67,7 +64,7 @@ public class AppConfig {
      * @return 线程池
      */
     @Bean
-    public Executor commonThreadPool() {
+    public ThreadPoolTaskExecutor commonThreadPool() {
         log.info("【init config】【Thread Pool】");
         /*
          * 如果此时线程池中的数量小于corePoolSize，即使线程池中的线程都处于空闲状态，也要创建新的线程来处理被添加的任务。

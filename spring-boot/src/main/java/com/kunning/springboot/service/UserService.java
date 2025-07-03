@@ -1,17 +1,15 @@
 package com.kunning.springboot.service;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.kunning.springboot.dao.UserDao;
+import com.kunning.springboot.pojo.UserDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-
-import com.kunning.springboot.dao.UserDao;
-import com.kunning.springboot.pojo.UserDto;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 /**
  * 功能描述：用户服务。
@@ -26,10 +24,10 @@ import org.springframework.validation.annotation.Validated;
  * @author 冯仕清
  * @since 2019-10-01
  */
+@Slf4j
 @Service
 @Validated // 单个参数(非对象)的校验，需要在类上添加此注解，否则不会校验
 public class UserService implements ApplicationEventPublisherAware {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     private final UserDao userDao;
 
@@ -59,7 +57,7 @@ public class UserService implements ApplicationEventPublisherAware {
      */
     public void register(UserDto userDto) {
         // ... 执行注册逻辑
-        LOGGER.info("【register】【执行用户({}) 的注册逻辑】", userDto.getUsername());
+        log.info("【register】【执行用户({}) 的注册逻辑】", userDto.getUsername());
         // 用户名不能重复
         // 密码强度低
         userDao.insert(userDto); // 新用户注册
@@ -73,19 +71,19 @@ public class UserService implements ApplicationEventPublisherAware {
      * @return 用户列表
      */
     public List<UserDto> queryAllUser() {
-        LOGGER.info("【queryAllUser】【start】");
+        log.info("【queryAllUser】【start】");
 
         List<UserDto> userDtoList = userDao.queryAllUser();
-        LOGGER.info("【参数：】【userList:{}】", userDtoList);
+        log.info("【参数：】【userList:{}】", userDtoList);
 
         return userDtoList;
     }
 
     public UserDto queryUserById(int userId) {
-        LOGGER.info("【queryAllUser】【start】");
+        log.info("【queryAllUser】【start】");
 
         UserDto userDto = userDao.queryUserById(userId);
-        LOGGER.info("【参数：】【userDto:{}】", userDto);
+        log.info("【参数：】【userDto:{}】", userDto);
 
         return userDto;
     }
