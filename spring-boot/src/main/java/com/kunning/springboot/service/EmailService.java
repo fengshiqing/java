@@ -2,8 +2,7 @@ package com.kunning.springboot.service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.io.FileSystemResource;
@@ -19,15 +18,15 @@ import java.io.File;
 
 /**
  * 功能描述：邮件服务。
- *
+ * <p>
  * 实现 ApplicationListener 接口，通过 E 泛型设置感兴趣的事件，监听指定类型事件并响应动作，实现 onApplicationEvent 方法，针对监听的 UserRegisterEvent 事件，进行自定义处理。
  *
  * @author 冯仕清
  * @since 2019-10-01
  */
+@Slf4j
 @Service
 public class EmailService implements ApplicationListener<UserRegisterEvent> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     @Value("${spring.mail.username}")
     private String from;
@@ -55,18 +54,18 @@ public class EmailService implements ApplicationListener<UserRegisterEvent> {
     @Async // 还可以弄成异步的，提高接口响应时间
     // public void onApplicationEvent(ApplicationEvent event) { // 尽量别直接监听父类型 ApplicationEvent，会吧别的事件页监听过来。
     public void onApplicationEvent(@NonNull UserRegisterEvent event) {
-        LOGGER.info("【onApplicationEvent】【注册成功，给用户({}) 发送注册成功的邮件】", event.getUsername());
+        log.info("【onApplicationEvent】【注册成功，给用户({}) 发送注册成功的邮件】", event.getUsername());
     }
 
     /**
      * 功能描述：发送文本邮件。
      *
-     * @param to 接收人
+     * @param to      接收人
      * @param subject 邮件主题
-     * @param text 邮件内容
+     * @param text    邮件内容
      */
     public final void sendSimpleMail(String to, String subject, String text) {
-        LOGGER.info("【sendSimpleMail】【start】【to:{}, subject:{}, text:{}】", to, subject, text);
+        log.info("【sendSimpleMail】【start】【to:{}, subject:{}, text:{}】", to, subject, text);
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage(); // 纯文本邮件
         simpleMailMessage.setFrom(from); // 发送人
@@ -76,20 +75,20 @@ public class EmailService implements ApplicationListener<UserRegisterEvent> {
         try {
             javaMailSender.send(simpleMailMessage);
         } catch (MailException e) {
-            LOGGER.error("【sendSimpleMail】【邮件发送失败】", e);
+            log.error("【sendSimpleMail】【邮件发送失败】", e);
         }
-        LOGGER.info("【sendSimpleMail】【end】");
+        log.info("【sendSimpleMail】【end】");
     }
 
     /**
      * 功能描述：发送html邮件。
      *
-     * @param to 接收人
+     * @param to      接收人
      * @param subject 邮件主题
      * @param content 邮件内容
      */
     public final void sendHtmlMail(String to, String subject, String content) {
-        LOGGER.info("【sendHtmlMail】【start】【to:{}, subject:{}, content:{}】", to, subject, content);
+        log.info("【sendHtmlMail】【start】【to:{}, subject:{}, content:{}】", to, subject, content);
 
         MimeMessage message = javaMailSender.createMimeMessage();
 
@@ -102,21 +101,21 @@ public class EmailService implements ApplicationListener<UserRegisterEvent> {
 
             javaMailSender.send(message);
         } catch (MessagingException | MailException e) {
-            LOGGER.error("【sendHtmlMail】【发生异常】", e);
+            log.error("【sendHtmlMail】【发生异常】", e);
         }
-        LOGGER.info("【sendHtmlMail】【end】");
+        log.info("【sendHtmlMail】【end】");
     }
 
     /**
      * 功能描述：发送带附件的邮件。
      *
-     * @param to 接收人
-     * @param subject 邮件主题
-     * @param content 邮件内容
+     * @param to       接收人
+     * @param subject  邮件主题
+     * @param content  邮件内容
      * @param filePath 附件路径
      */
     public final void sendAttachmentsMail(String to, String subject, String content, String filePath) {
-        LOGGER.info("【sendAttachmentsMail】【start】【to:{}, subject:{}, content:{}, filePath:{}】", to, subject, content,
+        log.info("【sendAttachmentsMail】【start】【to:{}, subject:{}, content:{}, filePath:{}】", to, subject, content,
                 filePath);
 
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -135,22 +134,22 @@ public class EmailService implements ApplicationListener<UserRegisterEvent> {
 
             javaMailSender.send(message);
         } catch (MessagingException | MailException e) {
-            LOGGER.error("【sendAttachmentsMail】【发生异常】", e);
+            log.error("【sendAttachmentsMail】【发生异常】", e);
         }
-        LOGGER.info("【sendAttachmentsMail】【end】");
+        log.info("【sendAttachmentsMail】【end】");
     }
 
     /**
      * 功能描述：发送正文中有静态资源（图片）的邮件。
      *
-     * @param to 接收人
+     * @param to      接收人
      * @param subject 邮件主题
      * @param content 邮件内容
      * @param rscPath 文件路径
-     * @param rscId rscId
+     * @param rscId   rscId
      */
     public final void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) {
-        LOGGER.info("【sendInlineResourceMail】【start】【to:{}, subject:{}, content:{}, rscPath:{}, rscId:{}】", to, subject,
+        log.info("【sendInlineResourceMail】【start】【to:{}, subject:{}, content:{}, rscPath:{}, rscId:{}】", to, subject,
                 content, rscPath, rscId);
 
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -167,8 +166,8 @@ public class EmailService implements ApplicationListener<UserRegisterEvent> {
 
             javaMailSender.send(message);
         } catch (MessagingException e) {
-            LOGGER.error("【sendInlineResourceMail】【发生异常】", e);
+            log.error("【sendInlineResourceMail】【发生异常】", e);
         }
-        LOGGER.info("【sendInlineResourceMail】【end】");
+        log.info("【sendInlineResourceMail】【end】");
     }
 }

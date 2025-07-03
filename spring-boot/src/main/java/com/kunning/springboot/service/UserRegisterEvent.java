@@ -4,6 +4,7 @@
 
 package com.kunning.springboot.service;
 
+import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
 import java.time.Clock;
@@ -14,6 +15,7 @@ import java.time.Clock;
  * @author kunning
  * @since 2021-12-09
  */
+@Getter
 public class UserRegisterEvent extends ApplicationEvent {
 
     /**
@@ -35,7 +37,4 @@ public class UserRegisterEvent extends ApplicationEvent {
         this.username = username;
     }
 
-    public String getUsername() {
-        return username;
-    }
 }
