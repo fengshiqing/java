@@ -40,6 +40,9 @@
         <spring.boot.version>3.0.2</spring.boot.version>
         <spring.cloud.version>2022.0.0</spring.cloud.version>
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version>
+        <!--也可以这么搭配：boot3.2.5  cloud2023.0.3  alibaba2023.0.1.0
+         搭配方式参考这里视频的 06:41 https://www.bilibili.com/video/BV1FntBzhEwQ?spm_id_from=333.788.videopod.episodes&vd_source=f2fb919142ce62e6571426a12817634e&p=2-->
+
         <mybatis.spring.version>3.0.2</mybatis.spring.version>
     </properties>
 
