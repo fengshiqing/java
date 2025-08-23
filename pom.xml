@@ -22,7 +22,7 @@
         <module>spring-cloud</module>
         <module>spring-cloud-camunda</module>
         <module>spring-cloud-gateway</module>
-        <module>AI_langchain4j</module>
+        <module>spring-cloud-seata</module>
         <module>langchain4j_springboot</module>
     </modules>
 
