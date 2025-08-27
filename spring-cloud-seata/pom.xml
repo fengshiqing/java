@@ -12,10 +12,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-cloud</artifactId>
+    <artifactId>spring-cloud-seata</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud</name>
-    <description>spring-cloud</description>
+    <name>spring-cloud-seata</name>
+    <description>spring-cloud-seata</description>
     <packaging>jar</packaging>
 
 
@@ -120,7 +120,7 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--服务调用负载均衡组件，老版本中默认负载均衡组件，新版本需要自己添加。这个是放在 消费者端/调用方，而不是生产者端/被调用方-->
+        <!--服务调用负载均衡组件，老版本中默认负载均衡组件，新版本需要自己添加-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>
@@ -141,12 +141,6 @@
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
-        </dependency>
-
-        <!--elasticsearch使用相关依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
 
         <dependency>

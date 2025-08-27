@@ -22,7 +22,7 @@
         <module>spring-cloud</module>
         <module>spring-cloud-camunda</module>
         <module>spring-cloud-gateway</module>
-        <module>AI_langchain4j</module>
+        <module>spring-cloud-seata</module>
         <module>langchain4j_springboot</module>
     </modules>
 
@@ -36,10 +36,13 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <!--版本如何搭配，请参考这里：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
-        <!--还有这里：https://start.spring.io/actuator/info -->
+        <!--还有这里：https://github.com/alibaba/spring-cloud-alibaba 这里有个 中文文档 的跳转链接，跳转后能看到具体的版本说明 -->
         <spring.boot.version>3.0.2</spring.boot.version>
         <spring.cloud.version>2022.0.0</spring.cloud.version>
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version>
+        <!--也可以这么搭配：boot3.2.5  cloud2023.0.3  alibaba2023.0.1.0
+         搭配方式参考这里视频的 06:41 https://www.bilibili.com/video/BV1FntBzhEwQ?spm_id_from=333.788.videopod.episodes&vd_source=f2fb919142ce62e6571426a12817634e&p=2-->
+        <!--这个文档好像是最新的：https://sca.aliyun.com/docs/2023/overview/version-explain/?spm=5176.29160081.0.0.74805c72R9tPTK -->
         <mybatis.spring.version>3.0.2</mybatis.spring.version>
     </properties>
 
@@ -47,18 +50,11 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-            <dependency>
-                <groupId>com.mysql</groupId>
-                <artifactId>mysql-connector-j</artifactId>
-                <version>8.3.0</version>
-            </dependency>
-
-            <!--Spring-Boot 版本管理器/仲裁者。所有的 SpringBoot 项目都要有这个父项目-->
+            <!--Spring-Boot 版本管理器/仲裁者-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
+                <version>3.0.13</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -67,7 +63,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>2022.0.5</version><!--https://docs.spring.io/spring-cloud/docs/2022.0.5/reference/html/ 这里明确了适配 Supported Boot Version: 3.0.13 -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -76,10 +72,19 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>2022.0.0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>8.3.0</version>
+            </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
             <dependency>

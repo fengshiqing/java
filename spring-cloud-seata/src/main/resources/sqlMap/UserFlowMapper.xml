@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fengshiqing.springcloud.mapper.UserFlowMapper">
+
+    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.mapper.entity.ProductEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.fengshiqing.springcloud.mapper.entity.UserFlowEntity">
+        INSERT INTO t_user_flow
+        (
+                `user_id`, `flow_id`,
+                `flow_type`, `current_approver`, `remark`,
+                `create_user`, `update_user`
+
+        ) VALUES (
+                #{userId}, #{flowId},
+                #{flowType}, #{currentApprover}, #{remark},
+                #{createUser}, #{updateUser}
+        )
+    </insert>
+
+
+    <update id="update" parameterType="com.fengshiqing.springcloud.mapper.entity.UserFlowEntity">
+        UPDATE t_user_flow
+        SET
+                current_approver  = #{currentApprover}
+        WHERE   delFlag = 0
+        AND     user_id = #{userId}
+        AND     flow_id = #{flowId}
+    </update>
+
+
+    <select id="selectByPage" resultType="com.fengshiqing.springcloud.mapper.entity.UserFlowEntity">
+        SELECT
+                `user_id`          AS `userId`,
+                `flow_id`          AS `flowId`,
+                `flow_type`        AS `flowType`,
+                `current_approver` AS `currentApprover`,
+                `remark`           AS `remark`,
+                `create_user` AS `createUser`,    `create_time` AS `createTime`,
+                `update_user` AS `updateUser`,    `update_time` AS `updateTime`
+        FROM    t_user_flow
+        WHERE   1 = 1
+        <if test=" userId != null  and  userId != '' ">
+            AND user_id = #{userId}
+        </if>
+        <if test=" flowId != null  and  flowId != '' ">
+            AND flow_id = #{flowId}
+        </if>
+        <if test=" userId != flowType  and  flowType != '' ">
+            AND flow_type = #{flowType}
+        </if>
+        <if test=" userId != currentApprover  and  currentApprover != '' ">
+            AND current_approver = #{currentApprover}
+        </if>
+        # 从 第offset条记录开始(不包含offset)，返回pageSize条记录。例如：LIMIT 5,10; // 检索记录行 6-15
+        # 换句话说，LIMIT n 等价于 LIMIT 0,n。
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM t_user_flow
+        WHERE   delFlag != 0
+        AND     user_id = #{userId}
+        AND     flow_id = #{flowId}
+    </delete>
+
+</mapper>

@@ -65,6 +65,7 @@ spring:
       # 导入系统目录/Users/yuqiyu/Downloads下的system.properties配置文件
       #- optional:/Users/yuqiyu/Downloads/system.properties
 
+
   cloud:
     nacos:
       # 注册中心

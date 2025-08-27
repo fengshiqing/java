@@ -129,26 +129,3 @@ ACT_RU_EXECUTION
 
 
 
-# Docker
-查看docker状态
-sudo systemctl status docker
-
-
-
-构建镜像，镜像的名字为"springcloud"，注意命令最后有个"."符号：
-sudo docker build   --build-arg build_timeout=10m     -t springcloud  .
-
-构建成功后（很不容易才成功，镜像源很多被封了），查看已经构建好的镜像：
-sudo docker images
-
-
-docker  run  -d  -p 8080:8080  --name  springcloud-8080 springcloud
-
-
-
-
-查看容器(运行中)：
-sudo  docker ps
-
-查看所有的容器：
-sudo  docker ps  -a
