@@ -12,20 +12,26 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+
     <artifactId>spring-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
 
+
     <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <!-- 最佳实践：使用 release 替代单独的 source 和 target -->
+        <maven.compiler.release>21</maven.compiler.release>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <!-- <tomcat.version>8.5.40</tomcat.version>&lt;!&ndash; 自定义Tomcat版本 &ndash;&gt;-->
     </properties>
+
+
 
     <dependencies>
         <dependency>
@@ -101,17 +107,19 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
+        <!--数据库驱动、MyBatis start-->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
         <!-- mybatis starter，包含了spring-boot-starter-jdbc -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.spring.version}</version>
         </dependency>
-        <!--数据库 MySQL、MyBatis-->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-        </dependency>
+        <!--数据库驱动、MyBatis end-->
+
 
         <!--openfeign-->
         <dependency>
