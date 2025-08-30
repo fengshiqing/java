@@ -12,10 +12,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+
     <artifactId>Common</artifactId>
     <packaging>jar</packaging>
-    <name>Common</name>
-    <description>公共模块，定义POJO对象、基本的工具类</description>
+
 
     <properties>
         <java.version>21</java.version>

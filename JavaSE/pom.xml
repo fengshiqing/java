@@ -15,8 +15,6 @@
 
     <artifactId>JavaSE</artifactId>
     <packaging>jar</packaging>
-    <name>JavaSE</name>
-    <description>JavaSE相关的、基本的、公共的模块</description>
 
 
     <properties>

@@ -17,9 +17,9 @@
 
     <artifactId>spring-cloud-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-gateway</name>
-    <description>spring-cloud-gateway</description>
     <packaging>jar</packaging>
+
+    <description>网关</description>
 
 
 

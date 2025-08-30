@@ -6,7 +6,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-
     <parent>
         <groupId>com.fengshiqing</groupId>
         <artifactId>Java</artifactId>
@@ -15,11 +14,7 @@
 
 
     <artifactId>spring-cloud</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud</name>
-    <description>spring-cloud</description>
     <packaging>jar</packaging>
-
 
 
     <properties>

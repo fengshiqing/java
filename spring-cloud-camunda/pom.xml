@@ -14,11 +14,7 @@
 
 
     <artifactId>spring-cloud-camunda</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-camunda</name>
-    <description>spring-cloud-camunda</description>
     <packaging>jar</packaging>
-
 
 
     <properties>
