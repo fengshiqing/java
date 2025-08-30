@@ -70,16 +70,20 @@ spring:
     nacos:
       # 注册中心
       discovery:
-        server-addr: 192.168.2.100:8848
+        server-addr: 192.168.0.100:8848
         group: SpringCloud_fsq
         service: ${spring.application.name}
         ephemeral: true # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
+        username: nacos
+        password: nacos
 
       # 配置中心
       config:
-        server-addr: 192.168.2.100:8848
+        server-addr: 192.168.0.100:8848
         group: SpringCloud_fsq
         file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
+        username: nacos
+        password: nacos
 
 
     # 配置 Spring Cloud Gateway 相关属性
