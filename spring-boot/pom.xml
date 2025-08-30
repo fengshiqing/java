@@ -242,7 +242,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.6.3</version>
+                <version>3.0.13</version>
                 <configuration>
                     <excludes>
                         <!--不将lombok打入jar包里面-->
