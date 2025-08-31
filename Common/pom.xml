@@ -12,25 +12,32 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+
     <artifactId>Common</artifactId>
     <packaging>jar</packaging>
-    <name>Common</name>
-    <description>公共模块，定义POJO对象、基本的工具类</description>
+
+    <description>公共模块，定义公共常量、POJO实体类对象、基本的工具类</description>
+
 
     <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <!-- 最佳实践：使用 release 替代单独的 source 和 target -->
+        <maven.compiler.release>21</maven.compiler.release>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>1.18.32</version>
             <!--compile，可以不写，默认的范围，适用于所有阶段，会随着项目一起发布。意思就是引入当前jar包，也就同时引入了lombok包。
                 provided，类似compile，期望JDK、容器或使用者会提供这个依赖。如servlet.jar。意思就是引入当前jar包，但是不会引入lombok包。
                 runtime，只在运行时使用，如JDBC驱动，适用运行和测试阶段。
@@ -38,6 +45,13 @@
                 system，类似provided，需要显式提供包含依赖的jar，Maven不会在Repository中查找它。
             -->
             <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version><!--springboot3.0.2 搭配 2.7.0时启动报错，这里就用 2.1.0-->
         </dependency>
 
     </dependencies>
