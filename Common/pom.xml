@@ -16,6 +16,8 @@
     <artifactId>Common</artifactId>
     <packaging>jar</packaging>
 
+    <description>公共模块，定义公共常量、POJO实体类对象、基本的工具类</description>
+
 
     <properties>
         <java.version>21</java.version>
@@ -27,6 +29,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
