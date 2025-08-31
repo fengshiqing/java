@@ -43,6 +43,13 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version><!--springboot3.0.2 搭配 2.7.0时启动报错，这里就用 2.1.0-->
+        </dependency>
+
     </dependencies>
 
 </project>

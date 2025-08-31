@@ -57,41 +57,33 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.0.13</version>
+                <version>3.2.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!--Spring-Cloud 组件的版本管理者-->
+            <!--Spring-Cloud 版本管理者-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.5</version><!--https://docs.spring.io/spring-cloud/docs/2022.0.5/reference/html/ 这里明确了适配 Supported Boot Version: 3.0.13 -->
+                <version>2023.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!--Spring-Cloud-Alibaba 组件的版本管理者-->
+            <!--Spring-Cloud-Alibaba 版本管理者-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2022.0.0.2</version>
+                <version>2023.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-
-            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>2.1.0</version><!--springboot3.0.2 搭配 2.7.0时启动报错，这里就用 2.1.0-->
             </dependency>
 
             <!--camunda 组件的版本管理者-->
             <dependency>
                 <groupId>org.camunda.bpm</groupId>
-                <artifactId>camunda-bom</artifactId>
+                <artifactId>camunda-bom</artifactId><!--Bill of Materials (BOM)-->
                 <version>7.20.0</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -101,7 +93,7 @@
             <!--Spring Ai 大模型依赖-->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-bom</artifactId>
+                <artifactId>spring-ai-bom</artifactId><!--Bill of Materials (BOM)-->
                 <version>1.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
