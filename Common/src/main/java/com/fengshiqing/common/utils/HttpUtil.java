@@ -179,9 +179,11 @@ public final class HttpUtil {
      *
      * @param url 请求URL
      * @return HttpResponse<byte [ ]>
+     * @throws IOException          输入输出异常
+     * @throws InterruptedException 中断异常
      */
     public static HttpResponse<byte[]> getAsBytes(String url) throws IOException, InterruptedException {
-        HttpRequest request = buildRequest(url, "GET", Map.of(), null);
+        HttpRequest request = buildRequest(url, "GET", null, null);
         return HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofByteArray());
     }
 
