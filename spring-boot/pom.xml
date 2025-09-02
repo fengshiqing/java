@@ -118,6 +118,15 @@
         <!--数据库驱动、MyBatis end-->
 
 
+        <!--Spring团队明确表示，RestTemplate 在未来版本中会被移除。原因如下：
+            RestTemplate 是同步和阻塞的。这意味着当你发送一个HTTP请求时，当前线程会一直被阻塞，直到收到响应。在高并发场景下，这会大量消耗线程资源，限制应用的吞吐量和可伸缩性。
+            替代品：有更现代、高效、灵活的替代方案可用，即 WebClient。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+
         <!--openfeign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
