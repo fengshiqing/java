@@ -35,7 +35,12 @@ class EmailServiceTest {
 
     @Test
     public void testHtmlMail() {
-        String content = "<html>\n" + "<body>\n" + "    <h3>hello world ! 这是一封html邮件!</h3>\n" + "</body>\n" + "</html>";
+        String content = """
+                <html>
+                <body>
+                    <h3>hello world ! 这是一封html邮件!</h3>
+                </body>
+                </html>""";
         emailService.sendHtmlMail("938481169@qq.com", "test simple mail", content);
     }
 
