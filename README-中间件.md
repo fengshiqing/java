@@ -10,11 +10,11 @@
 使用的是 2.4.0版本，源码下载下来后，执行如下操作：
 1、打包
 2、在打好的项目包目录下，执行：
-scp xxl-job-admin-2.4.0.jar   fengshiqing@192.168.2.100:/opt/fengshiqing
+scp xxl-job-admin-2.4.0.jar   fengshiqing@192.168.0.100:/opt/fengshiqing
 3、在服务器上执行：
 nohup java -jar /opt/fengshiqing/xxl-job-admin-2.4.0.jar  >  /opt/runlogs/nohup-xxl-job.log  &
 4、打开管理台页面
-http://192.168.2.100:8080/xxl-job-admin/toLogin
+http://192.168.0.100:8080/xxl-job-admin/toLogin
 默认账号密码：admin/123456
 
 
@@ -32,7 +32,7 @@ bash /opt/nacos-2.3.0/bin/startup.sh -m standalone
 ##### 停止：
 bash /opt/nacos-2.3.0/bin/shutdown.sh
 
-管理台页面：http://192.168.2.100:8848/nacos/index.html
+管理台页面：http://192.168.0.100:8848/nacos/index.html
 
 
 
