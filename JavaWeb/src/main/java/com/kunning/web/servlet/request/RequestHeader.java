@@ -16,11 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = { "/servlet/RequestHeader" })
 public class RequestHeader extends HttpServlet {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 1L;
-
 	/*
 	 * (non-Javadoc)
 	 * 
