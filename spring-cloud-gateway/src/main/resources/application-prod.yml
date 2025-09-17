@@ -21,7 +21,7 @@ spring:
       discovery: # 注册中心
         enabled: true
         server-addr: 192.168.0.100:8848
-        namespace: a70346ce-9056-493f-9491-e669ed339253
+        namespace: PROD_NAMESPACE
         group: SpringCloud_fsq
         service: ${spring.application.name}
         ephemeral: true # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
@@ -30,7 +30,7 @@ spring:
 
       config: # 配置中心
         server-addr: 192.168.0.100:8848
-        namespace: a70346ce-9056-493f-9491-e669ed339253
+        namespace: PROD_NAMESPACE
         group: SpringCloud_fsq
         file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
         username: nacos
