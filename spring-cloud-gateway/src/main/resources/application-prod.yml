@@ -23,7 +23,6 @@ spring:
         server-addr: 192.168.0.100:8848
         namespace: PROD_NAMESPACE
         group: SpringCloud_fsq
-        service: ${spring.application.name}
         ephemeral: true # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
         username: nacos
         password: nacos
