@@ -24,7 +24,7 @@ public class UploadController {
      * 图片文件上传
      */
     @ResponseBody
-    @RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload-photo", method = RequestMethod.POST)
     public Resp uploadPhoto(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
         log.info("【uploadPhoto】【开始执行】");
 
