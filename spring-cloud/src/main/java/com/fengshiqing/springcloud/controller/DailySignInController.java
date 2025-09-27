@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "签到管理", description = "支持当日签到、以及补签")
 @AllArgsConstructor
 @RestController
+@Validated
 public class DailySignInController {
 
     private final DailySignInService dailySignInService;

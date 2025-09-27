@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -28,13 +29,12 @@ public class RedisController {
 
     /**
      * 功能描述：查询指定key的值。
-     * 浏览器调用方式：http://localhost/redis/setValue?keyName=kunning&value=fengshiqing
      *
      * @param keyName keyName
      * @param value value
      */
     @RequestMapping(value = "/redis/setValue")
-    public void setValue(String keyName, String value) {
+    public void setValue(@RequestParam("keyName") String keyName, @RequestParam("value") String value) {
         log.info("【setValue】【keyName:{}, value:{}】", keyName, value);
         redisService.set(keyName, value);
         log.info("【插入redis的值为：{}】", redisService.get(keyName));
@@ -42,7 +42,6 @@ public class RedisController {
 
     /**
      * 功能描述：查询指定key的值。
-     * 浏览器调用方式：http://localhost/redis/getValue?keyName=hello
      *
      * @param keyName keyName
      */

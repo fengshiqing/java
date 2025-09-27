@@ -46,9 +46,9 @@ public class CloudApplication {
         System.out.println(bean);
 
 
-        System.out.println();
-        System.out.println("【~~启动成功~~】");
-        System.out.println();
+        System.err.println("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
+        System.err.println("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
+        System.err.println("                ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
     }
 
 }
