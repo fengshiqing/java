@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 2022-04-19
  */
 @Service
-@FeignClient(name = "CloudApplication")
+@FeignClient(name = "CloudApplication", path = "/cloud-application")
 public interface Microservice {
 
     @PostMapping("/provider")
