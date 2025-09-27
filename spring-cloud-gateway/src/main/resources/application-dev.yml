@@ -119,5 +119,18 @@ spring:
       scg:  #  平替 com.fengshiqing.springcloudgateway.config.SentinelConfig 里面的配置
         fallback:
           mode: response
-          response-body: "{code:'429', msg:'流量爆啦 '}"
-
+          response-body: {'code': '429', 'msg': '流量爆啦~请稍后重试~'}
+      # 指定使用 Nacos 作为规则数据源
+      datasource:
+        flow:
+          nacos:
+            server-addr: 192.168.0.100:8848  # Nacos 地址
+            dataId: ${spring.application.name}-flow-rules
+            groupId: DEFAULT_GROUP
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: 192.168.0.100:8848
+            dataId: ${spring.application.name}-degrade-rules
+            groupId: DEFAULT_GROUP
+            rule-type: degrade

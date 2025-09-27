@@ -73,6 +73,10 @@
             <groupId>com.alibaba.cloud</groupId><!--这个是 sentinel 本身功能的依赖-->
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
         <!--sentinel 限流组件 end-->
         <!--网关依赖 end-->
 
