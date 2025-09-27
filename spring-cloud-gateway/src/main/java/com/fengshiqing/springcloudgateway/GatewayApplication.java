@@ -34,6 +34,11 @@ public class GatewayApplication {
         System.err.println("【userId:】" + userId);
         System.err.println("【userName:】" + userName);
         System.err.println("【userAge:】" + userAge);
+
+
+        System.err.println("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
+        System.err.println("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
+        System.err.println("                ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
     }
 
 }
