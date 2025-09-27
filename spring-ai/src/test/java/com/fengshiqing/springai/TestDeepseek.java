@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
 
-import java.net.URI;
 import java.net.http.HttpResponse;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -41,7 +40,7 @@ public class TestDeepseek {
     @Test
     public void deepseekStream(@Autowired DeepSeekChatModel model) { // 自动配置类：DeepSeekChatAutoConfiguration.class
         Flux<String> respStr = model.stream("你好，你是谁？");
-        respStr.toIterable().forEach(System.out::println);; // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
+        respStr.toIterable().forEach(System.out::println); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
     }
 
     @Test
@@ -69,7 +68,8 @@ public class TestDeepseek {
         String base64 = imgResp.getResult().getOutput().getB64Json();
 
         // 响应文件流给前端，前端可以下载此文件
-        model.getOptions().getResponseFormat().equals("base64") ? model.getOptions().getResponseFormat().equals("base64") : model.getOptions().getResponseFormat().equals("url");
+        String responseFormat = model.getOptions().getResponseFormat();
+        boolean bool = "base64".equals(responseFormat) || "url".equals(responseFormat);
     }
 
     public void downloadPic() {
