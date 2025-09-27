@@ -87,7 +87,7 @@ public class RedisService {
      *
      * @return redisValue
      */
-    public final Object get(final String key) {
+    public final String get(final String key) {
         return stringRedisTemplate.opsForValue().get(env.getProperty("spring.application.name") + ":" + key);
     }
 

@@ -4,6 +4,7 @@
 
 package com.fengshiqing.springcloud.controller;
 
+import com.fengshiqing.common.bean.RespData;
 import com.fengshiqing.springcloud.service.client.RedisService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,8 @@ public class RedisController {
      * @param keyName keyName
      */
     @RequestMapping(value = "/redis/getValue")
-    public void getValue(String keyName) {
-        log.info("【读取redis的值：{}】", redisService.get(keyName));
+    public RespData<String> getValue(@RequestParam("keyName") String keyName) {
+        log.info("【getValue】【读取redis的值：{}】", keyName);
+        return new RespData<>(redisService.get(keyName));
     }
 }
