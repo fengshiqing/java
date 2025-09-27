@@ -19,7 +19,7 @@ public class ReflectTest {
             Object instance1 = LazyDoubleCheckSingleton.getInstance();
 
             Class<?> clazz = LazyDoubleCheckSingleton.class;
-            Constructor<?> c = clazz.getDeclaredConstructor(null);
+            Constructor<?> c = clazz.getDeclaredConstructor();
             c.setAccessible(true);
 
             Object instance2 = c.newInstance(); // 通过反射创造出对象，每次都是一个全新的对象
@@ -32,7 +32,7 @@ public class ReflectTest {
             System.out.println(instance1 == instance2);
             System.out.println(instance2 == instance3);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("异常：" + e);
         }
     }
 
@@ -45,7 +45,7 @@ public class ReflectTest {
             Object instance1 = LazyStaticInnerClassSingleton.getInstance();
 
             Class<?> clazz = LazyStaticInnerClassSingleton.class;
-            Constructor<?> c = clazz.getDeclaredConstructor(null);
+            Constructor<?> c = clazz.getDeclaredConstructor();
             c.setAccessible(true);
 
             Object instance2 = c.newInstance(); // 通过反射创造出对象，每次都是一个全新的对象，这样会破坏单例，需要在构造函数中做判断
@@ -58,7 +58,7 @@ public class ReflectTest {
             System.out.println(instance1 == instance2);
             System.out.println(instance2 == instance3);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("异常：" + e);
         }
     }
 
