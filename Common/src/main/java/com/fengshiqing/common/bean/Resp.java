@@ -6,6 +6,7 @@ package com.fengshiqing.common.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,6 +16,7 @@ import lombok.ToString;
  * @author fengshiqing
  * @since 2022-04-23
  */
+@NoArgsConstructor // 无参构造器，openFeign默认需要无参构造器
 @AllArgsConstructor
 @Getter
 @Setter
