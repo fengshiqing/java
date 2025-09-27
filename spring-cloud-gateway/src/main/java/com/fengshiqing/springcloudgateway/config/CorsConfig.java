@@ -23,7 +23,6 @@ import org.springframework.web.util.pattern.PathPatternParser;
 @Configuration
 public class CorsConfig {
 
-
     /**
      * 构造函数
      */

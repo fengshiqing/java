@@ -1,13 +1,11 @@
 
 
-
-
 spring:
   config:
     import:
       # 支持从多个地方导入
       # 使用 optional: 前缀避免配置源不可用时应用无法启动
-      - optional:nacos:${spring.application.name}.properties?group=SpringCloud_fsq
+      - optional:nacos:${spring.application.name}.properties?group=DEFAULT_GROUP
       # 导入 classpath 下 default 目录下的 default.properties 配置文件
       # - classpath:/default/default.properties
       # 导入classpath下service目录下的service.yml配置文件
@@ -21,14 +19,12 @@ spring:
       discovery: # 注册中心
         enabled: true
         server-addr: 192.168.0.100:8848
-        group: SpringCloud_fsq
         ephemeral: true # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
         username: nacos
         password: nacos
 
       config: # 配置中心
         server-addr: 192.168.0.100:8848
-        group: SpringCloud_fsq
         file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
         username: nacos
         password: nacos
@@ -112,7 +108,6 @@ spring:
             - Method=GET,POST
           filters:
             - StripPrefix=1
-
 
 
     # sentinel 配置

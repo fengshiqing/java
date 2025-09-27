@@ -1,7 +1,5 @@
 
 
-
-
 spring:
   config:
     import:
@@ -114,7 +112,6 @@ spring:
             - Method=GET,POST
           filters:
             - StripPrefix=1
-
 
 
     # sentinel 配置
