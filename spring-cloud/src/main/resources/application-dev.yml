@@ -1,17 +1,34 @@
-# 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
-debug: false
-
-
-
-server:
-  port: 8080
-  # URL路径前缀
-  servlet:
-    context-path: /cloud-application
-
 
 
 spring:
+  config:
+    import:
+      # 支持从多个地方导入
+      # 使用 optional: 前缀避免配置源不可用时应用无法启动
+      - optional:nacos:${spring.application.name}.properties?group=DEFAULT_GROUP
+      # 导入 classpath 下 default 目录下的 default.properties 配置文件
+      # - classpath:/default/default.properties
+      # 导入classpath下service目录下的service.yml配置文件
+      # - classpath:/service/service.yml
+      # 导入系统目录/Users/yuqiyu/Downloads下的system.properties配置文件
+      #- optional:/Users/yuqiyu/Downloads/system.properties
+
+
+  cloud:
+    nacos:
+      discovery: # 注册中心
+        enabled: true
+        server-addr: 192.168.0.100:8848
+        ephemeral: true # true即为临时节点，那么 nacos 集群对这个client节点效果就是AP，反之则是CP，即不是临时节点
+        username: nacos
+        password: nacos
+
+      config: # 配置中心
+        server-addr: 192.168.0.100:8848
+        file-extension: properties # 配置文件的类型：properties(默认值)、yaml、yml，示例：example.properties
+        username: nacos
+        password: nacos
+
 
   # note: ---------------- 国际化配置 ----------------
   messages:
@@ -98,9 +115,6 @@ spring:
       read-timeout: 30s
 
 
-
-mybatis:
-  mapper-locations: classpath:sqlMap/*.xml
 
 # elasticsearch配置
 elasticsearch:

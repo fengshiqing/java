@@ -89,11 +89,6 @@
             <artifactId>spring-cloud-function-context</artifactId>
         </dependency>
 
-        <!--没有此jar包就无法读取bootstrap.properties文件-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
         <!--openfeign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
