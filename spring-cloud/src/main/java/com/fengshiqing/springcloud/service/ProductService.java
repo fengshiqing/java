@@ -32,17 +32,17 @@ public class ProductService {
 
 
     public int save(ProductEntity productEntity) {
-        return jdbcTemplate.update("INSERT INTO products(name, code, price) values(?, ? , ?)",
+        return jdbcTemplate.update("INSERT INTO t_product(product_name, product_code, original_price) values(?, ? , ?)",
                 productEntity.getProductName(), productEntity.getProductCode(), productEntity.getOriginalPrice());
     }
 
     public int update(ProductEntity productEntity) {
-        return jdbcTemplate.update("UPDATE products SET name = ? , code = ? , price = ? WHERE id=?",
+        return jdbcTemplate.update("UPDATE t_product SET product_name = ? , product_code = ? , original_price = ? WHERE id=?",
                 productEntity.getProductName(), productEntity.getProductCode(), productEntity.getOriginalPrice(), productEntity.getId());
     }
 
     public int delete(long id) {
-        return jdbcTemplate.update("DELETE FROM products where id = ? ", id);
+        return jdbcTemplate.update("DELETE FROM t_product where id = ? ", id);
     }
 
     /**
