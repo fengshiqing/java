@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fengshiqing.springcloud.mapper.RankingMapper">
+<mapper namespace="com.fengshiqing.springcloud.dao.RankingMapper">
 
     <!--插入数据，并将生成的主键ID 回写到 实体类对象中-->
     <insert id="insertRankingHistory" useGeneratedKeys="true" keyProperty="id">
@@ -14,7 +14,7 @@
 
 
     <!--查询某个榜单的名次排名情况-->
-    <select id="selectRankingByType" resultType="com.fengshiqing.springcloud.mapper.entity.RankingEntity">
+    <select id="selectRankingByType" resultType="com.fengshiqing.springcloud.dao.entity.RankingEntity">
         SELECT
                 rank_type     AS `rankType`,
                 biz_id        AS `bizId`,
@@ -28,7 +28,7 @@
 
 
     <!--查询某个榜单下，某篇文章/某个视频 的 总点赞数/总收藏数-->
-    <select id="selectRankingByBizId" resultType="com.fengshiqing.springcloud.mapper.entity.RankingEntity">
+    <select id="selectRankingByBizId" resultType="com.fengshiqing.springcloud.dao.entity.RankingEntity">
         SELECT
                 rank_type     AS `rankType`,
                 biz_id        AS `bizId`,
@@ -50,7 +50,7 @@
     </insert>
 
 
-    <select id="selectRankingResult" resultType="com.fengshiqing.springcloud.mapper.entity.RankingEntity">
+    <select id="selectRankingResult" resultType="com.fengshiqing.springcloud.dao.entity.RankingEntity">
         SELECT
                 biz_id, total_quantity
         FROM t_ranking_Result

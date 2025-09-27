@@ -4,8 +4,8 @@
 
 package com.fengshiqing.springcloud.service;
 
-import com.fengshiqing.springcloud.mapper.ProductMapper;
-import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
+import com.fengshiqing.springcloud.dao.ProductMapper;
+import com.fengshiqing.springcloud.dao.entity.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

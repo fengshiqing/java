@@ -5,8 +5,8 @@
 package com.fengshiqing.springcloud.service;
 
 import com.fengshiqing.common.BizException;
-import com.fengshiqing.springcloud.mapper.DailySignInMapper;
-import com.fengshiqing.springcloud.mapper.entity.DailySignEntity;
+import com.fengshiqing.springcloud.dao.DailySignInMapper;
+import com.fengshiqing.springcloud.dao.entity.DailySignEntity;
 import com.fengshiqing.springcloud.service.dto.DailySignVo;
 import com.fengshiqing.springcloud.utils.I18nUtil;
 import lombok.AllArgsConstructor;

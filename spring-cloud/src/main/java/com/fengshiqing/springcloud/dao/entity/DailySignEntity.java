@@ -2,7 +2,7 @@
  * Copyright (c) 2023. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.mapper.entity;
+package com.fengshiqing.springcloud.dao.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

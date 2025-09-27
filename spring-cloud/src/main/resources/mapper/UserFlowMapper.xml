@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fengshiqing.springcloud.mapper.UserFlowMapper">
+<mapper namespace="com.fengshiqing.springcloud.dao.UserFlowMapper">
 
-    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.mapper.entity.ProductEntity">
+    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.dao.entity.ProductEntity">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
@@ -11,7 +11,7 @@
     </resultMap>
 
 
-    <insert id="insert" parameterType="com.fengshiqing.springcloud.mapper.entity.UserFlowEntity">
+    <insert id="insert" parameterType="com.fengshiqing.springcloud.dao.entity.UserFlowEntity">
         INSERT INTO t_user_flow
         (
                 `user_id`, `flow_id`,
@@ -26,7 +26,7 @@
     </insert>
 
 
-    <update id="update" parameterType="com.fengshiqing.springcloud.mapper.entity.UserFlowEntity">
+    <update id="update" parameterType="com.fengshiqing.springcloud.dao.entity.UserFlowEntity">
         UPDATE t_user_flow
         SET
                 current_approver  = #{currentApprover}
@@ -36,7 +36,7 @@
     </update>
 
 
-    <select id="selectByPage" resultType="com.fengshiqing.springcloud.mapper.entity.UserFlowEntity">
+    <select id="selectByPage" resultType="com.fengshiqing.springcloud.dao.entity.UserFlowEntity">
         SELECT
                 `user_id`          AS `userId`,
                 `flow_id`          AS `flowId`,

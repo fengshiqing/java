@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-@MapperScan(basePackages = "com.fengshiqing.springcloud.**.mapper") // 和 @ComponentScan 注解功能类似
+@MapperScan(basePackages = "com.fengshiqing.springcloud.**.dao") // 和 @ComponentScan 注解功能类似
 public class MyBatisConfig {
 
     /**

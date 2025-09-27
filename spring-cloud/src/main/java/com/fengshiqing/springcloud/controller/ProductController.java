@@ -6,7 +6,7 @@ package com.fengshiqing.springcloud.controller;
 
 import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.common.bean.RespData;
-import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
+import com.fengshiqing.springcloud.dao.entity.ProductEntity;
 import com.fengshiqing.springcloud.service.ProductService;
 import com.fengshiqing.springcloud.service.dto.ReqPaged;
 import lombok.AllArgsConstructor;

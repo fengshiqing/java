@@ -5,8 +5,8 @@
 package com.fengshiqing.springcloud.controller;
 
 import com.fengshiqing.common.bean.Resp;
-import com.fengshiqing.springcloud.mapper.entity.ProductEntity;
-import com.fengshiqing.springcloud.mapper.entity.UserEntity;
+import com.fengshiqing.springcloud.dao.entity.ProductEntity;
+import com.fengshiqing.springcloud.dao.entity.UserEntity;
 import com.fengshiqing.springcloud.service.ProductService;
 import com.fengshiqing.springcloud.service.UserService;
 import lombok.AllArgsConstructor;

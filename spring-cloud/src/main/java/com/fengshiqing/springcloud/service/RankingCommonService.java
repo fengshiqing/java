@@ -4,8 +4,8 @@
 
 package com.fengshiqing.springcloud.service;
 
-import com.fengshiqing.springcloud.mapper.RankingMapper;
-import com.fengshiqing.springcloud.mapper.entity.RankingEntity;
+import com.fengshiqing.springcloud.dao.RankingMapper;
+import com.fengshiqing.springcloud.dao.entity.RankingEntity;
 import com.fengshiqing.springcloud.service.client.RedisZSetService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

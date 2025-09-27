@@ -2,9 +2,9 @@
  * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.mapper;
+package com.fengshiqing.springcloud.dao;
 
-import com.fengshiqing.springcloud.mapper.entity.UserFlowEntity;
+import com.fengshiqing.springcloud.dao.entity.UserFlowEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.mapper.entity;
+package com.fengshiqing.springcloud.dao.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

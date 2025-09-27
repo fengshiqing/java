@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fengshiqing.springcloud.mapper.DailySignInMapper">
+<mapper namespace="com.fengshiqing.springcloud.dao.DailySignInMapper">
 
     <insert id="insert">
         INSERT INTO t_user_daily_sign_in (
@@ -12,7 +12,7 @@
     </insert>
 
 
-    <update id="updateByPrimaryKey" parameterType="com.fengshiqing.springcloud.mapper.entity.DailySignEntity">
+    <update id="updateByPrimaryKey" parameterType="com.fengshiqing.springcloud.dao.entity.DailySignEntity">
         UPDATE  t_user_daily_sign_in
         SET
                 `detail`         = #{detail,jdbcType=INTEGER},
@@ -24,7 +24,7 @@
     </update>
 
 
-    <select id="selectByPrimaryKey" resultType="com.fengshiqing.springcloud.mapper.entity.DailySignEntity">
+    <select id="selectByPrimaryKey" resultType="com.fengshiqing.springcloud.dao.entity.DailySignEntity">
         SELECT
                 user_id, `month`, detail, total_num, continuous_num
         FROM t_user_daily_sign_in
