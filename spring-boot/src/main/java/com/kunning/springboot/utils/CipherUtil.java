@@ -7,7 +7,6 @@ package com.kunning.springboot.utils;
 import jakarta.xml.bind.DatatypeConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.Base64Utils;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
@@ -82,7 +81,7 @@ public final class CipherUtil {
      */
     public static String encodeBase64(String plainStr) {
         byte[] byteArr = plainStr.getBytes(StandardCharsets.UTF_8);
-        return Base64Utils.encodeToString(byteArr);
+        return Base64.getEncoder().encodeToString(byteArr);
     }
 
     /**
@@ -93,7 +92,7 @@ public final class CipherUtil {
      * @return 解码后的原文
      */
     public static String decodeBase64(String codeStr) {
-        byte[] byteArr = Base64Utils.decodeFromString(codeStr); // Spring提供的方法默认的编码格式就是UTF-8
+        byte[] byteArr = Base64.getDecoder().decode(codeStr); // Spring提供的方法默认的编码格式就是UTF-8
         return new String(byteArr, StandardCharsets.UTF_8);
     }
 
@@ -148,7 +147,7 @@ public final class CipherUtil {
     // ====================================================AES非对称加解密====================================================
 
     /**
-     * 功能描述：AES加密后，再进行base64编码。 参考：https://blog.csdn.net/TangHao_0226/article/details/80264572
+     * 功能描述：AES加密后，再进行base64编码。 参考：<a href="https://blog.csdn.net/TangHao_0226/article/details/80264572">...</a>
      *
      * @param plainStr 明文
      * @param secretKey 密钥
@@ -174,7 +173,7 @@ public final class CipherUtil {
 
         byte[] encrypted = cipher.doFinal(plainStr.getBytes()); // 加密
 
-        return Base64Utils.encodeToString(encrypted); // 此处使用BASE64做转码功能，同时能起到2次加密的作用。
+        return Base64.getEncoder().encodeToString(encrypted); // 此处使用BASE64做转码功能，同时能起到2次加密的作用。
     }
 
     /**
@@ -198,7 +197,7 @@ public final class CipherUtil {
                 return null;
             }
 
-            byte[] encrypted = Base64Utils.decodeFromString(ciphertext); // 先用base64解码
+            byte[] encrypted = Base64.getDecoder().decode(ciphertext); // 先用base64解码
             SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             IvParameterSpec ivParameterSpec = new IvParameterSpec("0102030405060708".getBytes());
@@ -226,7 +225,7 @@ public final class CipherUtil {
     public static String initMacKey() throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(HMAC_MD_5);
         SecretKey secretKey = keyGenerator.generateKey();
-        return Base64Utils.encodeToString(secretKey.getEncoded());
+        return Base64.getEncoder().encodeToString(secretKey.getEncoded());
     }
 
     /**

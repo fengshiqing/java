@@ -91,7 +91,7 @@ public class Test1 {
 
 	@Test
 	public void doTest() {
-		Integer M = new Integer(1024 * 1024 * 1);//单位, 兆(M)
+		Integer M = Integer.valueOf(1024 * 1024 * 1);//单位, 兆(M)
 		byte[] bytes = new byte[1 * M];// 申请1M 大小的内存空间
 		bytes = null;// 断开引用链
 		System.gc();// 通知 GC 收集垃圾
