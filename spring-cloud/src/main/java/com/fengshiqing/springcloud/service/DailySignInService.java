@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springcloud.service;
 
-import com.fengshiqing.springcloud.controller.handler.BizException;
+import com.fengshiqing.common.BizException;
 import com.fengshiqing.springcloud.mapper.DailySignInMapper;
 import com.fengshiqing.springcloud.mapper.entity.DailySignEntity;
 import com.fengshiqing.springcloud.service.dto.DailySignVo;

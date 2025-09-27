@@ -1,9 +1,10 @@
 /*
- *  Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2025. All Rights Reserved.
  */
 
-package com.kunning.springboot.controller.handler;
+package com.kunning.springboot.config.handler;
 
+import com.fengshiqing.common.BizException;
 import com.fengshiqing.common.bean.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.NoSuchMessageException;

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2025. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.camunda.controller.handler;
+package com.fengshiqing.common;
 
 import lombok.Getter;
 import lombok.Setter;

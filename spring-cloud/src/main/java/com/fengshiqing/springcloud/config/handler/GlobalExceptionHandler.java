@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2025. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.controller.handler;
+package com.fengshiqing.springcloud.config.handler;
 
+import com.fengshiqing.common.BizException;
 import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.springcloud.utils.I18nUtil;
 import lombok.extern.slf4j.Slf4j;

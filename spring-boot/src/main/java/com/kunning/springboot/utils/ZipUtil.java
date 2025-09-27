@@ -1,6 +1,6 @@
 package com.kunning.springboot.utils;
 
-import com.kunning.springboot.controller.handler.BizException;
+import com.fengshiqing.common.BizException;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
