@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2025. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.startup;
+package com.fengshiqing.springcloud.config.startup;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
