@@ -1,15 +1,14 @@
 /*
- * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2025. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloudgateway.filter;
+package com.fengshiqing.springcloudgateway.config.filter;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
