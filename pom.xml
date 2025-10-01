@@ -27,6 +27,7 @@
 
 
 
+    <!-- 全局配置，父项目中定义的属性，子项目中可以直接使用，也可以在子项目中重新定义覆盖 -->
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
@@ -39,10 +40,12 @@
 
         <!--版本如何搭配，请参考这里：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
         <!--还有这里：https://github.com/alibaba/spring-cloud-alibaba 这里有个 中文文档 的跳转链接，跳转后能看到具体的版本说明 -->
+        <!--最新搭配：https://sca.aliyun.com/docs/2023/overview/version-explain/?spm=5176.29160081.0.0.74805c72R9tPTK -->
         <spring.boot.version>3.2.4</spring.boot.version>
+        <spring.cloud.version>2023.0.1</spring.cloud.version>
+        <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
         <!--也可以这么搭配：boot3.2.5  cloud2023.0.3  alibaba2023.0.1.0
          搭配方式参考这里视频的 06:41 https://www.bilibili.com/video/BV1FntBzhEwQ?spm_id_from=333.788.videopod.episodes&vd_source=f2fb919142ce62e6571426a12817634e&p=2-->
-        <!--这个文档好像是最新的：https://sca.aliyun.com/docs/2023/overview/version-explain/?spm=5176.29160081.0.0.74805c72R9tPTK -->
         <mybatis.spring.version>3.0.3</mybatis.spring.version><!--springboot 升级到 3.2.4 后，这里也必须跟着升级，否则会有不兼容的问题-->
     </properties>
 
@@ -65,7 +68,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2023.0.1</version>
+                <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -75,7 +78,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2023.0.1.0</version>
+                <version>${spring.cloud.alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -25,18 +25,6 @@
     <packaging>jar</packaging>
 
 
-    <properties>
-        <java.version>21</java.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <!-- 最佳实践：使用 release 替代单独的 source 和 target -->
-        <maven.compiler.release>21</maven.compiler.release>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-
-
 
     <dependencies>
         <dependency>
