@@ -23,4 +23,15 @@ public class BizException extends RuntimeException {
         super(message);
         this.exceptionCode = exceptionCode;
     }
+
+
+    /**
+     * 重写fillInStackTrace 业务异常不需要堆栈信息，提高效率.
+     * 高并发场景下，大约能带来 10-50 倍的异常实例化性能提升。
+     */
+    @Override
+    public Throwable fillInStackTrace() {
+        return this;
+    }
+
 }
