@@ -1,5 +1,6 @@
 package com.kunning.springboot;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -13,6 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 // 标注主程序类，表明这是一个Spring Boot应用
 @SpringBootApplication
+@MapperScan("com.kunning.springboot.dao")
 @EnableScheduling // 开启定时任务
 @EnableFeignClients
 public class MyApplication {
