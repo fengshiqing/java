@@ -2,9 +2,9 @@
  * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.camunda.mapper;
+package com.fengshiqing.springcloud.camunda.dao;
 
-import com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity;
+import com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

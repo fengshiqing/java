@@ -2,7 +2,7 @@
  * Copyright (c) 2025. fengshiqing 冯仕清. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.camunda.mapper.entity;
+package com.fengshiqing.springcloud.camunda.dao.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

@@ -15,7 +15,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan(basePackages = "com.fengshiqing.springcloud.**.mapper")
+@MapperScan(basePackages = "com.fengshiqing.springcloud.camunda.dao")
 @EnableDiscoveryClient
 public class CamundaCloudApplication {
 

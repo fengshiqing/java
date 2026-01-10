@@ -6,8 +6,8 @@ package com.fengshiqing.springcloud.camunda.controller;
 
 import com.fengshiqing.common.bean.Resp;
 import com.fengshiqing.common.bean.RespData;
-import com.fengshiqing.springcloud.camunda.mapper.UserFlowMapper;
-import com.fengshiqing.springcloud.camunda.mapper.entity.UserFlowEntity;
+import com.fengshiqing.springcloud.camunda.dao.UserFlowMapper;
+import com.fengshiqing.springcloud.camunda.dao.entity.UserFlowEntity;
 import com.fengshiqing.springcloud.camunda.utils.I18nUtil;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

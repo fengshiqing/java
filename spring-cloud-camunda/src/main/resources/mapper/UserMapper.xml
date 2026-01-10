@@ -3,20 +3,20 @@
 
 <mapper namespace="com.fengshiqing.springcloud.camunda.mapper.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity">
+    <resultMap id="BaseResultMap" type="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="price" jdbcType="INTEGER" property="price"/>
     </resultMap>
 
-    <select id="selectByPrimaryKey" resultType="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity">
+    <select id="selectByPrimaryKey" resultType="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity">
         SELECT id, `name`, code, price
         FROM t_product
         WHERE id = #{id,jdbcType=BIGINT}
     </select>
 
-    <select id="selectProductByPage" resultType="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity">
+    <select id="selectProductByPage" resultType="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity">
         SELECT id, `name`, code, price
         FROM t_product
         # 从 第offset条记录开始(不包含offset)，返回pageSize条记录。例如：LIMIT 5,10; // 检索记录行 6-15
@@ -30,13 +30,13 @@
         WHERE id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity"
             useGeneratedKeys="true">
         insert into t_product (`name`, code, price)
         values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER})
     </insert>
 
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity"
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity"
             useGeneratedKeys="true">
         insert into t_product
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -63,7 +63,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity">
+    <update id="updateByPrimaryKeySelective" parameterType="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity">
         update t_product
         <set>
             <if test="name != null">
@@ -79,7 +79,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.fengshiqing.springcloud.camunda.mapper.entity.ProductEntity">
+    <update id="updateByPrimaryKey" parameterType="com.fengshiqing.springcloud.camunda.dao.entity.ProductEntity">
         update t_product
         set `name` = #{name,jdbcType=VARCHAR},
             code   = #{code,jdbcType=VARCHAR},
