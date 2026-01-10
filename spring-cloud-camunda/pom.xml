@@ -18,6 +18,20 @@
 
 
 
+    <dependencyManagement>
+        <dependencies>
+            <!--camunda 组件的版本管理者-->
+            <dependency>
+                <groupId>org.camunda.bpm</groupId>
+                <artifactId>camunda-bom</artifactId><!--Bill of Materials (BOM)-->
+                <version>7.20.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
     <dependencies>
         <dependency>
             <groupId>com.fengshiqing</groupId>

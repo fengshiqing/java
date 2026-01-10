@@ -84,16 +84,6 @@
             </dependency>
 
 
-            <!--camunda 组件的版本管理者-->
-            <dependency>
-                <groupId>org.camunda.bpm</groupId>
-                <artifactId>camunda-bom</artifactId><!--Bill of Materials (BOM)-->
-                <version>7.20.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-
             <!--Spring Ai 大模型依赖-->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
