@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2024. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2026. All Rights Reserved.
  */
 
-package com.fengshiqing.springcloud.aspect;
+package com.fengshiqing.springcloud.config.aspect;
 
 
 import com.fengshiqing.common.bean.Resp;

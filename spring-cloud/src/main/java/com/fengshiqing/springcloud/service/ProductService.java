@@ -5,7 +5,7 @@
 package com.fengshiqing.springcloud.service;
 
 import com.fengshiqing.common.Constant.RedisKey;
-import com.fengshiqing.springcloud.aspect.RedisCache;
+import com.fengshiqing.springcloud.config.aspect.RedisCache;
 import com.fengshiqing.springcloud.dao.ProductMapper;
 import com.fengshiqing.springcloud.dao.entity.ProductEntity;
 import lombok.AllArgsConstructor;
