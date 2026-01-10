@@ -47,10 +47,10 @@ public class CloudApplication {
         ObjectMapper bean = appContext.getBean(ObjectMapper.class);
         System.out.println(bean);
 
-
-        System.err.println("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
-        System.err.println("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
-        System.err.println("                ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
+        log.info("【启动成功】");
+        log.info("┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
+        log.info("┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
+        log.info("┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
     }
 
 }
