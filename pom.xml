@@ -19,7 +19,6 @@
         <module>JavaSE</module>
         <module>JavaWeb</module>
         <module>spring-ai</module>
-        <module>spring-boot</module>
         <module>spring-cloud</module>
         <module>spring-cloud-camunda</module>
         <module>spring-cloud-gateway</module>
