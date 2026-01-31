@@ -9,8 +9,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
@@ -26,8 +24,6 @@ import java.util.UUID;
  * @author 冯仕清
  * @since 2025-07-04
  */
-@AllArgsConstructor
-@Slf4j
 @Component
 public class RequestFilter extends OncePerRequestFilter {
 

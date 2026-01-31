@@ -4,6 +4,7 @@
 
 package com.kunning.springboot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -13,21 +14,21 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 /**
  * 功能描述：配置 WebSocket。
  * 首页地址：http://localhost/websocket.html
- *
+ * <p>
  * 参卡：https://www.cnblogs.com/xuwenjin/p/12664650.html
  *
  * @author fengshiqing
  * @since 2021-12-17
  */
+@Slf4j
 @Configuration
 public class WebSocketConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketConfig.class);
 
     /**
      * 构造函数
      */
     public WebSocketConfig() {
-        LOGGER.info("【初始化 WebSocket 配置】");
+        log.info("【初始化 WebSocket 配置】");
     }
 
     /**

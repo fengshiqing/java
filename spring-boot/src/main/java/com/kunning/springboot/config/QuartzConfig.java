@@ -1,5 +1,6 @@
 package com.kunning.springboot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -18,15 +19,15 @@ import com.kunning.springboot.task.QuartzTask;
  * @author 冯仕清
  * @since 2019/12/10
  */
+@Slf4j
 @Configuration
 public class QuartzConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(QuartzConfig.class);
 
     /**
      * 构造函数
      */
     public QuartzConfig() {
-        LOGGER.info("【初始化 Quartz 配置】");
+        log.info("【初始化 Quartz 配置】");
     }
 
     @Bean

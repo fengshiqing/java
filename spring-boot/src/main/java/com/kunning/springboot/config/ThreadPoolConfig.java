@@ -7,6 +7,7 @@ package com.kunning.springboot.config;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -22,16 +23,16 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @since 2019-02-08
  */
 // https://blog.csdn.net/qq_39385706/article/details/79365849
+@Slf4j
 @Configuration
 @EnableAsync
 public class ThreadPoolConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ThreadPoolConfig.class);
 
     /**
      * 构造函数
      */
     public ThreadPoolConfig() {
-        LOGGER.info("【初始化 线程池 配置】");
+        log.info("【初始化 线程池 配置】");
     }
 
     /**
@@ -41,7 +42,7 @@ public class ThreadPoolConfig {
      */
     @Bean
     public Executor springThreadPool() {
-        LOGGER.info("【springThreadPool】【config】【start】");
+        log.info("【springThreadPool】【config】【start】");
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(10); // 核心线程数，线程池维护的最少线程数量
@@ -56,7 +57,7 @@ public class ThreadPoolConfig {
 
         executor.initialize();// 执行初始化
 
-        LOGGER.info("【配置线程池】【config】【end】");
+        log.info("【配置线程池】【config】【end】");
         return executor;
     }
 }
