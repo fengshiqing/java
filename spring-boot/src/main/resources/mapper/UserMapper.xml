@@ -3,12 +3,12 @@
 
 <mapper namespace="com.kunning.springboot.dao.UserDao">
 
-    <insert id="insert" parameterType="com.kunning.springboot.pojo.UserDto">
+    <insert id="insert" parameterType="com.kunning.springboot.model.UserDto">
         INSERT INTO t_user (username, password) VALUES (#{username}, #{password})
     </insert>
 
 
-    <update id="update" parameterType="com.kunning.springboot.pojo.UserDto">
+    <update id="update" parameterType="com.kunning.springboot.model.UserDto">
         UPDATE t_user
            SET userName=#{username}, password=#{password}
         WHERE id = #{id}
@@ -21,14 +21,14 @@
     </delete>
 
 
-    <select id="queryAllUser" parameterType="com.kunning.springboot.pojo.UserDto" resultType="com.kunning.springboot.pojo.UserDto">
+    <select id="queryAllUser" parameterType="com.kunning.springboot.model.UserDto" resultType="com.kunning.springboot.model.UserDto">
         SELECT *
           FROM t_user
          WHERE 1 = 1
     </select>
 
 
-    <select id="queryUserById" parameterType="int" resultType="com.kunning.springboot.pojo.UserDto">
+    <select id="queryUserById" parameterType="int" resultType="com.kunning.springboot.model.UserDto">
         SELECT *
           FROM t_user
          WHERE 1 = 1
@@ -36,7 +36,7 @@
     </select>
 
 
-    <select id="queryUserByUserName" resultType="com.kunning.springboot.pojo.UserDto">
+    <select id="queryUserByUserName" resultType="com.kunning.springboot.model.UserDto">
         SELECT
                 *
         FROM t_user

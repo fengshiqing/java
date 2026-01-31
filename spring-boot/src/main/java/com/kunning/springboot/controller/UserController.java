@@ -1,8 +1,8 @@
 package com.kunning.springboot.controller;
 
-import com.fengshiqing.common.bean.Resp;
-import com.fengshiqing.common.bean.RespData;
-import com.kunning.springboot.pojo.UserDto;
+import com.kunning.springboot.model.UserDto;
+import com.kunning.springboot.model.resp.Resp;
+import com.kunning.springboot.model.resp.RespData;
 import com.kunning.springboot.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -32,12 +32,14 @@ public class UserController {
 
     private final UserService userService;
 
+
     /**
      * 构造器
      */
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
 
     /**
      * 功能描述：登录
@@ -57,6 +59,7 @@ public class UserController {
         return new Resp(200, "登录成功");
     }
 
+
     /**
      * 功能描述：注册账号
      *
@@ -70,6 +73,7 @@ public class UserController {
         return new Resp(200, "注册成功");
     }
 
+
     /**
      * 功能描述：退出登录
      *
@@ -82,6 +86,7 @@ public class UserController {
         return new Resp(200, "退出成功");
     }
 
+
     @GetMapping(value = "/allUser")
     public RespData<List<UserDto>> queryAllUser() {
         LOGGER.info("【queryAllUser】【开始执行】");
@@ -92,6 +97,7 @@ public class UserController {
         LOGGER.info("【signout】【end】");
         return new RespData<>(userDtoList);
     }
+
 
     @GetMapping(value = "/user")
     public String queryUserById(int userId) {

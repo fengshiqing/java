@@ -1,7 +1,7 @@
 package com.kunning.springboot.service;
 
 import com.kunning.springboot.dao.UserDao;
-import com.kunning.springboot.pojo.UserDto;
+import com.kunning.springboot.model.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;

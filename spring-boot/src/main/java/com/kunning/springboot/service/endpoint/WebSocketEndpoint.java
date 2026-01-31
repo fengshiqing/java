@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2021. fengshiqing 冯仕清. All right reserved.
+ * Copyright (c) fengshiqing 冯仕清 2026. All Rights Reserved.
  */
 
-package com.kunning.springboot.endpoint;
+package com.kunning.springboot.service.endpoint;
 
 import java.io.IOException;
 import java.util.Map;

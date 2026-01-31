@@ -4,8 +4,7 @@
 
 package com.kunning.springboot.config.filter;
 
-
-import com.fengshiqing.common.Constant.SysConstant;
+import com.kunning.springboot.constant.SysConstant;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,7 +43,7 @@ public class RequestFilter extends OncePerRequestFilter {
         }
         MDC.put(SysConstant.TRACE_ID, traceId);
 
-        // 设置 用户名/当前登陆人
+        // 设置 当前用户上下文
         String username = request.getHeader(SysConstant.USER_NAME);
         if (StringUtils.hasText(username)) {
             MDC.put(SysConstant.USER_NAME, username);

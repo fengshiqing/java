@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.kunning.springboot.timerTask.QuartzTask;
+import com.kunning.springboot.task.QuartzTask;
 
 /**
  * 功能描述：配置 Quartz。

@@ -4,8 +4,8 @@
 
 package com.kunning.springboot.config.handler;
 
-import com.fengshiqing.common.BizException;
-import com.fengshiqing.common.bean.Resp;
+import com.kunning.springboot.model.BizException;
+import com.kunning.springboot.model.resp.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.jdbc.BadSqlGrammarException;

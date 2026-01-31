@@ -1,14 +1,17 @@
+/*
+ * Copyright (c) fengshiqing 冯仕清 2026. All Rights Reserved.
+ */
+
 package com.kunning.springboot.utils;
 
-import com.fengshiqing.common.BizException;
+import com.kunning.springboot.model.BizException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -26,8 +29,8 @@ import java.nio.file.Files;
  * @author fengshiqing
  * @since 2019-11-17
  */
+@Slf4j
 public class ZipUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ZipUtil.class);
 
     /**
      * 私有化构造函数
@@ -59,7 +62,7 @@ public class ZipUtil {
                 archiveHandle(tarArchiveOutStream, file);
             }
         } catch (IOException e) {
-            LOGGER.error("【compressArchive】【happened IOException!】", e);
+            log.error("【compressArchive】【happened IOException!】", e);
         } finally {
             IOUtils.closeQuietly(tarArchiveOutStream);
             IOUtils.closeQuietly(fileOutputStream);
@@ -133,7 +136,7 @@ public class ZipUtil {
                 gcos.write(buffer, 0, read);
             }
         } catch (IOException e) {
-            LOGGER.error("【compressArchive】【happened IOException!】", e);
+            log.error("【compressArchive】【happened IOException!】", e);
         } finally {
             IOUtils.closeQuietly(gcos);
             IOUtils.closeQuietly(bis);
@@ -181,17 +184,17 @@ public class ZipUtil {
             while ((len = gzipCompressorInStream.read(byteArr)) != -1) {
                 singleFileSize += len;
                 if (singleFileSize > singFileSizeLimit * numLinit) { // 校验所有文件大小
-                    LOGGER.error("【压缩包过大，超过上限:{}】", singFileSizeLimit * numLinit);
+                    log.error("【压缩包过大，超过上限:{}】", singFileSizeLimit * numLinit);
                     throw new BizException(500, "【压缩包过大!】");
                 }
                 bufferedOutStream.write(byteArr, 0, len);
             }
             // IOUtils.closeQuietly(bufferedOutStream);
         } catch (IOException e) {
-            LOGGER.error("【unCompressTarGz】【happened IOException!】", e);
+            log.error("【unCompressTarGz】【happened IOException!】", e);
         } catch (BizException e) {
             failFlag = true;
-            LOGGER.error("【unCompressTar】【happened BizException!】", e);
+            log.error("【unCompressTar】【happened BizException!】", e);
         } finally {
             IOUtils.closeQuietly(bufferedOutStream);
             IOUtils.closeQuietly(fileOutputStream);
@@ -199,11 +202,11 @@ public class ZipUtil {
             IOUtils.closeQuietly(bufferedInStream);
             IOUtils.closeQuietly(fileInStream);
             if (!file.delete()) {
-                LOGGER.error("【删除 原.tar.gz 压缩包 失败！】");
+                log.error("【删除 原.tar.gz 压缩包 失败！】");
             }
             if (failFlag) {
                 if (!new File(tarFilePath).delete()) {
-                    LOGGER.error("【删除 解压不完全的.tar 压缩包 失败！】");
+                    log.error("【删除 解压不完全的.tar 压缩包 失败！】");
                 }
             } else {
                 unCompressTar(tarFilePath, outPath, 1024 * 1024 * 10L, 100); // 单个文件大小上限10M
@@ -236,7 +239,7 @@ public class ZipUtil {
             TarArchiveEntry tarArchiveEntry;
             for (int i = 0; (tarArchiveEntry = tarArchiveInStream.getNextTarEntry()) != null; i++) {
                 if (i > numLinit) { // 校验文件数量
-                    LOGGER.error("【压缩包中的文件数量过多，超过上限:{}】", numLinit);
+                    log.error("【压缩包中的文件数量过多，超过上限:{}】", numLinit);
                     throw new BizException(500, "【压缩包中的文件数量过多!】");
                 }
 
@@ -252,22 +255,22 @@ public class ZipUtil {
                 while ((len = tarArchiveInStream.read(buffer)) != -1) {
                     singleFileSize += len;
                     if (singleFileSize > singFileSizeLimit) { // 校验单个文件大小
-                        LOGGER.error("【压缩包中单个子文件过大，超过上限:{}】", singFileSizeLimit);
+                        log.error("【压缩包中单个子文件过大，超过上限:{}】", singFileSizeLimit);
                         throw new BizException(500, "【压缩包中单个子文件过大!】");
                     }
                     bufferedOutStream.write(buffer, 0, len);
                 }
                 if (singleFileSize > singFileSizeLimit * numLinit) { // 校验所有文件大小
-                    LOGGER.error("【压缩包过大，超过上限:{}】", numLinit);
+                    log.error("【压缩包过大，超过上限:{}】", numLinit);
                     throw new BizException(500, "【压缩包过大!】");
                 }
             }
             tarArchiveInStream.close();
         } catch (IOException e) {
-            LOGGER.error("【unCompressTar】【happened IOException!】", e);
+            log.error("【unCompressTar】【happened IOException!】", e);
         } catch (BizException e) {
             failFlag = true;
-            LOGGER.error("【unCompressTar】【happened BizException!】", e);
+            log.error("【unCompressTar】【happened BizException!】", e);
         } finally {
             // 1、关闭流
             IOUtils.closeQuietly(bufferedOutStream);

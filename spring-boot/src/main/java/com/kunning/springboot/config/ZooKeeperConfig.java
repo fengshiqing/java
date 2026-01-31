@@ -4,12 +4,11 @@
 
 package com.kunning.springboot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,16 +20,16 @@ import org.springframework.context.annotation.PropertySource;
  * @author fengshiqing
  * @since 2021-12-19
  */
+@Slf4j
 @Configuration
 @PropertySource(value = { "classpath:conf/zookeeper.properties" })
 public class ZooKeeperConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ZooKeeperConfig.class);
 
     /**
      * 构造器
      */
     public ZooKeeperConfig() {
-        LOGGER.info("【初始化 zookeeper 配置】");
+        log.info("【初始化 zookeeper 配置】");
     }
 
     /**

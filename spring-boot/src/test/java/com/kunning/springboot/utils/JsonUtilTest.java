@@ -4,7 +4,7 @@
 
 package com.kunning.springboot.utils;
 
-import com.kunning.springboot.pojo.UserDto;
+import com.kunning.springboot.model.UserDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

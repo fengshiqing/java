@@ -4,7 +4,7 @@
 
 package com.kunning.springboot.utils;
 
-import com.kunning.springboot.pojo.XmlObject;
+import com.kunning.springboot.model.XmlObject;
 import org.junit.jupiter.api.Test;
 
 class XmlUtilTest {

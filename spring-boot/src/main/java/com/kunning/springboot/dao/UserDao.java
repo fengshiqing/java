@@ -2,7 +2,7 @@ package com.kunning.springboot.dao;
 
 import java.util.List;
 
-import com.kunning.springboot.pojo.UserDto;
+import com.kunning.springboot.model.UserDto;
 
 import org.springframework.stereotype.Repository;
 

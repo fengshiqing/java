@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.kunning.springboot.MyApplication;
-import com.kunning.springboot.pojo.UserDto;
+import com.kunning.springboot.model.UserDto;
 
 @SpringJUnitConfig
 @SpringBootTest(classes = MyApplication.class)

@@ -1,4 +1,4 @@
-package com.kunning.springboot.timerTask;
+package com.kunning.springboot.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

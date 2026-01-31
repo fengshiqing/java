@@ -1,4 +1,4 @@
-package com.kunning.springboot.timerTask;
+package com.kunning.springboot.task;
 
 import com.kunning.springboot.service.CronService;
 import org.slf4j.Logger;

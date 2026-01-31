@@ -1,4 +1,4 @@
-package com.kunning.springboot.pojo;
+package com.kunning.springboot.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.AllArgsConstructor;
