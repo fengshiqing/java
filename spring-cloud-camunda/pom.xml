@@ -105,6 +105,7 @@
 
 
         <!--camunda start-->
+        <!--工作流 start。需要3个maven依赖，分别是对应 流程引擎、Web管理平台、提供rest api操作接口包-->
         <!-- https://mvnrepository.com/artifact/org.camunda.bpm.springboot/camunda-bpm-spring-boot-starter -->
         <dependency>
             <groupId>org.camunda.bpm.springboot</groupId>
