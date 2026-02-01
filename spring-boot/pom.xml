@@ -34,6 +34,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <!--编译和测试时需要，但运行时由 JDK 或容器提供（实际上 Lombok 在运行时根本不需要）。且不会打入到编译出的jar包中-->
+            <scope>provided</scope>
         </dependency>
 
         <!--spring-boot框架相关的依赖-->
@@ -47,78 +49,30 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <!--模板引擎 starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!--健康检查、监控 starter-->
+        <!--健康检查、监控-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-        <!--aspectjrt和aspectjweaver是与aspectj相关的包,用来支持切面编程的-->
-        <!--aspectjrt包是aspectj的runtime包-->
-        <!--aspectjweaver是aspectj的织入包-->
+        <!--模板引擎-->
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <!--cglib包是用来动态代理用的，基于类的代理-->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-        <!--引入 AOP 依赖 end-->
-
-        <!--WebSocket starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
-        <!--quartz starter-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!--https://mvnrepository.com/artifact/redis.clients/jedis-->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-        <!-- 单元测试 starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!--数据库驱动、MyBatis start-->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-        </dependency>
-        <!-- mybatis starter，包含了spring-boot-starter-jdbc -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>3.0.3</version>
-        </dependency>
-        <!--数据库驱动、MyBatis end-->
-
-
         <!--Spring团队明确表示，RestTemplate 在未来版本中会被移除。原因如下：
             RestTemplate 是同步和阻塞的。这意味着当你发送一个HTTP请求时，当前线程会一直被阻塞，直到收到响应。在高并发场景下，这会大量消耗线程资源，限制应用的吞吐量和可伸缩性。
             替代品：有更现代、高效、灵活的替代方案可用，即 WebClient。-->
@@ -126,19 +80,45 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
-
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-
+        <!--quartz-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
+        <!-- 单元测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- mybatis starter，包含了spring-boot-starter-jdbc -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <!--数据库驱动、MyBatis start-->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+        <!--数据库驱动、MyBatis end-->
+
+
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-alibaba-nacos-config</artifactId>
+            <version>2023.0.3.2</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--            <optional>true</optional>&lt;!&ndash;这个依赖在运行时不是必须的，它只在编译时使用&ndash;&gt;-->
+<!--        </dependency>-->
 
         <!--https://mvnrepository.com/artifact/com.google.guava/guava-->
         <dependency>
@@ -190,12 +170,6 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
             <version>5.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-crypto</artifactId>
-            <version>5.8.15</version>
         </dependency>
 
         <dependency>

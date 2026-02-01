@@ -21,9 +21,9 @@ spring:
         min-idle: 1  # 连接池中的最小空闲连接，默认 0
     timeout: 3000  # 连接超时时间（毫秒）
 
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.0.100:8848
-      config:
-        server-addr: 192.168.0.100:8848
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.0.100:8848
+#      config:
+#        server-addr: 192.168.0.100:8848

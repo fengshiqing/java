@@ -18,6 +18,10 @@ public class MyApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MyApplication.class, args);
+
+        System.err.println("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
+        System.err.println("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
+        System.err.println("                ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
     }
 
 }

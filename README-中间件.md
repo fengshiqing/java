@@ -27,7 +27,7 @@ https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4
 这里面有对应的版本，我用的最新的SpringCloud版本，对应的nacos推荐使用2.2.1版本。
 
 ##### 启动：
-bash /opt/nacos-2.3.0/bin/startup.sh -m standalone
+bash /home/fsq/opt/nacos-2.3.2/bin/startup.sh
 
 ##### 停止：
 bash /opt/nacos-2.3.0/bin/shutdown.sh
