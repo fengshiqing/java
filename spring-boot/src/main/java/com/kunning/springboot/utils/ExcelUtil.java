@@ -1,6 +1,5 @@
 package com.kunning.springboot.utils;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -283,8 +282,8 @@ public class ExcelUtil<T> {
                     // 它内部的实现单元格读取成数字（excel日期格式默认是用数字保存的），
                     // 所以调用这个api判断时需先要判断当前单元格格式不是字符串，否则字符串会导致读取失败。
                     // 参考：https://blog.csdn.net/q649381130/article/details/78281103
-                    if (cell.getCellType() != CellType.STRING && HSSFDateUtil.isCellDateFormatted(cell)) {
-                        Date date = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
+                    if (cell.getCellType() != CellType.STRING && DateUtil.isCellDateFormatted(cell)) {
+                        Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
                         // String value = sdf.format(date);
                         // System.out.println(value);
                         map.put(columns[j], date);// 存放单个单元格的数据

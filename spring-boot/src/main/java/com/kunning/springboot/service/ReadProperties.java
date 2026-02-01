@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-06-24
  */
 @Service
-@PropertySource(value = { "classpath:conf/config.properties" })
+@PropertySource(value = {"classpath:config.properties"})
 public class ReadProperties implements CommandLineRunner, Ordered, ApplicationRunner {
 
     @Value("${name}")

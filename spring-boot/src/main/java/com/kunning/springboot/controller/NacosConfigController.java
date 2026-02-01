@@ -7,11 +7,12 @@ package com.kunning.springboot.controller;
 import com.alibaba.cloud.nacos.annotation.NacosConfig;
 import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //配置发布之后，动态刷新配置
 @RestController
@@ -41,7 +42,13 @@ public class NacosConfigController {
 //    }
 
     @GetMapping("/getNacosConfig")
-    public String providerTest() {
-        return "【从 nacos配置中心 获取数据：aa=" + aa;
+    public Map<String, String> providerTest() {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("name", name);
+        map.put("age", age);
+        map.put("aa", aa);
+        return map;
     }
 }

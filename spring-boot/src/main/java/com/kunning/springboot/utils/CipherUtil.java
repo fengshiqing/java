@@ -4,7 +4,7 @@
 
 package com.kunning.springboot.utils;
 
-import jakarta.xml.bind.DatatypeConverter;
+import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.DigestUtils;
@@ -158,7 +158,7 @@ public final class CipherUtil {
      */
     public static String enCrypt(String plainStr, String secretKey) throws Exception {
         Objects.requireNonNull(plainStr, "【plainStr 不能为空！】");
-        Objects.requireNonNull(plainStr, "【secretKey 不能为空！】");
+        Objects.requireNonNull(secretKey, "【secretKey 不能为空！】");
 
         // 判断Key是否为16位
         if (secretKey.length() != 16) {
@@ -188,12 +188,12 @@ public final class CipherUtil {
         try {
             // 判断Key是否正确
             if (secretKey == null) {
-                System.out.print("Key为空null");
+                LOGGER.error("【secretKey 不能为空！】");
                 return null;
             }
             // 判断Key是否为16位
             if (secretKey.length() != 16) {
-                System.out.print("Key长度不是16位");
+                LOGGER.error("【Key长度必须是16位！】");
                 return null;
             }
 
@@ -241,7 +241,7 @@ public final class CipherUtil {
         SecretKey secretKey = new SecretKeySpec(secret.getBytes(), HMAC_SHA_256);
         mac.init(secretKey);
         byte[] byteArr = mac.doFinal(plainStr.getBytes(StandardCharsets.UTF_8)); // byte数组长度：32
-        return DatatypeConverter.printHexBinary(byteArr); // 将byte数组转换为16进制的字符产，字母都是大写的，总长度64
+        return Hex.encodeHexString(byteArr, true); // 将byte数组转换为16进制的字符串，字母都是大写的，总长度64
     }
 
 }
