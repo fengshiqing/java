@@ -8,13 +8,21 @@ import com.kunning.springboot.model.BizException;
 import com.kunning.springboot.model.resp.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.NoSuchMessageException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 功能描述：全局统一异常处理。
@@ -31,39 +39,90 @@ import java.sql.SQLException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
-    public Resp handleException(Exception exception) {
-        log.error("【统一处理Exception】", exception);
+    public Resp handleException(Exception e) {
+        log.error("【全局统一异常处理 Exception】", e);
         return new Resp(500, "系统错误");
     }
 
     @ExceptionHandler(value = BizException.class)
     public Resp handleBizException(BizException e) {
-        log.error("【统一处理BizException】", e);
+        log.error("【全局统一异常处理 BizException】", e);
         return new Resp(e.getExceptionCode(), e.getMessage());
+    }
+
+
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public Resp handleBizException(HttpRequestMethodNotSupportedException e) {
+        log.error("【全局统一异常处理 HttpRequestMethodNotSupportedException】", e);
+        return new Resp(400001, e.getMessage());
+    }
+
+
+    /**
+     * 这个是处理 方法参数为 实体类 的校验的异常（@RequestBody注解修饰的参数）
+     * @param e MethodArgumentNotValidException
+     * @return Resp
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public Resp handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.error("【全局统一异常处理 MethodArgumentNotValidException】", e);
+        List<String> list = new ArrayList<>();
+        for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
+            list.add(fieldError.getField() + " " + fieldError.getDefaultMessage());
+        }
+        return new Resp(400002, String.join(" " + System.lineSeparator(), list));
+    }
+
+    /**
+     * 这个是处理 方法参数为 非实体类 的校验的异常
+     * @param e MethodArgumentNotValidException
+     * @return Resp
+     */
+    @ExceptionHandler(value = NoSuchMessageException.class)
+    public Resp handleNoSuchMessageException(NoSuchMessageException e) {
+        log.error("【全局统一异常处理 NoSuchMessageException】", e);
+        return new Resp(400003, e.getMessage());
+    }
+
+    /**
+     * 这个是处理 URL 上的问号后的参数为空(null 或者 空字符串) 的异常。（@RequestParam 注解修饰的字段）
+     * @param e MethodArgumentNotValidException
+     * @return Resp
+     */
+    @ExceptionHandler(value = MissingServletRequestParameterException.class)
+    public Resp handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
+        log.error("【全局统一异常处理 MissingServletRequestParameterException】", e);
+        return new Resp(400004, e.getMessage());
+    }
+
+    @ExceptionHandler(value = DateTimeParseException.class)
+    public Resp handleDateTimeParseException(DateTimeParseException e) {
+        log.error("【全局统一异常处理 DateTimeParseException】", e);
+        return new Resp(400004, "系统发生异常，请稍后再试，或者直接联系管理员：fengshiqing");
+    }
+
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public Resp handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        log.error("【全局统一异常处理 HttpMessageNotReadableException】", e);
+        return new Resp(400005, "请求参数无法正确解析，请检查请求参数，比如数字型输入了字符，时间类型输入不正确等");
     }
 
     @ExceptionHandler(value = IOException.class)
     public Resp handleIOException(IOException e) {
-        log.error("【统一处理IOException】", e);
+        log.error("【全局统一异常处理 IOException】", e);
         return new Resp(500005, e.getMessage());
     }
 
     @ExceptionHandler(value = SQLException.class)
     public Resp handleSqlException(SQLException e) {
-        log.error("【统一处理SQLException】", e);
+        log.error("【全局统一异常处理 SQLException】", e);
         return new Resp(500015, e.getMessage());
     }
 
     @ExceptionHandler(value = BadSqlGrammarException.class)
     public Resp handleSqlException(BadSqlGrammarException e) {
-        log.error("【统一处理BadSqlGrammarException】", e);
+        log.error("【全局统一异常处理 BadSqlGrammarException】", e);
         return new Resp(500025, "【系统发生异常，请稍后再试，或者直接联系管理员】");
-    }
-
-    @ExceptionHandler(value = NoSuchMessageException.class)
-    public Resp handleNoSuchMessageException(NoSuchMessageException e) {
-        log.error("【统一处理NoSuchMessageException】", e);
-        return new Resp(500035, "【没有配置国际化文本】");
     }
 
 }

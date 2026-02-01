@@ -39,22 +39,22 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(value = Exception.class)
     public Resp handleException(Exception e) {
-        log.error("【统一异常处理 Exception】", e);
+        log.error("【全局统一异常处理 Exception】", e);
         return new Resp(500, I18nUtil.getMessage("system.error"));
     }
 
-    @ExceptionHandler(BizException.class)
+    @ExceptionHandler(value = BizException.class)
     public Resp handleBizException(BizException e) {
-        log.error("【统一异常处理 BizException】", e);
+        log.error("【全局统一异常处理 BizException】", e);
         return new Resp(e.getExceptionCode(), e.getMessage());
     }
 
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
     public Resp handleBizException(HttpRequestMethodNotSupportedException e) {
-        log.error("【统一异常处理 HttpRequestMethodNotSupportedException】", e);
+        log.error("【全局统一异常处理 HttpRequestMethodNotSupportedException】", e);
         return new Resp(400001, e.getMessage());
     }
 
@@ -64,9 +64,9 @@ public class GlobalExceptionHandler {
      * @param e MethodArgumentNotValidException
      * @return Resp
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Resp handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        log.error("【统一异常处理 MethodArgumentNotValidException】", e);
+        log.error("【全局统一异常处理 MethodArgumentNotValidException】", e);
         List<String> list = new ArrayList<>();
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
             list.add(fieldError.getField() + " " + fieldError.getDefaultMessage());
@@ -79,9 +79,9 @@ public class GlobalExceptionHandler {
      * @param e MethodArgumentNotValidException
      * @return Resp
      */
-    @ExceptionHandler(NoSuchMessageException.class)
+    @ExceptionHandler(value = NoSuchMessageException.class)
     public Resp handleNoSuchMessageException(NoSuchMessageException e) {
-        log.error("【统一异常处理 NoSuchMessageException】", e);
+        log.error("【全局统一异常处理 NoSuchMessageException】", e);
         return new Resp(400003, e.getMessage());
     }
 
@@ -90,39 +90,39 @@ public class GlobalExceptionHandler {
      * @param e MethodArgumentNotValidException
      * @return Resp
      */
-    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public Resp handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
-        log.error("【统一异常处理 MissingServletRequestParameterException】", e);
+        log.error("【全局统一异常处理 MissingServletRequestParameterException】", e);
         return new Resp(400004, e.getMessage());
     }
 
-    @ExceptionHandler(DateTimeParseException.class)
+    @ExceptionHandler(value = DateTimeParseException.class)
     public Resp handleDateTimeParseException(DateTimeParseException e) {
-        log.error("【统一异常处理 DateTimeParseException】", e);
+        log.error("【全局统一异常处理 DateTimeParseException】", e);
         return new Resp(400004, I18nUtil.getMessage("system.error"));
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
     public Resp handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
-        log.error("【统一异常处理 HttpMessageNotReadableException】", e);
+        log.error("【全局统一异常处理 HttpMessageNotReadableException】", e);
         return new Resp(400005, I18nUtil.getMessage("biz.request.param.error"));
     }
 
-    @ExceptionHandler(IOException.class)
+    @ExceptionHandler(value = IOException.class)
     public Resp handleIOException(IOException e) {
-        log.error("【统一异常处理 IOException】", e);
+        log.error("【全局统一异常处理 IOException】", e);
         return new Resp(500005, e.getMessage());
     }
 
-    @ExceptionHandler(SQLException.class)
+    @ExceptionHandler(value = SQLException.class)
     public Resp handleSqlException(SQLException e) {
-        log.error("【统一异常处理 SQLException】", e);
+        log.error("【全局统一异常处理 SQLException】", e);
         return new Resp(500015, e.getMessage());
     }
 
-    @ExceptionHandler(BadSqlGrammarException.class)
+    @ExceptionHandler(value = BadSqlGrammarException.class)
     public Resp handleSqlException(BadSqlGrammarException e) {
-        log.error("【统一异常处理 BadSqlGrammarException】", e);
+        log.error("【全局统一异常处理 BadSqlGrammarException】", e);
         return new Resp(500025, I18nUtil.getMessage("system.error"));
     }
 
