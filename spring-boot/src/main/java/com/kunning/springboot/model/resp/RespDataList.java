@@ -24,7 +24,7 @@ public class RespDataList<T> extends Resp {
     private int totalCount;
 
     public RespDataList(T data, int totalCount) {
-        super(200, null);
+        super(200, null); // 响应成功，就不需要给message说明了
         this.data = data;
         this.totalCount = totalCount;
     }
