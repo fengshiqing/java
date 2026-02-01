@@ -11,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 功能描述：接口响应值。
+ * 功能描述：接口响应。
  *
  * @author 冯仕清
  * @since 2022-04-23
