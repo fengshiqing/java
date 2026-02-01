@@ -13,7 +13,7 @@ import lombok.ToString;
 /**
  * 功能描述：接口响应值。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2022-04-23
  */
 @NoArgsConstructor // 无参构造器，openFeign默认需要无参构造器
