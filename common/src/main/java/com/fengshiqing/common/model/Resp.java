@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2022. fengshiqing 冯仕清. All Rights Reserved.
+ * Copyright (c) fengshiqing 冯仕清 2026. All Rights Reserved.
  */
 
-package com.fengshiqing.common.bean;
+package com.fengshiqing.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
