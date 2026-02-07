@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * 功能描述：处理 Ajax 请求
  *
- * @author fengshiqing冯仕清
+ * @author 冯仕清
  */
 @RestController
 public class AjaxController {

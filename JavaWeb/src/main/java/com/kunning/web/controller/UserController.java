@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 功能描述：用户管理
  *
- * @author fengshiqing冯仕清
+ * @author 冯仕清
  */
 @RestController
 public class UserController {

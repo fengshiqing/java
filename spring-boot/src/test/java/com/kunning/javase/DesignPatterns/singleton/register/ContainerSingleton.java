@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 功能描述：容器单例/注册式单例。
  * 这种做不到单例，可能会创建多个。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-04
  */
 public class ContainerSingleton {

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  * - 不可被剥夺
  * - 循环等待
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2019-05-09
  **/
 public class DeadLock {

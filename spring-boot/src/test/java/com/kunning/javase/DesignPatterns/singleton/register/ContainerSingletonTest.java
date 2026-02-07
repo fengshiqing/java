@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * 功能描述：容器单例/注册式单例。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-04
  */
 public class ContainerSingletonTest {

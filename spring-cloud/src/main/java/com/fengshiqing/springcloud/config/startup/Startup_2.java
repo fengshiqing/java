@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * 功能描述：随着Springboot的启动而执行，并设置执行的顺序。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-06-24
  */
 @Component

@@ -11,7 +11,7 @@ import org.camunda.bpm.engine.delegate.ExecutionListener;
 /**
  * 功能描述：camunda的 ExecutionListener 监听器
  *
- * @author fengshiqing 冯仕清
+ * @author 冯仕清
  * @since 2024-08-12
  */
 @Slf4j

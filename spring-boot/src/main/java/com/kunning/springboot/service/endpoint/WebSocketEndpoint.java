@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 /**
  * 功能描述：WebSocket终端
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-12-17
  */
 @Component

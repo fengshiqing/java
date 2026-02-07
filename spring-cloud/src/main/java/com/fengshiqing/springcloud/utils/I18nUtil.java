@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * 功能描述：国际化的工具类。
  * 封装国际化文本的读取接口，主要方便在代码中使用，不需要每次 @Autowired 注入 MessageSource 来使用。
  *
- * @author fengshiqing 冯仕清
+ * @author 冯仕清
  * @since 2024-06-01
  */
 @Slf4j

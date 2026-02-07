@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * 功能描述：排行榜 Entity 实体类
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-04-04
  */
 @NoArgsConstructor

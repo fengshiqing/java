@@ -19,7 +19,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * 功能描述：配置 Spring线程池。
  * 自定义线程池的配置类，并在类上添加@EnableAsync 注解，然后在需要异步的方法上使用@Async("线程池名称") 该方法就可以异步执行了。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2019-02-08
  */
 // https://blog.csdn.net/qq_39385706/article/details/79365849

@@ -7,7 +7,7 @@ package com.kunning.springboot.constant;
 /**
  * 功能描述：用户相关的常量。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2024-09-25
  */
 public interface SysConstant {

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能描述：redis缓存切面。查询数据时，先从redis中获取。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2020-08-23
  */
 @Target(ElementType.METHOD)

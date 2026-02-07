@@ -12,7 +12,7 @@ import lombok.ToString;
 /**
  * 功能描述：日常签到表 t_user_daily_sign_in 表 的实体类。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2023-09-09
  */
 @NoArgsConstructor

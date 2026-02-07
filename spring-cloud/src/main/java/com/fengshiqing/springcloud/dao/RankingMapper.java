@@ -14,7 +14,7 @@ import java.util.List;
  * 功能描述：排行榜 Mapper
  *
  * @since 2025-04-04
- * @author fengshiqing
+ * @author 冯仕清
  */
 @Repository
 public interface RankingMapper {

@@ -16,7 +16,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  * 功能描述：CORS跨域配置。
  * 可以使用yml文件来配置。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-05-03
  */
 @Slf4j

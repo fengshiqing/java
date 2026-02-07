@@ -7,7 +7,7 @@ package com.kunning.javase.thread;
 /**
  * 功能描述：volatile内存可见性的分析。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-09
  **/
 public class VolatileDemo {

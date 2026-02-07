@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 /**
  * 功能描述：拦截器。添加请求头信息。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2020/05/04
  */
 // 关于 filter 和 interceptor 的区别，请看这里：https://www.cnblogs.com/junzi2099/p/8022058.html

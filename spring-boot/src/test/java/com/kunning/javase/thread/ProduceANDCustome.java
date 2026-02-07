@@ -10,7 +10,7 @@ import java.util.Queue;
 /**
  * 功能描述：生产者/消费者
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-09
  **/
 public class ProduceANDCustome {

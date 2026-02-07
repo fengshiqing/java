@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 /**
  * 限流 & 熔断 的配置。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-05-03
  */
 //@Configuration

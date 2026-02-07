@@ -16,7 +16,7 @@ import java.util.Properties;
  * 对于任意对象，都可以调用它的任意方法和属性；
  * 这样一种通过动态获取信息和调用对象方法的功能就叫做反射。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2019/05/09
  */
 public class ReflectionTest {

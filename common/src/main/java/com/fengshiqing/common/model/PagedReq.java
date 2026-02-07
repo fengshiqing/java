@@ -14,7 +14,7 @@ import lombok.Setter;
 /**
  * 功能描述：分页查询时，用到的分页参数
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-08-27
  */
 @NoArgsConstructor

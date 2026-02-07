@@ -24,7 +24,7 @@ import java.util.Arrays;
  * 这个建议不要用，万一事务性的操作发生了异常，如果被这个切面处理时也发生了错误。。那么事物的一致性就被破坏了。
  * 比如我之前写的 camunda 流程发起了，但是后续的保存业务逻辑发生了异常，但是这里的切面也发生了异常，导致 camunda执行成功，但是业务逻辑执行失败。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2022-09-25
  * <p>
  * <a href="https://baijiahao.baidu.com/s?id=1666358028563141862&wfr=spider&for=pc" />

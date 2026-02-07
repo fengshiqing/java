@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * CommandLineRunner接口的方法参数只能获取参数的字符串。
  * ApplicationRunner接口的实现方法比CommandLineRunner接口的实现方法前执行（当然也可以设置@Order的值来决定谁先执行）
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-06-24
  */
 @Component

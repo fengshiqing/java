@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 功能描述：排行榜Controller。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-04-04
  */
 @Tag(name = "排行榜", description = "排行榜")

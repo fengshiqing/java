@@ -9,7 +9,7 @@ package com.fengshiqing.common.advance;
  * 对应这里的讲解：
  * <a href="https://www.bilibili.com/video/BV1PT411w7JC?p=9&vd_source=f2fb919142ce62e6571426a12817634e" />
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2022-10-02
  */
 public class CacheLine {

@@ -16,7 +16,7 @@ import org.openjdk.jol.info.ClassLayout;
  * 功能描述：测试对象占用内存的大小。
  * 这里说的比较清楚：<a href="https://www.cnblogs.com/katsu2017/p/12617098.html" />
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-05
  **/
 public class SizeOfObject {

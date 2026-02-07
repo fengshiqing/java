@@ -11,7 +11,7 @@ import lombok.ToString;
 /**
  * 功能描述：用户信息
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2022-04-23
  */
 @Getter

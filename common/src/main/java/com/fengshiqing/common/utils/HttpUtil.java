@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
  * 功能描述：JDK 21 HTTP客户端工具类
  * 基于java.net.http.HttpClient封装
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-08-31
  */
 public final class HttpUtil {

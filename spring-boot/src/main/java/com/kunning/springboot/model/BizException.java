@@ -10,7 +10,7 @@ import lombok.Setter;
 /**
  * 功能描述：自定义的业务异常，系统运行中的所有业务相关的异常。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2020-08-23
  */
 @Getter

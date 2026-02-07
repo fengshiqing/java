@@ -16,7 +16,7 @@ package com.kunning.javase.DesignPatterns.singleton.register;
  * 缺点：
  * 唯一的缺点：这种方式实际上也是一种饿汉式单例，某些情况下，存在一定程度上的内存浪费。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-04
  */
 public enum EnumSingleton {

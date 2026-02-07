@@ -7,7 +7,7 @@ package com.fengshiqing.common.Constant;
 /**
  * 功能描述：RedisKey相关的常量。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2022-09-25
  */
 public interface RedisKey {

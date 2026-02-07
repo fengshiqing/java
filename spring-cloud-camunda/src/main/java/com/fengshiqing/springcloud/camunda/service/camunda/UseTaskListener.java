@@ -12,7 +12,7 @@ import org.camunda.bpm.engine.delegate.TaskListener;
 /**
  * 功能描述：camunda的 TaskListener 监听器
  *
- * @author fengshiqing 冯仕清
+ * @author 冯仕清 冯仕清
  * @since 2024-08-12
  */
 @Slf4j

@@ -20,7 +20,7 @@ import java.time.format.DateTimeParseException;
 /**
  * 功能描述：签到服务
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2023-09-09
  */
 @Slf4j

@@ -17,7 +17,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
  * <p>
  * 参卡：https://www.cnblogs.com/xuwenjin/p/12664650.html
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-12-17
  */
 @Slf4j

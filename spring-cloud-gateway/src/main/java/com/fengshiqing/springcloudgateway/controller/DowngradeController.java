@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 功能描述：服务降级后，返回此响应。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2025-04-20
  */
 @RestController

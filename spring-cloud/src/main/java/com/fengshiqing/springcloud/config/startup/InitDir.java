@@ -14,7 +14,7 @@ import java.io.File;
 /**
  * 功能描述：项目启动时，初始化项目中需要用到的目录结构，避免每次使用时都要校验目录是否存在。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2022-01-08
  */
 @Slf4j

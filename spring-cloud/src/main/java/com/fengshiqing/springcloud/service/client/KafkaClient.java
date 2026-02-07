@@ -17,7 +17,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 /**
  * 功能描述：kafka生产者
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2024-03-30
  */
 @AllArgsConstructor

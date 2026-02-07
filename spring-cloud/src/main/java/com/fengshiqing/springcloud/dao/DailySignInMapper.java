@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * 功能描述：每日签到 Mapper
  *
  * @since 2023-11-09
- * @author fengshiqing
+ * @author 冯仕清
  */
 @Repository
 public interface DailySignInMapper {

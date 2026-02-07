@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 功能描述：序列化是否会被破坏单例。
  *
- * @author fengshiqing
+ * @author 冯仕清
  * @since 2021-05-04
  */
 public class SeriableSingleton implements Serializable {

@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * 功能描述：ElasticSearch的Controller
  *
- * @author fengshiqing 冯仕清
+ * @author 冯仕清
  * @since 2024-07-21
  */
 @AllArgsConstructor
