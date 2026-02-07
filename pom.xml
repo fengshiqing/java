@@ -12,10 +12,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging><!--父项目必须是 pom 类型-->
 
-
+    <name>Java</name>
+    <description>这是一个 Java 项目</description>
 
     <modules>
-        <module>Common</module>
+        <module>common</module>
         <module>JavaSE</module>
         <module>JavaWeb</module>
         <module>spring-ai</module>
@@ -53,7 +54,7 @@
     <dependencyManagement>
         <dependencies>
 
-            <!--Spring-Boot 版本管理器/仲裁者-->
+            <!--Spring-Boot 版本管理-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -63,7 +64,7 @@
             </dependency>
 
 
-            <!--Spring-Cloud 版本管理者-->
+            <!--Spring-Cloud 版本管理-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -73,7 +74,7 @@
             </dependency>
 
 
-            <!--Spring-Cloud-Alibaba 版本管理者-->
+            <!--Spring-Cloud-Alibaba 版本管理-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>

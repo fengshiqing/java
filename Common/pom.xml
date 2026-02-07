@@ -13,7 +13,7 @@
     </parent>
 
 
-    <artifactId>Common</artifactId>
+    <artifactId>common</artifactId>
     <packaging>jar</packaging>
 
     <description>公共模块，定义公共常量、POJO实体类对象、基本的工具类</description>
