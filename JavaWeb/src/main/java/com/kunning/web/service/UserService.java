@@ -1,6 +1,6 @@
 package com.kunning.web.service;
 
-import com.fengshiqing.common.bean.User;
+import com.fengshiqing.common.model.User;
 import com.kunning.web.dao.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

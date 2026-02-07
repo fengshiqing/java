@@ -4,7 +4,7 @@
 
 package com.kunning.web.mybatis.integrate;
 
-import com.fengshiqing.common.bean.User;
+import com.fengshiqing.common.model.User;
 import com.kunning.web.mybatis.dao.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

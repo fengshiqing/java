@@ -1,6 +1,6 @@
 package com.kunning.web.controller;
 
-import com.fengshiqing.common.bean.User;
+import com.fengshiqing.common.model.User;
 import com.kunning.web.service.UserService;
 import com.kunning.web.utils.VerificationCode;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package com.kunning.web.dao;
 
-import com.fengshiqing.common.bean.User;
+import com.fengshiqing.common.model.User;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 

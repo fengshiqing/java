@@ -1,6 +1,6 @@
 package com.kunning.web.mybatis.dao;
 
-import com.fengshiqing.common.bean.User;
+import com.fengshiqing.common.model.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
