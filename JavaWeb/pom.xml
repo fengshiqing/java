@@ -35,7 +35,7 @@
         <!-- 引入 JavaSE 项目 -->
         <dependency>
             <groupId>com.fengshiqing</groupId>
-            <artifactId>Common</artifactId>
+            <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

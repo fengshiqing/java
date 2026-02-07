@@ -1,6 +1,6 @@
 package com.fengshiqing.springcloud.controller;
 
-import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.model.Resp;
 import com.fengshiqing.springcloud.service.DailySignInService;
 import com.fengshiqing.springcloud.service.dto.DailySignVo;
 import io.swagger.v3.oas.annotations.Operation;

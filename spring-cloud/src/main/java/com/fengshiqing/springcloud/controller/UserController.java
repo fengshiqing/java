@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springcloud.controller;
 
-import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.model.Resp;
 import com.fengshiqing.springcloud.dao.entity.ProductEntity;
 import com.fengshiqing.springcloud.dao.entity.UserEntity;
 import com.fengshiqing.springcloud.service.ProductService;

@@ -5,7 +5,7 @@
 package com.fengshiqing.springcloud.config.aspect;
 
 
-import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.model.Resp;
 import com.fengshiqing.springcloud.utils.I18nUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

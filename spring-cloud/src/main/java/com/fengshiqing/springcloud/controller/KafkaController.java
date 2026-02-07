@@ -5,7 +5,7 @@
 package com.fengshiqing.springcloud.controller;
 
 import com.fengshiqing.springcloud.service.client.KafkaClient;
-import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.model.Resp;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

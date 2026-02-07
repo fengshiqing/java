@@ -1,7 +1,7 @@
 package com.fengshiqing.springcloud.controller;
 
-import com.fengshiqing.common.bean.Resp;
-import com.fengshiqing.common.bean.RespData;
+import com.fengshiqing.common.model.Resp;
+import com.fengshiqing.common.model.RespData;
 import com.fengshiqing.springcloud.service.RankingCommonService;
 import com.fengshiqing.springcloud.service.RankingService;
 import com.fengshiqing.springcloud.service.dto.RankingDto;

@@ -6,7 +6,7 @@ package com.fengshiqing.springcloud.controller;
 
 import com.fengshiqing.springcloud.service.client.EsClient;
 import com.fengshiqing.springcloud.utils.I18nUtil;
-import com.fengshiqing.common.bean.Resp;
+import com.fengshiqing.common.model.Resp;
 import lombok.AllArgsConstructor;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;

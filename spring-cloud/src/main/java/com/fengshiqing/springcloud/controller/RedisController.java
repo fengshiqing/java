@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springcloud.controller;
 
-import com.fengshiqing.common.bean.RespData;
+import com.fengshiqing.common.model.RespData;
 import com.fengshiqing.springcloud.service.client.RedisService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

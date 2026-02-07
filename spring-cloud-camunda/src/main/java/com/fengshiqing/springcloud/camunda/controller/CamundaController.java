@@ -4,8 +4,8 @@
 
 package com.fengshiqing.springcloud.camunda.controller;
 
-import com.fengshiqing.common.bean.Resp;
-import com.fengshiqing.common.bean.RespData;
+import com.fengshiqing.common.model.Resp;
+import com.fengshiqing.common.model.RespData;
 import com.fengshiqing.springcloud.camunda.dao.UserFlowMapper;
 import com.fengshiqing.springcloud.camunda.dao.entity.UserFlowEntity;
 import com.fengshiqing.springcloud.camunda.utils.I18nUtil;
