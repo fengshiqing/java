@@ -60,14 +60,6 @@
             <artifactId>cglib</artifactId>
             <version>3.3.0</version>
         </dependency>
-
-        <!--打印类的布局-->
-        <!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
-        <dependency>
-            <groupId>org.openjdk.jol</groupId>
-            <artifactId>jol-core</artifactId>
-            <version>0.15</version>
-        </dependency>
         <dependency>
             <groupId>jakarta.jws</groupId>
             <artifactId>jakarta.jws-api</artifactId>
