@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
     <!-- localRepository
-        The path to the local repository maven will use to store artifacts. Default: ${user.home}/.m2/repository
-        <localRepository>/path/to/local/repo</localRepository>
-    -->
-    <!--    <localRepository>C:/Users/fengshiqing/.m2/repository</localRepository>-->
-
-    <!-- interactiveMode
-     | This will determine whether maven prompts you when it needs input. If set to false,
-     | maven will use a sensible default value, perhaps based on some other setting, for
-     | the parameter in question.
+     | The path to the local repository maven will use to store artifacts.
      |
-     | Default: true
-    <interactiveMode>true</interactiveMode>
+     | Default: ${user.home}/.m2/repository
+    <localRepository>/path/to/local/repo</localRepository>
     -->
 
-    <!-- offline
-     | Determines whether maven should attempt to connect to the network when executing a build.
-     | This will have an effect on artifact downloads, artifact deployment, and others.
-     |
-     | Default: false
-    <offline>false</offline>
-    -->
 
     <!-- pluginGroups
      | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
@@ -121,27 +106,7 @@
         </mirror>
     </mirrors>
 
-    <!-- profiles
-     | This is a list of profiles which can be activated in a variety of ways, and which can modify
-     | the build process. Profiles provided in the settings.xml are intended to provide local machine-
-     | specific paths and repository locations which allow the build to work in the local environment.
-     |
-     | For example, if you have an integration testing plugin - like cactus - that needs to know where
-     | your Tomcat instance is installed, you can provide a variable here such that the variable is
-     | dereferenced during the build process to configure the cactus plugin.
-     |
-     | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles
-     | section of this document (settings.xml) - will be discussed later. Another way essentially
-     | relies on the detection of a system property, either matching a particular value for the property,
-     | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a
-     | value of '1.4' might activate a profile when the build is executed on a JDK version of '1.4.2_07'.
-     | Finally, the list of active profiles can be specified directly from the command line.
-     |
-     | NOTE: For profiles defined in the settings.xml, you are restricted to specifying only artifact
-     |       repositories, plugin repositories, and free-form properties to be used as configuration
-     |       variables for plugins in the POM.
-     |
-     |-->
+
     <profiles>
         <!-- profile
          | Specifies a set of introductions to the build process, to be activated using one or more of the
@@ -174,9 +139,9 @@
         -->
 
         <!--
-         | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
-         | which provides a specific path to the Tomcat instance. To use this, your plugin configuration
-         | might hypothetically look like:
+         | Here is another profile, activated by the property 'target-env' with a value of 'dev', which
+         | provides a specific path to the Tomcat instance. To use this, your plugin configuration might
+         | hypothetically look like:
          |
          | ...
          | <plugin>
@@ -193,20 +158,20 @@
          |       anything, you could just leave off the <value/> inside the activation-property.
          |
         <profile>
-        <id>env-dev</id>
+            <id>env-dev</id>
 
-        <activation>
-            <property>
-              <name>target-env</name>
-              <value>dev</value>
-            </property>
-        </activation>
+            <activation>
+                <property>
+                    <name>target-env</name>
+                    <value>dev</value>
+                </property>
+            </activation>
 
-        <properties>
-            <tomcatPath>/path/to/tomcat/instance</tomcatPath>
-        </properties>
+            <properties>
+                <tomcatPath>/path/to/tomcat/instance</tomcatPath>
+            </properties>
         </profile>
-    -->
+        -->
 
         <profile>
             <id>jdk-1.8</id> <!-- profile 名 -->
@@ -217,21 +182,6 @@
             <properties>
                 <maven.compiler.source>1.8</maven.compiler.source>
                 <maven.compiler.target>1.8</maven.compiler.target>
-
-                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>jdk-11</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <jdk>11</jdk>
-            </activation>
-            <properties>
-                <maven.compiler.source>11</maven.compiler.source>
-                <maven.compiler.target>11</maven.compiler.target>
 
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -262,7 +212,6 @@
             <properties>
                 <maven.compiler.source>21</maven.compiler.source>
                 <maven.compiler.target>21</maven.compiler.target>
-                <maven.compiler.release>21</maven.compiler.release>
 
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -270,17 +219,9 @@
         </profile>
     </profiles>
 
+
     <activeProfiles>
         <activeProfile>jdk-21</activeProfile> <!-- 这个参数是定义活动的profile -->
     </activeProfiles>
 
-
-    <!-- activeProfiles
-     | List of profiles that are active for all builds.
-     |
-    <activeProfiles>
-        <activeProfile>alwaysActiveProfile</activeProfile>
-        <activeProfile>anotherAlwaysActiveProfile</activeProfile>
-    </activeProfiles>
-    -->
 </settings>
