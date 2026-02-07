@@ -15,6 +15,7 @@
     <name>Java</name>
     <description>这是一个 Java 项目</description>
 
+
     <modules>
         <module>common</module>
         <module>JavaSE</module>
@@ -38,15 +39,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!--版本如何搭配，请参考这里：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
+        <!--版本搭配：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
         <!--还有这里：https://github.com/alibaba/spring-cloud-alibaba 这里有个 中文文档 的跳转链接，跳转后能看到具体的版本说明 -->
         <!--最新搭配：https://sca.aliyun.com/docs/2023/overview/version-explain/?spm=5176.29160081.0.0.74805c72R9tPTK -->
+        <!--最新版本：https://github.com/alibaba/spring-cloud-alibaba/blob/2025.1.x/README-zh.md-->
         <spring.boot.version>3.2.4</spring.boot.version>
         <spring.cloud.version>2023.0.1</spring.cloud.version>
-        <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
-        <!--也可以这么搭配：boot3.2.5  cloud2023.0.3  alibaba2023.0.1.0
-         搭配方式参考这里视频的 06:41 https://www.bilibili.com/video/BV1FntBzhEwQ?spm_id_from=333.788.videopod.episodes&vd_source=f2fb919142ce62e6571426a12817634e&p=2-->
-        <mybatis.spring.version>3.0.3</mybatis.spring.version><!--springboot 升级到 3.2.4 后，这里也必须跟着升级，否则会有不兼容的问题-->
+        <spring.cloud.alibaba>2023.0.1.0</spring.cloud.alibaba>
+        <!--springboot 升级到 3.2.4 后，这里也必须跟着升级，否则会有不兼容的问题-->
+        <mybatis.spring.version>3.0.3</mybatis.spring.version>
     </properties>
 
 
@@ -78,7 +79,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${spring.cloud.alibaba}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
