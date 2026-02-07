@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springcloud.controller;
 
-import com.fengshiqing.common.bean.User;
+import com.fengshiqing.common.model.User;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
