@@ -33,9 +33,12 @@
         <append>true</append><!--true追加日志，false覆盖日志-->
         <!--日志滚动策略-->
         <!--rollingPolicy:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!--TimeBasedRollingPolicy：最常用的滚动策略，根据时间来制定滚动策略，既负责滚动也负责出发滚动-->
-            <fileNamePattern>${LOG_HOME}/run.%d{yyyyMMddHH}.log</fileNamePattern><!--每分钟归档一次-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/run.%d{yyyy-MM-dd}.%i.log</fileNamePattern><!--每天归档一次-->
+            <maxFileSize>100MB</maxFileSize> <!-- 单个文件最大 100MB -->
             <maxHistory>30</maxHistory><!--每产生一个日志文件，该日志文件的保存期限为30天-->
+            <totalSizeCap>10GB</totalSizeCap><!-- 总大小限制 -->
+            <cleanHistoryOnStart>true</cleanHistoryOnStart><!-- 启用 清空历史文件 -->
         </rollingPolicy>
     </appender>
 
@@ -61,6 +64,7 @@
         <logger name="com.kunning.springboot" level="INFO" additivity="false">
             <!--appender-ref子标签可以有0或多个-->
             <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE_ASYNC"/>
         </logger>
 
         <logger name="com.kunning.springboot.aop" level="ERROR" additivity="false">
