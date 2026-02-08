@@ -8,83 +8,73 @@
 <!--debug:设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
 <configuration scan="true" scanPeriod="30 seconds" debug="false">
 
-    <property name="LOG_HOME" value="/workspace/logs/SpringBoot"/>
     <!--日志格式：日期时间、日志级别、线程名、%日志名称、行号，输出的日志消息。详细参数看这里：http://logback.qos.ch/manual/layouts.html -->
     <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] --- [%thread] [%logger :: %line] --- %msg%n"/>
+    <!--日志存放的目录路径-->
+    <property name="LOG_HOME" value="/workspace/logs/SpringBoot"/>
 
-    <!--=============================================================================================================-->
 
     <!--appender子节点，是规定如何处理日志的组件。数量>=0-->
     <!--日志输出到控制台-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type：ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <immediateFlush>true</immediateFlush>
     </appender>
 
+
     <!--日志输出到文件-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/runlog/run.log</file><!-- D盘，默认是代码所在盘的根目录 -->
-        <append>true</append><!--true追加日志，false覆盖日志-->
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
+        <file>${LOG_HOME}/run.log</file><!-- D盘，默认是代码所在盘的根目录 -->
+        <append>true</append><!--true追加日志，false覆盖日志-->
         <!--日志滚动策略-->
         <!--rollingPolicy:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!--TimeBasedRollingPolicy：最常用的滚动策略，根据时间来制定滚动策略，既负责滚动也负责出发滚动-->
-            <fileNamePattern>${LOG_HOME}/runlog/run.%d{yyyyMMddHH}.log</fileNamePattern><!--每分钟归档一次-->
+            <fileNamePattern>${LOG_HOME}/run.%d{yyyyMMddHH}.log</fileNamePattern><!--每分钟归档一次-->
             <maxHistory>30</maxHistory><!--每产生一个日志文件，该日志文件的保存期限为30天-->
         </rollingPolicy>
     </appender>
 
-    <appender name="micrservice" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/micrservice/micrservice.log</file>
-        <append>true</append><!--true追加日志，false覆盖日志。默认就是true-->
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/micrservice/micrservice.%d{yyyyMMddHH}.log</fileNamePattern><!--每分钟归档一次-->
-            <maxHistory>100</maxHistory>
-            <totalSizeCap>20GB</totalSizeCap>
-        </rollingPolicy>
+
+    <!-- 异步包装器：将 FILE 包装为异步。将日志事件放入队列，由独立线程异步写入目标（如文件、控制台），从而避免 I/O 阻塞业务线程，提升系统吞吐量。 -->
+    <appender name="FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志（默认队列满80%，会丢弃TRACT、DEBUG、INFO级别的日志） -->
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize> <!-- 更改默认的队列的深度，该值会影响性能。默认值为256 -->
+        <appender-ref ref="FILE"/> <!-- 添加附加的appender，最多只能添加一个 -->
     </appender>
 
-    <appender name="interface" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/interface/interface.log</file>
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <!-- rollover daily -->
-            <fileNamePattern>interface.%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
-            <!-- each file should be at most 100 MB, keep 60 days worth of history, but at most 20 GB -->
-            <maxFileSize>100MB</maxFileSize>
-            <maxHistory>60</maxHistory>
-            <totalSizeCap>20GB</totalSizeCap>
-        </rollingPolicy>
-    </appender>
 
-    <!--=============================================================================================================-->
 
-    <!--logger子节点，是规定哪里需要写日志的组件。数量>=0-->
-    <!-- 指定项目中某个包的代码的日志级别，以"com.kunning.springboot"为例，此包及其子包下面的所有日志记录级别都是DEBUG -->
-    <logger name="com.kunning.springboot" level="INFO" additivity="false">
-        <!--appender-ref子标签可以有0或多个-->
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
-    </logger>
+    <!--开发环境：日志记录到 控制台-->
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
 
-    <logger name="com.kunning.springboot.aop" level="ERROR" additivity="false">
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
-    </logger>
+        <!--logger子节点，是规定哪里需要写日志的组件。数量>=0-->
+        <!-- 指定项目中某个包的代码的日志级别，以"com.kunning.springboot"为例，此包及其子包下面的所有日志记录级别都是DEBUG -->
+        <logger name="com.kunning.springboot" level="INFO" additivity="false">
+            <!--appender-ref子标签可以有0或多个-->
+            <appender-ref ref="STDOUT"/>
+        </logger>
 
-    <root level="INFO">
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
-    </root>
+        <logger name="com.kunning.springboot.aop" level="ERROR" additivity="false">
+            <appender-ref ref="STDOUT"/>
+        </logger>
+    </springProfile>
+
+
+
+    <!--生产环境：日志异步记录到 文件-->
+    <springProfile name="pro|PRO|prod|PROD">
+        <root level="INFO">
+            <appender-ref ref="FILE_ASYNC"/>
+        </root>
+    </springProfile>
 
 </configuration>
