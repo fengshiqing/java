@@ -41,10 +41,10 @@
 
 
     <!-- 异步包装器：将 FILE 包装为异步。将日志事件放入队列，由独立线程异步写入目标（如文件、控制台），从而避免 I/O 阻塞业务线程，提升系统吞吐量。 -->
+    <!-- AsyncAppender 内部使用一个 阻塞队列（BlockingQueue） 来缓存待处理的日志事件，并由后台线程异步写入到实际的 appender（如 ConsoleAppender、FileAppender 等）。-->
     <appender name="FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <!-- 不丢失日志（默认队列满80%，会丢弃TRACT、DEBUG、INFO级别的日志） -->
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>512</queueSize> <!-- 更改默认的队列的深度，该值会影响性能。默认值为256 -->
+        <queueSize>512</queueSize> <!-- 默认队列容量：256 个日志事件。这里扩大到 512 -->
+        <discardingThreshold>20</discardingThreshold><!-- 默认为0，表示不丢失日志。这里是设置为20，表示队列中剩余50时，会丢弃TRACT、DEBUG、INFO级别的日志） -->
         <appender-ref ref="FILE"/> <!-- 添加附加的appender，最多只能添加一个 -->
     </appender>
 
