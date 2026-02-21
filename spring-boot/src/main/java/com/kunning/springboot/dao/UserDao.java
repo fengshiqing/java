@@ -1,10 +1,9 @@
 package com.kunning.springboot.dao;
 
-import java.util.List;
-
 import com.kunning.springboot.model.UserDto;
-
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserDao {
