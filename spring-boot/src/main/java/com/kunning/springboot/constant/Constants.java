@@ -12,4 +12,18 @@ package com.kunning.springboot.constant;
  */
 public class Constants {
 
+    /**
+     * 性别
+     */
+    interface GENDER {
+        /**
+         * 男
+         */
+        int gender_1 = 1;
+        /**
+         * 女
+         */
+        int gender_2 = 2;
+    }
+
 }
