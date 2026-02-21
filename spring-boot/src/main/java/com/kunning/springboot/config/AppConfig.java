@@ -3,9 +3,6 @@ package com.kunning.springboot.config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * 功能描述：学习 @Configuration、@Bean、@Import 注解
@@ -39,27 +36,6 @@ public class AppConfig {
         public void destroy() {
             log.info("【destroy 对象 Foo】");
         }
-    }
-
-    /**
-     * 功能描述：配置 redisTemplate。
-     * <a href="https://blog.csdn.net/weixin_47933000/article/details/108269241">...</a>
-     *
-     * @param redisConnectionFactory 参数
-     * @return redisTemplate
-     */
-    @Bean
-    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        log.info("【初始化 redis 配置】");
-
-        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(stringRedisSerializer); // 设置key和value的序列化规则
-        redisTemplate.setValueSerializer(stringRedisSerializer); // 设置key和value的序列化规则
-        redisTemplate.setHashKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashValueSerializer(stringRedisSerializer);
-        return redisTemplate;
     }
 
 }
