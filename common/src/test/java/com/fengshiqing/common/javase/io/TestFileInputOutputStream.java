@@ -4,7 +4,7 @@
 
 package com.fengshiqing.common.javase.io;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
