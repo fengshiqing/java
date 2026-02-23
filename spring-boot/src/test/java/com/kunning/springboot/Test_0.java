@@ -4,8 +4,8 @@
 
 package com.kunning.springboot;
 
-import com.mchange.v1.util.ArrayUtils;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

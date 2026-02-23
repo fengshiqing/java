@@ -7,10 +7,9 @@ package com.kunning.javase.DesignPatterns.proxy;
 import java.lang.reflect.Method;
 
 import org.junit.jupiter.api.Test;
-
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
+import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
 
 /**
  * 功能描述：CGlib动态代理。
