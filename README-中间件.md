@@ -12,9 +12,11 @@
 2、在打好的项目包目录下，执行：
 scp xxl-job-admin-2.4.0.jar   fengshiqing@192.168.0.100:/opt/fengshiqing
 3、在服务器上执行：
-nohup java -jar /opt/fengshiqing/xxl-job-admin-2.4.0.jar  >  /opt/runlogs/nohup-xxl-job.log  &
+dev环境：java -jar C:\workspace\GitHub\xxl-job\xxl-job-admin\target/xxl-job-admin-2.3.0.jar
+sit环境：nohup java -jar /opt/fengshiqing/xxl-job-admin-2.4.0.jar  >  /opt/runlogs/nohup-xxl-job.log  &
 4、打开管理台页面
-http://192.168.0.100:8080/xxl-job-admin/toLogin
+dev环境：http://127.0.0.1:9090/xxl-job-admin/toLogin
+sit环境：http://192.168.0.100:9090/xxl-job-admin/toLogin
 默认账号密码：admin/123456
 
 
