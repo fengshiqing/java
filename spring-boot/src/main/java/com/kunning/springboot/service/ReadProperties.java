@@ -4,6 +4,8 @@
 
 package com.kunning.springboot.service;
 
+import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
  * @author 冯仕清
  * @since 2021-06-24
  */
+@Slf4j
 @Order(10)
 @Service
 @PropertySource(value = {"classpath:config.properties"})
@@ -30,11 +33,13 @@ public class ReadProperties implements CommandLineRunner, ApplicationRunner {
 
 
     @Override
+    @NullMarked
     public void run(String... args) throws Exception {
-        System.out.println("【读取配置文件】" + name);
+        log.info("【读取 config.properties 文件中的配置，name：{}】", name);
     }
 
     @Override
+    @NullMarked
     public void run(ApplicationArguments args) throws Exception {
 
     }

@@ -1,5 +1,9 @@
 package com.kunning.springboot.utils;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -17,10 +21,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,12 +47,8 @@ import java.util.regex.Pattern;
  */
 // https://blog.csdn.net/u011199063/article/details/74504550
 // http://blog.csdn.net/lenotang/article/details/2823230
+@Slf4j
 public class ExcelUtil<T> {
-
-    /**
-     * 日志
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
 
     /**
      * 私有化构造函数
@@ -120,7 +119,7 @@ public class ExcelUtil<T> {
      */
     public Workbook exportExcel(String sheetName, String[] thNameArr, String[] thCodeArr, List<T> dataList,
                                 String dateFormat) {
-        LOGGER.info("【exportExcel】【开始执行】【请求参数：】【sheetName:{}, thNameArr:{}, thCodeArr:{}, dataList:{}, dateFormat:{}】",
+        log.info("【exportExcel】【开始执行】【请求参数：】【sheetName:{}, thNameArr:{}, thCodeArr:{}, dataList:{}, dateFormat:{}】",
                 sheetName, thNameArr, thCodeArr, dataList.size(), dateFormat);
 
         // 步骤：1，2，3，4
@@ -180,7 +179,7 @@ public class ExcelUtil<T> {
         while (it.hasNext()) {// 遍历集合，集合中每一个元素对应产生excel中的一行数据
             index++;// 数据行下标从1开始，对应 Excel 表格的第 2 行
             row = sheet.createRow(index);// 4.1、创建一个数据行
-            T baseObj = (T) it.next();// 从 dataList 获取数据
+            T baseObj = it.next();// 从 dataList 获取数据
             // Field[] fieldArr = object.getClass().getDeclaredFields();//
             // 利用反射，根据javabean属性的先后顺序，动态调用getXxx()方法得到属性值
 
@@ -193,15 +192,14 @@ public class ExcelUtil<T> {
                 // methodName="get"+fieldName.substring(0,1).toUpperCase()+fieldName.substring(1);//获取getXxx方法名
                 String methodName = "get" + thCodeArr[i].substring(0, 1).toUpperCase() + thCodeArr[i].substring(1);// 获取getXxx()方法的方法名，方法名必须严格遵循javaBean规范
                 // sheet.autoSizeColumn(i);// 自动设置宽高
-                Class<? extends Object> baseClass = baseObj.getClass();
+                Class<?> baseClass = baseObj.getClass();
                 try {
-                    Method method = baseClass.getMethod(methodName, new Class[]{});
+                    Method method = baseClass.getMethod(methodName);
                     Object fieldValue = method.invoke(baseObj, new Object[]{});// 执行 getXxx() 方法获取DTO字段的值
                     fieldValue = fieldValue != null ? fieldValue : "";
                     // 类型转换
-                    String cellValue = null;// 定义单元格值，用来存放：处理后的字段值fieldValue
-                    if (fieldValue instanceof Date) {// 日期类型
-                        Date date = (Date) fieldValue;
+                    String cellValue;// 定义单元格值，用来存放：处理后的字段值fieldValue
+                    if (fieldValue instanceof Date date) {// 日期类型
                         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
                         cellValue = sdf.format(date);
                     } else {// 其它数据类型都当作字符串简单处理
@@ -218,12 +216,13 @@ public class ExcelUtil<T> {
                         }
                     }
                 } catch (SecurityException | IllegalAccessException | NoSuchMethodException | IllegalArgumentException | InvocationTargetException e) {
-                    LOGGER.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
+                    log.error("【ExcelUtil.exportExcel】【发生异常】", e);// 不需要处理，只是导出的Excel内容为空。
                 }
             }
         }
         return wb;
     }
+
 
     // 本地测试方法，直接本地运行即可查看效果。注释掉测试代码 modify by 冯仕清 2017年11月6日 16:19:46
     public static void main(String[] args) {
@@ -231,24 +230,23 @@ public class ExcelUtil<T> {
         String[] thCodeArr = {"id", "name", "age", "sex", "birthday"};// 设置要导出的Excel的标题行的中文名字
         String[] thNameArr = {"学号", "姓名", "年龄", "性别", "出生日期"};// 设置要导出的Excel的标题行的中文名字
         List<Student> studentDtoList = new ArrayList<>();
-        studentDtoList.add(new Student(10000001, "张三", 20, true, new Date()));
-        studentDtoList.add(new Student(20000002, "李四", 24, false, new Date()));
-        studentDtoList.add(new Student(30000003, "王五", 22, true, new Date()));
-//		for (int i=0; i< 65535; i++) {
-//			studentDtoList.add(new Student(30000003, "王五", 22, true, new Date()));
-//		}
+		for (int i=0; i< 65535; i++) {
+			studentDtoList.add(new Student(30000000 + i, "姓名"  + i, 22, true, new Date()));
+		}
 
         try {
-            FileOutputStream fileOutStream1 = new FileOutputStream("C://a.xls");
+            String filePath = System.getProperty("user.home") + File.separator + "Downloads" + File.separator + "student_export.xls";
+            FileOutputStream fileOutStream1 = new FileOutputStream(filePath);
             Workbook wb = excelUtil1.exportExcel(thNameArr, thCodeArr, studentDtoList);
             wb.write(fileOutStream1);
             fileOutStream1.close();
-            JOptionPane.showMessageDialog(null, "导出成功！");
-            System.out.println("excel导出成功！");
+            JOptionPane.showMessageDialog(null, "导出成功！文件保存在: " + filePath);
+            System.out.println("excel导出成功！文件保存在: " + filePath);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("【ExcelUtil.main】【发生异常】", e);
         }
     }
+
 
     /**
      * 功能描述：读取Excel
@@ -396,22 +394,20 @@ public class ExcelUtil<T> {
         long minutes = ((diffVal / (60 * 1000)) - day * 24 * 60 - hour * 60);
         long s = (diffVal / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - minutes * 60);
         long ms = (diffVal - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - minutes * 60 * 1000 - s * 1000);
-        // String timeDifference = day + "天" + hour + "小时" + minutes + "分" + s + "秒" +
-        // ms + "毫秒";
+         String timeDifference = day + "天" + hour + "小时" + minutes + "分" + s + "秒" + ms + "毫秒";
         return hour + "小时" + minutes + "分";
     }
 
-    // 功能描述：此类用来测试，这是一个规范的javaBean。
+
+    @NoArgsConstructor
+    @Getter
+    @Setter
     static class Student {
         private long id;
         private String name;
         private int age;
         private boolean sex;// true表示男，false表示女
         private Date birthday;
-
-        public Student() {
-            super();
-        }
 
         public Student(long id, String name, int age, boolean sex, Date birthday) {
             super();
@@ -421,47 +417,6 @@ public class ExcelUtil<T> {
             this.sex = sex;
             this.birthday = birthday;
         }
-
-        public long getId() {
-            return id;
-        }
-
-        public void setId(long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-
-        public boolean getSex() {
-            return sex;
-        }
-
-        public void setSex(boolean sex) {
-            this.sex = sex;
-        }
-
-        public Date getBirthday() {
-            return birthday;
-        }
-
-        public void setBirthday(Date birthday) {
-            this.birthday = birthday;
-        }
-
-}
+    }
 
 }
