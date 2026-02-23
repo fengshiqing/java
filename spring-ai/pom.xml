@@ -70,15 +70,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
-                <configuration>
-                    <excludes>
-                        <!--不将lombok打入jar包里面-->
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
                 <!--直接依赖 springboot的starter的话，不需要如下配置就能把依赖的jar打到springboot的jar包里-->
                 <executions>
                     <execution>
