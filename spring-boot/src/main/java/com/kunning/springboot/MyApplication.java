@@ -1,5 +1,6 @@
 package com.kunning.springboot;
 
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author 冯仕清
  * @since 2019-10-01
  */
+@Slf4j
 @SpringBootApplication
 @MapperScan("com.kunning.springboot.dao")
 @EnableScheduling // 开启定时任务
@@ -19,9 +21,9 @@ public class MyApplication {
     public static void main(String[] args) {
         SpringApplication.run(MyApplication.class, args);
 
-        System.err.println("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
-        System.err.println("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
-        System.err.println("                ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
+        log.info("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
+        log.info("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
+        log.info("                ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
     }
 
 }
