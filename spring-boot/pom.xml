@@ -17,8 +17,8 @@
     <groupId>com.fengshiqing</groupId>
     <artifactId>spring-boot</artifactId>
     <packaging>jar</packaging>
-    <name>SpringBoot 的 Demo 项目</name>
-    <description>Demo project for Spring Boot</description>
+    <name>SpringBoot 项目</name>
+    <description>Project for Spring Boot</description>
 
 
     <!-- 全局配置 -->

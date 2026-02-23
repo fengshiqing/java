@@ -1,7 +1,6 @@
 package com.kunning.springboot.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -10,12 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Slf4j
 public class SplitFile {
-
-    /**
-     * 日志
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SplitFile.class);
 
     /**
      * 私有化构造函数
