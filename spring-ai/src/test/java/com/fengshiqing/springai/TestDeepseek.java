@@ -4,6 +4,7 @@
 
 package com.fengshiqing.springai;
 
+import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
 import com.alibaba.cloud.ai.dashscope.image.DashScopeImageModel;
 import com.alibaba.cloud.ai.dashscope.image.DashScopeImageOptions;
 import org.junit.jupiter.api.Test;
@@ -36,29 +37,48 @@ public class TestDeepseek {
         System.out.println(respStr); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
     }
 
+
     @Test
     public void deepseekStream(@Autowired DeepSeekChatModel model) { // 自动配置类：DeepSeekChatAutoConfiguration.class
         Flux<String> respStr = model.stream("你好，你是谁？");
         respStr.toIterable().forEach(System.out::println); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
     }
 
+
     @Test
     public void deepseekChatOptions(@Autowired DeepSeekChatModel model) { // 自动配置类：DeepSeekChatAutoConfiguration.class
-        DeepSeekChatOptions build = DeepSeekChatOptions.builder()
-                .model("deepseek-chat") // 模型名称，在 application.properties 中配置了 deepseek-chat，这里可以自定义。
-                .temperature(1.9d).build();
         String respStr = model.call("你好，请写一句诗描述清晨。");
         System.out.println(respStr); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
-        ChatResponse respStr2 = model.call(new Prompt("你好，请写一句诗描述清晨。"));
+
+        DeepSeekChatOptions options = DeepSeekChatOptions.builder()
+                .model("deepseek-chat") // 模型名称，在 application.properties 中配置了 deepseek-chat，这里可以自定义。
+                .maxTokens(1024) // 最大输出长度(可以理解为字数的长度)，deepseek默认长度32K，最大可以设置为64K
+                .temperature(1.9d).build();
+        ChatResponse respStr2 = model.call(new Prompt("你好，请写一句诗描述清晨。", options));
         System.out.println(respStr2.getResult().getOutput().getText()); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
     }
+
+
+    @Test
+    public void testQwen(@Autowired DashScopeChatModel model) { // 自动配置类：DeepSeekChatAutoConfiguration.class
+        String respStr = model.call("你好，请写一句诗描述清晨。");
+        System.out.println(respStr); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
+
+        DeepSeekChatOptions options = DeepSeekChatOptions.builder()
+//                .model("qwen-plus") // 模型名称，在 DashScopeChatAutoConfiguration 的 DashScopeChatProperties 中配置了 默认的模型："qwen-plus"，这里可以自定义。
+                .maxTokens(1024) // 最大输出长度(可以理解为字数的长度)，deepseek默认长度32K，最大可以设置为64K
+                .temperature(1.9d).build();
+        ChatResponse respStr2 = model.call(new Prompt("你好，请写一句诗描述清晨。", options));
+        System.out.println(respStr2.getResult().getOutput().getText()); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
+    }
+
 
     @Test
     public void text2Img(@Autowired DashScopeImageModel model) { // 自动配置类：DashScopeImageAutoConfiguration.class
         DashScopeImageOptions options = DashScopeImageOptions.builder()
-                .withModel("wanx2.0-t2i-turbo") // 模型名称，在 application.properties 中配置了 wanx-v1，这里可以自定义。
+                .model("wanx2.0-t2i-turbo") // 模型名称，在 application.properties 中配置了 wanx-v1，这里可以自定义。
                 .build();
-        ImageResponse imgResp = model.call(new ImagePrompt("你好，请写一句诗描述清晨。"));
+        ImageResponse imgResp = model.call(new ImagePrompt("你好，请写一句诗描述清晨。", options));
         // 图片URL
         String url = imgResp.getResult().getOutput().getUrl();
         System.out.println(url); // 这里是阻塞式的输出，大模型一次性输出所有的内容，所以这里会阻塞。
