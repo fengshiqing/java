@@ -1,0 +1,41 @@
+# 如果 application.properties 和 application.yml 中有相同的配置，以 application.properties 的为准
+# 官方文档，讲解了所有配置属性
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+
+
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/fengshiqing?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123
+      database: 0 # Redis数据库索引（默认为0）
+      lettuce:
+        pool:
+          max-active: 8  # 连接池最大连接数（使用负值表示没有限制），默认 8
+          max-wait: -1  # 连接池最大阻塞等待时间（使用负值表示没有限制），默认 -1
+          max-idle: 8  # 连接池中的最大空闲连接，默认 8
+          min-idle: 1  # 连接池中的最小空闲连接，默认 0
+      timeout: 3000  # 连接超时时间（毫秒）
+
+
+
+# 腾讯云服务相关的配置项，后续所有涉及到 腾讯公司的服务，都需要在这里进行配置
+tencent:
+  # 腾讯云对象存储（Cloud Object Storage，COS）用到的配置项
+  cos:
+    secret-id: 123                       # API 密钥ID
+    secret-key: 123                          # API 密钥KEY
+    region: ap-shanghai                                                   # 存储桶所属地域
+    bucket-name: 123                              # 存储桶空间名称
+    url: https://tc-test-neps-cos.cos.ap-shanghai.myqcloud.com # 存储桶访问域名
+    prefix: /123/  # 所有的文件都是放在 /fpc/ 下的。上传文件时，路劲不存在时会自动创建的。
+    prefix-temp: /123/temp/  # 临时文件放在 /fpc/temp/ 下。后续可以加个定时任务，删除临时文件
+
