@@ -2,7 +2,7 @@
  * Copyright (c) fengshiqing 冯仕清 2026. All Rights Reserved.
  */
 
-package com.fengshiqing.springai;
+package com.fengshiqing.springai.utils;
 
 import java.io.IOException;
 import java.net.URI;

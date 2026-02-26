@@ -1,0 +1,30 @@
+/*
+ * Copyright (c) 2022. fengshiqing 冯仕清. All Rights Reserved.
+ */
+
+package com.fengshiqing.springai.model.resp;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/**
+ * 功能描述：接口响应。
+ *
+ * @author 冯仕清
+ * @since 2022-04-23
+ */
+@NoArgsConstructor // 无参构造器，openFeign默认需要无参构造器
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Resp {
+
+    private int code;
+
+    private String message;
+
+}

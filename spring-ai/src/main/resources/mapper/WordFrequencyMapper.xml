@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengshiqing.springai.dao.WordFrequencyMapper">
+
+    <resultMap id="BaseResultMap" type="com.fengshiqing.springai.dao.entity.WordFrequency">
+            <id property="id" column="id" />
+            <result property="word" column="word" />
+            <result property="countNum" column="count_num" />
+            <result property="businessType" column="business_type" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,word,count_num,business_type,create_time,update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.fengshiqing.springai.dao.entity.WordFrequency">
+        insert into word_frequency (word, count_num, business_type, create_time, update_time)
+        values (#{word}, #{countNum}, #{businessType}, #{createTime}, #{updateTime})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from word_frequency where id = #{id}
+    </delete>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.fengshiqing.springai.dao.entity.WordFrequency">
+        select * from word_frequency where id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.fengshiqing.springai.dao.entity.WordFrequency">
+        update word_frequency
+        <set>
+            <if test="word != null">word = #{word},</if>
+            <if test="countNum != null">count_num = #{countNum},</if>
+            <if test="businessType != null">business_type = #{businessType},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

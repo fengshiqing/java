@@ -4,7 +4,7 @@
 
 package com.fengshiqing.springai.controller;
 
-import com.fengshiqing.springai.HttpUtil;
+import com.fengshiqing.springai.utils.HttpUtil;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
