@@ -2,11 +2,7 @@ package com.fengshiqing.springai.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,11 +17,14 @@ import java.util.concurrent.TimeUnit;
 public class SearchUtils {
     // 搜索引擎
     private String baseUrl = "https://api.tavily.com/search";
+
     private String apiKey;
-    @Value("${xushu.websearch.api-key}")
+
+    @Value("${spring.ai.websearch.api-key}")
     private void readApiKey(String key) {
         this.apiKey = key;
     }
+
     private final OkHttpClient client;
     private final ObjectMapper objectMapper;
 
@@ -40,7 +39,7 @@ public class SearchUtils {
     public List<Map<String, String>> tavilySearch(String query) {
         List<Map<String, String>> results = new ArrayList<>();
         try {
-            Map<String,String> requestBody = new HashMap<String, String>();
+            Map<String,String> requestBody = new HashMap<>();
             requestBody.put("query", query);
             Request request = new Request.Builder()
                     .url(baseUrl)

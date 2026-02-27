@@ -4,15 +4,13 @@
 
 package com.fengshiqing.springai.service;
 
-import com.fengshiqing.springai.model.resp.RespDataList;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import com.fengshiqing.springai.constant.PageResult;
 import com.fengshiqing.springai.dao.entity.WordFrequency;
-import com.fengshiqing.springai.dao.WordFrequencyMapper;
 import com.fengshiqing.springai.model.dto.WordFrequencyPageQueryDTO;
+import com.fengshiqing.springai.dao.WordFrequencyMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -27,46 +25,55 @@ public class WordFrequencyService {
     private WordFrequencyMapper wordFrequencyMapper;
 
 
-    public RespDataList<?> pageQuery(WordFrequencyPageQueryDTO queryDTO) {
-        PageHelper.startPage(queryDTO.getPage(), queryDTO.getPageSize());
-        // 这里需要根据实际情况实现分页查询，暂时返回空结果
-        Page<WordFrequency> page = new Page<>();
-        List<WordFrequency> records = List.of();
-
-        return new RespDataList(records, 0);
+    public PageResult pageQuery(WordFrequencyPageQueryDTO queryDTO) {
+        int offset = (queryDTO.getPage() - 1) * queryDTO.getPageSize();
+        
+        List<WordFrequency> list = wordFrequencyMapper.selectByCondition(
+                StringUtils.isNotEmpty(queryDTO.getWord()) ? queryDTO.getWord() : null,
+                StringUtils.isNotEmpty(queryDTO.getBusinessType()) ? queryDTO.getBusinessType() : null,
+                queryDTO.getCountNumMin(),
+                offset,
+                queryDTO.getPageSize()
+        );
+        
+        long total = wordFrequencyMapper.countByCondition(
+                StringUtils.isNotEmpty(queryDTO.getWord()) ? queryDTO.getWord() : null,
+                StringUtils.isNotEmpty(queryDTO.getBusinessType()) ? queryDTO.getBusinessType() : null,
+                queryDTO.getCountNumMin()
+        );
+        
+        return new PageResult(total, list);
     }
 
 
-    public void save(WordFrequency wordFrequency) {
-        wordFrequencyMapper.insert(wordFrequency);
+    public int insert(WordFrequency wordFrequency) {
+        return wordFrequencyMapper.insert(wordFrequency);
     }
 
 
-    public void update(WordFrequency wordFrequency) {
-        wordFrequencyMapper.update(wordFrequency);
+    public List<WordFrequency> selectAll() {
+        return wordFrequencyMapper.selectAll();
     }
 
 
-    public void delete(Integer id) {
-        wordFrequencyMapper.deleteById(id);
+    public int insertBatch(List<WordFrequency> list) {
+        if (list == null || list.isEmpty()) {
+            return 0;
+        }
+        return wordFrequencyMapper.insertBatch(list);
     }
 
 
-    public WordFrequency getById(Integer id) {
-        return wordFrequencyMapper.selectById(id);
+    public int updateBatch(List<WordFrequency> list) {
+        if (list == null || list.isEmpty()) {
+            return 0;
+        }
+        return wordFrequencyMapper.updateBatch(list);
     }
 
 
-    public void remove(Object o) {
-        // 这里需要实现清空所有数据的方法
-        // 由于我们没有在 WordFrequencyMapper 中定义对应的方法，暂时留空
-    }
-
-
-    public List<WordFrequency> list() {
-        // 这里需要实现获取所有数据的方法
-        // 由于我们没有在 WordFrequencyMapper 中定义对应的方法，暂时返回空列表
-        return List.of();
+    public int deleteAll() {
+        return wordFrequencyMapper.deleteAll();
     }
 }
 

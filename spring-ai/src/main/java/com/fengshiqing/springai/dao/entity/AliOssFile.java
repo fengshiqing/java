@@ -4,16 +4,21 @@
 
 package com.fengshiqing.springai.dao.entity;
 
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Date;
+import lombok.NoArgsConstructor;
 
 /**
  * 
+ * @TableName ali_oss_file
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AliOssFile {
     /**
      * 主键id

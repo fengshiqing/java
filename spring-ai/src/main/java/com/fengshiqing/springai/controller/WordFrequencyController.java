@@ -1,32 +1,27 @@
 package com.fengshiqing.springai.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fengshiqing.springai.constant.BaseResponse;
+import com.fengshiqing.springai.constant.PageResult;
 import com.fengshiqing.springai.constant.ResultUtils;
 import com.fengshiqing.springai.model.dto.WordFrequencyPageQueryDTO;
-import com.fengshiqing.springai.model.resp.RespDataList;
 import com.fengshiqing.springai.service.WordFrequencyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 功能描述：分词统计控制器
- *
+ * @Title: WordFrequencyController
  * @author 冯仕清
- * @since 2025-03-06
+ *
+ * @description: 分词统计控制器
  */
 
 @Tag(name="WordFrequencyController",description = "分词统计控制器")
@@ -47,16 +42,17 @@ public class WordFrequencyController {
     // 分页条件查询
     @PostMapping("/page")
     @Operation(summary = "page", description = "分页查询")
-    public RespDataList<?> pageQuery(@RequestBody WordFrequencyPageQueryDTO queryDTO) {
-
-        return wordFrequencyService.pageQuery(queryDTO);
+    public BaseResponse<PageResult> pageQuery(@RequestBody WordFrequencyPageQueryDTO queryDTO) {
+        PageResult pageResult = wordFrequencyService.pageQuery(queryDTO);
+        pageResult.setTotal(pageResult.getRecords().size());
+        return ResultUtils.success(pageResult);
     }
 
     // 清空数据
     @DeleteMapping("/clean")
     @Operation(summary = "clean", description = "清空数据")
     public BaseResponse<String> clean() {
-        wordFrequencyService.remove(null);
+        wordFrequencyService.deleteAll();
         return ResultUtils.success("清空成功");
     }
 
@@ -78,7 +74,7 @@ public class WordFrequencyController {
             }
         }
 
-        Object dataList = wordFrequencyService.list();
+        List<Object> dataList = (List<Object>)(Object)wordFrequencyService.selectAll();
 
         String dataListJson = objectMapper.writeValueAsString(dataList);
         redisTemplate.opsForValue().set(cacheKey, dataListJson);
@@ -86,8 +82,5 @@ public class WordFrequencyController {
 
         return ResultUtils.success(dataList);
     }
-
-
-
 
 }

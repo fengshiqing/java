@@ -3,24 +3,22 @@ package com.fengshiqing.springai.controller;
 import com.fengshiqing.springai.constant.BaseResponse;
 import com.fengshiqing.springai.constant.ResultUtils;
 import com.fengshiqing.springai.dao.entity.LogInfo;
+import com.fengshiqing.springai.dao.LogInfoMapper;
 import com.fengshiqing.springai.service.LogInfoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Title: LogInfoController
  * @author 冯仕清
- * @Package com.fengshiqing.springai.controller
+ *
  * @description: 日志控制器
  */
 @Tag(name = "LogInfoController", description = "日志控制器")
@@ -30,24 +28,40 @@ import java.util.List;
 public class LogInfoController {
     @Autowired
     private LogInfoService logInfoService;
+    
+    @Autowired
+    private LogInfoMapper logInfoMapper;
 
     @Operation(summary = "分页查询日志信息（带条件查询）")
     @GetMapping("/page")
-    public BaseResponse<List<LogInfo>> getLogInfoPage(
+    public BaseResponse<Map<String, Object>> getLogInfoPage(
             @RequestParam int page,
             @RequestParam int size,
             @RequestParam(required = false) String methodName,
             @RequestParam(required = false) String className,
             @RequestParam(required = false) String requestParams) {
-        // 这里需要实现分页查询日志的方法
-        List<LogInfo> result = new ArrayList<>();
+        
+        int offset = (page - 1) * size;
+        List<LogInfo> list = logInfoMapper.selectByCondition(methodName, className, requestParams, offset, size);
+        long total = logInfoMapper.countByCondition(methodName, className, requestParams);
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("records", list);
+        result.put("total", total);
+        result.put("current", page);
+        result.put("size", size);
+        
         return ResultUtils.success(result);
     }
 
     @Operation(summary = "批量删除日志信息")
     @PostMapping("/batch")
     public BaseResponse deleteLogInfos() {
-        // 这里需要实现批量删除日志的方法
-        return ResultUtils.success("删除成功");
+        int result = logInfoService.deleteAll();
+        if (result > 0) {
+            return ResultUtils.success("删除成功");
+        } else {
+            return ResultUtils.error("删除失败");
+        }
     }
 }

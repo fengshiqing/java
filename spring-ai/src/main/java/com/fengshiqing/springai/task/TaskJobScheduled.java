@@ -14,17 +14,13 @@ import org.wltea.analyzer.core.Lexeme;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * @Title: TaskJobScheduled
  * @author 冯仕清
- * @Package com.fengshiqing.springai.scheduled
+ *
  * @Date 2025/3/6 15:13
  * @description: 分词器定时任务
  */
@@ -62,14 +58,12 @@ public class TaskJobScheduled {
         log.info("分词器定时任务开始执行");
         redisTemplate.delete("wordFrequencyList");
         // 获取所有的热词数据
-        // 这里需要实现获取所有热词的方法
-        List<WordFrequency> wordFrequencies = new ArrayList<>();
+        List<WordFrequency> wordFrequencies = wordFrequencyService.selectAll();
         // 转为 Map key为word value为WordFrequency  判断是否存在
         Map<String, List<WordFrequency>> collectMap = wordFrequencies.stream().collect(Collectors.groupingBy(WordFrequency::getWord));
         StringBuilder text = new StringBuilder();
         // 获取所有日志
-        // 这里需要实现获取所有日志的方法
-        List<LogInfo> list = new ArrayList<>();
+        List<LogInfo> list = logInfoService.selectAll();
         for (LogInfo logInfo : list){
             // 将日志中的参数转为字符串
             text.append(logInfo.getRequestParams());
@@ -117,12 +111,8 @@ public class TaskJobScheduled {
                 }
             }
             // 新增新热词、修改老热词数量
-            for (WordFrequency wordFrequency : wordFrequencyList) {
-                wordFrequencyService.save(wordFrequency);
-            }
-            for (WordFrequency wordFrequency : updateList) {
-                wordFrequencyService.update(wordFrequency);
-            }
+            wordFrequencyService.insertBatch(wordFrequencyList);
+            wordFrequencyService.updateBatch(updateList);
 
         } catch (IOException e) {
             e.printStackTrace();

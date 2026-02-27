@@ -3,13 +3,13 @@ package com.fengshiqing.springai.controller;
 import com.fengshiqing.springai.constant.BaseResponse;
 import com.fengshiqing.springai.constant.PageResult;
 import com.fengshiqing.springai.constant.ResultUtils;
-import com.fengshiqing.springai.config.JwtProperties;
 import com.fengshiqing.springai.constant.JwtClaimsConstant;
 import com.fengshiqing.springai.dao.entity.User;
 import com.fengshiqing.springai.model.dto.PasswordDTO;
 import com.fengshiqing.springai.model.dto.UserDTO;
 import com.fengshiqing.springai.model.dto.UserPageQueryDTO;
 import com.fengshiqing.springai.model.vo.UserLoginVO;
+import com.fengshiqing.springai.config.JwtProperties;
 import com.fengshiqing.springai.service.UserService;
 import com.fengshiqing.springai.utils.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,14 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.AccountLockedException;
 import javax.security.auth.login.AccountNotFoundException;
@@ -34,7 +27,7 @@ import java.util.Map;
 /**
  * @Title: UserController
  * @author 冯仕清
- * @Package com.fengshiqing.springai.controller
+ *
  * @description: 用户控制层
  */
 
@@ -59,13 +52,13 @@ public class UserController {
         if (!passwordDTO.getNewPassword().equals(passwordDTO.getConfirmPassword())) {
             return ResultUtils.error("新密码与确认密码不一致");
         }
-        User user = userService.getById(passwordDTO.getId());
+        User user = userService.selectById(passwordDTO.getId());
         String s = DigestUtils.md5DigestAsHex(passwordDTO.getOldPassword().getBytes());
         if (!user.getPassword().equals(s)) {
             return ResultUtils.error("旧密码错误");
         }
         user.setPassword(DigestUtils.md5DigestAsHex(passwordDTO.getNewPassword().getBytes()));
-        userService.updateById(user);
+        userService.update(user);
         return ResultUtils.success("修改密码成功");
     }
 
@@ -177,8 +170,8 @@ public class UserController {
      */
     @GetMapping("/{id}")
     @Operation(summary = "info",description = "根据id查询user信息")
-    public BaseResponse<User> getById(@PathVariable Integer id){
-        User employee = userService.getById(id);
+    public BaseResponse<User> getById(@PathVariable Long id){
+        User employee = userService.selectById(id.intValue());
         return ResultUtils.success(employee);
     }
 
@@ -191,7 +184,7 @@ public class UserController {
     @Operation(summary = "info",description = "编辑user信息")
     public BaseResponse update(@RequestBody User user){
         log.info("编辑员工信息：{}", user);
-        userService.updateById(user);
+        userService.update(user);
         return ResultUtils.success("编辑成功");
     }
 }

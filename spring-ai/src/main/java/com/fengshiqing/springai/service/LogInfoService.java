@@ -8,6 +8,7 @@ import com.fengshiqing.springai.dao.entity.LogInfo;
 import com.fengshiqing.springai.dao.LogInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 /**
 * @author 冯仕清
@@ -21,26 +22,30 @@ public class LogInfoService {
     private LogInfoMapper logInfoMapper;
 
 
-    public void save(LogInfo logInfo) {
-        logInfoMapper.insert(logInfo);
+    public int insert(LogInfo logInfo) {
+        return logInfoMapper.insert(logInfo);
     }
 
 
-    public void update(LogInfo logInfo) {
-        logInfoMapper.update(logInfo);
-    }
-
-
-    public void delete(Integer id) {
-        logInfoMapper.deleteById(id);
-    }
-
-
-    public LogInfo getById(Integer id) {
+    public LogInfo selectById(Long id) {
         return logInfoMapper.selectById(id);
     }
-}
 
+
+    public List<LogInfo> selectAll() {
+        return logInfoMapper.selectAll();
+    }
+
+
+    public int deleteById(Long id) {
+        return logInfoMapper.deleteById(id);
+    }
+
+
+    public int deleteAll() {
+        return logInfoMapper.deleteAll();
+    }
+}
 
 
 

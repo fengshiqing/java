@@ -1,44 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fengshiqing.springai.dao.LogInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.fengshiqing.springai.dao.entity.LogInfo">
-            <id property="id" column="id" />
-            <result property="methodName" column="method_name" />
-            <result property="className" column="class_name" />
-            <result property="requestTime" column="request_time" />
-            <result property="requestParams" column="request_params" />
-            <result property="response" column="response" />
+        <id property="id" column="id"/>
+        <result property="methodName" column="method_name"/>
+        <result property="className" column="class_name"/>
+        <result property="requestTime" column="request_time"/>
+        <result property="requestParams" column="request_params"/>
+        <result property="response" column="response"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,method_name,class_name,request_time,request_params,response
-    </sql>
-
-    <insert id="insert" parameterType="com.fengshiqing.springai.dao.entity.LogInfo">
-        insert into log_info (method_name, class_name, request_time, request_params, response)
-        values (#{methodName}, #{className}, #{requestTime}, #{requestParams}, #{response})
-    </insert>
-
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from log_info where id = #{id}
-    </delete>
-
-    <select id="selectById" parameterType="java.lang.Integer" resultType="com.fengshiqing.springai.dao.entity.LogInfo">
-        select * from log_info where id = #{id}
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select * from log_info
+        <where>
+            <if test="methodName != null and methodName != ''">
+                and method_name like concat('%', #{methodName}, '%')
+            </if>
+            <if test="className != null and className != ''">
+                and class_name like concat('%', #{className}, '%')
+            </if>
+            <if test="requestParams != null and requestParams != ''">
+                and request_params like concat('%', #{requestParams}, '%')
+            </if>
+        </where>
+        <if test="offset != null and pageSize != null">
+            limit #{offset}, #{pageSize}
+        </if>
     </select>
 
-    <update id="update" parameterType="com.fengshiqing.springai.dao.entity.LogInfo">
-        update log_info
-        <set>
-            <if test="methodName != null">method_name = #{methodName},</if>
-            <if test="className != null">class_name = #{className},</if>
-            <if test="requestTime != null">request_time = #{requestTime},</if>
-            <if test="requestParams != null">request_params = #{requestParams},</if>
-            <if test="response != null">response = #{response},</if>
-        </set>
-        where id = #{id}
-    </update>
+    <select id="countByCondition" resultType="long">
+        select count(*) from log_info
+        <where>
+            <if test="methodName != null and methodName != ''">
+                and method_name like concat('%', #{methodName}, '%')
+            </if>
+            <if test="className != null and className != ''">
+                and class_name like concat('%', #{className}, '%')
+            </if>
+            <if test="requestParams != null and requestParams != ''">
+                and request_params like concat('%', #{requestParams}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

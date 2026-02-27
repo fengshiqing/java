@@ -1,43 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fengshiqing.springai.dao.WordFrequencyMapper">
 
     <resultMap id="BaseResultMap" type="com.fengshiqing.springai.dao.entity.WordFrequency">
-            <id property="id" column="id" />
-            <result property="word" column="word" />
-            <result property="countNum" column="count_num" />
-            <result property="businessType" column="business_type" />
-            <result property="createTime" column="create_time" />
-            <result property="updateTime" column="update_time" />
+        <id property="id" column="id"/>
+        <result property="word" column="word"/>
+        <result property="countNum" column="count_num"/>
+        <result property="businessType" column="business_type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,word,count_num,business_type,create_time,update_time
-    </sql>
-
-    <insert id="insert" parameterType="com.fengshiqing.springai.dao.entity.WordFrequency">
-        insert into word_frequency (word, count_num, business_type, create_time, update_time)
-        values (#{word}, #{countNum}, #{businessType}, #{createTime}, #{updateTime})
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into word_frequency(word, count_num, business_type, create_time, update_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.word}, #{item.countNum}, #{item.businessType}, #{item.createTime}, #{item.updateTime})
+        </foreach>
     </insert>
 
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from word_frequency where id = #{id}
-    </delete>
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";">
+            update word_frequency
+            set word = #{item.word},
+                count_num = #{item.countNum},
+                business_type = #{item.businessType},
+                create_time = #{item.createTime},
+                update_time = #{item.updateTime}
+            where id = #{item.id}
+        </foreach>
+    </update>
 
-    <select id="selectById" parameterType="java.lang.Integer" resultType="com.fengshiqing.springai.dao.entity.WordFrequency">
-        select * from word_frequency where id = #{id}
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select * from word_frequency
+        <where>
+            <if test="word != null and word != ''">
+                and word like concat('%', #{word}, '%')
+            </if>
+            <if test="businessType != null and businessType != ''">
+                and business_type = #{businessType}
+            </if>
+            <if test="countNumMin != null">
+                and count_num &gt; #{countNumMin}
+            </if>
+        </where>
+        order by count_num desc
+        <if test="offset != null and pageSize != null">
+            limit #{offset}, #{pageSize}
+        </if>
     </select>
 
-    <update id="update" parameterType="com.fengshiqing.springai.dao.entity.WordFrequency">
-        update word_frequency
-        <set>
-            <if test="word != null">word = #{word},</if>
-            <if test="countNum != null">count_num = #{countNum},</if>
-            <if test="businessType != null">business_type = #{businessType},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </set>
-        where id = #{id}
-    </update>
+    <select id="countByCondition" resultType="long">
+        select count(*) from word_frequency
+        <where>
+            <if test="word != null and word != ''">
+                and word like concat('%', #{word}, '%')
+            </if>
+            <if test="businessType != null and businessType != ''">
+                and business_type = #{businessType}
+            </if>
+            <if test="countNumMin != null">
+                and count_num &gt; #{countNumMin}
+            </if>
+        </where>
+    </select>
+
 </mapper>

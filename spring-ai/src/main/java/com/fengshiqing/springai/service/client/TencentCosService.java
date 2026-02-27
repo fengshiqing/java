@@ -7,6 +7,7 @@ import com.fengshiqing.springai.config.TencentCosConfig;
 import com.fengshiqing.springai.model.BizException;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.model.COSObject;
+import com.qcloud.cos.model.GeneratePresignedUrlRequest;
 import com.qcloud.cos.model.GetObjectRequest;
 import com.qcloud.cos.model.ObjectMetadata;
 import com.qcloud.cos.model.PutObjectRequest;
@@ -20,6 +21,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +31,7 @@ import java.util.UUID;
  * 功能描述：腾讯云对象存储（Cloud Object Storage，COS）用到的配置项
  *
  * @author 冯仕清
- * @since 2024-01-01
+ * @since 2025-12-29
  */
 @AllArgsConstructor
 @Slf4j
@@ -45,10 +49,11 @@ public class TencentCosService {
      * 功能描述：上传文件----前端上传的文件
      *
      * @param file 前端上传的文件
-     * @return 文件的下载链接
+     * @return 文件的下载链接（是一个完整的可直接下载的地址，不是相对路径）
+     *
      * @throws IOException 异常
      */
-    public String upload(MultipartFile file) throws IOException {
+    public String upload(MultipartFile file, String path) throws IOException {
 
         String originalFilename = file.getOriginalFilename();
         if (originalFilename == null || originalFilename.isEmpty()) {
@@ -58,7 +63,7 @@ public class TencentCosService {
         // 生成唯一文件名
         String ext = originalFilename.substring(originalFilename.lastIndexOf(".")); // 文件类型（扩展名/后缀）
         String uuid = UUID.randomUUID().toString().replace("-", "");
-        String key = cosConfig.getPrefix() + uuid + ext; // 这个是文件的相对路径(桶下的路径)，下载文件时，入参传入这个 key 就能下载。
+        String key = cosConfig.getPrefix() + path + uuid + ext; // 这个是文件的相对路径(桶下的路径)，下载文件时，入参传入这个 key 就能下载。
 
         // 设置元数据
         ObjectMetadata metadata = new ObjectMetadata();
@@ -103,7 +108,7 @@ public class TencentCosService {
     public <T> String upload(List<T> dataList, Class<T> clazz) {
 
         if (dataList.isEmpty()) {
-            throw new BizException(500, "数据库中没有可导出的数据");
+            throw new BizException("数据库中没有可导出的数据");
         }
 
         String uuid = UUID.randomUUID().toString().replace("-", ""); // 定义文件名（不包含文件后缀扩展名）
@@ -132,7 +137,7 @@ public class TencentCosService {
             return key;
         } catch (Exception e) {
             log.error("【upload】【上传失败】", e);
-            throw new BizException(500, "上传文件到COS失败：" + e.getMessage());
+            throw new BizException("上传文件到COS失败：" + e.getMessage());
         }
     }
 
@@ -147,7 +152,7 @@ public class TencentCosService {
      */
     public String uploadBytes(byte[] bytes, boolean tempFlag) {
         if (bytes == null || bytes.length == 0) {
-            throw new BizException(500, "文件内容为空");
+            throw new BizException("文件内容为空");
         }
 
         String fileName = UUID.randomUUID().toString().replace("-", "") + ".xlsx";
@@ -170,7 +175,7 @@ public class TencentCosService {
             return key;
         } catch (Exception e) {
             log.error("【uploadBytes】【上传失败】", e);
-            throw new BizException(500, "上传文件到COS失败：" + e.getMessage());
+            throw new BizException("上传文件到COS失败：" + e.getMessage());
         }
     }
 
@@ -187,8 +192,30 @@ public class TencentCosService {
             return outputStream.toByteArray();
         } catch (Exception e) {
             log.error("【convertToExcel】【Excel 转换失败】", e);
-            throw new BizException(500, "Excel 转换失败");
+            throw new BizException("Excel 转换失败");
         }
+    }
+
+
+    // === 生成公开访问 URL（仅当 Bucket 权限为公有读时有效）===
+    public String getPublicUrl(String key) {
+        return cosConfig.getUrl() + key;
+    }
+
+
+    // === 生成临时签名 URL（推荐用于私有 Bucket）===
+    public String generatePresignedUrl(String key, long expireSeconds) {
+        log.info("【generatePresignedUrl】【生成临时下载链接】【key：{}】", key);
+
+        if (this.notExists(key)) {
+            throw new BizException("文件不存在");
+        }
+
+        GeneratePresignedUrlRequest req = new GeneratePresignedUrlRequest(cosConfig.getBucketName(), key);
+        req.setExpiration(new Date(System.currentTimeMillis() + Duration.ofSeconds(expireSeconds).toMillis()));
+
+        URL url = cosClient.generatePresignedUrl(req);
+        return url.toString();
     }
 
 
@@ -196,7 +223,7 @@ public class TencentCosService {
     public COSObject download(String key) {
 
         if (this.notExists(key)) {
-            throw new BizException(500, "文件不存在");
+            throw new BizException("文件不存在");
         }
 
         GetObjectRequest getObjectRequest = new GetObjectRequest(cosConfig.getBucketName(), key);
@@ -206,8 +233,14 @@ public class TencentCosService {
 
     public void delete(String key) {
 
+        if (key == null || key.isEmpty()) {
+            throw new BizException("key不能为空");
+        }
+
+        key = key.replace(cosConfig.getUrl(), "");
+
         if (this.notExists(key)) {
-            throw new BizException(500, "文件不存在");
+            throw new BizException("文件不存在");
         }
 
         cosClient.deleteObject(cosConfig.getBucketName(), key);
@@ -228,6 +261,12 @@ public class TencentCosService {
             // COS SDK 在对象不存在时会抛出 CosServiceException
             return true;
         }
+    }
+
+
+    // === 获取文件元信息 ===
+    public ObjectMetadata getMetadata(String key) {
+        return cosClient.getObjectMetadata(cosConfig.getBucketName(), key);
     }
 
 }

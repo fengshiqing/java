@@ -10,12 +10,13 @@ import com.fengshiqing.springai.service.AliOssFileService;
 import com.fengshiqing.springai.service.client.TencentCosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.reader.tika.TikaDocumentReader;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -36,73 +36,63 @@ import java.util.stream.Collectors;
  * @author 冯仕清
  * @since 2025/2/8 20:35
  */
-@Tag(name = "KnowledgeController", description = "知识库管理接口")
+@AllArgsConstructor
 @Slf4j
 @RestController
 @RequestMapping("/knowledge")
+@Tag(name = "KnowledgeController", description = "知识库管理接口")
 public class KnowledgeController {
 
-    @Autowired
-    private VectorStore vectorStore;
+    // 添加 <artifactId>spring-ai-starter-vector-store-milvus</artifactId> 依赖后，MilvusVectorStoreAutoConfiguration.java 会自动注入这个对象
+    private final VectorStore vectorStore;
 
-    @Autowired
-    private TencentCosService tencentCosService;
+    private final TencentCosService tencentCosService;
 
-    @Autowired
-    private TokenTextSplitter tokenTextSplitter;
+    private final TokenTextSplitter tokenTextSplitter;
 
-    @Autowired
-    private AliOssFileService aliOssFileService;
+    private final AliOssFileService aliOssFileService;
+
+    // =================================================================================================================
+
+
     /**
      * 上传附件接口
      *
-     *  1. 提供不同的分片策略
-     *  2. 分片后的预览
-     * @param
-     * @return
-     * @throws IOException
+     * @param files 文件
+     * @return 响应
      */
-
     @Operation(summary = "upload", description = "上传附件接口")
     @PostMapping(value = "file/upload", headers = "content-type=multipart/form-data")
     public BaseResponse upload(@RequestParam("file") List<MultipartFile> files) {
-        if (files.isEmpty()) {
+
+        if (files == null || files.isEmpty()) {
             return ResultUtils.error(ErrorCode.PARAMS_ERROR, "请上传文件");
         }
 
         // 上传文件
         for (MultipartFile file : files) {
-
-            // 上传OSS
-
             try {
-                // 原文件名
-                String originalFilename = file.getOriginalFilename();
-                // 文件后缀
-                String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-                // 随机文件名（OSS)
-                String objectName = UUID.randomUUID() + extension;
-                String url = tencentCosService.upload(file);
-
-                // 向量化
-                // 1. 读取文件 txt pdf docx doc
-                TikaDocumentReader reader = new TikaDocumentReader(file.getResource());
+                // 向量化，主要分为如下几个阶段：
+                // 1. 读取文件。我们用的 spring-ai提供的 Tika工具，支持：PDF、DOC/DOCX、PPT/PPTX、HTML。txt应该也支持，可以测试一下。
+                Resource resource = file.getResource();
+                TikaDocumentReader reader = new TikaDocumentReader(resource);
                 List<Document> documents = reader.read();
-                // 2. 分词
+                // 2. 分词。我们用 spring-ai提供的 TokenTextSplitter工具，这个歌分词器的策略是 根据 默认的chunk_size来切分，还能尽量保证分词不会断句。
                 List<Document> splitDocuments = tokenTextSplitter.apply(documents);
-                // 3. 向量化
-                // 4. 保存向量 自动调用向量模型向量化方法
+                // 3. 向量化 并 保存向量。保存向量时，会 自动调用向量模型向量化方法
                 vectorStore.add(splitDocuments);
 
                 // 持久化到数据库
-                long currMillis = System.currentTimeMillis();
-                aliOssFileService.save(AliOssFile.builder()
-                        .fileName(originalFilename)
+                String url = tencentCosService.upload(file, "rag/");
+                Date date = new Date(System.currentTimeMillis());
+                AliOssFile aliOssFile = AliOssFile.builder()
+                        .fileName(file.getOriginalFilename()) // 原文件名
                         .vectorId(JSON.toJSONString(splitDocuments.stream().map(Document::getId).collect(Collectors.toList())))
                         .url(url)
-                        .createTime(new Date(currMillis))
-                        .updateTime(new Date(currMillis))
-                        .build());
+                        .createTime(date)
+                        .updateTime(date)
+                        .build();
+                aliOssFileService.insert(aliOssFile);
 
             } catch (IOException e) {
                 log.error("上传文件失败", e);
@@ -112,6 +102,7 @@ public class KnowledgeController {
                 return ResultUtils.error(ErrorCode.SYSTEM_ERROR, "向量化失败");
             }
         }
+
         return ResultUtils.success("文件上传成功");
     }
 

@@ -4,21 +4,22 @@
 
 package com.fengshiqing.springai;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-/**
- * 功能描述：应用程序入口
- *
- * @author 冯仕清
- * @since 2025-08-30
- */
+@Slf4j
 @SpringBootApplication
 @EnableScheduling
 public class AiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AiApplication.class, args);
+
+        log.info("      ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
+        log.info("      ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
+        log.info("      ┗━━┛┗━━┛┗━━╸┗━━╸┗━━╸┗━━┛┗━━┛");
     }
+
 }

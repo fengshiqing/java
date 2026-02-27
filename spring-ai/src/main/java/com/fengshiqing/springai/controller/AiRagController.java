@@ -1,20 +1,3 @@
-/*
- * Copyright 2024 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
 package com.fengshiqing.springai.controller;
 
 import com.fengshiqing.springai.config.aspect.Loggable;
@@ -25,7 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -39,58 +22,63 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-@Tag(name = "AiRagController", description = "Rag接口")
+@Tag(name = "AI对话接口（带RAG）", description = "AI对话接口（带RAG）")
 @Slf4j
 @RestController
 @RequestMapping("/ai")
 public class AiRagController {
 
     // 对话代理
-    ChatClient chatClient;
-    VectorStore vectorStore;
+    private final ChatClient chatClient;
+
+    private final VectorStore vectorStore;
+
     @Autowired
     private SensitiveWordService sensitiveWordService;
 
-    public AiRagController(ChatModel chatModel, ChatMemory chatMemory,
-                           VectorStore vectorStore) {
+
+    // 引入了 <artifactId>spring-ai-alibaba-starter-dashscope</artifactId> 后， DashScopeChatAutoConfiguration 就自动配置了一个 dashscopeChatModel。
+    public AiRagController(ChatModel chatModel, ChatMemory chatMemory, VectorStore vectorStore) {
         this.chatClient = ChatClient.builder(chatModel)
-                // 隐式
+                // 设置系统提示词。隐式
                 .defaultSystem("""
                         你是“XS”知识库系统的对话助手，请以乐于助人的方式进行对话
                         今天的日期：{current_data}
                         """)
                 .defaultAdvisors(
-                        PromptChatMemoryAdvisor.builder(chatMemory).build(),
-                        SimpleLoggerAdvisor.builder().build()
+                        MessageChatMemoryAdvisor.builder(chatMemory).build(), // CHAT MEMORY
+                       // PromptChatMemoryAdvisor.builder(chatMemory).build(), // 记住上下文
+                        SimpleLoggerAdvisor.builder().build() // 为了避免不知道大模型具体发送了什么数据，这里可以打印日志
                 )
                 .build();
-        this.vectorStore=vectorStore;
+        this.vectorStore = vectorStore;
     }
+
 
     @Operation(summary = "rag", description = "Rag对话接口")
     @GetMapping(value = "/rag")
     @Loggable
-    public Flux<String> generate(@RequestParam(value = "message", defaultValue = "你好") String message) throws IOException {
+    public Flux<String> generate(@RequestParam(value = "message", defaultValue = "你好") String message) {
 
         // 敏感词过滤
-        List<SensitiveWord> list = sensitiveWordService.list();
+        List<SensitiveWord> list = sensitiveWordService.selectAll();
 
-        for(SensitiveWord sensitiveWord: list){
-            if (message.contains(sensitiveWord.getWord())){
+        for (SensitiveWord sensitiveWord : list) {
+            if (message.contains(sensitiveWord.getWord())) {
                 return Flux.just("包含敏感词:" + sensitiveWord.getWord());
             }
         }
 
         Long userId = BaseContext.getCurrentId();
-        Flux<String> content = chatClient.prompt()
+
+        return chatClient.prompt()
                 .user(message)  // 用户提示词 显式
                 .advisors(a -> a.param("current_data", LocalDate.now().toString()))
                 //.call() // 同步方式
-                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID,userId))
+                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, userId))
                 .advisors(QuestionAnswerAdvisor.builder(vectorStore)
                         .searchRequest(
                                 SearchRequest.builder()
@@ -101,7 +89,5 @@ public class AiRagController {
                         .build())
                 .stream()// 流式方式
                 .content();
-
-        return  content;
     }
 }

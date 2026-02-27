@@ -5,23 +5,21 @@
 package com.fengshiqing.springai.service;
 
 import com.alibaba.fastjson2.JSON;
-import com.fengshiqing.springai.service.client.TencentCosService;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.fengshiqing.springai.constant.BaseResponse;
 import com.fengshiqing.springai.constant.ErrorCode;
 import com.fengshiqing.springai.constant.ResultUtils;
-import com.fengshiqing.springai.constant.PageResult;
-import com.fengshiqing.springai.dao.entity.AliOssFile;
 import com.fengshiqing.springai.dao.AliOssFileMapper;
+import com.fengshiqing.springai.dao.entity.AliOssFile;
 import com.fengshiqing.springai.model.dto.QueryFileDTO;
+import com.fengshiqing.springai.service.client.TencentCosService;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author 冯仕清
@@ -46,32 +44,29 @@ public class AliOssFileService {
      * @param request
      * @return
      */
-
     public BaseResponse queryPage(QueryFileDTO request) {
-        PageHelper.startPage(request.getPage(), request.getPageSize());
-        Page<AliOssFile> fileList = aliOssFileMapper.findByFileNameContaining(request.getFileName());
-        long total = fileList.size();
-        List<AliOssFile> records = fileList.getResult();
-        PageResult pageResult = new PageResult(total, records);
-        return ResultUtils.success(pageResult);
+        int offset = (request.getPage()) * request.getPageSize();
+        List<AliOssFile> fileList = aliOssFileMapper.findByFileNameContaining(
+                request.getFileName(), offset, request.getPageSize());
+        long total = aliOssFileMapper.countByFileName(request.getFileName());
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("records", fileList);
+        result.put("total", total);
+        result.put("current", request.getPage());
+        result.put("size", request.getPageSize());
+        
+        return ResultUtils.success(result);
     }
 
 
     @Transactional(rollbackFor = Exception.class)
     public BaseResponse deleteFiles(List<Long> ids) {
+        List<AliOssFile> aliOssFiles = aliOssFileMapper.selectByIds(ids);
         if (ids.isEmpty()) {
             return ResultUtils.error(ErrorCode.PARAMS_ERROR, "请选择文件");
         }
-        List<AliOssFile> aliOssFiles = new ArrayList<>();
-        int count = 0;
-        for (Long id : ids) {
-            AliOssFile aliOssFile = aliOssFileMapper.selectById(id.intValue());
-            if (aliOssFile != null) {
-                aliOssFiles.add(aliOssFile);
-                aliOssFileMapper.deleteById(id.intValue());
-                count++;
-            }
-        }
+        int count = aliOssFileMapper.deleteBatchIds(ids);
         if (count == 0) {
             return ResultUtils.error(ErrorCode.OPERATION_ERROR, "删除失败");
         }
@@ -86,23 +81,24 @@ public class AliOssFileService {
 
 
     public BaseResponse downloadFiles(List<Long> ids) {
+        List<AliOssFile> aliOssFiles = aliOssFileMapper.selectByIds(ids);
         if (ids.isEmpty()) {
             return ResultUtils.error(ErrorCode.PARAMS_ERROR, "请选择文件");
-        }
-        List<AliOssFile> aliOssFiles = new ArrayList<>();
-        for (Long id : ids) {
-            AliOssFile aliOssFile = aliOssFileMapper.selectById(id.intValue());
-            if (aliOssFile != null) {
-                aliOssFiles.add(aliOssFile);
-            }
         }
         for (AliOssFile aliOssFile : aliOssFiles){
             String url = aliOssFile.getUrl();
             String fileName = extractFileName(url);
-            tencentCosService.download(fileName);
+//            aliOssUtil.download(fileName);
         }
         return ResultUtils.success("下载成功");
     }
+
+
+    public int insert(AliOssFile aliOssFile) {
+        return aliOssFileMapper.insert(aliOssFile);
+    }
+
+
     public static String extractFileName(String url) {
         // 找到最后一个斜杠的位置
         int lastSlashIndex = url.lastIndexOf('/');
@@ -111,14 +107,6 @@ public class AliOssFileService {
         }
         // 从最后一个斜杠之后的部分截取
         return url.substring(lastSlashIndex + 1);
-    }
-
-    /**
-     * 保存文件信息到数据库
-     * @param aliOssFile 文件信息对象
-     */
-    public void save(AliOssFile aliOssFile) {
-        aliOssFileMapper.insert(aliOssFile);
     }
 
 }

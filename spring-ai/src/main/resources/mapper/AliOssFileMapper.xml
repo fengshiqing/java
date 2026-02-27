@@ -1,48 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fengshiqing.springai.dao.AliOssFileMapper">
 
     <resultMap id="BaseResultMap" type="com.fengshiqing.springai.dao.entity.AliOssFile">
-            <id property="id" column="id" />
-            <result property="fileName" column="file_name" />
-            <result property="url" column="url" />
-            <result property="vectorId" column="vector_id" />
-            <result property="createTime" column="create_time" />
-            <result property="updateTime" column="update_time" />
+        <id property="id" column="id"/>
+        <result property="fileName" column="file_name"/>
+        <result property="url" column="url"/>
+        <result property="vectorId" column="vector_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,file_name,url,vector_id,create_time,update_time
-    </sql>
-    <select id="findByFileNameContaining" resultType="com.fengshiqing.springai.dao.entity.AliOssFile">
-        SELECT * FROM ali_oss_file
-        WHERE file_name LIKE CONCAT('%', #{fileName}, '%')
-        ORDER BY id
+    <select id="selectByIds" resultMap="BaseResultMap">
+        select * from ali_oss_file
+        where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 
-    <insert id="insert" parameterType="com.fengshiqing.springai.dao.entity.AliOssFile">
-        insert into ali_oss_file (file_name, url, vector_id, create_time, update_time)
-        values (#{fileName}, #{url}, #{vectorId}, #{createTime}, #{updateTime})
-    </insert>
-
-    <delete id="deleteById" parameterType="java.lang.Integer">
-        delete from ali_oss_file where id = #{id}
+    <delete id="deleteBatchIds">
+        delete from ali_oss_file
+        where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </delete>
 
-    <select id="selectById" parameterType="java.lang.Integer" resultType="com.fengshiqing.springai.dao.entity.AliOssFile">
-        select * from ali_oss_file where id = #{id}
+    <select id="findByFileNameContaining" resultMap="BaseResultMap">
+        select * from ali_oss_file
+        <where>
+            <if test="fileName != null and fileName != ''">
+                file_name like concat('%', #{fileName}, '%')
+            </if>
+        </where>
+        <if test="offset != null and pageSize != null">
+            limit #{offset}, #{pageSize}
+        </if>
     </select>
 
-    <update id="update" parameterType="com.fengshiqing.springai.dao.entity.AliOssFile">
-        update ali_oss_file
-        <set>
-            <if test="fileName != null">file_name = #{fileName},</if>
-            <if test="url != null">url = #{url},</if>
-            <if test="vectorId != null">vector_id = #{vectorId},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </set>
-        where id = #{id}
-    </update>
+    <select id="countByFileName" resultType="long">
+        select count(*) from ali_oss_file
+        <where>
+            <if test="fileName != null and fileName != ''">
+                file_name like concat('%', #{fileName}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * @Title: PasswardDTO
  * @author 冯仕清
- * @Package com.fengshiqing.springai.pojo.dto
+ *
  * @Date 2025/3/26 19:02
  * @description: 修改密码DTO
  */

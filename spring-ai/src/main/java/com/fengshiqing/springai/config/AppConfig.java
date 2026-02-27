@@ -4,25 +4,54 @@
 
 package com.fengshiqing.springai.config;
 
-import lombok.extern.slf4j.Slf4j;
+import com.fengshiqing.springai.config.interceptor.JwtTokenUserInterceptor;
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Slf4j
-@Configuration // 取代 application.xml配置文件
-public class AppConfig {
+/**
+ * @author 冯仕清
+ * @since  2025-02-08
+ */
+@Configuration
+public class AppConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private JwtTokenUserInterceptor jwtTokenUserInterceptor;
+
 
     /**
-     * 构造函数
+     * ETL中的DocumentTransformer的实现，将文本数据源转换为多个分割段落
      */
-    public AppConfig() {
-        log.info("【初始化 AppConfig 配置】");
-    }
-
     @Bean
     public TokenTextSplitter tokenTextSplitter() {
         return new TokenTextSplitter();
+    }
+
+
+    @Bean
+    ChatClient chatclient(ChatClient.Builder builder){
+        return builder
+                .defaultSystem("你是一个乐于助人的，善于帮别别人解决问题的AI机器人")
+                .build();
+    }
+
+
+    /**
+     * 注册拦截器
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 注册用户JWT拦截器
+        registry.addInterceptor(jwtTokenUserInterceptor)
+                .addPathPatterns("/**") // 拦截所有请求
+                .excludePathPatterns("/user/login") // 排除用户登录接口拦截所有请求
+                .excludePathPatterns("/user/register") // 排除用户注册接口
+                .excludePathPatterns("/doc.html", "/webjars/**", "/swagger-resources/**", "/v3/api-docs/**"); // 排除Swagger相关路径
     }
 
 }

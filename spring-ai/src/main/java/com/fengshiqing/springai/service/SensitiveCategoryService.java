@@ -23,31 +23,25 @@ public class SensitiveCategoryService {
     private SensitiveCategoryMapper sensitiveCategoryMapper;
 
 
-    public List<SensitiveCategory> list() {
+    public int insert(SensitiveCategory sensitiveCategory) {
+        return sensitiveCategoryMapper.insert(sensitiveCategory);
+    }
+
+
+    public SensitiveCategory selectById(Integer id) {
+        return sensitiveCategoryMapper.selectById(id.longValue());
+    }
+
+
+    public List<SensitiveCategory> selectAll() {
         return sensitiveCategoryMapper.selectAll();
     }
 
 
-    public void save(SensitiveCategory sensitiveCategory) {
-        sensitiveCategoryMapper.insert(sensitiveCategory);
-    }
-
-
-    public void update(SensitiveCategory sensitiveCategory) {
-        sensitiveCategoryMapper.update(sensitiveCategory);
-    }
-
-
-    public void delete(Integer id) {
-        sensitiveCategoryMapper.deleteById(id);
-    }
-
-
-    public SensitiveCategory getById(Integer id) {
-        return sensitiveCategoryMapper.selectById(id);
+    public int deleteById(Integer id) {
+        return sensitiveCategoryMapper.deleteById(id.longValue());
     }
 }
-
 
 
 

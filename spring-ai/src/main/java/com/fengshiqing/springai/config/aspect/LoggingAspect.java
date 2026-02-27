@@ -71,7 +71,7 @@ public class LoggingAspect {
 
 
 
-        logInfoService.save(logInfo);
+        logInfoService.insert(logInfo);
     }
 }
     

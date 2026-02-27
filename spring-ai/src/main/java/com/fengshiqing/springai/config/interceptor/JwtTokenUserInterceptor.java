@@ -2,10 +2,11 @@
  * Copyright (c) fengshiqing 冯仕清 2026. All Rights Reserved.
  */
 
-package com.fengshiqing.springai.constant;
+package com.fengshiqing.springai.config.interceptor;
 
-import com.fengshiqing.springai.config.JwtProperties;
+import com.fengshiqing.springai.constant.JwtClaimsConstant;
 import com.fengshiqing.springai.config.BaseContext;
+import com.fengshiqing.springai.config.JwtProperties;
 import com.fengshiqing.springai.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -21,8 +22,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 /**
  * jwt令牌校验的拦截器
  */
-@Component
 @Slf4j
+@Component
 public class JwtTokenUserInterceptor implements HandlerInterceptor {
 
     @Autowired
@@ -60,14 +61,11 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
             BaseContext.setCurrentId(userId);
             //3、通过，放行
             return true;
-        }
-
-        catch (ExpiredJwtException ex) {
+        } catch (ExpiredJwtException ex) {
             response.setStatus(401);
 
             return false;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             //4、不通过，响应401状态码
             response.setStatus(401);
             return false;
