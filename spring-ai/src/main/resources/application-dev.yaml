@@ -12,18 +12,40 @@ spring:
     password: root
 
   data:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      password: 123
-      database: 0 # Redis数据库索引（默认为0）
-      lettuce:
-        pool:
-          max-active: 8  # 连接池最大连接数（使用负值表示没有限制），默认 8
-          max-wait: -1  # 连接池最大阻塞等待时间（使用负值表示没有限制），默认 -1
-          max-idle: 8  # 连接池中的最大空闲连接，默认 8
-          min-idle: 1  # 连接池中的最小空闲连接，默认 0
-      timeout: 3000  # 连接超时时间（毫秒）
+    redis: # dev 环境用的单机模式，必须这么配
+      host: 123
+      port: 123 # Redis服务器连接密码（默认为空）
+      password: 123 # Redis服务器连接密码（默认为空）
+
+
+  ai:
+    dashscope:
+      api-key: ${dashscope_api_key}  # 替换为你的真实 API Key
+      chat:
+        options:
+          model: qwen-plus-2025-12-01
+
+    vectorstore:
+      milvus:
+        client:
+          host: "localhost" # default: localhost
+          port: 19530 # default: 19530
+          username: "" # default: root
+          password: "" # default: milvus
+        databaseName: "default"
+        collectionName: "vector_store" # default: vector_store
+        embeddingDimension: 1536 # default: 1536
+        indexType: IVF_FLAT # default: IVF_FLAT
+        metricType: COSINE # default: COSINE
+        initializeSchema: true # 自动创建集合
+
+    # 网络搜索功能
+    websearch:
+      api-key: ${kinghy.ai.websearch.api-key:123456}
+      searxng:
+        url: "http://127.0.0.1:8080/search"
+        nums: 10
+        engines: "duckduckgo,google,bing,brave,mojeek,presearch,qwant,startpage,yahoo,arxiv,crossref,google_scholar,internetarchivescholar,semantic_scholar"
 
 
 
