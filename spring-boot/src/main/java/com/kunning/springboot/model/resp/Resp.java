@@ -5,7 +5,6 @@
 package com.kunning.springboot.model.resp;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +18,6 @@ import org.slf4j.MDC;
  * @since 2022-04-23
  */
 @NoArgsConstructor // 无参构造器，openFeign默认需要无参构造器
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -32,5 +30,10 @@ public class Resp {
     private String message;
 
     private String traceId = MDC.get("traceId");
+
+    public Resp(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
 
 }
