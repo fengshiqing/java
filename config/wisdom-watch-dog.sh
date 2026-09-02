@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # 脚本：监控 JAR 文件变化并自动重启
-# 启动脚本，然后查看日志（必须在 /root/wisdom-nhri/target 目录下 执行）：
+# 启动脚本，然后查看日志（必须在 /root/wisdom-xxxx/target 目录下 执行）：
 # nohup  ./wisdom-watch-dog.sh  >  wisdom-watch-dog.log  2>&1  &  tail -f  wisdom-watch-dog.log
 
 
-cd /root/wisdom-nhri/target || exit
+cd /root/wisdom-xxxx/target || exit
 
 
 admin_jar="wisdom-admin.jar"
@@ -46,7 +46,7 @@ echo ""
 #    moved_to : 文件被移动到监控目录
 #    modify : 文件内容被修改
 #    create : 新文件被创建
-inotifywait  -m -e close_write --format '%f'  /root/wisdom-nhri/target  |  while read  file; do
+inotifywait  -m -e close_write --format '%f'  /root/wisdom-xxxx/target  |  while read  file; do
     case "$file" in
         "$gateway_jar")
             restart_app "$gateway_jar"

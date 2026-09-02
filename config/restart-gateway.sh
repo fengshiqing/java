@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-cd /root/wisdom-nhri/target
+cd /root/wisdom-xxxx/target
 pkill -f wisdom-gateway.jar || true
 sleep 2
 
