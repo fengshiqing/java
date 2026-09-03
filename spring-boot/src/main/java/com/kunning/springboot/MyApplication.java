@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -18,8 +19,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling // 开启定时任务
 public class MyApplication {
 
+    /**
+     * 全局 ApplicationContext 对象
+     */
+    public static ConfigurableApplicationContext appContext;
+
     public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
+        appContext = SpringApplication.run(MyApplication.class, args);
 
         log.info("                ┏━━┓╻  ╻┏━━╸┏━━╸┏━━╸┏━━┓┏━━┓");
         log.info("                ┗━━┓┃  ┃┃   ┃   ┣━━╸┗━━┓┗━━┓");
